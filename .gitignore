@@ -1,3 +1,6 @@
 # useless jupyter stuff
 .ipynb_checkpoints/
 __pycache__/
+
+# mac helper files
+.DS_Store

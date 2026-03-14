@@ -57,13 +57,16 @@ class fitPlotter():
             print(f"p-value:  {pvalue:.4f}\n")
 
             # fit parameters stuff
-            params = []
+            params = np.zeros((func.GetNpar(),2))  # simo: ora viene ritornato un array numpy bidimensionale dei parametri e degli errori
+            
             for i in range(func.GetNpar()):
                 name = func.GetParName(i)
                 val  = func.GetParameter(i)
                 err  = func.GetParError(i)
                 print(f"{name}: {val:.4f} +/- {err:.4f}")
-                params.append([val,err])
+                params[i,0] = func.GetParameter(i)
+                params[i,1] = func.GetParError(i)
+
             print("-" * 32)
 
             leg.AddEntry(func, "fit function", "l")
