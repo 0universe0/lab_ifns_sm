@@ -1,0 +1,164 @@
+# PLOTTER / FITTER class
+
+from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed
+from array import array
+
+class fitPlotter():
+    """ utility class to plot graphs and do fits with ROOT """
+    def __init__(self, name=""):
+        self._canvas = TCanvas() 
+        self._name   = name
+        self._graphs  = []
+        self._legends = []
+
+    def addGraph(self, x, y, x_err=None, y_err=None, title="graph", fit_formula="pol1", color=kRed):
+        """ adds graph and eventually performs fit (else pass fit_formula=None) """
+        # using c-style arrays breaks out of bound errors, so we have to implement some sanity checks
+        if len(x) != len(y):
+            raise IndexError("lenght of provided data are not the same")
+        elif (x_err) and len(x_err) != len(x):
+            raise IndexError("err_x lenght does not match x")
+        elif (y_err) and len(y_err) != len(y):
+            raise IndexError("err_x lenght does not match x")
+        
+        n = len(x)
+        ex = x_err if x_err is not None else [0.0] * n
+        ey = y_err if y_err is not None else [0.0] * n
+
+        x_arr, y_arr = array('d', x), array('d', y)
+        ex_arr, ey_arr = array('d', ex), array('d', ey)
+
+        graph = TGraphErrors(n, x_arr, y_arr, ex_arr, ey_arr)
+        graph.SetTitle(title)
+        graph.SetMarkerStyle(20)
+        graph.SetMarkerColor(color)
+        graph.SetLineColor(color)
+
+        leg = TLegend(0.12, 0.75, 0.45, 0.88)
+        leg.SetBorderSize(1)
+        leg.SetFillColor(0)
+        leg.AddEntry(graph, "data points", "ple")
+
+        if fit_formula:
+            print(f"\n--- fit Results for: {title} ---")
+            fit_res = graph.Fit(fit_formula, "SQ")
+            func = graph.GetFunction(fit_formula)
+            func.SetLineColor(kBlue)
+            
+            # fit stats
+            chi2 = func.GetChisquare()
+            ndf = func.GetNDF()
+            pvalue = func.GetProb()
+            print(f"Function: {fit_formula}")
+            print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
+            print(f"p-value:  {pvalue:.4f}\n")
+
+            # fit parameters stuff
+            params = []
+            for i in range(func.GetNpar()):
+                name = func.GetParName(i)
+                val  = func.GetParameter(i)
+                err  = func.GetParError(i)
+                print(f"{name}: {val:.4f} +/- {err:.4f}")
+                params.append([val,err])
+            print("-" * 32)
+
+            leg.AddEntry(func, "fit function", "l")
+
+        # fuck the garbage collector
+        self._graphs.append(graph)
+        self._legends.append(leg)
+
+        # returning (masked) fit results (if fit was performed)
+        if fit_formula: 
+            return params
+        else:
+            return None
+
+    def drawCanvas(self, dimX=1000, dimY=500):
+        """ draws entire canvas """
+        nGraphs = len(self._graphs)
+        if nGraphs < 1: return
+        
+        cols = 2
+        rows = (nGraphs + 1) // 2 
+        
+        self._canvas = TCanvas(self._name, self._name, dimX, dimY * rows)
+        self._canvas.Divide(cols, rows)
+
+        for i in range(nGraphs):
+            self._canvas.cd(i+1)
+            gPad.SetGrid() 
+            self._graphs[i].Draw("AP")
+            self._legends[i].Draw()
+
+        self._canvas.Draw()
+
+    def saveCanvas(self, fileName="canvas.png"):
+        """ saves canvas: has logic to modify name (but its not that useful) """
+        if fileName == "canvas.png" and self._name:
+            fileName = self._name + ".png"
+        self._canvas.SaveAs(fileName)
+
+
+# MEAN CALCULATOR w/ ERROR PROPAGATION
+# TODO: use numpy!
+
+def meanCalc(values):
+    """ returns mean of values (w/ error) weighted by errors of: values = List[[value1, err1], [value2, err2], ...] """
+    mean = 0
+    mean_err = 0
+
+    for v in values:
+        mean_err += 1 / (v[1])**2      # 1 / sigma^2
+        mean     += v[0] / (v[1])**2   # value / sigma^2
+
+    # right now mean_err = sum of weights
+    mean /= mean_err
+
+    # this is the true error
+    mean_err = 1 / (mean_err)**0.5
+
+    return mean, mean_err
+
+# Z test calculator!
+
+import numpy as np
+import scipy.stats as stats
+
+def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, tipo_test='bilaterale'):
+    """ returns p-value of z-test """
+    
+    # 1. Calcolo dell'errore standard
+    errore_standard = dev_std_popolazione / np.sqrt(n)
+    
+    # 2. Calcolo della statistica Z
+    Z = (media_campione - media_popolazione) / errore_standard
+    print(f"Statistica Z calcolata: {Z:.4f}")
+    
+    # 3. Calcolo del P-value in base al tipo di test
+    if tipo_test == 'bilaterale':
+        # Moltiplico per 2 perché guardo entrambe le code
+        p_value = 2 * (1 - stats.norm.cdf(abs(Z)))
+    elif tipo_test == 'maggiore':
+        # Coda di destra
+        p_value = 1 - stats.norm.cdf(Z)
+    elif tipo_test == 'minore':
+        # Coda di sinistra
+        p_value = stats.norm.cdf(Z)
+    else:
+        raise ValueError("tipo_test deve essere 'bilaterale', 'maggiore' o 'minore'")
+        
+    print(f"P-value calcolato: {p_value:.4f}")
+    print(f"Livello di significatività (alfa): {alfa}")
+    
+    # 4. Conclusione del test
+    print("-" * 30)
+    if p_value < alfa:
+        print("Conclusione: Rifiutiamo l'ipotesi nulla (H0).")
+        print("Il risultato è statisticamente significativo al livello del 5%.")
+    else:
+        print("Conclusione: Non ci sono prove sufficienti per rifiutare l'ipotesi nulla (H0).")
+        print("Il risultato NON è statisticamente significativo al livello del 5%.")
+
+    return p_value
