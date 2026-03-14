@@ -41,9 +41,12 @@ class fitPlotter():
 
         if fit_formula:
             print(f"\n--- fit Results for: {title} ---")
-            fit_res = graph.Fit(fit_formula, "SQ")
-            func = graph.GetFunction(fit_formula)
+
+            func_name = f"f_{len(self._graphs)}"
+            
+            func = TF1(func_name, fit_formula)
             func.SetLineColor(kBlue)
+            graph.Fit(func, "SQ")
             
             # fit stats
             chi2 = func.GetChisquare()
