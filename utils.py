@@ -127,6 +127,20 @@ def meanCalc(values):
 
     return mean, mean_err
 
+# Mean error calculator
+
+import numpy as np
+
+def MeanError(s1,s2):
+    "used to calculate mean of two arrays of np.array([mean,error],[],...) type"
+    if (np.shape(s1) != np.shape(s2)):
+        raise("TypeError: shape of imput arrays must be equal")
+    else:
+        rel_error = np.sqrt((s1[:,1]/s1[:,0])**2 + (s2[:,1]/s2[:,0])**2)
+        stima = (s1 + s2)/len(s1)
+        stima[:,1] = rel_error * stima[:,0]
+        return stima
+
 # Z test calculator!
 
 import numpy as np
@@ -168,3 +182,21 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
         print("Il risultato NON è statisticamente significativo al livello del 5%.")
 
     return p_value
+
+# Zscore function
+
+import numpy as np
+
+def Zscore(s1, s2):
+    "used to compare array of np.array([mean,error] measures. returns z score "
+    if (np.shape(s1) != np.shape(s2)):
+        raise("TypeError: shape of imput arrays must be equal")
+    else:
+        errors = np.sqrt(s1[:,1]**2 + s2[:,1] **2)
+        z = (s2[:,0]-s1[:,0])/errors
+        for i in range(len(s1)):
+            print(f"z value of param {i} :", round(z[i],3))
+        print("\n")
+
+        return z
+
