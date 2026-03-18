@@ -2,6 +2,7 @@
 
 from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed
 from array import array
+import numpy as np
 
 class fitPlotter():
     """ utility class to plot graphs and do fits with ROOT """
@@ -11,14 +12,14 @@ class fitPlotter():
         self._graphs  = []
         self._legends = []
 
-    def addGraph(self, x, y, x_err=None, y_err=None, title="graph", fit_formula="pol1", color=kRed):
+    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed):
         """ adds graph and eventually performs fit (else pass fit_formula=None) """
         # using c-style arrays breaks out of bound errors, so we have to implement some sanity checks
         if len(x) != len(y):
             raise IndexError("lenght of provided data are not the same")
-        elif (x_err) and len(x_err) != len(x):
+        elif (x_err.any()) and len(x_err) != len(x):
             raise IndexError("err_x lenght does not match x")
-        elif (y_err) and len(y_err) != len(y):
+        elif (y_err.any()) and len(y_err) != len(y):
             raise IndexError("err_x lenght does not match x")
         
         n = len(x)
@@ -107,6 +108,20 @@ class fitPlotter():
         self._canvas.SaveAs(fileName)
 
 
+# we have to remove the contribution for B=0
+# (our measurements need to have the same currents, or else we need to interpolate between the points...)
+# NOT NEEDED ANYMORE : DEPRECATED
+def removeBackground(data, back, err_data, err_back):
+    """ removes background data `back` from `data` (propagating errors as sums of squares) """
+    newdata     = []
+    err_newdata = []
+
+    for i in range(0,len(data)):
+        newdata.append(data[i] - back[i])
+        err_newdata.append((err_data[i]**2 + err_back[i]**2)**0.5)
+
+    return newdata, err_newdata
+    
 # MEAN CALCULATOR w/ ERROR PROPAGATION
 # TODO: use numpy!
 
@@ -129,8 +144,6 @@ def meanCalc(values):
 
 # Mean error calculator
 
-import numpy as np
-
 def MeanError(s1,s2):
     "used to calculate mean of two arrays of np.array([mean,error],[],...) type"
     if (np.shape(s1) != np.shape(s2)):
@@ -143,7 +156,6 @@ def MeanError(s1,s2):
 
 # Z test calculator!
 
-import numpy as np
 import scipy.stats as stats
 
 def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, tipo_test='bilaterale'):
@@ -184,8 +196,6 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
     return p_value
 
 # Zscore function
-
-import numpy as np
 
 def Zscore(s1, s2):
     "used to compare array of np.array([mean,error] measures. returns z score "
