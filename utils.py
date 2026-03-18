@@ -234,5 +234,5 @@ def Amprobe(current,unit = "mA"):
     if (unit == "A") : 
         error = np.array(error) / 1000
 
-    return error
+    return np.array(error)
     
