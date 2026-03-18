@@ -200,3 +200,29 @@ def Zscore(s1, s2):
 
         return z
 
+# Amprobe 37-XRA for errors on current
+# converting all in mA
+
+import numpy as np
+
+def Amprobe(current,unit = "mA"):
+    """used to calculate the error on i""" 
+    array = current
+    error = []
+    
+# converting in mA if measures are in A
+    if (unit == "A") : 
+        array = current*1000 
+        
+# calculating errors based on range
+    for data in array:
+        if (abs(data) < 0.1):
+            error.append (0.005*abs(data) + 0.001*0.001*10) 
+        elif abs(data) < 400 : error.append (0.005*abs(data) + 0.001*5) 
+        else : error.append (0.015*abs(data) + 10)
+
+    if (unit == "A") : 
+        error = np.array(error) / 1000
+
+    return error
+    
