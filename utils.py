@@ -235,4 +235,35 @@ def Amprobe(current,unit = "mA"):
         error = np.array(error) / 1000
 
     return np.array(error)
+
+# Keithley DMM6500 for errors on voltage
+# all measures are in mV 
+
+def Keithley (voltage) :
+    """used to calculate the error on V"""
+    error = []
+
+# calculating errors based on range
+
+    for data in voltage:
+        if (abs(data) < 100) : 
+            error.append(0.0035*abs(data) + 0.0035*100)
+        else : error.append (0.0030*abs(data) + 0.0006*1000)
+
     
+    return np.array(error)
+
+# Magnetic meter for errors on B values
+# all measures are in mT
+
+def Teslameter (magneticfield) : 
+    """ used to calculate the error on B """
+    error = []
+
+#calculate errors based on range
+
+    for data in magneticfield:
+        error.append(0.005*abs(data) + 1)
+
+    return np.array(error)
+        
