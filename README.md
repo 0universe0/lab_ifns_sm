@@ -1,33 +1,26 @@
 # lab_ifns_sm
 lab reports repo
 
-## TODO
+## TODOs
 
-### general
+### hall
 
-- add logic to put saved canvases into specific subdirectory [?]
-- move functions Zscore MeanError to utils.py (done!)
+- correggere segni del campo magnetico/corrente per avere la stima corretta sul segno dei portatori di carica
 
-### campo magnetico al variare della corrente
+#### campo magnetico al variare della corrente (isteresi)
 
-- aggiungere errori di default (fissali tipo a 0.1, poi li metteremo giusti con le specifiche degli strumenti) agli array di corrente e campo magnetico (done!)
-- aggiungere ai test Z con le funzioni di simo gli array con gli errori 
+- controllare test Z sui valori dei cicli di isteresi (e correggere errore sulla quota?)
 
-### tensione di hall al variare di i
+#### tensione di hall al variare di i
 
-- dare una sistemata al codice (del tipo: aggiungere qualche commento su quello che stiamo facendo/che array si riferisce a che serie di dati) (done!)
-- da tutti i parametri (forse solo i coefficienti angolari? bisogna pensarci) dei fit con B != 0, sottrarre i parametri del fit con B=0 (con propagazione errori)
-- verificare che tutte le quote siano compatibili con 0
-- fare un fit lineare delle quote contro B in modo da stimare R_H
+- verificare che tutte le quote siano compatibili con 0 con test Z
+- controllare unità di misura della stima di R_H
 
-### tensione di hall al variare di B
+#### tensione di hall al variare di B
 
-- pulire/commentare il codice (tutti gli array scritti da luca non sono dei campi magnetici ma delle correnti) (done!)
-- usare le rette dei cicli di isteresi per creare gli array dei campi magnetici a partire da quelli di corrente (forse c’è un modo migliore?) propagando gli errori
-- sottrarre (o sommare, dipende dai punti di vista) anche il contributo ohmico a tutte le rette (cioè la tensione di Hall misurata allo specifico valore di corrente quando B=0: achtung in realtà bisogna interpolare usando la retta del fit V_H(i) a B=0 se vogliamo essere precissisimi)
+- sottrarre (o sommare, dipende dai punti di vista) anche il contributo ohmico a tutte le rette
 - verificato che le quote di tutti i fit siano compatibili con 0, fare un fit lineare con tutti i coefficienti angolari per stimare R_H
 
-### mobilità dei portatori
+#### mobilità dei portatori
 
-- fare fit lineare della caratteristica I(V) della sonda (done!)
 - sostituire dati giusti (con propagazione errore) nel calcolo di mu

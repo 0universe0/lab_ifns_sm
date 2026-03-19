@@ -23,8 +23,13 @@ class fitPlotter():
             raise IndexError("err_x lenght does not match x")
         
         n = len(x)
-        ex = x_err if x_err is not None else [0.0] * n
-        ey = y_err if y_err is not None else [0.0] * n
+
+        # init form empty errors
+        if len(x_err) == 0:
+            x_err = np.zeros(n)
+
+        if len(y_err) == 0:
+            y_err = np.zeros(n)
 
         x_arr, y_arr = array('d', x), array('d', y)
         ex_arr, ey_arr = array('d', ex), array('d', ey)
@@ -220,16 +225,18 @@ def Amprobe(current,unit = "mA"):
     array = current
     error = []
     
-# converting in mA if measures are in A
+    # converting in mA if measures are in A
     if (unit == "A") : 
         array = current*1000 
         
-# calculating errors based on range
+    # calculating errors based on range
     for data in array:
         if (abs(data) < 0.1):
             error.append (0.005*abs(data) + 0.001*0.001*10) 
-        elif abs(data) < 400 : error.append (0.005*abs(data) + 0.001*5) 
-        else : error.append (0.015*abs(data) + 10)
+        elif abs(data) < 400 : 
+            error.append (0.005*abs(data) + 0.001*5) 
+        else : 
+            error.append (0.015*abs(data) + 10)
 
     if (unit == "A") : 
         error = np.array(error) / 1000
@@ -248,7 +255,8 @@ def Keithley (voltage) :
     for data in voltage:
         if (abs(data) < 100) : 
             error.append(0.0035*abs(data) + 0.0035*100)
-        else : error.append (0.0030*abs(data) + 0.0006*1000)
+        else : 
+            error.append (0.0030*abs(data) + 0.0006*1000)
 
     
     return np.array(error)
@@ -260,7 +268,7 @@ def Teslameter (magneticfield) :
     """ used to calculate the error on B """
     error = []
 
-#calculate errors based on range
+    #calculate errors based on range
 
     for data in magneticfield:
         error.append(0.005*abs(data) + 1)
