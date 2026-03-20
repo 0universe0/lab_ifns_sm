@@ -32,7 +32,7 @@ class fitPlotter():
             y_err = np.zeros(n)
 
         x_arr, y_arr = array('d', x), array('d', y)
-        ex_arr, ey_arr = array('d', ex), array('d', ey)
+        ex_arr, ey_arr = array('d', x_err), array('d', y_err)
 
         graph = TGraphErrors(n, x_arr, y_arr, ex_arr, ey_arr)
         graph.SetTitle(title)
@@ -261,17 +261,31 @@ def Keithley (voltage) :
     
     return np.array(error)
 
-# Magnetic meter for errors on B values
+# magnetic meter for errors on B values
 # all measures are in mT
 
 def Teslameter (magneticfield) : 
     """ used to calculate the error on B """
     error = []
 
-    #calculate errors based on range
+#calculate errors based on range
 
     for data in magneticfield:
         error.append(0.005*abs(data) + 1)
+
+    return np.array(error)
+
+
+# Amprobe 37_XRA for errors on voltage
+# all measures are in mV
+
+def Amprobe_V (voltage):
+    """ used to calculate errors on V"""
+    error = []
+
+# calculate errors based on range
+    for data in voltage:
+        error.append(0.001*abs(data) + 0.1*5)
 
     return np.array(error)
         
