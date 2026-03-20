@@ -2,6 +2,7 @@
 
 from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed
 from array import array
+import numpy as np
 
 class fitPlotter():
     """ utility class to plot graphs and do fits with ROOT """
@@ -11,22 +12,27 @@ class fitPlotter():
         self._graphs  = []
         self._legends = []
 
-    def addGraph(self, x, y, x_err=None, y_err=None, title="graph", fit_formula="pol1", color=kRed):
+    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed):
         """ adds graph and eventually performs fit (else pass fit_formula=None) """
         # using c-style arrays breaks out of bound errors, so we have to implement some sanity checks
         if len(x) != len(y):
             raise IndexError("lenght of provided data are not the same")
-        elif (x_err) and len(x_err) != len(x):
+        elif (x_err.any()) and len(x_err) != len(x):
             raise IndexError("err_x lenght does not match x")
-        elif (y_err) and len(y_err) != len(y):
+        elif (y_err.any()) and len(y_err) != len(y):
             raise IndexError("err_x lenght does not match x")
         
         n = len(x)
-        ex = x_err if x_err is not None else [0.0] * n
-        ey = y_err if y_err is not None else [0.0] * n
+
+        # init form empty errors
+        if len(x_err) == 0:
+            x_err = np.zeros(n)
+
+        if len(y_err) == 0:
+            y_err = np.zeros(n)
 
         x_arr, y_arr = array('d', x), array('d', y)
-        ex_arr, ey_arr = array('d', ex), array('d', ey)
+        ex_arr, ey_arr = array('d', x_err), array('d', y_err)
 
         graph = TGraphErrors(n, x_arr, y_arr, ex_arr, ey_arr)
         graph.SetTitle(title)
@@ -107,6 +113,20 @@ class fitPlotter():
         self._canvas.SaveAs(fileName)
 
 
+# we have to remove the contribution for B=0
+# (our measurements need to have the same currents, or else we need to interpolate between the points...)
+# NOT NEEDED ANYMORE : DEPRECATED
+def removeBackground(data, back, err_data, err_back):
+    """ removes background data `back` from `data` (propagating errors as sums of squares) """
+    newdata     = []
+    err_newdata = []
+
+    for i in range(0,len(data)):
+        newdata.append(data[i] - back[i])
+        err_newdata.append((err_data[i]**2 + err_back[i]**2)**0.5)
+
+    return newdata, err_newdata
+    
 # MEAN CALCULATOR w/ ERROR PROPAGATION
 # TODO: use numpy!
 
@@ -129,8 +149,6 @@ def meanCalc(values):
 
 # Mean error calculator
 
-import numpy as np
-
 def MeanError(s1,s2):
     "used to calculate mean of two arrays of np.array([mean,error],[],...) type"
     if (np.shape(s1) != np.shape(s2)):
@@ -143,7 +161,6 @@ def MeanError(s1,s2):
 
 # Z test calculator!
 
-import numpy as np
 import scipy.stats as stats
 
 def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, tipo_test='bilaterale'):
@@ -185,8 +202,6 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
 
 # Zscore function
 
-import numpy as np
-
 def Zscore(s1, s2):
     "used to compare array of np.array([mean,error] measures. returns z score "
     if (np.shape(s1) != np.shape(s2)):
@@ -200,3 +215,77 @@ def Zscore(s1, s2):
 
         return z
 
+# Amprobe 37-XRA for errors on current
+# converting all in mA
+
+import numpy as np
+
+def Amprobe(current,unit = "mA"):
+    """used to calculate the error on i""" 
+    array = current
+    error = []
+    
+    # converting in mA if measures are in A
+    if (unit == "A") : 
+        array = current*1000 
+        
+    # calculating errors based on range
+    for data in array:
+        if (abs(data) < 0.1):
+            error.append (0.005*abs(data) + 0.001*0.001*10) 
+        elif abs(data) < 400 : 
+            error.append (0.005*abs(data) + 0.001*5) 
+        else : 
+            error.append (0.015*abs(data) + 10)
+
+    if (unit == "A") : 
+        error = np.array(error) / 1000
+
+    return np.array(error)
+
+# Keithley DMM6500 for errors on voltage
+# all measures are in mV 
+
+def Keithley (voltage) :
+    """used to calculate the error on V"""
+    error = []
+
+# calculating errors based on range
+
+    for data in voltage:
+        if (abs(data) < 100) : 
+            error.append(0.0035*abs(data) + 0.0035*100)
+        else : 
+            error.append (0.0030*abs(data) + 0.0006*1000)
+
+    
+    return np.array(error)
+
+# magnetic meter for errors on B values
+# all measures are in mT
+
+def Teslameter (magneticfield) : 
+    """ used to calculate the error on B """
+    error = []
+
+#calculate errors based on range
+
+    for data in magneticfield:
+        error.append(0.005*abs(data) + 1)
+
+    return np.array(error)
+
+
+# Amprobe 37_XRA for errors on voltage
+# all measures are in mV
+
+def Amprobe_V (voltage):
+    """ used to calculate errors on V"""
+    error = []
+
+# calculate errors based on range
+    for data in voltage:
+        error.append(0.001*abs(data) + 0.1*5)
+
+    return np.array(error)
+        
