@@ -1,0 +1,65 @@
+\documentclass[a4paper,12pt]{article}
+% Package to make citations superscrit with brackets
+\usepackage[super,square]{natbib}
+% Package to change margin size
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{1cm}{2cm}
+% Package to make headers
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+% Package for highligths
+\usepackage{soul}
+% Colors for the references links
+\usepackage[dvipsnames]{xcolor}
+% Package to link references
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[italian]{babel}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=CadetBlue,
+    filecolor=CadetBlue,      
+    urlcolor=CadetBlue,
+}
+% Package for lorem ipsum
+\usepackage{lipsum}
+% Package for multicolumn
+\usepackage{multicol}
+
+\usepackage{multicol,caption}
+% Package for removing paragraph identations
+\usepackage{parskip}
+\setlength\columnsep{18pt} 
+\setlocalecaption{italian}{figure}{Fig.}
+\setlocalecaption{italian}{table}{Tab.}
+\counterwithin{figure}{section} % comandi per numerazione interna di figure, tabelle ed equazioni
+\counterwithin{table}{section}
+\counterwithin{equation}{section}
+
+ 
+\begin{document}
+\begin{center}
+\Large{\textbf{Titolo del Corso}}
+\vspace{0.4cm}
+\normalsize
+\\ Università degli Studi di Torino \\Nome prof, appunti di Paolo Rocchietti March\footnote{paolo.rocchiettimarc@edu.unito.it} \\
+
+\vspace{0.1cm}
+%\textit{Organization}
+\medskip
+\normalsize
+\end{center}
+\vspace{0.4cm}
+{\color{gray}\hrule}
+\medskip
+\input{./lessons/1_intro.tex}
+\tableofcontents
+\input{./lessons/2_section.tex}
+\input{./lessons/3_section.tex}
+\input{./lessons/4_section.tex}
+\input{./lessons/5_conclusion.tex}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
