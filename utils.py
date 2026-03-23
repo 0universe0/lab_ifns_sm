@@ -254,10 +254,9 @@ def Keithley (voltage) :
 
     for data in voltage:
         if (abs(data) < 100) : 
-            error.append(0.0035*abs(data) + 0.0035*100)
+            error.append((0.0035*abs(data) + 0.0035*100)/100) # in the booklet errors are specified as percentages
         else : 
-            error.append (0.0030*abs(data) + 0.0006*1000)
-
+            error.append ((0.0030*abs(data) + 0.0006*1000)/100)
     
     return np.array(error)
 
