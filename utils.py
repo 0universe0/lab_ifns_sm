@@ -202,17 +202,18 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
 
 # Zscore function
 
-def Zscore(s1, s2):
+def Zscore(s1, s2, Print = True):
     "used to compare array of np.array([mean,error] measures. returns z score "
     if (np.shape(s1) != np.shape(s2)):
         raise("TypeError: shape of imput arrays must be equal")
     else:
         errors = np.sqrt(s1[:,1]**2 + s2[:,1] **2)
         z = (s2[:,0]-s1[:,0])/errors
-        for i in range(len(s1)):
-            print(f"z value of param {i} :", round(z[i],3))
-        print("\n")
-
+        if Print:
+            for i in range(len(s1)):
+                print(f"z value of param {i} :", round(z[i],3))
+            print("\n")
+    
         return z
 
 # Amprobe 37-XRA for errors on current
