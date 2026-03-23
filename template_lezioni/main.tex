@@ -40,7 +40,7 @@
 
 % latex command utils
 \newcommand{\newsec}[2]{
-\vspace{0.1cm}
+\vspace{0.3cm}
 {\color{gray}\hrule}
 \begin{center}
 \section{#1}
@@ -79,13 +79,29 @@
 \tableofcontents
 \clearpage
 
-\input{./sections/2_section.tex}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{\small Struttura della Materia}
+\fancyhead[C]{\small \bfseries Effetto Hall}
+\fancyhead[R]{\small gruppo C1}
+
+\input{./sections/1_intro.tex}
+
+\input{./sections/2_electromagnet.tex}
+
+\input{./sections/3_VhI.tex}
+
+\input{./sections/4_VhB.tex}
+
+\input{./sections/5_portatori.tex}
+
+\input{./sections/6_conclusioni.tex}
 
 \clearpage
 
 \appendix
 
-\input{./sections/5_conclusion.tex}
+\input{./sections/7_magnetoresistenza.tex}
 
 \clearpage
 
