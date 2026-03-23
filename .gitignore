@@ -7,3 +7,14 @@ __pycache__/
 
 # outputs
 outputs/
+
+# LaTeX aux files
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
