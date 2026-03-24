@@ -271,8 +271,8 @@ def Teslameter (magneticfield) :
 #calculate errors based on range
 
     for data in magneticfield:
-        error.append(0.005*abs(data) + 1)
-
+        #error.append(0.005*abs(data) + 1)
+        error.append(0.05*abs(data) + 1)
     return np.array(error)
 
 
