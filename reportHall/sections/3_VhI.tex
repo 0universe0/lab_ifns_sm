@@ -1,1 +1,31 @@
 \newsec{Tensione di Hall al variare della corrente}{Stima di $ R_H $ valutando l'andamento di $V_H(i)$.}
+
+Per sfruttare l'\cref{eq:hall-tension} abbiamo misurato la tensione di Hall al variare della corrente $ i_p $ per $ 10 $ valori di campo magnetico $ B $ diversi.
+
+\subsection{Contributo disallineamento piastre}
+
+Per $ B=0 $ ci si aspetta che $ V_H \equiv 0 $ per qualsiasi valore di corrente.
+In realtà, sperimentalmente, si osserva (\cref{fig:ohmic-contribution}) un andamento lineare tra la tensione di Hall e la corrente iniettata.
+
+Questo contributo è dovuto al disallineamento tra le facce del campione di germanio: siamo interessati a caratterizzarlo per sottrarlo all'andamento di $ V_H(i_p) $ dovuto all'effetto Hall.
+
+\subsection{Regressioni su $ V_{H}(i_p) $}
+
+Per ciascuno dei $ 10 $ set di dati di raccolti abbiamo effettuato una regressione lineare:
+\begin{equation}
+V_H = q + m \cdot i_p
+\end{equation}
+aspettandoci, per confronto con l'\cref{eq:hall-tension}, che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H B / t $, dopo aver sottratto (da $ m $ e $ q $) il contributo dato dal disallineamento delle piastre.
+
+\subsection{Stima di $ R_H $}
+
+L'andamento teorico dei coefficienti angolari di $ V_H(i_p) $ (debitamente corretti) contro il campo magnetico è lineare.
+Per questo effettuiamo una nuova regressione lineare con il modello:
+\begin{equation}
+m = q' + m' \cdot B
+\end{equation}
+aspettandoci che $ q' $ sia compatibile con $ 0 $, e che $ m' $ dia una stima di $ R_H / t $.
+
+Sperimentalmente abbiamo misurato la corrente di alimentazione delle bobine del magnete: per ricavare i valori corrispondenti di campo magnetico all'interno del traferro abbiamo usato l'andamento sul ciclo di isteresi medio (\cref{eq:hysteresis-mean}).
+
+Dalla regressione otteniamo \ldots

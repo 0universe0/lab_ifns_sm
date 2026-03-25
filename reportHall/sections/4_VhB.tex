@@ -1,1 +1,24 @@
 \newsec{Tensione di Hall al variare del campo magnetico}{Stima di $ R_H $ valutando l'andamento di $V_H(B)$.}
+
+Analogamente a quanto fatto nella sezione precedente, sfruttiamo l'\cref{eq:hall-tension} misurando la tensione di Hall al variare del campo magnetico $ B $ per $ 6 $ valori corrente $ i_p $ diversi.
+
+\subsection{Regressioni su $ V_H(B) $}
+
+Per passare dalle misure della corrente di alimentazione delle bobine a quelli di campo magnetico abbiamo usato gli andamenti specifici degli emicicli di isteresi ascendenti e discendenti (\cref{eq:hysteresis-up} e $ \cref{eq:hysteresis-down} $).
+
+Nuovamente, per confronto con \cref{eq:hall-tension} ci aspettiamo un andamento lineare e quindi effettuiamo delle regressioni con il modello:
+\begin{equation}
+V_H = q + m \cdot B
+\end{equation}
+aspettandoci che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H i_p / t $, dopo aver sottratto (da $ q $) il contributo $ V_h(i_p^*) $\footnote{In questo caso, diversamente da prima, il contributo è costante per ogni curva: dipende dal valore fissato di corrente nella sonda.} dato la disallineamento delle piastre.
+
+In particolare \ldots
+
+\subsection{Stima di $ R_H $}
+
+Di nuovo analogamente a prima, ci aspettiamo che l'andamento dei coefficienti angolari di $ V_H(B) $ sia lineare in $ i_p $.
+Allora effettuiamo una regressione lineare:
+\begin{equation}
+m = q' + m' \cdot i_p
+\end{equation}
+ed effettivamente otteniamo \ldots
