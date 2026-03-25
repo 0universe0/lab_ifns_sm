@@ -31,4 +31,31 @@ lab reports repo
 
 ### raggi x 
 
-- scrivere la TODO list [MAX e SIMO]
+#### rivelazione raggi x
+
+- mettere a posto i grafici dei conteggi in funzione della tensione [SIMO]
+- correggere gli errori [SIMO]
+- paragonare le curve trovate (penso si tratti più di una questione qualitativa che di analisi) [SIMO]
+- mettere a posto i grafici dei conteggi in funzione della corrente [SIMO]
+
+#### assorbimento raggi x
+
+- mettere a posto i grafici con gli errori appropriati [SIMO]
+- fare i fit della curva conteggi vs spessore [SIMO]
+- paragonare i risultati trovati con quelli riportati in appendice sulla scheda [SIMO]
+
+#### spettro raggi X
+
+- unire i grafici di scansione grossolana e fine in uno unico [MAX]
+- prendere
+- verificare la legge di Bragg per i picchi [MAX]
+- ricavare i valori di $\lambda$ con relativo errore e confrontarli con i valori tabulati [MAX]
+
+#### filtro spettro raggi x
+
+- inserire i dati per la costruzione del grafico [MAX]
+
+#### dimensione interatomica
+
+- graficare i picchi trovati per i due cristalli [MAX]
+- calcolare la distanza interatomica per i cristalli [MAX]
