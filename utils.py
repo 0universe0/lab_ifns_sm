@@ -1,6 +1,6 @@
 # PLOTTER / FITTER class
 
-from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed
+from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed # type: ignore
 from array import array
 import numpy as np
 
@@ -11,8 +11,9 @@ class fitPlotter():
         self._name   = name
         self._graphs  = []
         self._legends = []
+        self._funcs = []
 
-    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula=["pol1"], color=kRed, setparam = np.array([]), xrange = None):
+    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed, setparam = np.array([]), xrange = None):
         """ adds graph and eventually performs fit (else pass fit_formula=None) """
         # using c-style arrays breaks out of bound errors, so we have to implement some sanity checks
         if len(x) != len(y):
@@ -45,59 +46,120 @@ class fitPlotter():
         leg.SetFillColor(0)
         leg.AddEntry(graph, "data points", "ple")
 
-        if fit_formula:
-            n_fits = len(fit_formula)
+        if ( fit_formula):
+            if not isinstance(fit_formula, list):
+                
+                print(f"\n--- fit Results for: {title} ---")
 
-            if n_fits == 1:
-                xrange = [xrange]
-            
-            if xrange is not None:
-                if len(xrange) != len(fit_formula):
-                    raise IndexError("number of formula to fit and range to choose must be equal")
+                func_name = f"f_{len(self._graphs)}"
+                
+                if xrange is not None:
+                    func = TF1(func_name, fit_formula, xrange[0],xrange[1])
+                else:
+                    func = TF1(func_name, fit_formula)
 
-        
-            print(f"\n--- fit Results for: {title} ---")
+                if setparam.any():
+                    setparam = array('d', setparam)
+                    func.SetParameters(setparam)
+                
+                func.SetLineColor(kBlue)
+                graph.Fit(func, "SQR+")  #Salva, Qiuet, Range,( ottimizzazione Migliorata), disporre + grafici
+                
+                # fit stats
+                chi2 = func.GetChisquare()
+                ndf = func.GetNDF()
+                pvalue = func.GetProb()
+                print(f"Function: {fit_formula}")
+                print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
+                print(f"p-value:  {pvalue:.4f}\n")
 
-            func_name = f"f_{len(self._graphs)}"
-            
-            if xrange is not None:
-                func = TF1(func_name, fit_formula[0], xrange[0][0],xrange[0][1])
+                # fit parameters stuff
+                params = np.zeros((func.GetNpar(),2))  # simo: ora viene ritornato un array numpy bidimensionale dei parametri e degli errori
+                
+                for i in range(func.GetNpar()):
+                    name = func.GetParName(i)
+                    val  = func.GetParameter(i)
+                    err  = func.GetParError(i)
+                    print(f"{name}: {val:.4f} +/- {err:.4f}")
+                    params[i,0] = func.GetParameter(i)
+                    params[i,1] = func.GetParError(i)
+
+                print("-" * 32)
+
+                leg.AddEntry(func, "fit function", "l")
+
+                # fuck the garbage collector
+                self._graphs.append(graph)
+                self._legends.append(leg)
+
             else:
-                func = TF1(func_name, fit_formula)
+                # now, fitting multiple functions on same graph 
+                #  fit_formula = [poly1,pol3,...], xrange = [[100,200],[200,300],..],
+                #  setparam = [np.array,np.array,...] 
+                # if range is not specified, it shall be [None,None,...]
+                # to be improved: now fits are done on all graphs of the canvas.
+                n_fits = len(fit_formula)
+                if xrange is not None:
+                    if len(xrange) != len(fit_formula):
+                        raise IndexError("number of formulas to fit and number of x-ranges must be equal")
+                else:
+                    xrange = [None] * n_fits
 
-            if setparam.any():
-                setparam = array('d', setparam)
-                func.SetParameters(setparam)
-            
-            func.SetLineColor(kBlue)
-            graph.Fit(func, "SQR+")  #Salva, Qiuet, Range,( ottimizzazione Migliorata), disporre + grafici
-            
-            # fit stats
-            chi2 = func.GetChisquare()
-            ndf = func.GetNDF()
-            pvalue = func.GetProb()
-            print(f"Function: {fit_formula}")
-            print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
-            print(f"p-value:  {pvalue:.4f}\n")
+                if not isinstance(setparam, list):
+                    setparam = [setparam] * n_fits
 
-            # fit parameters stuff
-            params = np.zeros((func.GetNpar(),2))  # simo: ora viene ritornato un array numpy bidimensionale dei parametri e degli errori
-            
-            for i in range(func.GetNpar()):
-                name = func.GetParName(i)
-                val  = func.GetParameter(i)
-                err  = func.GetParError(i)
-                print(f"{name}: {val:.4f} +/- {err:.4f}")
-                params[i,0] = func.GetParameter(i)
-                params[i,1] = func.GetParError(i)
+                print(f"\n--- fit Results for: {title} --- \n ! Multiple fits are being committed !")
+                params = [] #now params will be [np.array([[a,err_a],[b,err_b]]) , np.array(...), ...]
+                
+                for i_fit_formula, i_xrange, i_setparam, I in zip(fit_formula, xrange, setparam, range(n_fits)):
 
-            print("-" * 32)
+                    print(f"fit {I}, f = {i_fit_formula}")
+                    
+                    func_name = f"f_{len(self._graphs)}{i_fit_formula}{I}"
 
-            leg.AddEntry(func, "fit function", "l")
+                    if i_xrange is not None:
+                        func = TF1(func_name, i_fit_formula, i_xrange[0], i_xrange[1])
+                    else:
+                        func = TF1(func_name, i_fit_formula)
 
-        # fuck the garbage collector
-        self._graphs.append(graph)
-        self._legends.append(leg)
+                    self._funcs.append(func)
+
+                    if i_setparam.any():
+                        i_setparam = array('d', i_setparam)
+                        func.SetParameters(i_setparam)
+                    
+                    func.SetLineColor(kBlue - I)
+                    graph.Fit(func, "SQR+")  #Salva, (Qiuet), Range,( ottimizzazione Migliorata), disporre + grafici
+                    
+                    # fit stats
+                    chi2 = func.GetChisquare()
+                    ndf = func.GetNDF()
+                    pvalue = func.GetProb()
+                    print(f"Function: {i_fit_formula}")
+                    print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
+                    print(f"p-value:  {pvalue:.4f}\n")
+
+                    # fit parameters stuff
+                    i_param = np.zeros((func.GetNpar(),2)) 
+                    
+                    for i in range(func.GetNpar()):
+                        name = func.GetParName(i)
+                        val  = func.GetParameter(i)
+                        err  = func.GetParError(i)
+                        print(f"{name}: {val:.4f} +/- {err:.4f}")
+                        i_param[i,0] = func.GetParameter(i)
+                        i_param[i,1] = func.GetParError(i)
+                    
+                    params.append(i_param)
+
+                    print("-" * 32)
+
+                    leg.AddEntry(func, i_fit_formula, "l")
+
+                    # fuck the garbage collector
+                self._graphs.append(graph)
+                self._legends.append(leg)
+
 
         # returning (masked) fit results (if fit was performed)
         if fit_formula: 
