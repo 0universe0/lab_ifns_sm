@@ -63,7 +63,11 @@ class fitPlotter():
                     func.SetParameters(setparam)
                 
                 func.SetLineColor(kBlue)
-                graph.Fit(func, "SQR+")  #Salva, Qiuet, Range,( ottimizzazione Migliorata), disporre + grafici
+
+                if xrange is not None:
+                    graph.Fit(func, "SQR+")  #Salva, Quiet, Range,( ottimizzazione Migliorata), disporre + grafici
+                else:
+                    graph.Fit(func, "SQ+")
                 
                 # fit stats
                 chi2 = func.GetChisquare()
@@ -126,7 +130,11 @@ class fitPlotter():
                         func.SetParameters(i_setparam)
                     
                     func.SetLineColor(kBlue - I)
-                    graph.Fit(func, "SQR+")  #Salva, (Qiuet), Range,( ottimizzazione Migliorata), disporre + grafici
+
+                    if i_xrange is not None:
+                        graph.Fit(func, "SQR+")  #Salva, (Quiet), Range,( ottimizzazione Migliorata), disporre + grafici
+                    else:
+                        graph.Fit(func, "SQ+")
                     
                     # fit stats
                     chi2 = func.GetChisquare()
