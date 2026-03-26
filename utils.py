@@ -88,9 +88,6 @@ class fitPlotter():
 
                 leg.AddEntry(func, "fit function", "l")
 
-                # fuck the garbage collector
-                self._graphs.append(graph)
-                self._legends.append(leg)
 
             else:
                 # now, fitting multiple functions on same graph 
@@ -156,10 +153,9 @@ class fitPlotter():
 
                     leg.AddEntry(func, i_fit_formula, "l")
 
-                    # fuck the garbage collector
-                self._graphs.append(graph)
-                self._legends.append(leg)
-
+            # fuck the garbage collector
+        self._graphs.append(graph)
+        self._legends.append(leg)
 
         # returning (masked) fit results (if fit was performed)
         if fit_formula: 
