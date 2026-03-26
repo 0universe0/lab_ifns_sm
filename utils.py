@@ -12,7 +12,7 @@ class fitPlotter():
         self._graphs  = []
         self._legends = []
 
-    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed, setparam = np.array([])):
+    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula=["pol1"], color=kRed, setparam = np.array([]), xrange = None):
         """ adds graph and eventually performs fit (else pass fit_formula=None) """
         # using c-style arrays breaks out of bound errors, so we have to implement some sanity checks
         if len(x) != len(y):
@@ -21,7 +21,7 @@ class fitPlotter():
             raise IndexError("err_x lenght does not match x")
         elif (y_err.any()) and len(y_err) != len(y):
             raise IndexError("err_x lenght does not match x")
-        
+            
         n = len(x)
 
         # init form empty errors
@@ -46,18 +46,31 @@ class fitPlotter():
         leg.AddEntry(graph, "data points", "ple")
 
         if fit_formula:
+            n_fits = len(fit_formula)
+
+            if n_fits == 1:
+                xrange = [xrange]
+            
+            if xrange is not None:
+                if len(xrange) != len(fit_formula):
+                    raise IndexError("number of formula to fit and range to choose must be equal")
+
+        
             print(f"\n--- fit Results for: {title} ---")
 
             func_name = f"f_{len(self._graphs)}"
             
-            func = TF1(func_name, fit_formula)
+            if xrange is not None:
+                func = TF1(func_name, fit_formula[0], xrange[0][0],xrange[0][1])
+            else:
+                func = TF1(func_name, fit_formula)
 
             if setparam.any():
                 setparam = array('d', setparam)
                 func.SetParameters(setparam)
             
             func.SetLineColor(kBlue)
-            graph.Fit(func, "SQ")
+            graph.Fit(func, "SQR+")  #Salva, Qiuet, Range,( ottimizzazione Migliorata), disporre + grafici
             
             # fit stats
             chi2 = func.GetChisquare()
