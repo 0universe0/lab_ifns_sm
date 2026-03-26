@@ -1,0 +1,115 @@
+\documentclass[a4paper,12pt]{article}
+% Package to make citations superscript with brackets
+\usepackage[super,square]{natbib}
+% Package to change margin size
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{1cm}{2cm}
+% Package to make headers
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+% Package for highlights
+\usepackage{soul}
+% Colours for the references links
+\usepackage[dvipsnames]{xcolor}
+% Package to link references
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[italian]{babel}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=CadetBlue,
+    filecolor=CadetBlue,      
+    urlcolor=CadetBlue,
+}
+% Package for lorem ipsum
+\usepackage{lipsum}
+% Package for multicolumn
+\usepackage{multicol}
+
+% Packages for formulas and units
+\usepackage{physics, siunitx}
+
+\usepackage{cleveref} % clever references
+
+\usepackage{multicol,caption}
+% Package for removing paragraph indentations
+\usepackage{parskip}
+\setlength\columnsep{18pt} 
+\setlocalecaption{italian}{figure}{Fig.}
+\setlocalecaption{italian}{table}{Tab.}
+\counterwithin{figure}{section} % comandi per numerazione interna di figure, tabelle ed equazioni
+\counterwithin{table}{section}
+\counterwithin{equation}{section}
+
+% latex command utils
+\newcommand{\newsec}[2]{
+\vspace{0.3cm}
+{\color{gray}\hrule}
+\begin{center}
+\section{#1}
+\textbf{#2}
+\bigskip
+\end{center}
+{\color{gray}\hrule}
+\vspace{0.1cm}
+}
+ 
+\begin{document}
+\begin{center}
+
+\small{Corso di Struttura della Materia con Laboratorio, A.A. 2025-26} \\
+\vspace{0.4cm}
+\small{\textbf{Relazione Tecnica di Laboratorio}}\\
+\vspace{0.4cm}
+\LARGE{\textbf{Esperienza: Raggi X}}
+\vspace{0.4cm} \\
+\normalsize{Massimiliano Moro, Rémi Roux, Luca Tempesta, Simone Vallauri} \\
+\vspace{0.1cm}
+\small (gruppo C1) \\
+
+\vspace{0.1cm}
+\medskip
+\normalsize
+\end{center}
+\vspace{0.4cm}
+{\color{gray}\hrule}
+\medskip
+
+\begin{abstract}
+\noindent \input{./abstract.tex}
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{\small Struttura della Materia}
+\fancyhead[C]{\small \bfseries Raggi X}
+\fancyhead[R]{\small gruppo C1}
+
+\input{./sections/1_intro.tex}
+
+\input{./sections/2_calibration.tex}
+
+\input{./sections/3_absorb.tex}
+
+\input{./sections/4_emission.tex}
+
+\input{./sections/5_lattice.tex}
+
+\input{./sections/6_conclusioni.tex}
+
+\clearpage
+
+\appendix
+
+\clearpage
+
+\bibliographystyle{plain}
+
+\bibliography{references}
+
+\end{document}
