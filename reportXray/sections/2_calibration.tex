@@ -1,9 +1,28 @@
-\newsec{Calibrazione dell'apparato sperimentale}{breve}
+\newsec{Calibrazione dell'apparato sperimentale}
+
+Prima di caratterizzare direttamente il fascio di raggi X emessi dal tubo Röntgen vogliamo trovare le condizioni di lavoro ottimali dell'apparato sperimentale.
 
 \subsection{Contatore Geiger}
 
-Calibriamo \ldots
+Le caratteristiche del contatore Geiger-Müller che possiamo controllare sono due:
+\begin{enumerate}
+\item la soglia $V_\text{soglia} $ del discriminatore di segnale,
+\item la tensione di alimentazione $ V_\text{alimentazione} $.
+\end{enumerate}
+
+Per fissare la soglia misuriamo con un oscilloscopio (\ldots) il segnale all'ingresso del sistema di acquisizione con un oscilloscopio.
+Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine di $ \ldots \unit{mV} $, quindi la fissiamo a $ V_\text{soglia} = \ldots \unit{mV} $.
+
+Per scegliere la tensione di alimentazione ottimale misuriamo il numero di conteggi registrati dal contatore (a condizioni, $ V_\text{EHT} $ e $i$, di tubo Röntgen fissate) al variare della stessa.
+
+In \cref{fig:Vgeiger} vediamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: fissiamo $ V_\text{alimentazione} $ aggiungendo al primo dato nel plateau $ 10 \unit{V} $. 
+Quindi $ V_\text{alimentazione} = \ldots \unit{V} $.
+
+In particolare, osserviamo che le due curve di conteggi \ldots
 
 \subsection{Corrente nel filamento}
 
-Calibriamo \ldots
+Per fissare la corrente $ I $ nel filamento del tubo Röntgen studiamo il numero di conteggi in $ \Delta t = 20 \unit{s} $: per lavorare al meglio, desideriamo avere un grande numero di conteggi (per ridurre l'errore) ma non troppo da far saturare le misure del contatore Geiger.
+In particolare, prendiamo i dati usando $ V_\text{EHT} = 30 \unit{kV} $.
+
+Nella \cref{fig:Igeiger} si distingue una regione in cui \ldots
