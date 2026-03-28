@@ -44,9 +44,9 @@ class fitPlotter():
         leg = TLegend(0.12, 0.75, 0.45, 0.88)
         leg.SetBorderSize(1)
         leg.SetFillColor(0)
-        leg.AddEntry(graph, "data points", "ple")
+        #leg.AddEntry(graph, "data points", "ple")
 
-        if ( fit_formula):
+        if (fit_formula):
             if not isinstance(fit_formula, list):
                 
                 print(f"\n--- fit Results for: {title} ---")
@@ -171,7 +171,7 @@ class fitPlotter():
         else:
             return None
 
-    def drawCanvas(self, dimX=1000, dimY=500):
+    def drawCanvas(self, legend=True, dimX=1000, dimY=500):
         """ draws entire canvas """
         nGraphs = len(self._graphs)
         if nGraphs < 1: return
@@ -183,12 +183,41 @@ class fitPlotter():
         self._canvas.Divide(cols, rows)
 
         for i in range(nGraphs):
-            self._canvas.cd(i+1)
+            pad = self._canvas.cd(i+1)
+
+            pad.SetLeftMargin(0.15)
+            pad.SetBottomMargin(0.12)
+            
             gPad.SetGrid() 
             self._graphs[i].Draw("AP")
-            self._legends[i].Draw()
+            
+            if legend: # sometimes we dont want it drawn!
+                self._legends[i].Draw()
 
         self._canvas.Draw()
+
+    def updateLegend(self,labels,index=-1):
+        """ updates the legends entries (with labels = [string]), and returns the legend to give more control. CANVAS NEEDS TO BE DRAWN """
+        if len(self._legends) < 1:
+            raise IndexError("no legends present!")
+
+        # retrieving legend and entries into it
+        leg = self._legends[index]
+        entries = leg.GetListOfPrimitives()
+
+        if len(entries) != len(labels):
+            raise IndexError("lenght of labels does not match number of entries in legend")
+
+        # setting labels
+        for i in range(0, len(entries)):
+            entries.At(i).SetLabel(labels[i])
+
+        # updating (drawn) canvas
+        self._canvas.Modified()
+        self._canvas.Update()
+        
+        return self._legends[index]
+        
 
     def saveCanvas(self, fileName="canvas.png"):
         """ saves canvas: has logic to modify name (but its not that useful) """
