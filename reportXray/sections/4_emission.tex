@@ -1,5 +1,31 @@
 \newsec{Spettro di emissione dei raggi X}
 
-\subsection{Ciao}
+Dato il passo reticolare del cristallo di \ce{NaCl} vogliamo usare l'\cref{eq:bragg} per trovare le posizioni dei picchi caratteristici di emissione del rame.
+Consideriamo:
+\begin{equation}
+d_{\ce{Cu}} = (5.64 \pm 0.01) \unit{\angstrom}.
+\end{equation}
 
-ciao
+Poi, studiamo anche l'effetto di un filtro di \ce{Ni} sullo spettro di diffrazione, confrontando i risultati con l'andamento del suo coefficiente di assorbimento $ \mu $ con l'energia della radiazione incidente.
+
+\subsection{Diffrazione su \ce{NaCl}}
+
+Posizionato il cristallo sullo spettrometro e fissate le condizioni di lavoro del setup a $ V_\text{EHT} = 30 \unit{kV} $ $ i = 40 \unit{\micro A} $ e $ V_\text{alimentazione} = \ldots $, misuriamo il numero di conteggi in $ \Delta t = 20 \unit{s} $ al variare dell'angolo $ 2\theta $ a cui si trova il contatore Geiger.
+
+\help{insert 1 degree steps}
+
+Identificate grossolanamente le posizioni dei picchi di emissione (al prim'ordine di diffrazione), effettuiamo una scansione più fine nell'intervallo $ 2\theta \in [\ldots, \ldots] \unit{\degree} $, usando una scala di $ 1/6 \unit{\degree} $.
+
+\help{insert 1/6 degree steps}
+
+Allora, invertendo la legge di Bragg (\ref{eq:bragg}), e fissato $ n=1 $, abbiamo che:
+\begin{equation}
+\lambda = 2d \sin \frac{2\theta}{2}
+\end{equation}
+per cui ricaviamo le stime: \ldots
+
+\subsection{Filtro di \ce{Ni}}
+
+Alle stesse condizioni di lavoro ($V_\text{EHT} = 30 \unit{kV}$, $ i = 40 \unit{\micro A} $, e $ V_\text{alimentazione} = \ldots $) di prima, eseguiamo le stesse scansioni dello spettro di emissione, ma inserendo sul cammino ottico del fascio un filtro di nichel.
+
+\help{insert explanation}
