@@ -1,6 +1,6 @@
 # PLOTTER / FITTER class
 
-from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed # type: ignore
+from ROOT import TCanvas, TGraphErrors, TLegend, gPad, gStyle, TF1, kBlue, kRed # type: ignore
 from array import array
 import numpy as np
 
@@ -95,7 +95,7 @@ class fitPlotter():
 
             else:
                 # now, fitting multiple functions on same graph 
-                #  fit_formula = [poly1,pol3,...], xrange = [[100,200],[200,300],..],
+                #  fit_formula = [pol1,pol3,...], xrange = [[100,200],[200,300],..],
                 #  setparam = [np.array,np.array,...] 
                 # if range is not specified, it shall be [None,None,...]
                 # to be improved: now fits are done on all graphs of the canvas.
@@ -185,10 +185,12 @@ class fitPlotter():
         for i in range(nGraphs):
             pad = self._canvas.cd(i+1)
 
-            pad.SetLeftMargin(0.15)
+            pad.SetLeftMargin(0.15) # setting padding
             pad.SetBottomMargin(0.12)
-            
+
+            gStyle.SetOptFit(1100) # setting fit stats
             gPad.SetGrid() 
+            
             self._graphs[i].Draw("AP")
             
             if legend: # sometimes we dont want it drawn!
