@@ -196,6 +196,34 @@ class fitPlotter():
             fileName = self._name + ".png"
         self._canvas.SaveAs(fileName)
 
+# example use of TEXTABLER
+# x = np.array([1,2,3])
+# y = np.array([2,3,4])
+# err_x = np.array([0.1,0.2,0.3])
+# err_y = np.array([0.1,0.2,0.3])
+# texTabler([x,y], [err_x, err_y], ["x", "y"], digits = 4)
+
+def texTabler(data, errors, names, digits=3):
+    """ turns data = [np.array, np.array, ...] and errors = [np.array, np.array, ...] into table with names = [string, string, ...] """
+    if len(data) != len(errors) or len(data) != len(names):
+        raise IndexError("mistakes in lists lenghts! check them")
+
+    title = ""
+    for i in range(0,len(names)-1):
+        title += f"${names[i]}$ & $\delta {names[i]}$ & "
+    title+= f"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
+
+    print(title)
+    
+    for i in range(0, len(data[0])):
+        row = ""
+
+        for j in range(0, len(data)-1):
+            row += f"{data[j][i]:.{digits}f} & {errors[j][i]:.{digits}f} & "
+
+        row += f"{data[len(data)-1][i]:.{digits}f} & {errors[len(data)-1][i]:.{digits}f} \\\\"
+
+        print(row)
 
 # we have to remove the contribution for B=0
 # (our measurements need to have the same currents, or else we need to interpolate between the points...)
