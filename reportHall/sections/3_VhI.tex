@@ -1,13 +1,20 @@
 \newsec{Tensione di Hall al variare della corrente}{Stima di $ R_H $ valutando l'andamento di $V_H(i)$.}
 
-Abbiamo misurato la tensione di Hall al variare della corrente $ i_p $ a valori diversi di campo magnetico $ B $, per un totale di $ 10 $ set di dati. La formula teorica \cref{eq:hall-tension} ci sarà utile in questa sezione per calcolare un valore per $ R_H $ usando i dati raccolti. 
+Abbiamo misurato la tensione di Hall al variare della corrente $ i_p $ a valori diversi di campo magnetico $ B $, per un totale di $ 10 $ set di dati. 
+Useremo l'\cref{eq:hall-tension} per stimare il valore di $ R_H $.
 
 \paragraph{Contributo disallineamento piastre}
 
-Ovviamente per un campo magnetico nullo ($ B=0 $) ci aspettiamo di trovare un valore per la tensione di Hall $ V_H \equiv 0 $ per qualsiasi valore di corrente scelto.
+Per un campo magnetico nullo ($ B=0 $) ci aspettiamo di trovare un valore per la tensione di Hall $ V_H \equiv 0 $ per qualsiasi valore di corrente.
 Sperimentalmente però osserviamo (\cref{fig:ohmic-contribution}) un andamento lineare tra la tensione di Hall e la corrente iniettata.
 
-Questo contributo è attribuibile al disallineamento tra le facce del campione di germanio: siamo interessati a caratterizzarlo per sottrarlo all'andamento di $ V_H(i_p) $ dovuto all'effetto Hall, l'idea è quella di ``pulire'' i dati da un fondo trascurabile nell'ottica di una valutazione corretta per la tensione di Hall generata dal campo $ B $.
+Questo contributo è attribuibile al disallineamento tra le facce del campione di germanio: siamo interessati a caratterizzarlo per sottrarlo all'andamento di $ V_H(i_p) $ dovuto all'effetto Hall, l'idea è quella di ``pulire'' i dati da questo fondo. 
+
+Allora, facciamo una regressione lineare (sempre in \cref{fig:ohmic-contribution}), e otteniamo:
+\begin{equation} \label{eq:ohmic-contribution}
+V_H = (\ldots \pm \ldots) \unit{mV} + (\ldots \pm \ldots) \unit{mV / mA} \cdot i_p
+\end{equation}
+che è la retta che sottrarremo agli andamenti $ V_H(i_p) $ con $ B \neq 0 $.\footnote{L'andamento $ V_H(i_p) $ per $ B \neq 0 $ secondo il nostro modello è $ V_H(i_p) = q + m \cdot i_p + V_{H}^0 (i_p) $ dove $ V_{H}^0 $ è questo contributo ohmico. Ottenuta la caratterizzazione $ V_{H}^0(i_p) = q^0 + m^0 \cdot i_p $ possiamo sottrarre $ q^0 $ e $ m^0 $ a $ q $ e $ m $ (propagando gli errori, assunti come indipendenti).}
 
 \subsection{Regressioni su $ V_{H}(i_p) $}
 
@@ -15,17 +22,28 @@ Per ciascun set di dati di raccolto abbiamo effettuato una regressione lineare:
 \begin{equation}
 V_H = q + m \cdot i_p
 \end{equation}
-aspettandoci, per confronto con l'\cref{eq:hall-tension}, che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H B / t $, dopo aver sottratto (da $ m $ e $ q $) il contributo dato dal disallineamento delle piastre. Effettuando alcuni Z-test sulle misure riportate nei grafici le compatibilità con i valori teorici sono accettabili, e riportate in tabella.
+aspettandoci, per confronto con l'\cref{eq:hall-tension}, che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H B / t $, dopo aver sottratto (da $ m $ e $ q $) il contributo dato dal disallineamento delle piastre (ricavati nell'\cref{eq:ohmic-contribution}). 
+
+I parametri ottenuti tramite i fit sono riportati in \cref{tab:VHip}, e in particolare possiamo anche provare a verificare la compatibilità tra le quote e $ 0 $.
+
+\help{they are not compatible: why?}
 
 \subsection{Stima di $ R_H $}
 
-L'andamento teorico dei coefficienti angolari di $ V_H(i_p) $ (debitamente corretti) al variare del campo magnetico è lineare.
-Motivo per cui effettuiamo una nuova regressione lineare con il modello:
+Per stimare $ R_H $ facciamo un'ulteriore regressione lineare all'andamento dei coefficienti angolari (debitamente corretti) in \cref{tab:VHip} con un modello lineare:
 \begin{equation}
 m = q' + m' \cdot B
 \end{equation}
-aspettandoci analogamente che $ q' $ sia compatibile con $ 0 $, e che $ m' $ dia una stima di $ R_H / t $.
+aspettandoci che $ q' $ sia compatibile con $ 0 $, e che $ m' $ dia una stima di $ R_H / t $ (per confronto con l'\cref{eq:hall-tension}).
 
-Sperimentalmente abbiamo misurato la corrente di alimentazione delle bobine del magnete: per ricavare i valori corrispondenti di campo magnetico all'interno del traferro abbiamo usato l'andamento sul ciclo di isteresi medio (\cref{eq:hysteresis-mean}).
+Sperimentalmente abbiamo misurato la corrente di alimentazione delle bobine del magnete: per ricavare i valori corrispondenti di campo magnetico all'interno del traferro abbiamo usato l'andamento sul ciclo di isteresi medio (\cref{eq:hysteresis-mean}), come illustrato in precedenza.
 
-Dalla regressione otteniamo \ldots
+Quindi, dalla regressione otteniamo:
+\begin{equation}
+q' = (\ldots \pm \ldots) \unit{mV / mA} \qquad m' = (\ldots \pm \ldots) \unit{mV / (mA \cdot mT)}
+\end{equation}
+per cui, data anche la misura di $ t $ in \cref{eq:dimensions}, otteniamo una stima di $ R_H $:
+\begin{equation} \label{eq:RH1}
+R_{H,1} = (\ldots \pm \ldots) \unit{m^3 / C}
+\end{equation}
+

@@ -1,14 +1,40 @@
 \newsec{Caratterizzazione dell'elettromagnete}{Studio dell'uniformità del campo magnetico dentro al traferro, \\ e del ciclo di isteresi del magnete.}
 
+Prima di studiare l'effetto Hall, abbiamo caratterizzato l'elettromagnete in modo da poter misurare indirettamente il campo magnetico usando la corrente di alimentazione.
+
 \subsection{Uniformità del campo magnetico}
 
-Prima di studiare l'effetto Hall, abbiamo caratterizzato l'elettromagnete in modo da poter misurare indirettamente il campo magnetico usando la corrente di alimentazione.
-A tal fine abbiamo valutato l'intensità del campo magnetico in vari punti del traferro, suddividendolo in intervalli regolari abbiamo riportato i valori misurati con un magnetometro (\ldots) su un istogramma, la regione di uniformità è risultata essere consistente con le aspettative, sulla base dei valori misurati abbiamo calcolato anche la semidifferenza (valore di interesse ai fini del calcolo degli errori)
+Abbiamo cominciato valutando l'intensità del campo magnetico in vari punti del traferro: suddividendolo in intervalli regolari abbiamo riportato i valori misurati con un magnetometro (\ldots) su un istogramma.
+Si riconosce una regione di uniformità al centro del traferro (in \cref{fig:uniformmagnet}) in cui gli effetti di bordo sono trascurabili: è proprio qui che abbiamo sempre posizionato la sonda di Hall.
+
+In particolare, prendiamo la semidifferenza tra i valori di $ B $ misurati in questa regione:
+\begin{equation}
+\Delta B = (\ldots \pm \ldots) \unit{mT}
+\end{equation}
+come il limite minimo sull'incertezza del campo magnetico.
 
 \subsection{Ciclo di isteresi}
 
-Per valutare la risposta del magnete alla corrente di alimentazione delle bobine nella regione di uniformità (punto centrale del traferro), abbiamo caratterizzato il ciclo di isteresi del magnete; Percorrendo interamente due cicli arrivando fino alla saturazione, abbiamo raccolto i seguenti dati:
+Per valutare la risposta del magnete alla corrente di alimentazione delle bobine nella regione di uniformità (punto centrale del traferro), abbiamo caratterizzato il ciclo di isteresi del magnete.
+Percorrendo interamente due cicli arrivando fino alla saturazione, abbiamo raccolto i dati in \cref{tab:hysteresis}, e in \cref{fig:hysteresis}.
 
-\cref{fig:hall-hyst}
+Il magnete si comporta come un materiale molle: la forza coercitiva appare debole.
+Si osserva un'area compresa tra ciclo in discesa e salita estremamente ridotta rispetto ai cicli di isteresi di materiali duri. 
 
-Il magnete si comporta come un materiale soft, la forza coercitiva appare debole. Si osserva un'area sottesa tra ciclo in discesa e salita estremamente ridotta rispetto ai classici grafici di isteresi noti. 
+Nello specifico, abbiamo effettuato delle regressioni lineari nelle regioni di linearità dei cicli di isteresi, ricavando le stime degli andamenti del campo magnetico $ B $ con la corrente di alimentazione nelle bobine $ I $:
+\begin{align}
+B_\text{up,1} &= (\ldots \pm \ldots) \unit{mT} + (\ldots \pm \ldots) \unit{mT / A} \cdot I \\
+B_\text{down,1} &= (\ldots \pm \ldots) \unit{mT} + (\ldots \pm \ldots) \unit{mT / A} \cdot I \\
+B_\text{up,2} &= (\ldots \pm \ldots) \unit{mT} + (\ldots \pm \ldots) \unit{mT / A} \cdot I \\
+B_\text{down,2} &= (\ldots \pm \ldots) \unit{mT} + (\ldots \pm \ldots) \unit{mT / A} \cdot I.
+\end{align}
+
+In particolare, possiamo verificare la compatibilità tra le quote delle coppie di salita e di discesa (con $ Z_\text{up} = \ldots $ e $ Z_\text{down} = \ldots $, accettati al $ 5 \% $), e pure quella tra tutti i coefficienti angolari (con \ldots). \help{maybe insert into a table?}
+
+In virtù di questo, abbiamo calcolato gli andamenti medi (pesati per gli errori) sui cicli in salita/discesa, e su un ciclo generico:
+\begin{align} \label{eq:hysteresis-up}
+B_\text{up} &= (\ldots \pm \ldots) \unit{mT} + (\ldots \pm \ldots) \unit{mT / A} \cdot I \\ \label{eq:hysteresis-down}
+B_\text{down} &= (\ldots \pm \ldots) \unit{mT} + (\ldots \pm \ldots) \unit{mT / A} \cdot I \\ \label{eq:hysteresis-mean}
+B_\text{mean} &= (\ldots \pm \ldots) \unit{mT} + (\ldots \pm \ldots) \unit{mT / A} \cdot I
+\end{align}
+dove l'errore sulla quota di $ B_\text{mean} $ lo abbiamo stimato con la differenza tra le quote di $ B_\text{up} $ e $ B_\text{down} $.
