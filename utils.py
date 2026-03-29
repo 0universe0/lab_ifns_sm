@@ -173,7 +173,7 @@ class fitPlotter():
         else:
             return None
 
-    def drawCanvas(self, legend=True, dimX=1000, dimY=500, statX=0.9, statY=0.35):
+    def drawCanvas(self, legend=True, dimX=2000, dimY=1000, statX=0.9, statY=0.35):
         """ draws entire canvas """
         nGraphs = len(self._graphs)
         if nGraphs < 1: return
@@ -252,16 +252,16 @@ def texTabler(data, errors, names):
     title+= f"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
 
     print(title)
-    print("\\hrule")
+    print("\\hline")
     
     for i in range(0, len(data[0])):
         row = ""
 
         for j in range(0, len(data)-1):
-            roundedString = round(str(data[j][i]), str(errors[j][i]), separation=' & ', cutoff=29)
+            roundedString = round(str(data[j][i]), str(errors[j][i]), separation=' & ', cutoff=19)
             row += (roundedString) + " & "
 
-        row += round(str(data[len(data)-1][i]), str(errors[len(data) - 1][i]), separation=' & ') + "\\\\"
+        row += round(str(data[len(data)-1][i]), str(errors[len(data) - 1][i]), separation=' & ', cutoff=19) + "\\\\"
 
         print(row)
 

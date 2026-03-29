@@ -8,11 +8,54 @@ Useremo l'\cref{eq:hall-tension} per stimare il valore di $ R_H $.
 Per un campo magnetico nullo ($ B=0 $) ci aspettiamo di trovare un valore per la tensione di Hall $ V_H \equiv 0 $ per qualsiasi valore di corrente.
 Sperimentalmente però osserviamo (\cref{fig:ohmic-contribution}) un andamento lineare tra la tensione di Hall e la corrente iniettata.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{./figs/misalignment.png}
+\caption{Andamento della tensione di Hall $ V_H $ contro $ i_p $ per $ B=0 $: stiamo caratterizzando il contributo dato dal disallineamento della facce della sonda di Hall, con una regressione lineare (blu, con dati in legenda) sui dati (rosso) raccolti in \cref{tab:ohmic-contribution}.}
+\label{fig:ohmic-contribution}
+\end{figure}
+
+\begin{center}
+\begin{multicols}{2}
+\centering \small
+\begin{tabular}{cccc}
+$V_{H}$ & $\delta V_{H}$ & $I_p$ & $\delta I_p$ \\
+\hline
+-0.001 & 0.004 & 0 & $ 1.0 \cdot 10^{-5} $ \\
+0.055 & 0.004 & 1.009 & 0.010\\
+0.109 & 0.004 & 1.999 & 0.015\\
+0.165 & 0.004 & 2.99 & 0.02\\
+0.220 & 0.004 & 4.00 & 0.03\\
+0.276 & 0.004 & 5.01 & 0.03\\
+0.328 & 0.004 & 5.98 & 0.03\\
+0.384 & 0.004 & 6.98 & 0.04\\
+0.439 & 0.004 & 8.00 & 0.04\\
+\end{tabular}
+
+\columnbreak
+
+\begin{tabular}{cccc}
+$V_{H}$ & $\delta V_{H}$ & $I_p$ & $\delta I_p$ \\
+\hline
+-0.051 & 0.004 & -0.996 & 0.010\\
+-0.104 & 0.004 & -1.986 & 0.015\\
+-0.159 & 0.004 & -3.00 & 0.02\\
+-0.214 & 0.004 & -4.00 & 0.03\\
+-0.267 & 0.004 & -5.00 & 0.03\\
+-0.319 & 0.004 & -5.98 & 0.03\\
+-0.374 & 0.004 & -6.99 & 0.04\\
+-0.429 & 0.004 & -8.01 & 0.05
+\end{tabular}
+\end{multicols}
+\captionof{table}{ciao}
+\label{tab:ohmic-contribution}
+\end{center}
+
 Questo contributo è attribuibile al disallineamento tra le facce del campione di germanio: siamo interessati a caratterizzarlo per sottrarlo all'andamento di $ V_H(i_p) $ dovuto all'effetto Hall, l'idea è quella di ``pulire'' i dati da questo fondo. 
 
 Allora, facciamo una regressione lineare (sempre in \cref{fig:ohmic-contribution}), e otteniamo:
 \begin{equation} \label{eq:ohmic-contribution}
-V_H = (\ldots \pm \ldots) \unit{mV} + (\ldots \pm \ldots) \unit{mV / mA} \cdot i_p
+V_H = (0.0032 \pm 0.009) \unit{mV} + (0.0542 \pm 0.0002) \unit{mV / mA} \cdot i_p
 \end{equation}
 che è la retta che sottrarremo agli andamenti $ V_H(i_p) $ con $ B \neq 0 $.\footnote{L'andamento $ V_H(i_p) $ per $ B \neq 0 $ secondo il nostro modello è $ V_H(i_p) = q + m \cdot i_p + V_{H}^0 (i_p) $ dove $ V_{H}^0 $ è questo contributo ohmico. Ottenuta la caratterizzazione $ V_{H}^0(i_p) = q^0 + m^0 \cdot i_p $ possiamo sottrarre $ q^0 $ e $ m^0 $ a $ q $ e $ m $ (propagando gli errori, assunti come indipendenti).}
 
@@ -23,6 +66,118 @@ Per ciascun set di dati di raccolto abbiamo effettuato una regressione lineare:
 V_H = q + m \cdot i_p
 \end{equation}
 aspettandoci, per confronto con l'\cref{eq:hall-tension}, che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H B / t $, dopo aver sottratto (da $ m $ e $ q $) il contributo dato dal disallineamento delle piastre (ricavati nell'\cref{eq:ohmic-contribution}). 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{./figs/Vhcurrneg.png}
+\caption{ciao}
+\label{fig:VHipneg}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{./figs/Vhcurrpos.png}
+\caption{ciao}
+\label{fig:VHippos}
+\end{figure}
+
+\begin{table}
+\centering \tiny
+\begin{tabular}{cccccccccc}
+$V_{H,1}$ & $\delta V_{H,1}$ & $i_{p,1}$ & $\delta i_{p,1}$ & $V_{H,2}$ & $\delta V_{H,2}$ & $i_{p,2}$ & $\delta i_{p,2}$ & $V_{H,3}$ & $\delta V_{H,3}$ \\
+\hline
+-0.002 & 0.004 & 0 & $ 1.0 \cdot 10^{-5} $ & -0.002 & 0.004 & 0 & $ 1.0 \cdot 10^{-5} $ & -0.001 & 0.004\\
+-0.267 & 0.004 & 1.007 & 0.010 & 0.684 & 0.004 & -1.025 & 0.010 & -1.056 & 0.004\\
+-0.525 & 0.004 & 1.988 & 0.015 & 1.267 & 0.004 & -1.902 & 0.015 & -2.021 & 0.004\\
+-0.788 & 0.004 & 2.99 & 0.02 & 2.001 & 0.004 & -3.00 & 0.02 & -3.114 & 0.004\\
+-1.056 & 0.004 & 4.01 & 0.03 & 2.704 & 0.004 & -4.05 & 0.03 & -4.112 & 0.004\\
+-1.316 & 0.004 & 5.00 & 0.03 & 3.309 & 0.004 & -4.96 & 0.03 & -5.159 & 0.004\\
+-1.575 & 0.004 & 5.99 & 0.03 & 4.057 & 0.004 & -6.08 & 0.04 & -6.248 & 0.004\\
+-1.843 & 0.004 & 7.01 & 0.04 & 4.719 & 0.004 & -7.07 & 0.04 & -7.347 & 0.004\\
+-2.104 & 0.004 & 8.00 & 0.05 & 5.325 & 0.004 & -7.97 & 0.04 & -8.377 & 0.004\\
+0.261 & 0.004 & -1.002 & 0.010 & -0.618 & 0.004 & 0.922 & 0.010 & 1.028 & 0.004\\
+0.522 & 0.004 & -1.999 & 0.015 & -1.345 & 0.004 & 2.003 & 0.015 & 1.997 & 0.004\\
+0.786 & 0.004 & -3.01 & 0.02 & -2.027 & 0.004 & 3.02 & 0.02 & 3.139 & 0.004\\
+1.046 & 0.004 & -4.00 & 0.02 & -2.688 & 0.004 & 4.01 & 0.03 & 4.211 & 0.004\\
+1.320 & 0.004 & -5.04 & 0.03 & -3.369 & 0.004 & 5.02 & 0.03 & 5.160 & 0.004\\
+1.576 & 0.004 & -6.01 & 0.04 & -3.995 & 0.004 & 5.95 & 0.03 & 6.183 & 0.004\\
+1.822 & 0.004 & -6.95 & 0.04 & -4.696 & 0.004 & 7.00 & 0.04 & 7.283 & 0.004\\
+2.115 & 0.004 & -8.07 & 0.05 & -5.355 & 0.004 & 7.98 & 0.04 & 8.338 & 0.004\\
+      &&&&&&&&&\\
+$i_{p,3}$ & $\delta i_{p,3}$ & $V_{H,4}$ & $\delta V_{H,4}$ & $i_{p,4}$ & $\delta i_{p,4}$ & $V_{H,5}$ & $\delta V_{H,5}$ & $i_{p,5}$ & $\delta i_{p,5}$ \\
+\hline
+0 & $ 1.0\cdot 10^{-5} $ & 0.000 & 0.004 & 0 & $ 1.0 \cdot 10^{-5} $ & 0.000 & 0.004 & 0 & $ 1.0 \cdot 10^{-5} $ \\
+1.011 & 0.010 & 1.419 & 0.004 & -1.006 & 0.010 & -1.665 & 0.004 & 0.970 & 0.010\\
+1.934 & 0.015 & 2.838 & 0.004 & -2.016 & 0.015 & -3.415 & 0.004 & 1.998 & 0.015\\
+2.98 & 0.02 & 4.186 & 0.004 & -2.97 & 0.02 & -5.122 & 0.004 & 2.98 & 0.02\\
+3.94 & 0.02 & 5.594 & 0.004 & -3.97 & 0.02 & -6.867 & 0.004 & 4.00 & 0.03\\
+4.94 & 0.03 & 7.053 & 0.004 & -5.01 & 0.03 & -8.580 & 0.004 & 5.00 & 0.03\\
+5.99 & 0.03 & 8.398 & 0.004 & -5.97 & 0.03 & -10.308 & 0.004 & 6.01 & 0.04\\
+7.04 & 0.04 & 9.846 & 0.004 & -7.00 & 0.04 & -12.001 & 0.004 & 7.00 & 0.04\\
+8.03 & 0.05 & 11.216 & 0.004 & -7.97 & 0.04 & -13.668 & 0.004 & 7.97 & 0.04\\
+-0.985 & 0.010 & -1.372 & 0.004 & 0.975 & 0.010 & 1.713 & 0.004 & -0.997 & 0.010\\
+-1.912 & 0.015 & -2.806 & 0.004 & 1.993 & 0.015 & 3.443 & 0.004 & -2.007 & 0.015\\
+-3.01 & 0.02 & -4.217 & 0.004 & 3.00 & 0.02 & 5.139 & 0.004 & -3.00 & 0.02\\
+-4.04 & 0.03 & -7.011 & 0.004 & 4.98 & 0.03 & 6.847 & 0.004 & -3.99 & 0.02\\
+-4.95 & 0.03 & -8.446 & 0.004 & 6.00 & 0.04 & 8.586 & 0.004 & -5.01 & 0.03\\
+-5.93 & 0.03 & -9.814 & 0.004 & 6.98 & 0.04 & 10.280 & 0.004 & -6.00 & 0.03\\
+-6.98 & 0.04 & -11.227 & 0.004 & 7.98 & 0.04 & 12.003 & 0.004 & -7.01 & 0.04\\
+-7.99 & 0.04 & - & - & - & - & 13.728 & 0.004 & -8.01 & 0.05
+\end{tabular}
+\caption{pos values}
+\label{tab:pos}
+\end{table}
+
+\help{somethings wrong check which dataset is which}
+
+\begin{table}
+\centering \tiny
+\begin{tabular}{cccccccccc}
+$V_{H,1}$ & $\delta V_{H,1}$ & $i_{p,1}$ & $\delta i_{p,1}$ & $V_{H,2}$ & $\delta V_{H,2}$ & $i_{p,2}$ & $\delta i_{p,2}$ & $V_{H,3}$ & $\delta V_{H,3}$ \\
+\hline
+-0.002 & 0.004 & 0.000000 & 0.000010 & -0.002 & 0.004 & 0.000000 & 0.000010 & -0.001 & 0.004\\
+-0.267 & 0.004 & 1.007 & 0.010 & 0.684 & 0.004 & -1.025 & 0.010 & -1.056 & 0.004\\
+-0.525 & 0.004 & 1.988 & 0.015 & 1.267 & 0.004 & -1.902 & 0.015 & -2.021 & 0.004\\
+-0.788 & 0.004 & 2.99 & 0.02 & 2.001 & 0.004 & -3.00 & 0.02 & -3.114 & 0.004\\
+-1.056 & 0.004 & 4.01 & 0.03 & 2.704 & 0.004 & -4.05 & 0.03 & -4.112 & 0.004\\
+-1.316 & 0.004 & 5.00 & 0.03 & 3.309 & 0.004 & -4.96 & 0.03 & -5.159 & 0.004\\
+-1.575 & 0.004 & 5.99 & 0.03 & 4.057 & 0.004 & -6.08 & 0.04 & -6.248 & 0.004\\
+-1.843 & 0.004 & 7.01 & 0.04 & 4.719 & 0.004 & -7.07 & 0.04 & -7.347 & 0.004\\
+-2.104 & 0.004 & 8.00 & 0.05 & 5.325 & 0.004 & -7.97 & 0.04 & -8.377 & 0.004\\
+0.261 & 0.004 & -1.002 & 0.010 & -0.618 & 0.004 & 0.922 & 0.010 & 1.028 & 0.004\\
+0.522 & 0.004 & -1.999 & 0.015 & -1.345 & 0.004 & 2.003 & 0.015 & 1.997 & 0.004\\
+0.786 & 0.004 & -3.01 & 0.02 & -2.027 & 0.004 & 3.02 & 0.02 & 3.139 & 0.004\\
+1.046 & 0.004 & -4.00 & 0.02 & -2.688 & 0.004 & 4.01 & 0.03 & 4.211 & 0.004\\
+1.320 & 0.004 & -5.04 & 0.03 & -3.369 & 0.004 & 5.02 & 0.03 & 5.160 & 0.004\\
+1.576 & 0.004 & -6.01 & 0.04 & -3.995 & 0.004 & 5.95 & 0.03 & 6.183 & 0.004\\
+1.822 & 0.004 & -6.95 & 0.04 & -4.696 & 0.004 & 7.00 & 0.04 & 7.283 & 0.004\\
+2.115 & 0.004 & -8.07 & 0.05 & -5.355 & 0.004 & 7.98 & 0.04 & 8.338 & 0.004\\
+      &&&&&&&&&\\
+$i_{p,3}$ & $\delta i_{p,3}$ & $V_{H,4}$ & $\delta V_{H,4}$ & $i_{p,4}$ & $\delta i_{p,4}$ & $V_{H,5}$ & $\delta V_{H,5}$ & $i_{p,5}$ & $\delta i_{p,5}$ \\
+\hline
+0.000000 & 0.000010 & 0.000 & 0.004 & 0.000000 & 0.000010 & 0.000 & 0.004 & 0.000000 & 0.000010\\
+1.011 & 0.010 & 1.419 & 0.004 & -1.006 & 0.010 & -1.665 & 0.004 & 0.970 & 0.010\\
+1.934 & 0.015 & 2.838 & 0.004 & -2.016 & 0.015 & -3.415 & 0.004 & 1.998 & 0.015\\
+2.98 & 0.02 & 4.186 & 0.004 & -2.97 & 0.02 & -5.122 & 0.004 & 2.98 & 0.02\\
+3.94 & 0.02 & 5.594 & 0.004 & -3.97 & 0.02 & -6.867 & 0.004 & 4.00 & 0.03\\
+4.94 & 0.03 & 7.053 & 0.004 & -5.01 & 0.03 & -8.580 & 0.004 & 5.00 & 0.03\\
+5.99 & 0.03 & 8.398 & 0.004 & -5.97 & 0.03 & -10.308 & 0.004 & 6.01 & 0.04\\
+7.04 & 0.04 & 9.846 & 0.004 & -7.00 & 0.04 & -12.001 & 0.004 & 7.00 & 0.04\\
+8.03 & 0.05 & 11.216 & 0.004 & -7.97 & 0.04 & -13.668 & 0.004 & 7.97 & 0.04\\
+-0.985 & 0.010 & -1.372 & 0.004 & 0.975 & 0.010 & 1.713 & 0.004 & -0.997 & 0.010\\
+-1.912 & 0.015 & -2.806 & 0.004 & 1.993 & 0.015 & 3.443 & 0.004 & -2.007 & 0.015\\
+-3.01 & 0.02 & -4.217 & 0.004 & 3.00 & 0.02 & 5.139 & 0.004 & -3.00 & 0.02\\
+-4.04 & 0.03 & -7.011 & 0.004 & 4.98 & 0.03 & 6.847 & 0.004 & -3.99 & 0.02\\
+-4.95 & 0.03 & -8.446 & 0.004 & 6.00 & 0.04 & 8.586 & 0.004 & -5.01 & 0.03\\
+-5.93 & 0.03 & -9.814 & 0.004 & 6.98 & 0.04 & 10.280 & 0.004 & -6.00 & 0.03\\
+-6.98 & 0.04 & -11.227 & 0.004 & 7.98 & 0.04 & 12.003 & 0.004 & -7.01 & 0.04\\
+-7.99 & 0.04 & 77 & 7 & 77 & 7 & 13.728 & 0.004 & -8.01 & 0.05
+\end{tabular}
+\caption{neg values}
+\label{tab:neg}
+\end{table}
+
+
 
 I parametri ottenuti tramite i fit sono riportati in \cref{tab:VHip}, e in particolare possiamo anche provare a verificare la compatibilità tra le quote e $ 0 $.
 
