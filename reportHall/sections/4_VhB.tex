@@ -1,10 +1,10 @@
-\newsec{Tensione di Hall al variare del campo magnetico}{Stima di $ R_H $ valutando l'andamento di $V_H(B)$.}
+\newsec{Tensione di Hall al variare del campo magnetico}
 
 Analogamente a quanto fatto nella sezione precedente, sfruttiamo l'\cref{eq:hall-tension} misurando la tensione di Hall al variare del campo magnetico $ B $ per $ 6 $ valori corrente $ i_p $ diversi.
 
 \subsection{Regressioni su $ V_H(B) $}
 
-Per passare dalle misure della corrente di alimentazione delle bobine a quelle di campo magnetico abbiamo usato gli andamenti specifici degli emicicli di isteresi ascendenti e discendenti (\cref{eq:hysteresis-up} e $ \cref{eq:hysteresis-down} $).
+Per passare dalle misure della corrente di alimentazione delle bobine a quelle di campo magnetico abbiamo usato gli andamenti specifici degli emicicli di isteresi ascendenti e discendenti (\cref{eq:hysteresis-up} e \cref{eq:hysteresis-down}).
 
 Nuovamente, per confronto con \cref{eq:hall-tension} ci aspettiamo un andamento lineare e quindi effettuiamo delle regressioni con il modello:
 \begin{equation}
@@ -12,14 +12,33 @@ V_H = q + m \cdot B
 \end{equation}
 aspettandoci che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H i_p / t $, dopo aver sottratto (da $ q $) il contributo $ V_h(i_p^*) $\footnote{In questo caso, diversamente da prima, il contributo è costante per ogni curva: dipende dal valore fissato di corrente nella sonda.} dato dal disallineamento delle piastre.
 
-In particolare \ldots
+In particolare, riportiamo i parametri risultanti dai fit (in \cref{fig:VHb}) nella tabella (\ref{tab:VHb}).
+Anche in questo caso possiamo verificare la compatibilità delle quote (corrette) con $ 0 $ con dei test Z: tutti vengono accettati al $ 5 \% $ (con i risultati riportati sempre in $ \ref{tab:VHb} $).
 
 \subsection{Stima di $ R_H $}
 
 Di nuovo, ci aspettiamo che l'andamento dei coefficienti angolari di $ V_H(B) $ sia lineare in $ i_p $.
 Allora effettuiamo una regressione lineare:
-
 \begin{equation}
 m = q' + m' \cdot i_p
 \end{equation}
-ed effettivamente otteniamo \ldots
+ed effettivamente otteniamo:
+\begin{equation}
+q'= (\ldots \pm \ldots) \unit{mV / mT} \qquad m' = (\ldots \pm \ldots) \unit{mV / (mT \cdot mA)}
+\end{equation}
+per cui, data sempre la misura di $ t $ in \cref{eq:dimensions}, otteniamo una seconda stima di $ R_H $:
+\begin{equation}
+R_{H,2} = (\ldots \pm \ldots) \unit{m^3 / C}
+\end{equation}
+e pure della concentrazione dei portatori di carica maggioritari:
+\begin{equation}
+\rho_2 = (\ldots \pm \ldots) \unit{C / m^3}.
+\end{equation}
+
+\paragraph{Stima complessiva di $ R_H $} In particolare, possiamo verificare che le stime $ R_{H,2} $ e $ \rho_2 $ siano compatibili con $ R_{H,1} $ e $ \rho_1 $.
+Svolgendo i test $ Z $ troviamo che $ Z_R = \ldots $ e $ Z_{\rho} = \ldots $: entrambi sono accettabili al $ 5 \% $.
+Allora, mediamo le due stime pesando per l'errore e otteniamo:
+\begin{equation} \label{eq:RH}
+R_H = (\ldots \pm \ldots) \unit{m^3 / C}.
+\end{equation}
+
