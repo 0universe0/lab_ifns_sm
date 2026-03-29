@@ -1,0 +1,20 @@
+\newsec{Introduzione}
+
+\subsection{Effetto Hall}
+
+Immergere un semiconduttore\footnote{In realtà l'effetto Hall si può osservare anche con dei normali conduttori, come i metalli.}, attraversato da una corrente, dentro a un campo magnetico ha un effetto sul moto dei portatori di carica al suo interno: questi vengono spinti nella direzione mutuamente ortogonale a quella del moto stesso dei portatori e quella del campo magnetico.
+Questo fenomeno è chiamato effetto Hall.
+
+L'accumulo dei portatori su un lato della sonda dovuto al fenomeno genera un campo elettrico: a regime, questa differenza di potenziale, controbilancia esattamente l'effetto del campo magnetico.
+Sperimentalmente, possiamo valutare l'effetto misurando la differenza di potenziale ai lati del semiconduttore e verificare che la tensione di Hall $ V_H $ segua l'andamento teorico:
+\begin{equation} \label{eq:hall-tension}
+V_H = \frac{R_H}{t} i_p B
+\end{equation}
+dove $ R_H $ è il coefficiente di Hall relativo al materiale, $ t $ lo spessore del semiconduttore, $ i_p $ la corrente che fluisce al suo interno, e $ B $ il campo magnetico in cui è immerso.
+
+\help{Add explanation about $ \sigma $, $ \mu $: we need to have formulae to refer to!}
+
+\subsection{Setup sperimentale}
+
+Inseriamo la sonda di Hall (germanio drogato $ p $) nel traferro di un elettromagnete.
+Misuriamo la tensione di Hall $ V_H $ con un elettrometro Keithley e la corrente $ i_p $ con un amperometro Amprobe 37XRA (come mostrato in \cref{fig:hall-probe}), mentre controlliamo il campo magnetico generato attraverso la variazione di corrente di alimentazione delle bobine dell'elettromagnete (misurata con un amperometro analogo, come in \cref{fig:electromagnet}).

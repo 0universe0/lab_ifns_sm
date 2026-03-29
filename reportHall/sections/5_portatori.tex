@@ -1,0 +1,28 @@
+\newsec{Mobilità dei portatori}
+
+Stimato il coefficiente di Hall $ R_H $, per dare una stima della mobilità $ \mu $ dei portatori di carica dentro al campione di germanio è sufficiente determinare la resistenza del campione.
+
+\subsection{Caratteristica $ i_p(V) $}
+
+Per stimare la resistenza della sonda di Hall, ne abbiamo misurato la caratteristica $ i_p(V) $ (i dati sono riportati in \cref{tab:IV}).
+Dato l'andamento ohmico, possiamo stimare facilmente la resistenza del campione facendo una regressione lineare (in \cref{fig:IV}):
+\begin{equation}
+i_p = R \cdot V + \Delta
+\end{equation}
+e ricaviamo le stime:
+\begin{equation} \label{eq:resistance}
+R = (\ldots \pm \ldots) \unit{\ohm} \qquad \Delta = (\ldots \pm \ldots) \unit{mA}
+\end{equation}
+verificando anche con un test Z la compatibilità di $ \Delta $ con $ 0 $ ($Z = $, accettato al $ 5 \% $).
+
+\subsection{Stima di $ \mu $}
+
+Data la resistenza (in \cref{eq:resistance}) possiamo calcolare la resistività $ \rho $:
+\begin{equation}
+\rho = \frac{t \cdot w \cdot R}{L} = (\ldots \pm \ldots) \unit{\ohm \cdot mm}
+\end{equation}
+usando i dati sulle dimensioni della sonda in \cref{eq:dimensions}, da cui abbiamo anche che:
+\begin{equation}
+\mu = \frac{R_H}{\rho}  = (\ldots \pm \ldots) \unit{?!}
+\end{equation}
+dove $ R_H $ è stima come in \cref{eq:RH}.
