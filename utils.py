@@ -1,6 +1,6 @@
 # PLOTTER / FITTER class
 
-from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed
+from ROOT import TCanvas, TGraphErrors, TLegend, gPad, gStyle, TF1, kBlue, kRed # type: ignore
 from array import array
 import numpy as np
 
@@ -11,8 +11,9 @@ class fitPlotter():
         self._name   = name
         self._graphs  = []
         self._legends = []
+        self._funcs = []
 
-    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed, setparam = np.array([])):
+    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed, setparam = np.array([]), xrange = None):
         """ adds graph and eventually performs fit (else pass fit_formula=None) """
         # using c-style arrays breaks out of bound errors, so we have to implement some sanity checks
         if len(x) != len(y):
@@ -21,7 +22,7 @@ class fitPlotter():
             raise IndexError("err_x lenght does not match x")
         elif (y_err.any()) and len(y_err) != len(y):
             raise IndexError("err_x lenght does not match x")
-        
+            
         n = len(x)
 
         # init form empty errors
@@ -43,46 +44,124 @@ class fitPlotter():
         leg = TLegend(0.12, 0.75, 0.45, 0.88)
         leg.SetBorderSize(1)
         leg.SetFillColor(0)
-        leg.AddEntry(graph, "data points", "ple")
+        #leg.AddEntry(graph, "data points", "ple")
 
-        if fit_formula:
-            print(f"\n--- fit Results for: {title} ---")
+        if (fit_formula):
+            if not isinstance(fit_formula, list):
+                
+                print(f"\n--- fit Results for: {title} ---")
 
-            func_name = f"f_{len(self._graphs)}"
-            
-            func = TF1(func_name, fit_formula)
+                func_name = f"f_{len(self._graphs)}"
+                
+                if xrange is not None:
+                    func = TF1(func_name, fit_formula, xrange[0],xrange[1])
+                else:
+                    func = TF1(func_name, fit_formula)
 
-            if setparam.any():
-                setparam = array('d', setparam)
-                func.SetParameters(setparam)
-            
-            func.SetLineColor(kBlue)
-            graph.Fit(func, "SQ")
-            
-            # fit stats
-            chi2 = func.GetChisquare()
-            ndf = func.GetNDF()
-            pvalue = func.GetProb()
-            print(f"Function: {fit_formula}")
-            print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
-            print(f"p-value:  {pvalue:.4f}\n")
+                if setparam.any():
+                    setparam = array('d', setparam)
+                    func.SetParameters(setparam)
+                
+                func.SetLineColor(kBlue)
 
-            # fit parameters stuff
-            params = np.zeros((func.GetNpar(),2))  # simo: ora viene ritornato un array numpy bidimensionale dei parametri e degli errori
-            
-            for i in range(func.GetNpar()):
-                name = func.GetParName(i)
-                val  = func.GetParameter(i)
-                err  = func.GetParError(i)
-                print(f"{name}: {val:.4f} +/- {err:.4f}")
-                params[i,0] = func.GetParameter(i)
-                params[i,1] = func.GetParError(i)
+                if xrange is not None:
+                    graph.Fit(func, "SQR+")  #Salva, Quiet, Range,( ottimizzazione Migliorata), disporre + grafici
+                else:
+                    graph.Fit(func, "SQ+")
+                
+                # fit stats
+                chi2 = func.GetChisquare()
+                ndf = func.GetNDF()
+                pvalue = func.GetProb()
+                print(f"Function: {fit_formula}")
+                print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
+                print(f"p-value:  {pvalue:.4f}\n")
 
-            print("-" * 32)
+                # fit parameters stuff
+                params = np.zeros((func.GetNpar(),2))  # simo: ora viene ritornato un array numpy bidimensionale dei parametri e degli errori
+                
+                for i in range(func.GetNpar()):
+                    name = func.GetParName(i)
+                    val  = func.GetParameter(i)
+                    err  = func.GetParError(i)
+                    print(f"{name}: {val:.4f} +/- {err:.4f}")
+                    params[i,0] = func.GetParameter(i)
+                    params[i,1] = func.GetParError(i)
 
-            leg.AddEntry(func, "fit function", "l")
+                print("-" * 32)
 
-        # fuck the garbage collector
+                leg.AddEntry(func, "fit function", "l")
+
+
+            else:
+                # now, fitting multiple functions on same graph 
+                #  fit_formula = [pol1,pol3,...], xrange = [[100,200],[200,300],..],
+                #  setparam = [np.array,np.array,...] 
+                # if range is not specified, it shall be [None,None,...]
+                # to be improved: now fits are done on all graphs of the canvas.
+                n_fits = len(fit_formula)
+                if xrange is not None:
+                    if len(xrange) != len(fit_formula):
+                        raise IndexError("number of formulas to fit and number of x-ranges must be equal")
+                else:
+                    xrange = [None] * n_fits
+
+                if not isinstance(setparam, list):
+                    setparam = [setparam] * n_fits
+
+                print(f"\n--- fit Results for: {title} --- \n ! Multiple fits are being committed !")
+                params = [] #now params will be [np.array([[a,err_a],[b,err_b]]) , np.array(...), ...]
+                
+                for i_fit_formula, i_xrange, i_setparam, I in zip(fit_formula, xrange, setparam, range(n_fits)):
+
+                    print(f"fit {I}, f = {i_fit_formula}")
+                    
+                    func_name = f"f_{len(self._graphs)}{i_fit_formula}{I}"
+
+                    if i_xrange is not None:
+                        func = TF1(func_name, i_fit_formula, i_xrange[0], i_xrange[1])
+                    else:
+                        func = TF1(func_name, i_fit_formula)
+
+                    self._funcs.append(func)
+
+                    if i_setparam.any():
+                        i_setparam = array('d', i_setparam)
+                        func.SetParameters(i_setparam)
+                    
+                    func.SetLineColor(kBlue - I)
+
+                    if i_xrange is not None:
+                        graph.Fit(func, "SQR+")  #Salva, (Quiet), Range,( ottimizzazione Migliorata), disporre + grafici
+                    else:
+                        graph.Fit(func, "SQ+")
+                    
+                    # fit stats
+                    chi2 = func.GetChisquare()
+                    ndf = func.GetNDF()
+                    pvalue = func.GetProb()
+                    print(f"Function: {i_fit_formula}")
+                    print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
+                    print(f"p-value:  {pvalue:.4f}\n")
+
+                    # fit parameters stuff
+                    i_param = np.zeros((func.GetNpar(),2)) 
+                    
+                    for i in range(func.GetNpar()):
+                        name = func.GetParName(i)
+                        val  = func.GetParameter(i)
+                        err  = func.GetParError(i)
+                        print(f"{name}: {val:.4f} +/- {err:.4f}")
+                        i_param[i,0] = func.GetParameter(i)
+                        i_param[i,1] = func.GetParError(i)
+                    
+                    params.append(i_param)
+
+                    print("-" * 32)
+
+                    leg.AddEntry(func, i_fit_formula, "l")
+
+            # fuck the garbage collector
         self._graphs.append(graph)
         self._legends.append(leg)
 
@@ -92,7 +171,7 @@ class fitPlotter():
         else:
             return None
 
-    def drawCanvas(self, dimX=1000, dimY=500):
+    def drawCanvas(self, legend=True, dimX=1000, dimY=500):
         """ draws entire canvas """
         nGraphs = len(self._graphs)
         if nGraphs < 1: return
@@ -104,12 +183,43 @@ class fitPlotter():
         self._canvas.Divide(cols, rows)
 
         for i in range(nGraphs):
-            self._canvas.cd(i+1)
+            pad = self._canvas.cd(i+1)
+
+            pad.SetLeftMargin(0.15) # setting padding
+            pad.SetBottomMargin(0.12)
+
+            gStyle.SetOptFit(1100) # setting fit stats
             gPad.SetGrid() 
+            
             self._graphs[i].Draw("AP")
-            self._legends[i].Draw()
+            
+            if legend: # sometimes we dont want it drawn!
+                self._legends[i].Draw()
 
         self._canvas.Draw()
+
+    def updateLegend(self,labels,index=-1):
+        """ updates the legends entries (with labels = [string]), and returns the legend to give more control. CANVAS NEEDS TO BE DRAWN """
+        if len(self._legends) < 1:
+            raise IndexError("no legends present!")
+
+        # retrieving legend and entries into it
+        leg = self._legends[index]
+        entries = leg.GetListOfPrimitives()
+
+        if len(entries) != len(labels):
+            raise IndexError("lenght of labels does not match number of entries in legend")
+
+        # setting labels
+        for i in range(0, len(entries)):
+            entries.At(i).SetLabel(labels[i])
+
+        # updating (drawn) canvas
+        self._canvas.Modified()
+        self._canvas.Update()
+        
+        return self._legends[index]
+        
 
     def saveCanvas(self, fileName="canvas.png"):
         """ saves canvas: has logic to modify name (but its not that useful) """
@@ -117,6 +227,34 @@ class fitPlotter():
             fileName = self._name + ".png"
         self._canvas.SaveAs(fileName)
 
+# example use of TEXTABLER
+# x = np.array([1,2,3])
+# y = np.array([2,3,4])
+# err_x = np.array([0.1,0.2,0.3])
+# err_y = np.array([0.1,0.2,0.3])
+# texTabler([x,y], [err_x, err_y], ["x", "y"], digits = 4)
+
+def texTabler(data, errors, names, digits=3):
+    """ turns data = [np.array, np.array, ...] and errors = [np.array, np.array, ...] into table with names = [string, string, ...] """
+    if len(data) != len(errors) or len(data) != len(names):
+        raise IndexError("mistakes in lists lenghts! check them")
+
+    title = ""
+    for i in range(0,len(names)-1):
+        title += f"${names[i]}$ & $\delta {names[i]}$ & "
+    title+= f"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
+
+    print(title)
+    
+    for i in range(0, len(data[0])):
+        row = ""
+
+        for j in range(0, len(data)-1):
+            row += f"{data[j][i]:.{digits}f} & {errors[j][i]:.{digits}f} & "
+
+        row += f"{data[len(data)-1][i]:.{digits}f} & {errors[len(data)-1][i]:.{digits}f} \\\\"
+
+        print(row)
 
 # we have to remove the contribution for B=0
 # (our measurements need to have the same currents, or else we need to interpolate between the points...)
