@@ -237,9 +237,11 @@ class fitPlotter():
 # y = np.array([2,3,4])
 # err_x = np.array([0.1,0.2,0.3])
 # err_y = np.array([0.1,0.2,0.3])
-# texTabler([x,y], [err_x, err_y], ["x", "y"], digits = 4)
+# texTabler([x,y], [err_x, err_y], ["x", "y"])
 
-def texTabler(data, errors, names, digits=3):
+from sigfig import round
+
+def texTabler(data, errors, names):
     """ turns data = [np.array, np.array, ...] and errors = [np.array, np.array, ...] into table with names = [string, string, ...] """
     if len(data) != len(errors) or len(data) != len(names):
         raise IndexError("mistakes in lists lenghts! check them")
@@ -250,16 +252,16 @@ def texTabler(data, errors, names, digits=3):
     title+= f"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
 
     print(title)
+    print("\\hrule")
     
     for i in range(0, len(data[0])):
-        
         row = ""
 
         for j in range(0, len(data)-1):
-            if data[j][i] 
-            row += f"{data[j][i]:.{digits}f} & {errors[j][i]:.{digits}f} & "
+            roundedString = round(str(data[j][i]), str(errors[j][i]), separation=' & ', cutoff=29)
+            row += (roundedString) + " & "
 
-        row += f"{data[len(data)-1][i]:.{digits}f} & {errors[len(data)-1][i]:.{digits}f} \\\\"
+        row += round(str(data[len(data)-1][i]), str(errors[len(data) - 1][i]), separation=' & ') + "\\\\"
 
         print(row)
 
