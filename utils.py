@@ -372,4 +372,3 @@ def Amprobe_V (voltage):
         error.append(0.001*abs(data) + 0.1*5)
 
     return np.array(error)
-        
