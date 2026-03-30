@@ -301,7 +301,7 @@ def meanCalc(values):
 
 # Mean error calculator
 
-def MeanError(s1,s2):
+def oldMeanError(s1,s2):
     "used to calculate mean of two arrays of np.array([mean,error],[],...) type"
     if (np.shape(s1) != np.shape(s2)):
         raise("TypeError: shape of imput arrays must be equal")
@@ -310,6 +310,20 @@ def MeanError(s1,s2):
         stima = (s1 + s2)/len(s1)
         stima[:,1] = rel_error * stima[:,0]
         return stima
+
+def MeanError(s1, s2):
+    if s1.shape != s2.shape:
+        raise TypeError("Shape of imput arrays must be equal!")
+
+    x1, sig1 = s1[:, 0], s1[:, 1]
+    x2, sig2 = s2[:, 0], s2[:, 1]
+
+    w1 = 1.0 / sig1**2
+    w2 = 1.0 / sig2**2
+
+    mean_value = (x1 * w1 + x2 * w2) / (w1 + w2)
+    mean_err = np.sqrt(1.0 / (w1 + w2))
+    return np.column_stack((mean_value, mean_err))
 
 # Z test calculator!
 

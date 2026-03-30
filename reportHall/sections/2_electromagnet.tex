@@ -4,8 +4,55 @@ Prima di studiare l'effetto Hall, abbiamo caratterizzato l'elettromagnete in mod
 
 \subsection{Uniformità del campo magnetico}
 
-Abbiamo cominciato valutando l'intensità del campo magnetico in vari punti del traferro: suddividendolo in intervalli regolari abbiamo riportato i valori misurati con un magnetometro (\ldots) su un istogramma.
+Abbiamo cominciato valutando l'intensità del campo magnetico in vari punti del traferro: suddividendolo in intervalli regolari abbiamo riportato i valori misurati con un magnetometro (Extech SDL900) su un istogramma.
 Si riconosce una regione di uniformità al centro del traferro (in \cref{fig:uniform-magnet}) in cui gli effetti di bordo sono trascurabili: è proprio qui che abbiamo sempre posizionato la sonda di Hall.
+
+\begin{figure}[]
+\centering
+\begin{minipage}[c]{0.45\textwidth}
+\raggedleft
+\includegraphics[width=1.3\textwidth]{./figs/uniformB.png}
+\end{minipage}
+\hfill 
+\begin{minipage}[c]{0.45\textwidth}
+\raggedright \tiny
+\begin{tabular}{cccccc}
+$B$ & $\delta B$ & $x$ & $\delta x$ & $y$ & $\delta y$ \\
+\hline
+176 & 10 & 0.0 & 1.0 & 0.0 & 1.0\\
+205 & 11 & 0.0 & 1.0 & 10.0 & 1.0\\
+202 & 11 & 0.0 & 1.0 & 20.0 & 1.0\\
+204 & 11 & 0.0 & 1.0 & 30.0 & 1.0\\
+164 & 9 & 0.0 & 1.0 & 40.0 & 1.0\\
+\hline
+206 & 11 & 10.0 & 1.0 & 0.0 & 1.0\\
+235 & 13 & 10.0 & 1.0 & 10.0 & 1.0\\
+233 & 13 & 10.0 & 1.0 & 20.0 & 1.0\\
+234 & 13 & 10.0 & 1.0 & 30.0 & 1.0\\
+212 & 12 & 10.0 & 1.0 & 40.0 & 1.0\\
+\hline
+215 & 12 & 20.0 & 1.0 & 0.0 & 1.0\\
+236 & 13 & 20.0 & 1.0 & 10.0 & 1.0\\
+236 & 13 & 20.0 & 1.0 & 20.0 & 1.0\\
+237 & 13 & 20.0 & 1.0 & 30.0 & 1.0\\
+209 & 11 & 20.0 & 1.0 & 40.0 & 1.0\\
+\hline
+205 & 11 & 30.0 & 1.0 & 0.0 & 1.0\\
+236 & 13 & 30.0 & 1.0 & 10.0 & 1.0\\
+236 & 13 & 30.0 & 1.0 & 20.0 & 1.0\\
+235 & 13 & 30.0 & 1.0 & 30.0 & 1.0\\
+207 & 11 & 30.0 & 1.0 & 40.0 & 1.0\\
+\hline
+176 & 10 & 40.0 & 1.0 & 0.0 & 1.0\\
+200 & 11 & 40.0 & 1.0 & 10.0 & 1.0\\
+201 & 11 & 40.0 & 1.0 & 20.0 & 1.0\\
+202 & 11 & 40.0 & 1.0 & 30.0 & 1.0\\
+175 & 10 & 40.0 & 1.0 & 40.0 & 1.0\\
+\end{tabular}
+\end{minipage}
+\caption{Figura uniformità.}
+\label{fig:uniform-magnet}
+\end{figure}
 
 In particolare, prendiamo la semidifferenza tra i valori di $ B $ misurati in questa regione:
 \begin{equation}
@@ -88,7 +135,7 @@ B_\text{up,2} &= (-8.6 \pm 1.2) \unit{mT} + (239 \pm 4) \unit{mT / A} \cdot I \\
 B_\text{down,2} &= (8.8 \pm 1.3) \unit{mT} + (238 \pm 4) \unit{mT / A} \cdot I.
 \end{align}
 
-In particolare, possiamo verificare la compatibilità tra le quote delle coppie di salita e di discesa (con $ Z_\text{q,up} = 0.028 $ e $ Z_\text{q,down} = -0.232 $, accettati al $ 5 \% $), e pure quella tra tutti i coefficienti angolari (con \ldots). \help{maybe insert into a table?}
+In particolare, possiamo verificare la compatibilità tra le quote delle coppie di salita e di discesa (con $ Z_\text{q,up} = 0.028 $ e $ Z_\text{q,down} = -0.232 $, accettati al $ 5 \% $), e pure quella tra tutti i coefficienti angolari (tutti accettati al $ 5 \% $ con $ \abs{Z} \leq 0.2 $). 
 
 In virtù di questo, abbiamo calcolato gli andamenti medi (pesati per gli errori) sui cicli in salita/discesa, e su un ciclo generico:
 \begin{align} \label{eq:hysteresis-up}
@@ -98,4 +145,10 @@ B_\text{mean} &= (0 \pm 9) \unit{mT} + (238 \pm 2) \unit{mT / A} \cdot I
 \end{align}
 dove l'errore sulla quota di $ B_\text{mean} $ lo abbiamo stimato con la differenza tra le quote di $ B_\text{up} $ e $ B_\text{down} $.
 
-\help{insert explanations into how we calculate $ B $ from $ I $.}
+\paragraph{Ricavare $ B $ data $ I $ con i cicli di isteresi}
+
+Nel resto dell'esperienza abbiamo misurato indirettamente il campo magnetico $ B $ tramite la corrente di alimentazione nelle bobine $ I $.
+Dove possibile (cioè quando sapevamo di trovarci su una curva di salita, oppure una di discesa) abbiamo usato le linearizzazioni (l'\cref{eq:hysteresis-up} e l'\cref{eq:hysteresis-down}) dei cicli di isteresi specifici.
+Altrimenti, abbiamo usato il ciclo di isteresi medio (\ref{eq:hysteresis-mean}) accettando di avere un errore più grande (dato dall'incertezza sulla quota della retta).
+
+Quindi, per propagare l'errore abbiamo sfruttato l'indipendenza tra quelli sui parametri delle ``rette di isteresi'' e le misure di corrente, ma abbiamo anche assunto l'indipendenza tra pendenza e quota delle rette.\footnote{Formalmente questa assunzione non è corretta: esiste una covarianza tra $ m $ e $ q $, ma questa è piccola (di almeno un'ordine di grandezza). Inoltre spesso è negativa, quindi in quei casi la nostra assunzione sovrastima gli errori.}

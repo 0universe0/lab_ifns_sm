@@ -7,22 +7,55 @@ Stimato il coefficiente di Hall $ R_H $, per dare una stima della mobilità $ \m
 Per stimare la resistenza della sonda di Hall, ne abbiamo misurato la caratteristica $ i_p(V) $ (i dati sono riportati in \cref{tab:IV}).
 Dato l'andamento ohmico, possiamo stimare facilmente la resistenza del campione facendo una regressione lineare (in \cref{fig:IV}):
 \begin{equation}
-i_p = R \cdot V + \Delta
+V = R \cdot i_p + \Delta
 \end{equation}
 e ricaviamo le stime:
 \begin{equation} \label{eq:resistance}
-R = (\ldots \pm \ldots) \unit{\ohm} \qquad \Delta = (\ldots \pm \ldots) \unit{mA}
+R = (64.69 \pm 0.07) \unit{\ohm} \qquad \Delta = (0.0 \pm 0.2) \unit{mA}
 \end{equation}
-verificando anche con un test Z la compatibilità di $ \Delta $ con $ 0 $ ($Z = $, accettato al $ 5 \% $).
+verificando anche con un test Z la compatibilità di $ \Delta $ con $ 0 $ ($Z = -0.141$, accettato al $ 5 \% $).
+
+\begin{table}
+\centering \small
+\begin{tabular}{cccc|cccc}
+$i_p$ & $\delta i_p$ & $V$ & $\delta V$ & $i_p$ & $\delta i_p$ & $V$ & $\delta V$ \\
+\hline
+-0.501 & 0.008 & -32.505 & 0.005 & 0.537 & 0.008 & 34.804 & 0.005\\
+-1.010 & 0.010 & -64.937 & 0.006 & 1.018 & 0.010 & 65.991 & 0.006\\
+-1.503 & 0.013 & -97.343 & 0.007 & 1.514 & 0.013 & 98.036 & 0.007\\
+-1.999 & 0.015 & -129.500 & 0.010 & 1.987 & 0.015 & 128.640 & 0.010\\
+-2.492 & 0.017 & -161.399 & 0.011 & 2.499 & 0.017 & 161.732 & 0.011\\
+-3.00 & 0.02 & -194.292 & 0.012 & 3.00 & 0.02 & 193.900 & 0.012\\
+-3.50 & 0.02 & -226.477 & 0.013 & 3.50 & 0.02 & 226.290 & 0.013\\
+-4.00 & 0.03 & -259.082 & 0.014 & 4.01 & 0.03 & 259.353 & 0.014\\
+-4.49 & 0.03 & -290.841 & 0.015 & 4.49 & 0.03 & 290.420 & 0.015\\
+-5.00 & 0.03 & -323.673 & 0.016 & 5.02 & 0.03 & 324.444 & 0.016\\
+-5.50 & 0.03 & -356.178 & 0.017 & 5.45 & 0.03 & 352.526 & 0.017\\
+-6.02 & 0.04 & -389.277 & 0.018 & 5.97 & 0.03 & 386.290 & 0.018\\
+-6.50 & 0.04 & -420.475 & 0.019 & 6.47 & 0.04 & 418.420 & 0.019\\
+-7.00 & 0.04 & -452.68 & 0.02 & 7.00 & 0.04 & 452.78 & 0.02\\
+-7.51 & 0.04 & -484.51 & 0.02 & 7.50 & 0.04 & 485.15 & 0.02\\
+-8.00 & 0.05 & -517.49 & 0.02 & 8.00 & 0.05 & 517.53 & 0.02
+\end{tabular}
+\caption{Dati della caratteristica $ i_p(V) $ (correnti in $ \unit{mA} $ e tensioni in $ \unit{mV} $) della sonda di Hall (regressione in \cref{fig:IV}).}
+\label{tab:IV}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{./figs/IVcharacteristic.png}
+\caption{In rosso i dati della caratteristica $ i_p(V) $ della sonda di Hall, mentre in blu la regressione lineare che abbiamo effettuato su di essi (dati del fit in legenda).}
+\label{fig:IV}
+\end{figure}
 
 \subsection{Stima di $ \mu $}
 
-Data la resistenza (in \cref{eq:resistance}) possiamo calcolare la resistività $ \rho $:
+Data la resistenza (in \cref{eq:resistance}) e le dimensioni della sonda di Hall (in \cref{eq:dimensions}), possiamo calcolare la resistività $ \rho_\text{res} $:
 \begin{equation}
-\rho = \frac{t \cdot w \cdot R}{L} = (\ldots \pm \ldots) \unit{\ohm \cdot mm}
+\rho_\text{res} = \frac{t \cdot w \cdot R}{L} = (32 \pm 3) \unit{\ohm \cdot mm}
 \end{equation}
 usando i dati sulle dimensioni della sonda in \cref{eq:dimensions}, da cui abbiamo anche che:
-\begin{equation}
-\mu = \frac{R_H}{\rho}  = (\ldots \pm \ldots) \unit{?!}
+\begin{equation} \label{eq:mobility}
+\mu = \frac{R_H}{\rho_\text{res}}  = (0.24 \pm 0.03) \unit{m^2 / (V \cdot s)}
 \end{equation}
 dove $ R_H $ è stima come in \cref{eq:RH}.
