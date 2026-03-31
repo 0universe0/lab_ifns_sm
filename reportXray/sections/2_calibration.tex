@@ -10,19 +10,21 @@ Le caratteristiche del contatore Geiger-Müller che possiamo controllare sono du
 \item la tensione di alimentazione $ V_\text{alimentazione} $.
 \end{enumerate}
 
-Per fissare la soglia misuriamo con un oscilloscopio (\ldots) il segnale all'ingresso del sistema di acquisizione con un oscilloscopio.
-Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine di $ \ldots \unit{mV} $, quindi la fissiamo a $ V_\text{soglia} = \ldots \unit{mV} $.
+Per fissare la soglia misuriamo con un oscilloscopio Tektronik (TBS1104) il segnale all'ingresso del sistema di acquisizione.
+Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine di \help{$ \ldots \unit{mV} $}, quindi la fissiamo a \help{$ V_\text{soglia} = \ldots \unit{mV} $}.
 
 Per scegliere la tensione di alimentazione ottimale misuriamo il numero di conteggi registrati dal contatore (a condizioni, $ V_\text{EHT} $ e $i$, di tubo Röntgen fissate) al variare della stessa.
 
-In \cref{fig:Vgeiger} vediamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: fissiamo $ V_\text{alimentazione} $ aggiungendo al primo dato nel plateau $ 10 \unit{V} $. 
-Quindi $ V_\text{alimentazione} = \ldots \unit{V} $.
+In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: fissiamo $ V_\text{alimentazione} $ aggiungendo al primo dato nel plateau $ 10 \unit{V} $. 
+Quindi \help{$ V_\text{alimentazione} = \ldots \unit{V} $}.
 
 In particolare, osserviamo che le due curve di conteggi \ldots
 
 \subsection{Corrente nel filamento}
 
 Per fissare la corrente $ I $ nel filamento del tubo Röntgen studiamo il numero di conteggi in $ \Delta t = 20 \unit{s} $: per lavorare al meglio, desideriamo avere un grande numero di conteggi (per ridurre l'errore) ma non troppo da far saturare le misure del contatore Geiger.
-In particolare, prendiamo i dati usando $ V_\text{EHT} = 30 \unit{kV} $.
+In particolare, prendiamo i dati usando una extra-high tension di $ V_\text{EHT} = 30 \unit{kV} $.
 
-Nella \cref{fig:Igeiger} si distingue una regione in cui \ldots
+Nella \cref{fig:Igeiger} si distingue una regione in cui \help{il numero di conteggi cresce linearmente con una pendenza molto ripida, una volta raggiunto il plateau la pendenza si riduce ed i conteggi salgono molto meno rapidamente. Questo fenomeno è da attribuirsi alla velocità di ricombinamento dell'Argon presente nel GM. Se i raggi X incidenti sono molti, l'Argon resta ionizzato continuando a generare cascate e alcuni raggi X restano irrilevati.}
+
+
