@@ -21,17 +21,67 @@ Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine d
 \end{figure}
 
 Per scegliere la tensione di alimentazione ottimale, misuriamo il numero di conteggi registrati dal contatore al variare della stessa. Questa procedura viene fatta a alimentando il tubo di Rötgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento.
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/CountsVsTensionGM.png}
     \caption{Descrizione dell'immagine}
     \label{fig:Vgeiger}
 \end{figure}
+
+
+
 In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: quest'ultima viene individuata nel caso di $V_\text{EHT} = 30 \unit{kV}$ come la zona più ampia nella quale un fit costante risulta compatibile con i dati. La zona di plateau risulta essere $ (500, 570) \unit{V} $ dunque fissiamo $ V_\text{alimentazione} = 506 \unit{V} $, aggiungendo al primo dato nel plateau $ 6 \unit{V} $. 
 
 Quindi \help{$ V_\text{alimentazione} = \ldots \unit{V} $}.
 
 In particolare, osserviamo che le due curve di conteggi \ldots
+
+\begin{table}[h]
+\centering \tiny
+\begin{tabular}{cccc|cccc}
+  $V_\text{30}$ & $\delta V_\text{30}$ & $Counts_\text{30}$ & $\delta Counts_\text{30}$ & $V_\text{20}$ & $\delta V_\text{20}$ & $Counts_\text{20}$ & $\delta Counts_\text{20}$ \\
+\hline
+390.0 & 0.5 & 16.6 & 0.9 & 390.0 & 0.5 & 37.5 & 1.4\\
+392.0 & 0.5 & 24.0 & 1.1 & 411.0 & 0.5 & 514 & 5\\
+397.0 & 0.5 & 77 & 2 & 430.0 & 0.5 & 970 & 7\\
+402.0 & 0.5 & 239 & 3 & 449.0 & 0.5 & 1173 & 8\\
+406.0 & 0.5 & 440 & 5 & 471.0 & 0.5 & 1263 & 8\\
+411.0 & 0.5 & 584 & 5 & 490.0 & 0.5 & 1271 & 8\\
+416.0 & 0.5 & 674 & 6 & 509.0 & 0.5 & 1277 & 8\\
+421.0 & 0.5 & 767 & 6 & 530.0 & 0.5 & 1262 & 8\\
+425.0 & 0.5 & 857 & 7 & 549.0 & 0.5 & 1252 & 8\\
+430.0 & 0.5 & 941 & 7 & 570.0 & 0.5 & 1244 & 8\\
+435.0 & 0.5 & 1049 & 7 & 589.0 & 0.5 & 1240 & 8\\
+440.0 & 0.5 & 1186 & 8 & 421.0 & 0.5 & 728 & 6\\
+444.0 & 0.5 & 1339 & 8 & 440.0 & 0.5 & 1095 & 7\\
+449.0 & 0.5 & 1496 & 9 & 461.0 & 0.5 & 1214 & 8\\
+454.0 & 0.5 & 1632 & 9 & 480.0 & 0.5 & 1241 & 8\\
+459.0 & 0.5 & 1742 & 9 & 425.0 & 0.5 & 838 & 6\\
+463.0 & 0.5 & 1813 & 10 & 435.0 & 0.5 & 1052 & 7\\
+468.0 & 0.5 & 1882 & 10 & 423.0 & 0.5 & 778 & 6\
+473.0 & 0.5 & 1906 & 10 & 418.0 & 0.5 & 666 & 6\\
+478.0 & 0.5 & 1937 & 10 & 444.0 & 0.5 & 1152 & 8\\
+482.0 & 0.5 & 1967 & 10 & 454.0 & 0.5 & 1195 & 8\\
+487.0 & 0.5 & 1982 & 10 & - & - & - & -\\
+501.0 & 0.5 & 2037 & 10 & - & - & - & -\\
+518.0 & 0.5 & 2051 & 10 & - & - & - & -\\
+532.0 & 0.5 & 2066 & 10 & - & - & - & -\\
+547.0 & 0.5 & 2042 & 10 & - & - & - & -\\
+561.0 & 0.5 & 2033 & 10 & - & - & - & -\\
+575.0 & 0.5 & 2035 & 10 & - & - & - & -\\
+589.0 & 0.5 & 2011 & 10 & - & - & - & -\\
+494.0 & 0.5 & 1993 & 10 & - & - & - & -\\
+511.0 & 0.5 & 2041 & 10 & - & - & - & -\\
+525.0 & 0.5 & 2046 & 10 & - & - & - & -\\
+537.0 & 0.5 & 2049 & 10 & - & - & - & -\\
+554.0 & 0.5 & 2045 & 10 & - & - & - & -\\
+490.0 & 0.5 & 1985 & 10 & - & - & - & -\\
+497.0 & 0.5 & 2011 & 10 & - & - & - & -\\
+
+\end{tabular}
+\caption{...}
+\label{tab:...}
+\end{table}
 
 \subsection{Corrente nel filamento}
 
