@@ -1,0 +1,42 @@
+\newsec{Spettro di emissione dei raggi X}
+
+Noto il passo reticolare del cristallo di \ce{NaCl} vogliamo usare l'\cref{eq:bragg} per individuare le posizioni dei picchi caratteristici di emissione del rame.
+Tenendo in considerazione la \help{distanza interatomica del rame \ce{Cu}}:
+\begin{equation}
+d_{\ce{Cu}} = (5.64 \pm 0.01) \unit{\angstrom}.
+\end{equation}
+Analogamente al caso in assenza di cristallo, effettuiamo conteggi con il GM a intervalli di $ 20 \unit{s} $, per la ricerca dei picchi caratteristici abbiamo variato l'angolo di incidenza del fascio di raggi X sulla superficie del cristallo, la variazione è compresa tra $ 11⁰ - 35⁰ $ a passi di $ 1⁰ $ rispetto alla direzione di incidenza del fascio (ovviamente in scala $ 2\theta $, tenendo conto della variazione totale della direzione del fascio). Abbiamo caratterizzato i picchi in modo fine, con una sensibilità di $ 1/6 ⁰ $ per misura \help{dobbiamo parlare del sistematico?? cosa dire}.\\
+
+\help{direi grafici con risultati dei fit qui}
+
+\help{commentini sui valori ottenuti e compatibilità Ztest tra $ \lambda $ e $ \lambda_{teorico} $} 
+
+Qui nel caso di $ V_{EHT} = 30 \unit{kV} $ verifichiamo la veridicità della legge di Bragg (\cref{eq:bragg}).
+
+\help{AIUTO}
+
+A questo punto studiamo per confronto l'effetto di un filtro di \ce{Ni} sullo spettro di diffrazione, confrontando i risultati con l'andamento del suo coefficiente di assorbimento $ \mu $ con l'energia della radiazione incidente \help{REMI: che volevi dire in questa frase?}.
+
+\subsection{Diffrazione su \ce{NaCl}}
+
+Posizionato il cristallo sullo spettrometro e fissate le condizioni di lavoro del setup a $ V_\text{EHT} = 30 \unit{kV} $ $ i = 40 \unit{\micro A} $ e $ V_\text{alimentazione} = 506 \unit{V} $, misuriamo il numero di conteggi in $ \Delta t = 20 \unit{s} $ al variare dell'angolo $ 2\theta $ a cui si trova il contatore Geiger.
+
+\help{insert 1 degree steps}
+
+Identificate grossolanamente le posizioni dei picchi di emissione (al prim'ordine di diffrazione), effettuiamo una scansione più fine nell'intervallo $ 2\theta \in [\ldots, \ldots] \unit{\degree} $, usando una scala di $ 1/6 \unit{\degree} $.
+
+\help{insert 1/6 degree steps}
+
+Allora, invertendo la legge di Bragg (\ref{eq:bragg}), e fissato $ n=1 $, abbiamo che:
+\begin{equation}
+\lambda = 2d \sin \frac{2\theta}{2}
+\end{equation}
+per cui ricaviamo le stime: \help{$ 0.15 \pm 0.14 $?? penso questo sia \ce{Ni}...} 
+
+\subsection{Filtro di \ce{Ni}}
+
+Alle stesse condizioni di lavoro ($V_\text{EHT} = 30 \unit{kV}$, $ i = 40 \unit{\micro A} $, e $ V_\text{alimentazione} = 506 \unit{V} $) di prima, eseguiamo le stesse scansioni dello spettro di emissione, ma inserendo sul cammino ottico del fascio un filtro di nichel.
+
+Di nuovo, l'interesse sta nel caratterizzare la \help{risposta frenante} del materiale scelto, osservando la decrescita nei conteggi rilevati. In breve, la presenza di un materiale schermante permette il passaggio solo a certi raggi X (a seconda della loro energia e quindi della lunghezza d'onda). I risultati ci dicono che:
+
+\help{grafici e commenti}
