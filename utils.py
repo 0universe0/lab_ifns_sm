@@ -1,6 +1,6 @@
 # PLOTTER / FITTER class
 
-from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed
+from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed # type: ignore
 from array import array
 import numpy as np
 
@@ -11,8 +11,9 @@ class fitPlotter():
         self._name   = name
         self._graphs  = []
         self._legends = []
+        self._funcs = []
 
-    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed, setparam = np.array([])):
+    def addGraph(self, x, y, x_err=np.array([]), y_err=np.array([]), title="graph", fit_formula="pol1", color=kRed, setparam = np.array([]), xrange = None):
         """ adds graph and eventually performs fit (else pass fit_formula=None) """
         # using c-style arrays breaks out of bound errors, so we have to implement some sanity checks
         if len(x) != len(y):
@@ -21,7 +22,7 @@ class fitPlotter():
             raise IndexError("err_x lenght does not match x")
         elif (y_err.any()) and len(y_err) != len(y):
             raise IndexError("err_x lenght does not match x")
-        
+            
         n = len(x)
 
         # init form empty errors
@@ -45,44 +46,122 @@ class fitPlotter():
         leg.SetFillColor(0)
         leg.AddEntry(graph, "data points", "ple")
 
-        if fit_formula:
-            print(f"\n--- fit Results for: {title} ---")
+        if ( fit_formula):
+            if not isinstance(fit_formula, list):
+                
+                print(f"\n--- fit Results for: {title} ---")
 
-            func_name = f"f_{len(self._graphs)}"
-            
-            func = TF1(func_name, fit_formula)
+                func_name = f"f_{len(self._graphs)}"
+                
+                if xrange is not None:
+                    func = TF1(func_name, fit_formula, xrange[0],xrange[1])
+                else:
+                    func = TF1(func_name, fit_formula)
 
-            if setparam.any():
-                setparam = array('d', setparam)
-                func.SetParameters(setparam)
-            
-            func.SetLineColor(kBlue)
-            graph.Fit(func, "SQ")
-            
-            # fit stats
-            chi2 = func.GetChisquare()
-            ndf = func.GetNDF()
-            pvalue = func.GetProb()
-            print(f"Function: {fit_formula}")
-            print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
-            print(f"p-value:  {pvalue:.4f}\n")
+                if setparam.any():
+                    setparam = array('d', setparam)
+                    func.SetParameters(setparam)
+                
+                func.SetLineColor(kBlue)
 
-            # fit parameters stuff
-            params = np.zeros((func.GetNpar(),2))  # simo: ora viene ritornato un array numpy bidimensionale dei parametri e degli errori
-            
-            for i in range(func.GetNpar()):
-                name = func.GetParName(i)
-                val  = func.GetParameter(i)
-                err  = func.GetParError(i)
-                print(f"{name}: {val:.4f} +/- {err:.4f}")
-                params[i,0] = func.GetParameter(i)
-                params[i,1] = func.GetParError(i)
+                if xrange is not None:
+                    graph.Fit(func, "SQR+")  #Salva, Quiet, Range,( ottimizzazione Migliorata), disporre + grafici
+                else:
+                    graph.Fit(func, "SQ+")
+                
+                # fit stats
+                chi2 = func.GetChisquare()
+                ndf = func.GetNDF()
+                pvalue = func.GetProb()
+                print(f"Function: {fit_formula}")
+                print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
+                print(f"p-value:  {pvalue:.4f}\n")
 
-            print("-" * 32)
+                # fit parameters stuff
+                params = np.zeros((func.GetNpar(),2))  # simo: ora viene ritornato un array numpy bidimensionale dei parametri e degli errori
+                
+                for i in range(func.GetNpar()):
+                    name = func.GetParName(i)
+                    val  = func.GetParameter(i)
+                    err  = func.GetParError(i)
+                    print(f"{name}: {val:.4f} +/- {err:.4f}")
+                    params[i,0] = func.GetParameter(i)
+                    params[i,1] = func.GetParError(i)
 
-            leg.AddEntry(func, "fit function", "l")
+                print("-" * 32)
 
-        # fuck the garbage collector
+                leg.AddEntry(func, "fit function", "l")
+
+
+            else:
+                # now, fitting multiple functions on same graph 
+                #  fit_formula = [poly1,pol3,...], xrange = [[100,200],[200,300],..],
+                #  setparam = [np.array,np.array,...] 
+                # if range is not specified, it shall be [None,None,...]
+                # to be improved: now fits are done on all graphs of the canvas.
+                n_fits = len(fit_formula)
+                if xrange is not None:
+                    if len(xrange) != len(fit_formula):
+                        raise IndexError("number of formulas to fit and number of x-ranges must be equal")
+                else:
+                    xrange = [None] * n_fits
+
+                if not isinstance(setparam, list):
+                    setparam = [setparam] * n_fits
+
+                print(f"\n--- fit Results for: {title} --- \n ! Multiple fits are being committed !")
+                params = [] #now params will be [np.array([[a,err_a],[b,err_b]]) , np.array(...), ...]
+                
+                for i_fit_formula, i_xrange, i_setparam, I in zip(fit_formula, xrange, setparam, range(n_fits)):
+
+                    print(f"fit {I}, f = {i_fit_formula}")
+                    
+                    func_name = f"f_{len(self._graphs)}{i_fit_formula}{I}"
+
+                    if i_xrange is not None:
+                        func = TF1(func_name, i_fit_formula, i_xrange[0], i_xrange[1])
+                    else:
+                        func = TF1(func_name, i_fit_formula)
+
+                    self._funcs.append(func)
+
+                    if i_setparam.any():
+                        i_setparam = array('d', i_setparam)
+                        func.SetParameters(i_setparam)
+                    
+                    func.SetLineColor(kBlue - I)
+
+                    if i_xrange is not None:
+                        graph.Fit(func, "SQR+")  #Salva, (Quiet), Range,( ottimizzazione Migliorata), disporre + grafici
+                    else:
+                        graph.Fit(func, "SQ+")
+                    
+                    # fit stats
+                    chi2 = func.GetChisquare()
+                    ndf = func.GetNDF()
+                    pvalue = func.GetProb()
+                    print(f"Function: {i_fit_formula}")
+                    print(f"Chi2/NDF: {chi2:.4f} / {ndf}")
+                    print(f"p-value:  {pvalue:.4f}\n")
+
+                    # fit parameters stuff
+                    i_param = np.zeros((func.GetNpar(),2)) 
+                    
+                    for i in range(func.GetNpar()):
+                        name = func.GetParName(i)
+                        val  = func.GetParameter(i)
+                        err  = func.GetParError(i)
+                        print(f"{name}: {val:.4f} +/- {err:.4f}")
+                        i_param[i,0] = func.GetParameter(i)
+                        i_param[i,1] = func.GetParError(i)
+                    
+                    params.append(i_param)
+
+                    print("-" * 32)
+
+                    leg.AddEntry(func, i_fit_formula, "l")
+
+            # fuck the garbage collector
         self._graphs.append(graph)
         self._legends.append(leg)
 
@@ -166,17 +245,18 @@ def MeanError(s1,s2):
 
 # Z test calculator!
 
+import numpy as np
 import scipy.stats as stats
 
-def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, tipo_test='bilaterale'):
-    """ returns p-value of z-test """
+def testZ(valore1, errore1, valore2, errore2, alfa=0.05, tipo_test='bilaterale'):
+    """ Restituisce il p-value del test Z per confrontare due misurazioni indipendenti con i rispettivi errori """
     
-    # 1. Calcolo dell'errore standard
-    errore_standard = dev_std_popolazione / np.sqrt(n)
+    # 1. Calcolo dell'errore standard combinato (somma in quadratura degli errori)
+    errore_standard = np.sqrt(errore1**2 + errore2**2)
     
     # 2. Calcolo della statistica Z
-    Z = (media_campione - media_popolazione) / errore_standard
-    print(f"Statistica Z calcolata: {Z:.4f}")
+    Z = (valore1 - valore2) / errore_standard
+    print(f"Statistica Z (Discrepanza) calcolata: {Z:.4f}")
     
     # 3. Calcolo del P-value in base al tipo di test
     if tipo_test == 'bilaterale':
@@ -191,19 +271,21 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
     else:
         raise ValueError("tipo_test deve essere 'bilaterale', 'maggiore' o 'minore'")
         
-    print(f"P-value calcolato: {p_value:.4f}")
+    print(f"P-value calcolato: {p_value:.6f}")
     print(f"Livello di significatività (alfa): {alfa}")
     
     # 4. Conclusione del test
     print("-" * 30)
     if p_value < alfa:
         print("Conclusione: Rifiutiamo l'ipotesi nulla (H0).")
-        print("Il risultato è statisticamente significativo al livello del 5%.")
+        print(f"La differenza È statisticamente significativa al livello del {alfa*100:.1f}%.")
+        print("I due valori risultano INCOMPATIBILI.")
     else:
         print("Conclusione: Non ci sono prove sufficienti per rifiutare l'ipotesi nulla (H0).")
-        print("Il risultato NON è statisticamente significativo al livello del 5%.")
+        print(f"La differenza NON è statisticamente significativa al livello del {alfa*100:.1f}%.")
+        print("I due valori risultano COMPATIBILI.")
 
-    return p_value
+    
 
 # Zscore function
 
@@ -293,4 +375,3 @@ def Amprobe_V (voltage):
         error.append(0.001*abs(data) + 0.1*5)
 
     return np.array(error)
-        
