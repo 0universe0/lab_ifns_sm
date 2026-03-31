@@ -13,22 +13,20 @@ Le caratteristiche del contatore Geiger-Müller che possiamo controllare sono du
 Per fissare la soglia misuriamo con un oscilloscopio Tektronik (TBS1104) il segnale all'ingresso del sistema di acquisizione.
 Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine di $ 10 \unit{mV} $, quindi la fissiamo a $ V_\text{soglia} = 49 \unit{mV} $.
 
-\begin{figure}[H]
+\begin{figure}[]
     \centering
     \includegraphics[width=0.4\textwidth]{figs/threshold.pdf }
     \caption{Descrizione dell'immagine}
     \label{fig:threshold}
 \end{figure}
 
-Per scegliere la tensione di alimentazione ottimale, misuriamo il numero di conteggi registrati dal contatore al variare della stessa. Questa procedura viene fatta a alimentando il tubo di Rötgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento.
-\begin{figure}[H]
+Per scegliere la tensione di alimentazione ottimale, misuriamo il numero di conteggi registrati dal contatore al variare della stessa. Questa procedura viene fatta a alimentando il tubo di Röntgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento.
+\begin{figure}[]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/CountsVsTensionGM.png}
     \caption{Descrizione dell'immagine}
     \label{fig:Vgeiger}
 \end{figure}
-
-
 
 In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: quest'ultima viene individuata nel caso di $V_\text{EHT} = 30 \unit{kV}$ come la zona più ampia nella quale un fit costante risulta compatibile con i dati. La zona di plateau risulta essere $ (500, 570) \unit{V} $ dunque fissiamo $ V_\text{alimentazione} = 506 \unit{V} $, aggiungendo al primo dato nel plateau $ 6 \unit{V} $. 
 
@@ -36,10 +34,12 @@ Quindi \help{$ V_\text{alimentazione} = \ldots \unit{V} $}.
 
 In particolare, osserviamo che le due curve di conteggi \ldots
 
-\begin{table}[h]
+\help{rémi to simo: i changed counts to $ \nu $ (it was a frequency right?)}
+
+\begin{table}[]
 \centering \tiny
 \begin{tabular}{cccc|cccc}
-  $V_\text{30}$ & $\delta V_\text{30}$ & $Counts_\text{30}$ & $\delta Counts_\text{30}$ & $V_\text{20}$ & $\delta V_\text{20}$ & $Counts_\text{20}$ & $\delta Counts_\text{20}$ \\
+  $V_\text{30}$ & $\delta V_\text{30}$ & $\nu_\text{30}$ & $\delta \nu_\text{30}$ & $V_\text{20}$ & $\delta V_\text{20}$ & $\nu_\text{20}$ & $\delta \nu_\text{20}$ \\
 \hline
 390.0 & 0.5 & 16.6 & 0.9 & 390.0 & 0.5 & 37.5 & 1.4\\
 392.0 & 0.5 & 24.0 & 1.1 & 411.0 & 0.5 & 514 & 5\\
@@ -58,7 +58,7 @@ In particolare, osserviamo che le due curve di conteggi \ldots
 454.0 & 0.5 & 1632 & 9 & 480.0 & 0.5 & 1241 & 8\\
 459.0 & 0.5 & 1742 & 9 & 425.0 & 0.5 & 838 & 6\\
 463.0 & 0.5 & 1813 & 10 & 435.0 & 0.5 & 1052 & 7\\
-468.0 & 0.5 & 1882 & 10 & 423.0 & 0.5 & 778 & 6\
+468.0 & 0.5 & 1882 & 10 & 423.0 & 0.5 & 778 & 6\\
 473.0 & 0.5 & 1906 & 10 & 418.0 & 0.5 & 666 & 6\\
 478.0 & 0.5 & 1937 & 10 & 444.0 & 0.5 & 1152 & 8\\
 482.0 & 0.5 & 1967 & 10 & 454.0 & 0.5 & 1195 & 8\\
@@ -88,6 +88,6 @@ In particolare, osserviamo che le due curve di conteggi \ldots
 Per fissare la corrente $ I $ nel filamento del tubo Röntgen studiamo il numero di conteggi in $ \Delta t = 20 \unit{s} $: per lavorare al meglio, desideriamo avere un grande numero di conteggi (per ridurre l'errore) ma non troppo da far saturare le misure del contatore Geiger.
 In particolare, prendiamo i dati usando una extra-high tension di $ V_\text{EHT} = 30 \unit{kV} $.
 
-Nella \cref{fig:Igeiger} si distingue una regione in cui \help{il numero di conteggi cresce linearmente con una pendenza molto ripida, una volta raggiunto il plateau la pendenza si riduce ed i conteggi salgono molto meno rapidamente. Questo fenomeno è da attribuirsi alla velocità di ricombinamento dell'Argon presente nel GM. Se i raggi X incidenti sono molti, l'Argon resta ionizzato continuando a generare cascate e alcuni raggi X restano irrilevati.}
+Nella \cref{fig:Igeiger} si distingue una regione in cui \help{il numero di conteggi cresce linearmente con una pendenza molto ripida, una volta raggiunto il plateau la pendenza si riduce ed i conteggi salgono molto meno rapidamente. Questo fenomeno è da attribuirsi alla velocità di ricombinamento dell'Argon presente nel GM. Se i raggi X incidenti sono molti, l'Argon resta ionizzato continuando a generare cascate e alcuni raggi X restano irrilevanti.}
 
 
