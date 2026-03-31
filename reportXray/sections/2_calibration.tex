@@ -11,11 +11,24 @@ Le caratteristiche del contatore Geiger-Müller che possiamo controllare sono du
 \end{enumerate}
 
 Per fissare la soglia misuriamo con un oscilloscopio Tektronik (TBS1104) il segnale all'ingresso del sistema di acquisizione.
-Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine di \help{$ \ldots \unit{mV} $}, quindi la fissiamo a \help{$ V_\text{soglia} = \ldots \unit{mV} $}.
+Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine di $ 10 \unit{mV} $, quindi la fissiamo a $ V_\text{soglia} = 49 \unit{mV} $.
 
-Per scegliere la tensione di alimentazione ottimale misuriamo il numero di conteggi registrati dal contatore (a condizioni, $ V_\text{EHT} $ e $i$, di tubo Röntgen fissate) al variare della stessa.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figs/threshold.pdf }
+    \caption{Descrizione dell'immagine}
+    \label{fig:threshold}
+\end{figure}
 
-In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: fissiamo $ V_\text{alimentazione} $ aggiungendo al primo dato nel plateau $ 10 \unit{V} $. 
+Per scegliere la tensione di alimentazione ottimale, misuriamo il numero di conteggi registrati dal contatore al variare della stessa. Questa procedura viene fatta a alimentando il tubo di Rötgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figs/CountsVsTensionGM.png}
+    \caption{Descrizione dell'immagine}
+    \label{fig:Vgeiger}
+\end{figure}
+In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: quest'ultima viene individuata nel caso di $V_\text{EHT} = 30 \unit{kV}$ come la zona più ampia nella quale un fit costante risulta compatibile con i dati. La zona di plateau risulta essere $ (500, 570) \unit{V} $ dunque fissiamo $ V_\text{alimentazione} = 506 \unit{V} $, aggiungendo al primo dato nel plateau $ 6 \unit{V} $. 
+
 Quindi \help{$ V_\text{alimentazione} = \ldots \unit{V} $}.
 
 In particolare, osserviamo che le due curve di conteggi \ldots
