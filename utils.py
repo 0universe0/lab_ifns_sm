@@ -245,17 +245,18 @@ def MeanError(s1,s2):
 
 # Z test calculator!
 
+import numpy as np
 import scipy.stats as stats
 
-def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, tipo_test='bilaterale'):
-    """ returns p-value of z-test """
+def testZ(valore1, errore1, valore2, errore2, alfa=0.05, tipo_test='bilaterale'):
+    """ Restituisce il p-value del test Z per confrontare due misurazioni indipendenti con i rispettivi errori """
     
-    # 1. Calcolo dell'errore standard
-    errore_standard = dev_std_popolazione / np.sqrt(n)
+    # 1. Calcolo dell'errore standard combinato (somma in quadratura degli errori)
+    errore_standard = np.sqrt(errore1**2 + errore2**2)
     
     # 2. Calcolo della statistica Z
-    Z = (media_campione - media_popolazione) / errore_standard
-    print(f"Statistica Z calcolata: {Z:.4f}")
+    Z = (valore1 - valore2) / errore_standard
+    print(f"Statistica Z (Discrepanza) calcolata: {Z:.4f}")
     
     # 3. Calcolo del P-value in base al tipo di test
     if tipo_test == 'bilaterale':
@@ -270,19 +271,21 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
     else:
         raise ValueError("tipo_test deve essere 'bilaterale', 'maggiore' o 'minore'")
         
-    print(f"P-value calcolato: {p_value:.4f}")
+    print(f"P-value calcolato: {p_value:.6f}")
     print(f"Livello di significatività (alfa): {alfa}")
     
     # 4. Conclusione del test
     print("-" * 30)
     if p_value < alfa:
         print("Conclusione: Rifiutiamo l'ipotesi nulla (H0).")
-        print("Il risultato è statisticamente significativo al livello del 5%.")
+        print(f"La differenza È statisticamente significativa al livello del {alfa*100:.1f}%.")
+        print("I due valori risultano INCOMPATIBILI.")
     else:
         print("Conclusione: Non ci sono prove sufficienti per rifiutare l'ipotesi nulla (H0).")
-        print("Il risultato NON è statisticamente significativo al livello del 5%.")
+        print(f"La differenza NON è statisticamente significativa al livello del {alfa*100:.1f}%.")
+        print("I due valori risultano COMPATIBILI.")
 
-    return p_value
+    
 
 # Zscore function
 
