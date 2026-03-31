@@ -13,15 +13,15 @@ V_H = q + m \cdot B
 aspettandoci che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H i_p / t $, dopo aver sottratto (da $ q $) il contributo $ V_h(i_p^*) $\footnote{In questo caso, diversamente da prima, il contributo è costante per ogni curva: dipende dal valore fissato di corrente nella sonda.} dato dal disallineamento delle piastre.
 
 \begin{table}
-\centering \tiny
+\centering \footnotesize
 \begin{tabular}{cccccccccc}
 $V_{H,1}$ & $\delta V_{H,1}$ & $I_1$ & $\delta I_1$ & $B_1$ & $\delta B_1$ & $V_{H,2}$ & $\delta V_{H,2}$ & $I_2$ & $\delta I_2$ \\
 \hline
 4.319 & 0.004 & -1.20 & 0.03 & 294 & 8 & -7.997 & 0.004 & 1.18 & 0.03\\
 3.483 & 0.004 & -0.88 & 0.02 & 219 & 6 & -5.371 & 0.004 & 0.71 & 0.02\\
 2.554 & 0.004 & -0.602 & 0.019 & 152 & 5 & -4.271 & 0.004 & 0.552 & 0.018\\
-1.371 & 0.004 & -0.2870 & 0.0014 & 77.2 & 1.3 & -2.413 & 0.004 & 0.3040 & 0.0015\\
-0.236 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & 8.7 & 0.9 & -0.018 & 0.004 & 0 & $1.0 \cdot 10^{-8}$\\
+1.371 & 0.004 & -0.2870 & 0.0014 & 77.2 & 1.6 & -2.413 & 0.004 & 0.3040 & 0.0015\\
+0.236 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & 8.7 & 1.6 & -0.018 & 0.004 & 0 & $1.0 \cdot 10^{-8}$\\
 -1.376 & 0.004 & 0.410 & 0.016 & -89 & 4 & 2.468 & 0.004 & -0.3150 & 0.0016\\
 -2.276 & 0.004 & 0.65 & 0.02 & -146 & 5 & 4.605 & 0.004 & -0.597 & 0.019\\
 -3.148 & 0.004 & 0.90 & 0.02 & -207 & 6 & 7.252 & 0.004 & -0.98 & 0.02\\
@@ -32,28 +32,35 @@ $B_2$ & $\delta B_2$ & $V_{H,3}$ & $\delta V_{H,3}$ & $I_3$ & $\delta I_3$ & $B_
 -289 & 8 & 13.258 & 0.004 & -1.24 & 0.03 & 304 & 8\\
 -178 & 5 & 10.537 & 0.004 & -0.89 & 0.02 & 222 & 6\\
 -140 & 5 & 7.704 & 0.004 & -0.609 & 0.019 & 154 & 5\\
--81.4 & 1.3 & 4.642 & 0.004 & -0.3340 & 0.0017 & 88.4 & 1.4\\
--9.0 & 0.9 & 0.705 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & 8.7 & 0.9\\
-66.1 & 1.4 & -3.335 & 0.004 & 0.3420 & 0.0017 & -72.9 & 1.4\\
+-81.4 & 1.6 & 4.642 & 0.004 & -0.3340 & 0.0017 & 88.4 & 1.6\\
+-9.0 & 1.6 & 0.705 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & 8.7 & 1.6\\
+66.1 & 1.6 & -3.335 & 0.004 & 0.3420 & 0.0017 & -72.9 & 1.6\\
 133 & 5 & -6.106 & 0.004 & 0.587 & 0.019 & -131 & 5\\
 224 & 7 & -9.544 & 0.004 & 0.92 & 0.02 & -210 & 6\\
 286 & 8 & -12.090 & 0.004 & 1.19 & 0.03 & -275 & 8 &&
 \end{tabular}
-\caption{pos current}
+\caption{Dati relativi ai grafici in \cref{fig:VHBpos}, cioè le caratterizzazioni di $ V_H $ (espresse in $ \unit{mV} $) contro $ B $ (in $ \unit{mT} $, e le correnti delle bobine $ I $ in $ \unit{A} $) per correnti $ i_p $ fissate. I set di dati sono numerati al crescere (in valore assoluto) della corrente nella sonda $ i_p $ (come nelle figure che raccolgono i grafici).}
 \label{tab:VHBpos}
 \end{table}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{./figs/Vhmagpos.png}
+\caption{Regressioni (in blu, con parametri dei fit in legenda) all’andamento della tensione di Hall $ V_H $ (in $ \unit{mV} $) contro il campo magnetico $ B $ (in $ \unit{mT} $) al variare della corrente nella sonda $ i_p $. In particolare, abbiamo ristretto i range dei fit per evitare le zone di saturazione del ciclo di isteresi del campo magnetico.}
+\label{fig:VHBpos}
+\end{figure}
+
 \begin{table}
-\centering \tiny
+\centering \footnotesize
 \begin{tabular}{cccccccccc}
 $V_{H,1}$ & $\delta V_{H,1}$ & $I_1$ & $\delta I_1$ & $B_1$ & $\delta B_1$ & $V_{H,2}$ & $\delta V_{H,2}$ & $I_2$ & $\delta I_2$ \\
 \hline
 4.093 & 0.004 & 1.21 & 0.03 & -297 & 8 & -8.697 & 0.004 & -1.21 & 0.03\\
 3.307 & 0.004 & 0.90 & 0.02 & -223 & 6 & -7.102 & 0.004 & -0.91 & 0.02\\
 2.132 & 0.004 & 0.546 & 0.018 & -139 & 5 & -5.088 & 0.004 & -0.602 & 0.019\\
-1.118 & 0.004 & 0.2770 & 0.0014 & -75.0 & 1.3 & -2.919 & 0.004 & -0.3120 & 0.0016\\
-0.025 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & -9.0 & 0.9 & -0.462 & 0.004 & 0 & $1.0 \cdot 10^{-8}$\\
--1.160 & 0.004 & -0.3000 & 0.0015 & 62.5 & 1.3 & 1.935 & 0.004 & 0.3030 & 0.0015\\
+1.118 & 0.004 & 0.2770 & 0.0014 & -75.0 & 1.6 & -2.919 & 0.004 & -0.3120 & 0.0016\\
+0.025 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & -9.0 & 1.6 & -0.462 & 0.004 & 0 & $1.0 \cdot 10^{-8}$\\
+-1.160 & 0.004 & -0.3000 & 0.0015 & 62.5 & 1.6 & 1.935 & 0.004 & 0.3030 & 0.0015\\
 -1.918 & 0.004 & -0.497 & 0.017 & 109 & 5 & 5.078 & 0.004 & 0.73 & 0.02\\
 -3.426 & 0.004 & -0.92 & 0.02 & 210 & 6 & 6.252 & 0.004 & 0.90 & 0.02\\
 -4.348 & 0.004 & -1.21 & 0.03 & 280 & 8 & 8.284 & 0.004 & 1.23 & 0.03\\
@@ -63,34 +70,23 @@ $B_2$ & $\delta B_2$ & $V_{H,3}$ & $\delta V_{H,3}$ & $I_3$ & $\delta I_3$ & $B_
 298 & 8 & 12.403 & 0.004 & 1.22 & 0.03 & -300 & 8\\
 225 & 6 & 9.723 & 0.004 & 0.88 & 0.02 & -218 & 6\\
 152 & 5 & 6.992 & 0.004 & 0.604 & 0.019 & -153 & 5\\
-83.1 & 1.3 & 3.838 & 0.004 & 0.3210 & 0.0016 & -85.4 & 1.4\\
-8.7 & 0.9 & 0.048 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & -9.0 & 0.9\\
--63.6 & 1.3 & -4.667 & 0.004 & -0.400 & 0.016 & 86 & 4\\
+83.1 & 1.6 & 3.838 & 0.004 & 0.3210 & 0.0016 & -85.4 & 1.6\\
+8.7 & 1.6 & 0.048 & 0.004 & 0 & $1.0 \cdot 10^{-8}$ & -9.0 & 1.6\\
+-63.6 & 1.6 & -4.667 & 0.004 & -0.400 & 0.016 & 86 & 4\\
 -164 & 6 & -7.339 & 0.004 & -0.64 & 0.02 & 143 & 5\\
 -205 & 6 & -10.372 & 0.004 & -0.93 & 0.02 & 212 & 6\\
 -284 & 8 & -12.901 & 0.004 & -1.20 & 0.03 & 276 & 8\\
 \end{tabular}
-\caption{neg current}
+\caption{Dati relativi ai grafici in \cref{fig:VHBneg}, cioè le caratterizzazioni di $ V_H $ (espresse in $ \unit{mV} $) contro $ B $ (in $ \unit{mT} $, e le correnti delle bobine $ I $ in $ \unit{A} $) per correnti $ i_p $ fissate. I set di dati sono numerati al crescere (in valore assoluto) della corrente nella sonda $ i_p $ (come nelle figure che raccolgono i grafici).}
 \label{tab:VHBneg}
 \end{table}
-
-\help{these plots dont look great!}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{./figs/Vhmagpos.png}
-\caption{pos current}
-\label{fig:VHBpos}
-\end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{./figs/Vhmagneg.png}
-\caption{neg current}
+\caption{Regressioni (in blu, con parametri dei fit in legenda) all’andamento della tensione di Hall $ V_H $ (in $ \unit{mV} $) contro il campo magnetico $ B $ (in $ \unit{mT} $) al variare della corrente nella sonda $ i_p $. In particolare, abbiamo ristretto i range dei fit per evitare le zone di saturazione del ciclo di isteresi del campo magnetico.}
 \label{fig:VHBneg}
 \end{figure}
-
-\help{axis reversed: switch them + titles}
 
 In particolare, riportiamo i parametri risultanti dai fit (in \cref{fig:VHBpos} e \cref{fig:VHBpos}) nella tabella (\ref{tab:VHb-fits}).
 Anche in questo caso possiamo verificare la compatibilità delle quote (corrette) con $ 0 $ con dei test Z: tranne uno, tutti vengono accettati al $ 5 \% $ (con i risultati riportati sempre in $ \ref{tab:VHb-fits} $).
@@ -107,7 +103,7 @@ Anche in questo caso possiamo verificare la compatibilità delle quote (corrette
   -0.18 & 0.02 & 0.04 & 0.02 &-1.78& -0.0325 & 0.0003 & -4.00 & 0.03\\
   -0.37 & 0.04 & -0.05 & 0.04 &1.22& -0.0484 & 0.0006 & -6.01 & 0.04
 \end{tabular}
-\caption{Risultati dei fit bla bla, e dati che utilizziamo per dare la seconda stima di $ R_H $..}
+\caption{Risultati dei fit nelle figure (\ref{fig:VHBneg}) e (\ref{fig:VHBpos}), che utilizziamo per dare la seconda stima di $ R_H $ nel fit in \cref{fig:RH2}. In particolare le quote $ q $ sono espresse in $ \unit{mV} $ (anche quelle corrette per il contributo ohmico, di cui verifichiamo la compatibilità con $ 0 $ con dei test $ Z_q $), invece i coefficienti angolari $ m $ sono espressi in $ \unit{T/V} $ e le correnti $ i_p $ in $ \unit{mA} $.}
 \label{tab:VHb-fits}
 \end{table}
 
@@ -134,7 +130,7 @@ e pure della concentrazione dei portatori di carica maggioritari:
 \begin{figure}
 \centering
 \includegraphics[width=0.85\textwidth]{./figs/slopesRH2.png}
-\caption{roba}
+\caption{Regressione lineare (in blu) ai dati in \cref{tab:VHb-fits}, cioè all'andamento dei coefficienti angolari $ m $ (in $ \unit{V/T} $) delle rette $ V_H(B) $ contro la corrente nella sonda di Hall $ i_p $ (in $ \unit{mA} $).}
 \label{fig:RH2}
 \end{figure}
 

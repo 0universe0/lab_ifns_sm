@@ -35,7 +35,7 @@ $V_4$ & $\delta V_4$ & $i_4$ & $\delta i_4$ & $V_5$ & $\delta V_5$ & $i_5$ & $\d
 394.712 & 0.018 & 6.02 & 0.04 & 397.935 & 0.018 & 6.01 & 0.04 & 401.676 & 0.018 & 6.00 & 0.03\\
 524.74 & 0.02 & 8.01 & 0.05 & 531.45 & 0.02 & 8.02 & 0.05 & 535.13 & 0.02 & 7.99 & 0.04\\
 \end{tabular}
-\caption{Dati sulla magnetoresistenza bla bla}
+\caption{Dati delle caratteristiche $ V(I) $ della sonda di Hall al variare del campo magnetico esterno (le regressioni in \cref{fig:IV-Bvaries}): i set sono numerati al crescere del valore di $ B $. Le misure di tensione sono in $ \unit{mV} $ e quelle di corrente in $ \unit{mA} $.}
 \label{tab:IVmagnetoresistance}
 \end{table}
 
@@ -51,21 +51,21 @@ $R$ & $\delta R$ & $\Delta$ & $\delta \Delta$ & $I$ & $\delta I$ & $B$ & $\delta
 66.3 & 0.2 & 0.007 & 0.004 & 1.60 & 0.03 & 380 & 12\\
 67.0 & 0.2 & 0.007 & 0.004 & 2.00 & 0.04 & 477 & 14
 \end{tabular}
-\caption{magnetoresistenza fit+dati parabola}
+\caption{Risultati delle regressioni alle caratteristiche $ V(I) $ della sonda di Hall associate al valore del campo magnetico $ B $ corrispondente. Le resistenze $ R $ sono in $ \unit{\ohm} $, la quota $ \Delta $ in $ \unit{mV} $, mentre la corrente nelle bobine $ I $ in $ \unit{A} $ e il campo magnetico in $ \unit{mT} $.}
 \label{tab:magnetoresistance}
 \end{table}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.85\textwidth]{./figs/magnetoresistance.png}
-\caption{magnetoresistenza parabola}
+\caption{Regressione con il modello \cref{eq:magnetoresistance} ai dati in \cref{tab:magnetoresistance}: il risultato del fit è in blu. Le resistenze sono espresse in $ \unit{\ohm} $ mentre i valori di campo magnetico sono stati convertiti in $ \unit{T} $.}
 \label{fig:magnetoresistance}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.85\textwidth]{./figs/resistanceB.png}
-\caption{fit delle caratteristiche}
+\caption{Regressioni lineari alle caratteristiche $ V(I) $ (tensioni in $ \unit{mV} $ e correnti in $ \unit{mA} $) del germanio al variare del campo magnetico esterno (controllato dalla ``magnet current'' nel titolo): i parametri risultato dei fit sono raccolti in \cref{tab:magnetoresistance} associati ai valori di $ B $ corrispondenti.}
 \label{fig:IV-Bvaries}
 \end{figure}
 
@@ -79,9 +79,8 @@ per fare una regressione alle resistenze stimate in \cref{tab:magnetoresistance}
 \begin{equation}
 b = (64.33 \pm 0.12) \unit{\ohm} \qquad a = (12.6 \pm 1.2) \unit{\ohm / T^2}
 \end{equation}
-da cui allora per confronto con l'\cref{eq:magnetoresistance}:
+da cui allora per confronto con l'\cref{eq:magnetoresistance}:\footnote{Stiamo trascurando la covarianza tra i parametri del fit nella propagazione dell'errore per la stima di $ \mu $.}
 \begin{equation}
-\mu = (0.44 \pm 0.02) \unit{m^2 / V \cdot s}.
+\mu = (0.44 \pm 0.02) \unit{m^2 / V \cdot s}
 \end{equation}
-
-\help{considerare la covarianza (magari), e mettere in evidenza che i dati nel fit sono stati convertiti in tesla (dai millitesla della tabella).}
+che non è compatibile con l'altra stima che ne abbiamo dato.
