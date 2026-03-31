@@ -1,6 +1,6 @@
 # PLOTTER / FITTER class
 
-from ROOT import TCanvas, TGraphErrors, TLegend, gPad, TF1, kBlue, kRed # type: ignore
+from ROOT import TCanvas, TGraphErrors, TLegend, gPad, gStyle, TF1, kBlue, kRed # type: ignore
 from array import array
 import numpy as np
 
@@ -20,6 +20,8 @@ class fitPlotter():
             raise IndexError("lenght of provided data are not the same")
         elif (x_err.any()) and len(x_err) != len(x):
             raise IndexError("err_x lenght does not match x")
+
+            
         elif (y_err.any()) and len(y_err) != len(y):
             raise IndexError("err_x lenght does not match x")
             
@@ -44,9 +46,9 @@ class fitPlotter():
         leg = TLegend(0.12, 0.75, 0.45, 0.88)
         leg.SetBorderSize(1)
         leg.SetFillColor(0)
-        leg.AddEntry(graph, "data points", "ple")
+        #leg.AddEntry(graph, "data points", "ple")
 
-        if ( fit_formula):
+        if (fit_formula):
             if not isinstance(fit_formula, list):
                 
                 print(f"\n--- fit Results for: {title} ---")
@@ -95,7 +97,7 @@ class fitPlotter():
 
             else:
                 # now, fitting multiple functions on same graph 
-                #  fit_formula = [poly1,pol3,...], xrange = [[100,200],[200,300],..],
+                #  fit_formula = [pol1,pol3,...], xrange = [[100,200],[200,300],..],
                 #  setparam = [np.array,np.array,...] 
                 # if range is not specified, it shall be [None,None,...]
                 # to be improved: now fits are done on all graphs of the canvas.
@@ -171,7 +173,7 @@ class fitPlotter():
         else:
             return None
 
-    def drawCanvas(self, dimX=1000, dimY=500):
+    def drawCanvas(self, legend=True, dimX=2000, dimY=1000, statX=0.9, statY=0.35):
         """ draws entire canvas """
         nGraphs = len(self._graphs)
         if nGraphs < 1: return
@@ -183,12 +185,46 @@ class fitPlotter():
         self._canvas.Divide(cols, rows)
 
         for i in range(nGraphs):
-            self._canvas.cd(i+1)
-            gPad.SetGrid() 
+            pad = self._canvas.cd(i+1)
+
+            pad.SetLeftMargin(0.15) # setting padding
+            pad.SetBottomMargin(0.12)
+
+            # setting fit stats (statX and statY are in range 0-1)
+            gStyle.SetOptFit(1100)
+            gStyle.SetStatX(statX)
+            gStyle.SetStatY(statY)
+            gPad.SetGrid()
+            
             self._graphs[i].Draw("AP")
-            self._legends[i].Draw()
+            
+            if legend: # sometimes we dont want it drawn!
+                self._legends[i].Draw()
 
         self._canvas.Draw()
+
+    def updateLegend(self,labels,index=-1):
+        """ updates the legends entries (with labels = [string]), and returns the legend to give more control. CANVAS NEEDS TO BE DRAWN """
+        if len(self._legends) < 1:
+            raise IndexError("no legends present!")
+
+        # retrieving legend and entries into it
+        leg = self._legends[index]
+        entries = leg.GetListOfPrimitives()
+
+        if len(entries) != len(labels):
+            raise IndexError("lenght of labels does not match number of entries in legend")
+
+        # setting labels
+        for i in range(0, len(entries)):
+            entries.At(i).SetLabel(labels[i])
+
+        # updating (drawn) canvas
+        self._canvas.Modified()
+        self._canvas.Update()
+        
+        return self._legends[index]
+        
 
     def saveCanvas(self, fileName="canvas.png"):
         """ saves canvas: has logic to modify name (but its not that useful) """
@@ -196,6 +232,38 @@ class fitPlotter():
             fileName = self._name + ".png"
         self._canvas.SaveAs(fileName)
 
+# example use of TEXTABLER
+# x = np.array([1,2,3])
+# y = np.array([2,3,4])
+# err_x = np.array([0.1,0.2,0.3])
+# err_y = np.array([0.1,0.2,0.3])
+# texTabler([x,y], [err_x, err_y], ["x", "y"])
+
+from sigfig import round
+
+def texTabler(data, errors, names):
+    """ turns data = [np.array, np.array, ...] and errors = [np.array, np.array, ...] into table with names = [string, string, ...] """
+    if len(data) != len(errors) or len(data) != len(names):
+        raise IndexError("mistakes in lists lenghts! check them")
+
+    title = ""
+    for i in range(0,len(names)-1):
+        title += f"${names[i]}$ & $\delta {names[i]}$ & "
+    title+= f"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
+
+    print(title)
+    print("\\hline")
+    
+    for i in range(0, len(data[0])):
+        row = ""
+
+        for j in range(0, len(data)-1):
+            roundedString = round(str(data[j][i]), str(errors[j][i]), separation=' & ', cutoff=19)
+            row += (roundedString) + " & "
+
+        row += round(str(data[len(data)-1][i]), str(errors[len(data) - 1][i]), separation=' & ', cutoff=19) + "\\\\"
+
+        print(row)
 
 # we have to remove the contribution for B=0
 # (our measurements need to have the same currents, or else we need to interpolate between the points...)
@@ -233,7 +301,7 @@ def meanCalc(values):
 
 # Mean error calculator
 
-def MeanError(s1,s2):
+def oldMeanError(s1,s2):
     "used to calculate mean of two arrays of np.array([mean,error],[],...) type"
     if (np.shape(s1) != np.shape(s2)):
         raise("TypeError: shape of imput arrays must be equal")
@@ -243,20 +311,33 @@ def MeanError(s1,s2):
         stima[:,1] = rel_error * stima[:,0]
         return stima
 
+def MeanError(s1, s2):
+    if s1.shape != s2.shape:
+        raise TypeError("Shape of imput arrays must be equal!")
+
+    x1, sig1 = s1[:, 0], s1[:, 1]
+    x2, sig2 = s2[:, 0], s2[:, 1]
+
+    w1 = 1.0 / sig1**2
+    w2 = 1.0 / sig2**2
+
+    mean_value = (x1 * w1 + x2 * w2) / (w1 + w2)
+    mean_err = np.sqrt(1.0 / (w1 + w2))
+    return np.column_stack((mean_value, mean_err))
+
 # Z test calculator!
 
-import numpy as np
 import scipy.stats as stats
 
-def testZ(valore1, errore1, valore2, errore2, alfa=0.05, tipo_test='bilaterale'):
-    """ Restituisce il p-value del test Z per confrontare due misurazioni indipendenti con i rispettivi errori """
+def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, tipo_test='bilaterale'):
+    """ returns p-value of z-test """
     
-    # 1. Calcolo dell'errore standard combinato (somma in quadratura degli errori)
-    errore_standard = np.sqrt(errore1**2 + errore2**2)
+    # 1. Calcolo dell'errore standard
+    errore_standard = dev_std_popolazione / np.sqrt(n)
     
     # 2. Calcolo della statistica Z
-    Z = (valore1 - valore2) / errore_standard
-    print(f"Statistica Z (Discrepanza) calcolata: {Z:.4f}")
+    Z = (media_campione - media_popolazione) / errore_standard
+    print(f"Statistica Z calcolata: {Z:.4f}")
     
     # 3. Calcolo del P-value in base al tipo di test
     if tipo_test == 'bilaterale':
@@ -271,21 +352,19 @@ def testZ(valore1, errore1, valore2, errore2, alfa=0.05, tipo_test='bilaterale')
     else:
         raise ValueError("tipo_test deve essere 'bilaterale', 'maggiore' o 'minore'")
         
-    print(f"P-value calcolato: {p_value:.6f}")
+    print(f"P-value calcolato: {p_value:.4f}")
     print(f"Livello di significatività (alfa): {alfa}")
     
     # 4. Conclusione del test
     print("-" * 30)
     if p_value < alfa:
         print("Conclusione: Rifiutiamo l'ipotesi nulla (H0).")
-        print(f"La differenza È statisticamente significativa al livello del {alfa*100:.1f}%.")
-        print("I due valori risultano INCOMPATIBILI.")
+        print("Il risultato è statisticamente significativo al livello del 5%.")
     else:
         print("Conclusione: Non ci sono prove sufficienti per rifiutare l'ipotesi nulla (H0).")
-        print(f"La differenza NON è statisticamente significativa al livello del {alfa*100:.1f}%.")
-        print("I due valori risultano COMPATIBILI.")
+        print("Il risultato NON è statisticamente significativo al livello del 5%.")
 
-    
+    return p_value
 
 # Zscore function
 
@@ -375,3 +454,4 @@ def Amprobe_V (voltage):
         error.append(0.001*abs(data) + 0.1*5)
 
     return np.array(error)
+        
