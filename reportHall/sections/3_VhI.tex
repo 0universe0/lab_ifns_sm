@@ -38,7 +38,7 @@ Questo contributo è attribuibile al disallineamento tra le piastre che misurano
 
 Allora, facciamo una regressione lineare (sempre in \cref{fig:ohmic-contribution}), e otteniamo:
 \begin{equation} \label{eq:ohmic-contribution}
-V_H = (0.0032 \pm 0.0009) \unit{mV} + (0.0542 \pm 0.0002) \unit{mV / mA} \cdot i_p
+V_H(i_p) = (0.0032 \pm 0.0009) \unit{mV} + \qty[(0.0542 \pm 0.0002) \unit{mV / mA}] \cdot i_p
 \end{equation}
 che è la retta che sottrarremo agli andamenti $ V_H(i_p) $ con $ B \neq 0 $.\footnote{L'andamento $ V_H(i_p) $ per $ B \neq 0 $ secondo il nostro modello è $ V_H(i_p) = q + m \cdot i_p + V_{H}^0 (i_p) $ dove $ V_{H}^0 $ è questo contributo ohmico. Ottenuta la caratterizzazione $ V_{H}^0(i_p) = q^0 + m^0 \cdot i_p $ possiamo sottrarre $ q^0 $ e $ m^0 $ a $ q $ e $ m $ (propagando gli errori, assunti come indipendenti).}
 
