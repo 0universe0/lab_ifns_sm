@@ -15,26 +15,31 @@ Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine d
 
 \begin{figure}[]
     \centering
-    \includegraphics[width=0.4\textwidth]{figs/threshold.pdf }
-    \caption{Descrizione dell'immagine}
+    \includegraphics[width=0.5\textwidth]{figs/threshold.pdf }
+    \caption{Fotografia del rumore elettrico misurato con l'oscilloscopio Tektronik: verticalmente un quadrato corrisponde a $ 5 \unit{mV} $.}
     \label{fig:threshold}
 \end{figure}
 
-Per scegliere la tensione di alimentazione ottimale, misuriamo il numero di conteggi registrati dal contatore al variare della stessa. Questa procedura viene fatta a alimentando il tubo di Röntgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento.
+Per scegliere la tensione di alimentazione ottimale, misuriamo il numero di conteggi registrati dal contatore in un intervallo di tempo fissato di $ \Delta t = 20 \unit{s} $ al variare della stessa.
+Questa procedura viene fatta a alimentando il tubo di Röntgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento $ i = (0.306 \pm 0.005) \unit{\micro\ampere} $.
+
 \begin{figure}[]
     \centering
-    \includegraphics[width=0.8\textwidth]{figs/CountsVsTensionGM.png}
-    \caption{Descrizione dell'immagine}
+    \includegraphics[width=0.85\textwidth]{figs/CountsVsTensionGM.png}
+    \caption{Andamento della frequenza di conteggi (misurata in intervalli di $ \Delta t = 20 \unit{s} $) al variare della tensione di alimentazione del contatore Geiger (dati in \cref{tab:Vgeiger}). A sinistra i dati relativi a $ V_\text{EHT} = 30 \unit{kV} $ con in blu la curva della regressione sul plateau (modello \cref{eq:plateau}, e risultati in legenda), e a destra quelli con $ V_\text{EHT} = 20 \unit{kV} $.}
     \label{fig:Vgeiger}
 \end{figure}
 
-In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau: quest'ultima viene individuata nel caso di $V_\text{EHT} = 30 \unit{kV}$ come la zona più ampia nella quale un fit costante risulta compatibile con i dati. La zona di plateau risulta essere $ (500, 570) \unit{V} $ dunque fissiamo $ V_\text{alimentazione} = 506 \unit{V} $, aggiungendo al primo dato nel plateau $ 6 \unit{V} $. 
+In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau.
+Abbiamo scelto di identificare la regione di plateau come il range più grande di dati in cui un fit con modello:
+\begin{equation} \label{eq:plateau}
+\nu(V) = \nu_0
+\end{equation}
+per una costante $ \nu_0 $ converge in maniera accettabile.
 
-Quindi \help{$ V_\text{alimentazione} = \ldots \unit{V} $}.
-
-In particolare, osserviamo che le due curve di conteggi \ldots
-
-\help{rémi to simo: i changed counts to $ \nu $ (it was a frequency right?)}
+In particolare, effettuiamo la regressione nel caso di $V_\text{EHT} = 30 \unit{kV}$.
+In particolare troviamo che \help{$\nu_0 = $}, e che la zona di plateau risulta essere $ (500, 570) \unit{V} $.
+In definitiva, fissiamo $ V_\text{alimentazione} = 506 \unit{V} $, aggiungendo al primo dato nel plateau $ 6 \unit{V} $, per ottimizzare la riposta del contatore.
 
 \begin{table}[]
 \centering \tiny
@@ -77,94 +82,90 @@ In particolare, osserviamo che le due curve di conteggi \ldots
 554.0 & 0.5 & 2045 & 10 & - & - & - & -\\
 490.0 & 0.5 & 1985 & 10 & - & - & - & -\\
 497.0 & 0.5 & 2011 & 10 & - & - & - & -\\
-
 \end{tabular}
-\caption{...}
-\label{tab:...}
+\caption{Andamento della frequenza di conteggi (le frequenze in conteggi per $ \unit{s} $ misurati su un intervallo di $ \Delta t = 20 \unit{s} $) contro la tensione di alimentazione del contatore Geiger (in $ \unit{V} $). A sinistra i dati raccolti con $ V_\text{EHT} = 30 \unit{kV} $, mentre a destra quelli per $ V_\text{EHT} = 20 \unit{kV} $.}
+\label{tab:Vgeiger}
 \end{table}
 
-\subsection{Regione di linearità GM}
+\subsection{Regione di linearità del contatore Geiger}
 
-Assumendo che il flusso di raggi X sul contatore geiger sia proporzionale alla corrente nel filamento $I$, possiamo studiare la frequenza al variare della corrente, e caratterizzare la regione di risposta lineare del sensore. 
+Assumendo che il flusso di raggi X sul contatore Geiger sia proporzionale alla corrente nel filamento $I$, possiamo studiare la frequenza al variare della corrente, e caratterizzare la regione di risposta lineare del sensore. 
 
 Prendiamo i dati usando una extra-high tension di $ V_\text{EHT} = 30 \unit{kV} $ e un tempo di misura  $ \Delta t = 20 \unit{s} $.
 
 \begin{table}
-  \centering \tiny
-  \begin{tabular}{cc|cc}
-    $I [\mu A]$ & $\delta I [\mu A]$ & $\nu [1/s]$ & $\delta \nu [1/s]$ \\
+\centering \small
+\begin{tabular}{cccc|cccc}
+    $I $ & $\delta I $ & $\nu $ & $\delta \nu $ & $I $ & $\delta I $ & $\nu $ & $\delta \nu $ \\
     \hline
-    0.092 & 0.005 & 725 & 6\\
-    0.193 & 0.005 & 1394 & 8\\
-    0.289 & 0.005 & 1984 & 10\\
-    0.404 & 0.005 & 2525 & 11\\
-    0.497 & 0.005 & 2891 & 12\\
-    0.593 & 0.006 & 3167 & 13\\
-    0.706 & 0.006 & 3432 & 13\\
-    0.789 & 0.006 & 3576 & 13\\
-    0.891 & 0.006 & 3712 & 14\\
-    1.031 & 0.006 & 3847 & 14\\
-    1.101 & 0.006 & 3937 & 14\\
-    1.215 & 0.006 & 4010 & 14\\
-    1.288 & 0.006 & 4057 & 14\\
-    1.505 & 0.007 & 4158 & 14\\
-    1.723 & 0.007 & 4237 & 15\\
-    1.905 & 0.007 & 4290 & 15\\
-    2.088 & 0.007 & 4332 & 15\\
-    2.936 & 0.008 & 4540 & 15\\
-    4.113 & 0.009 & 4815 & 16\\
-    4.932 & 0.010 & 4951 & 16\\
-    5.927 & 0.011 & 5083 & 16\\
-    7.012 & 0.012 & 5161 & 16\\
-    7.972 & 0.013 & 5210 & 16\\
-    9.573 & 0.015 & 5265 & 16\\
-    8.663 & 0.014 & 5230 & 16\\
-    11.420 & 0.016 & 5288 & 16\\
-    13.070 & 0.018 & 5311 & 16\\
-    14.470 & 0.019 & 5308 & 16\\
-    16.00 & 0.02 & 5310 & 16\\
-    17.48 & 0.02 & 5307 & 16\\
-    19.01 & 0.02 & 5304 & 16\\
-    20.66 & 0.03 & 5304 & 16\\
-    2.565 & 0.008 & 4417 & 15\\
-    2.275 & 0.007 & 4347 & 15\\
-    3.182 & 0.008 & 4578 & 15\\
-    3.500 & 0.009 & 4646 & 15\\
-    3.887 & 0.009 & 4730 & 15\\
-    0.168 & 0.005 & 1103 & 7\\
-    0.014 & 0.005 & 77 & 2\\
-    0.063 & 0.005 & 450 & 5\\
-    0.034 & 0.005 & 235 & 3\\
-    0.116 & 0.005 & 808 & 6\\
-    0.333 & 0.005 & 2140 & 10\\
-    0.430 & 0.005 & 2569 & 11\\
-    0.262 & 0.005 & 1742 & 9
-  \end{tabular}
+    0.092 & 0.005 & 725 & 6   & 9.573 & 0.015 & 5265 & 16 \\
+    0.193 & 0.005 & 1394 & 8  & 8.663 & 0.014 & 5230 & 16 \\
+    0.289 & 0.005 & 1984 & 10 & 11.420 & 0.016 & 5288 & 16 \\
+    0.404 & 0.005 & 2525 & 11 & 13.070 & 0.018 & 5311 & 16 \\
+    0.497 & 0.005 & 2891 & 12 & 14.470 & 0.019 & 5308 & 16 \\
+    0.593 & 0.006 & 3167 & 13 & 16.00 & 0.02 & 5310 & 16 \\
+    0.706 & 0.006 & 3432 & 13 & 17.48 & 0.02 & 5307 & 16 \\
+    0.789 & 0.006 & 3576 & 13 & 19.01 & 0.02 & 5304 & 16 \\
+    0.891 & 0.006 & 3712 & 14 & 20.66 & 0.03 & 5304 & 16 \\
+    1.031 & 0.006 & 3847 & 14 & 2.565 & 0.008 & 4417 & 15 \\
+    1.101 & 0.006 & 3937 & 14 & 2.275 & 0.007 & 4347 & 15 \\
+    1.215 & 0.006 & 4010 & 14 & 3.182 & 0.008 & 4578 & 15 \\
+    1.288 & 0.006 & 4057 & 14 & 3.500 & 0.009 & 4646 & 15 \\
+    1.505 & 0.007 & 4158 & 14 & 3.887 & 0.009 & 4730 & 15 \\
+    1.723 & 0.007 & 4237 & 15 & 0.168 & 0.005 & 1103 & 7 \\
+    1.905 & 0.007 & 4290 & 15 & 0.014 & 0.005 & 77 & 2 \\
+    2.088 & 0.007 & 4332 & 15 & 0.063 & 0.005 & 450 & 5 \\
+    2.936 & 0.008 & 4540 & 15 & 0.034 & 0.005 & 235 & 3 \\
+    4.113 & 0.009 & 4815 & 16 & 0.116 & 0.005 & 808 & 6 \\
+    4.932 & 0.010 & 4951 & 16 & 0.333 & 0.005 & 2140 & 10 \\
+    5.927 & 0.011 & 5083 & 16 & 0.430 & 0.005 & 2569 & 11 \\
+    7.012 & 0.012 & 5161 & 16 & 0.262 & 0.005 & 1742 & 9 \\
+    7.972 & 0.013 & 5210 & 16 & - & - & - & -
+\end{tabular}
+\caption{Dati relativi all'andamento delle frequenze di conteggi (espresse in conteggi al $ \unit{s} $ su un intervallo di $ \Delta t = 20 \unit{s} $), contro la corrente nel filamento $ I $ del tubo Röntgen (espressa in $ \unit{\micro A} $).}
+\label{tab:Igeiger}
 \end{table}
 
 \begin{figure}[]
     \centering
-    \includegraphics[width=0.7\textwidth]{
+    \includegraphics[width=0.85\textwidth]{
 figs/regione_lin.png}
-    \caption{Caratterizzazione risposta contatore Geiger}
+    \caption{Andamento della frequenza di conteggi (in conteggi al $ \unit{s} $) del contatore Geiger, al variare della corrente nel filamento del tubo radiogeno (espressa in $ \unit{\micro A} $). In blu (con i dati in legenda) è tracciata la regressione sulla regione di risposta lineare.}
     \label{fig:reg_lin}
 \end{figure}
 
-
-Nella \cref{fig:reg_lin} si possono distinguere due regioni di particolare interesse:
+Nella \cref{fig:reg_lin} (dati in \cref{tab:Igeiger}) si possono distinguere due regioni di particolare interesse:
 \begin{enumerate}
-  \item La prima a sinistra $\nu \in(0,2000) \unit{s^{-1}}$, la regione di risposta lineare, nella quale la correzione per il tempo morto del contatore risulta trascurabile. Viene trovata come la zona maggiore nella quale un fit lineare risulta compatibile ai dati  \footnote{In realtà... Se c'è tempo discorso sulle due rette in salita e in discesa?}. Per il resto dell'esperienza, ci assicureremo che tutte le misure di frequenza siano limitate a questa regione.
-  \item L'ultima a destra, dove la frequenza risulta costante. Questa zona è dominata completamente dal tempo morto del contatore: il flusso di raggi X è tale che, appena il gas si ricombina, questo viene istantaneamente ionizzato. \\
-    Attraverso un fit lineare $\nu = \alpha_\text{dead} + \beta_\text{dead} I$ troviamo :
-    \begin{align}
-      \alpha_\text{dead} = \SI{-1(2)}{\unit{s^{-1}}} \\
-      \beta_\text{dead} = \SI{5320(4)}{\micro A^{-1} s^{-1}}
-    \end{align}
-    Come atteso, il coefficiente angolare è compatibile con zero, mentre dall'intercetta possiamo estrarre il tempo morto $\tau_\text{dead} = \frac{1}{\beta_\text{dead}}$ e trovare 
-    \[
-      \tau_\text{dead} = \SI{187.8(1.5)}{\micro \second}
-    \]
-    Le specifiche del GM indicavano un tempo morto maggiore di $90 \unit{\micro \second}$, quindi la nostra stima è compatibile.
+\item la prima a sinistra (per $ \nu \in [0,2000] \unit{s^{-1}} $), dove la risposta del Geiger è lineare con la corrente $ i $  nel filamento, 
+\item l'ultima a destra (per $ \nu \in [5000,5500] \unit{s^{-1}} $), dove la frequenza misurata è costante al crescere della corrente.
 \end{enumerate}
 
+Osserviamo questa saturazione delle frequenze perché quando il fascio di elettroni estratti dal filamento diventa più intenso, lo stesso accade anche al fascio di raggi X: il contatore Geiger misura i fotoni tramite la ionizzazione del gas al suo interno, ma se i fotoni arrivano troppe frequentemente allora il gas non fa in tempo a ricombinarsi.
+Questo significa che oltre il contatore è in grado di misurare frequenze fino a un limite superiore, dettato dal suo tempo morto.
 
+Per determinare il range in cui questo comportamento è lineare (e quindi la zona in cui gli effetti di saturazione non vengono percepiti) effettuiamo delle regressioni lineari sulla prima porzione di dati.
+Il primo fit a convergere in maniera accettabile (vedi \cref{fig:reg_lin}) è:
+
+\help{inserire i parametri di questa regressione! + spiegazione sulle due curve diverse?}
+
+quindi la regione di linearità è \help{missing data}, e nel resto dell'esperienza fisseremo sempre i valori di corrente del filamento al suo interno
+
+\paragraph{Tempo morto del contatore}
+
+Per fornire una stima del tempo morto del contatore Geiger, possiamo caratterizzare la regione di saturazione.
+Attraverso un fit lineare con modello sul range di dati \help{insert range + fit graph}:
+\begin{equation}
+\nu = \alpha_\text{dead} + \beta_\text{dead} I
+\end{equation}
+troviamo che esso converge in modo accettabile (in \ref{fig:deadtime}) con i parametri:
+\begin{align}
+\alpha_\text{dead} &= \SI{-1(2)}{\unit{s^{-1}}} \\
+\beta_\text{dead} &= \SI{5320(4)}{\micro A^{-1} s^{-1}}.
+\end{align}
+
+Il coefficiente angolare è compatibile con zero, confermando la nostra caratterizzazione della regione come ``di saturazione'', mentre dall'intercetta possiamo estrarre direttamente il tempo morto $\tau_\text{dead} = 1/ \beta_\text{dead}$ e trovando:
+\begin{equation}
+\tau_\text{dead} = \SI{187.8(1.5)}{\micro \second}.
+\end{equation}
+
+Le specifiche del contatore Geiger indicavano un tempo morto maggiore di $90 \unit{\micro \second}$, quindi la nostra stima è compatibile.
