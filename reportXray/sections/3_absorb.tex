@@ -3,7 +3,7 @@
 \subsection{Verifica di Lambert-Beer}
 
 Per verificare la legge di Lambert-Beer \cref{eq:lambertbeer}, studiamo l'assorbimento dei raggi X da parte di vari spessori di alluminio.
-Gli spessori che abbiamo utilizzato e le relavtive frequenze sono riportate in tabella:
+Gli spessori che abbiamo utilizzato e le relavtive frequenze sono riportate in tabella \cref{tab:lambert}.
 
 \begin{table}[]
   \centering
@@ -34,6 +34,8 @@ Gli spessori che abbiamo utilizzato e le relavtive frequenze sono riportate in t
     0.100 & 0.010 & 574 & 5\\ 
     0.0 & 0.0 & 1592 & 9
   \end{tabular}
+  \caption{Spessori e relative frequenze}
+  \label{tab:labert}
 \end{table}
 
 \begin{figure}[]
@@ -46,18 +48,52 @@ figs/CountVsDepthAl.png}
 
 Il comportamento atteso dei conteggi in funzione della distanza è una decrescita esponenziale, quindi, in scala logaritmica, una retta. Tuttavia, in figura \cref{fig:counts-depth} l'andamento logaritmico dei conteggi sembra distribuirsi lungo due rette: questo perchè nella legge di Lambert-Beer \cref{eq:lambertbeer} il parametro $\mu$ dipende dall'energia della radiazione.
 \\
-Assumendo che, per quanto concerne l'assorbimento, lo spettro di emissione sia distribuito attorno a due energie $E_a, E_b$, possiamo riscrivere la legge di decadimento come:
+Dall'osservazione del grafico in scala logaritmica, possiamo fare due assunzioni:
+\begin{itemize}
+  \item Per quanto concerne l'assorbimento, lo spettro di emissione di raggi X è in buona approssimazione discreto, con due energie $E_a, E_b$.
+  \item Possiamo dividere la caratteristica logaritmica dell'assorbimento in funzione dello spessore in due regioni $X_a,X_b$, rispettivamente la zona lineare sinistra e destra. Assumiamo che nella regione $X_a$ l'assorbimento sia solo di tipo $I(x) = I_{0a} e^{-\mu_{a} x} $ e che il contributo di $E_b$ sia trascurabile. La stessa assunzione vale per la zona $X_b$. \footnote{Questa assunzione ci serve per separare il logaritmo nelle due componenti diverse}
+\end{itemize}
+Possiamo ora riscrivere l'equazione di Lambert-Beer come:
 \begin{equation}
   I(x) = I_{0a} e^{-\mu_a x} + I_{0b} e^{-\mu_b x}
+  \label{eq:realLamb}
 \end{equation}
 che in scala logaritmica diventa:
 \begin{gather}
   \log(I(x)) \big|_a = \log(I_{0a}) - \mu_a x \\
   \log(I(x)) \big|_b = \log(I_{0b}) - \mu_b x
+  \label{eq:loggedLamb}
 \end{gather}
-Nell'ultimo passaggio abbiamo assunto che il logaritmo sia separabile, ovvero, che l'andamento dei conteggi nella zona $a$ non sia significativamente influenzato dall'andamento dei conteggi nella zona b. Questa assunzione è supportata dai dati sperimentali, perchè riconosciamo due rette distinte nel grafico logaritmico
 
- \help{FORMULE LOGARITMICHE (SORRY NON LE POSSO COPIARE)}
+e verificarla nelle due regioni lineari dell'assorbimento logaritmico. Definisco $X_a, X_b$ come gli intervalli maggiori nei quali un fit lineare convenge accettabilmente.
+
+\begin{figure}[]
+    \centering
+    \includegraphics[width=0.8\textwidth]{
+figs/fitLogLamb.png}
+    \caption{Fit lineari nelle zone $X_a,X_b$}
+    \label{fig:fitLogLamb}
+\end{figure}  
+
+i fit \cref{fig:fitLogLamb} con l'equazione \cref{eq:loggedLamb} restituiscono i seguenti parametri nei rispettivi range:
+\begin{gather}
+  X_a = [0 ,0.35 ] mm \quad \log{I_{0a}} =\SI{7.3(3)}{} \quad \mu_a = \SI{7.4(1.4)}{mm^{-1}} \\
+  X_b = [1.1 ,3 ]mm \quad \log{I_{0b}} = \SI{4.32(6)}{} \quad \mu_b = \SI{0.67(3)}{mm^{-1}}
+\end{gather}
+
+Possiamo ora verificare la relazione completa di Lambert-Beer \cref{eq:realLamb} su tutto il range di spessori.\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{
+figs/expgraph_1.png}
+    \caption{Fit di Lambert-Beer}
+    \label{fig:realLamb}
+\end{figure}
+
+Il fit converge, ma il modello non è accettabile nel senso del $\chi^2$ per la descrizione dei dati: questo è da attribuirsi alle assunzioni che abbiamo fatto, in particolare, che lo spettro di emissione sia in buona approssimazione discreto. Vedremo nella sezione successiva che questa è una buona approssimazione per i picchi di $K_ \alpha, K_ \beta$, ma non per lo spettro di bremsstrahlung.
+
+
+
+
 
 \subsection{Altri effetti}
 
