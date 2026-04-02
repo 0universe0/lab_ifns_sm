@@ -97,8 +97,8 @@ troviamo che esse sono compatibili tra loro (con $ Z = 0.013 $): questo suggeris
 
 In effetti, studiando la differenza tra $ \theta_1 $ e $\theta_2$ con i valori teorici (calcolati con Bragg):
 \begin{equation}
-\theta_1^\text{theo} = (14.29 \pm 0.01) \unit{\degree} \qquad \theta_2^\text{theo} = (15.90 \pm 0.01) \unit{\degree} 
-\end{equation} \help{check errors on these: i didnt bother}
+\theta_1^\text{theo} = (14.29 \pm 0.02) \unit{\degree} \qquad \theta_2^\text{theo} = (15.90 \pm 0.02) \unit{\degree} 
+\end{equation} 
 troviamo che entrambi ``dovrebbero'' essere corretti di $ (0.7 \pm 0.4) \unit{\degree} $.
 
 In seguito proveremo a correggere tutte le stime con questo valore.
@@ -166,8 +166,15 @@ $2\theta$ & $\delta 2\theta$ & $\nu$ & $\delta \nu$ & $2\theta_\text{fine}$ & $\
 \label{fig:Ni}
 \end{figure}
 
-
 Dalla figura (\ref{fig:Ni}) vediamo chiaramente che il primo picco (quello che corrisponde a $ K_\beta $) è stato soppresso, tanto da non essere più identificabile con precisione.
+Questo è in accordo con le aspettative teoriche sulla variazione del coefficiente di assorbimento del materiale con l'energia della radiazione incidente: in \cref{fig:nichelmu} è riportato l'andamento specifico per il \ce{Ni}, e si osserva come le righe di emissione del tubo radiogeno vengano assorbite in modo sostanzialmente diverso.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{./figs/nichelmu.png}
+\caption{Andamento del coefficiente di assorbimento $ \mu $ (normalizzato per la densità del nichel, e quindi espresso in $ \unit{cm^2 / g} $) con l'energia dei fotoni incidenti (espressa in $ \unit{MeV} $). Le due righe tratteggiate in azzurro corrispondono alle energie dei raggi caratteristici del rame $ K_\alpha $ e $ K_\beta $: i loro coefficienti di assorbimento sono diversi di circa un ordine di grandezza (entrambi gli assi del grafico sono in scala logaritmica) per via dell'edge del nichel.}
+\label{fig:nichelmu}
+\end{figure}
 
 In particolare, usando le stesse tecniche/assunzioni di prima (interpolazione sui massimi, HWHM, errore della scala), possiamo stimare la posizione del picco e, di conseguenza, anche la lunghezza d'onda come:
 \begin{equation}
