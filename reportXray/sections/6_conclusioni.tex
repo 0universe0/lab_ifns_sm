@@ -7,8 +7,17 @@ All'inizio abbiamo calibrato il contatore Geiger-Muller fissando la tensione di 
 \tau_\text{dead} = (187.8 \pm 1.5) \unit{\micro s}
 \end{equation}
 compatibilmente con le specifiche dello strumento.
-Nello specifico abbiamo anche fissato le condizioni di lavoro ottimali del tubo radiogeno, scegliendo correnti di alimentazione del filamento
+Nello specifico abbiamo anche fissato le condizioni di lavoro ottimali del tubo radiogeno, scegliendo correnti di alimentazione del filamento $ i \leq 0.3 \unit{\micro A} $ per rimanere nella regione di risposta lineare del contatore.
 
+Poi, abbiamo studiato la validità della legge di Lambert-Beer: il modello non si è adattato perfettamente ai dati a causa della natura non monocromatica del fascio di raggi X emessi.
+Comunque, siamo riusciti a distinguere una componente a bassa energia associata alla radiazione caratteristica del rame con coefficiente di assorbimento:
+\begin{equation}
+\frac{\mu_b}{\rho} = (254 \pm 13) \unit{cm^2 / g}
+\end{equation}
+e una a energia maggiore associata al picco di bremsstrahlung:
+\begin{equation}
+\frac{\mu_a}{\rho} = (28 \pm 5) \unit{cm^2 / g}.
+\end{equation}
 
 Dopo, abbiamo avuto modo di studiare la diffrazione dello spettro dei raggi X su diversi cristalli, usando la legge di Bragg (\ref{eq:bragg}).
 
@@ -22,7 +31,7 @@ Per controllare già in fase di presa dati la presenza di un sistematico sull'az
 Ottenendo conteggi diversi ad angoli ``uguali'' avremmo potuto azzerare correttamente la scala, senza dover correggere le stime a posteriori.
 
 Poi abbiamo studiato l'effetto di un filtro di \ce{Ni} sullo spettro.
-Come nel caso dell'analisi fatta sull'assorbimento da parte dell'alluminio al variare dello spessore, abbiamo osservato delle soppressioni diverse per le due righe di emissione (\cref{fig:nichelmu} e \cref{fig:nichel}).
+Come nel caso dell'analisi fatta sull'assorbimento da parte dell'alluminio al variare dello spessore, abbiamo osservato delle soppressioni diverse per le due righe di emissione (\cref{fig:nichelmu} e \cref{fig:Ni}).\footnote{Preparando il fascio di raggi X con un filtro di nichel avremmo potuto verificare più facilmente la legge di Lambert-Beer: la condizione di monocromaticità sarebbe stata migliore, anche se non ancora perfetta.}
 Solo il picco relativo a $K_\alpha$ era ben riconoscibile, e ne abbiamo stimato la lunghezza d'onda come:
 \begin{equation}
 \lambda_{2\ce{Ni}} = (1.48 \pm 0.03) \unit{\angstrom}
