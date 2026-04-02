@@ -21,7 +21,7 @@ Come riportato in \cref{fig:threshold}, l'intensità del rumore è nell'ordine d
 \end{figure}
 
 Per scegliere la tensione di alimentazione ottimale, misuriamo il numero di conteggi registrati dal contatore in un intervallo di tempo fissato di $ \Delta t = 20 \unit{s} $ al variare della stessa.
-Questa procedura viene fatta a alimentando il tubo di Röntgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento $ i = (0.306 \pm 0.005) \unit{\micro\ampere} $.
+Questa procedura viene fatta alimentando il tubo di Röntgen a $V_\text{EHT} = 30, \, 20 \unit{kV}$ con corrente costante sul filamento $ i = (0.306 \pm 0.005) \unit{\micro\ampere} $.
 
 \begin{figure}[]
     \centering
@@ -31,11 +31,11 @@ Questa procedura viene fatta a alimentando il tubo di Röntgen a $V_\text{EHT} =
 \end{figure}
 
 In \cref{fig:Vgeiger} osserviamo che il numero di conteggi cresce fino a stabilizzarsi in una regione di plateau.
-Abbiamo scelto di identificare la regione di plateau come il range più grande di dati in cui un fit con modello:
+Abbiamo scelto di identificare la regione di plateau come il range più grande di dati in cui un fit con modello costante:
 \begin{equation} \label{eq:plateau}
 \nu(V) = \nu_0
 \end{equation}
-per una costante $ \nu_0 $ converge in maniera accettabile.
+converge in maniera accettabile.
 
 In particolare, effettuiamo la regressione nel caso di $V_\text{EHT} = 30 \unit{kV}$, e troviamo che la zona di plateau risulta essere $ (500,570) \unit{V} $. 
 Fissiamo $V_\text{alimentazione} = 506 \unit{V}$, aggiungendo al primo dato nel plateau $ 6 \unit{V} $, per ottimizzare la riposta del contatore. 
@@ -149,7 +149,7 @@ Nella \cref{fig:reg_lin} (dati in \cref{tab:Igeiger}) si possono distinguere due
 \end{enumerate}
 
 Osserviamo questa saturazione delle frequenze perché quando il fascio di elettroni estratti dal filamento diventa più intenso, lo stesso accade anche al fascio di raggi X: il contatore Geiger misura i fotoni tramite la ionizzazione del gas al suo interno, ma se i fotoni arrivano troppe frequentemente allora il gas non fa in tempo a ricombinarsi.
-Questo significa che oltre il contatore è in grado di misurare frequenze fino a un limite superiore, dettato dal suo tempo morto.
+Questo significa che il contatore è in grado di misurare frequenze fino a un limite superiore, dettato dal suo tempo morto.
 
 Per determinare il range in cui questo comportamento è lineare (e quindi la zona in cui gli effetti di saturazione non vengono percepiti) effettuiamo delle regressioni lineari sulla prima porzione di dati.
 Il primo fit a convergere in maniera accettabile (vedi \cref{fig:reg_lin})\footnote{Dal $p$-value del fit, sembra che il modello lineare non si adatti ai punti. Questo è da attribuire ad un errore sistematico nella presa dati: alcuni dati nel range $\nu_\text{lineare}$ sono stati presi all'inizio dell'esperienza, e altri alla fine. Separando questi dati in due sottoinsiemi, quelli presi all'inizio dell'esperienza e quelli presi alla fine, ed effettuando i fit lineari su ognuno di questi sottoinsiemi di punti, abbiamo visto che per l'intervallo $\nu_\text{lineare}$ i fit convergono con $p$-value accettabili.} è:
