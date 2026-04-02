@@ -27,7 +27,6 @@ Questa procedura viene fatta a alimentando il tubo di Röntgen a $V_\text{EHT} =
     \centering
     \includegraphics[width=0.85\textwidth]{figs/CountsVsTensionGM.png}
     \caption{Andamento della frequenza di conteggi (misurata in intervalli di $ \Delta t = 20 \unit{s} $) al variare della tensione di alimentazione del contatore Geiger (dati in \cref{tab:Vgeiger}). A sinistra i dati relativi a $ V_\text{EHT} = 30 \unit{kV} $ con in blu la curva della regressione sul plateau (modello \cref{eq:plateau}, e risultati in legenda), e a destra quelli con $ V_\text{EHT} = 20 \unit{kV} $.}
-    \caption{Frequenze in funzione della tensione su GM}
     \label{fig:Vgeiger}
 \end{figure}
 
@@ -39,17 +38,16 @@ Abbiamo scelto di identificare la regione di plateau come il range più grande d
 per una costante $ \nu_0 $ converge in maniera accettabile.
 
 In particolare, effettuiamo la regressione nel caso di $V_\text{EHT} = 30 \unit{kV}$, e troviamo che la zona di plateau risulta essere $ (500,570) \unit{V} $. 
-Fissiamo $V_\text{alimentazione} = 506 \unit{V}$, aggiungendo al primo dato nel plateau $ 6 \unit{V} $, per ottimizzare la riposta del contatore. \\
+Fissiamo $V_\text{alimentazione} = 506 \unit{V}$, aggiungendo al primo dato nel plateau $ 6 \unit{V} $, per ottimizzare la riposta del contatore. 
 
-Infine, riportiamo il parametro del fit costante 
-
-\[
-  \cref{eq:plateau} \nu_{0} = \SI{2045(3)}{s^{-1}}. = I(30\unit{kV})
-\]
-per verificare che:
+Infine, riportiamo il parametro del fit costante \cref{eq:plateau}:
 \begin{equation}
-I \propto V_{EHT}^2 \implies \frac{I(30\unit{kV})}{I(20\unit{kV})} = \frac{9}{4} \implies I(20\unit{kV}) = \frac{4}{9} I(30\unit{kV})\end{equation}
-il valore atteso è $ I(20\unit{kV})= 908 \unit{kV}$, mentre in figura \cref{fig:Vgeiger} la quota del plateau risulta essere $ I(20\unit{kV})\simeq  125\unit{kV}$. Questo risultato potrebbe essere da attribuire alla leggera differenza di corrente nelle due prese dati diverse, o a effetti termici residui sul filamento nella seconda presa dati. (cronologicamente la presa a $\unit{20kV} $ è stata la seconda delle due). \help{second is more likely} 
+\nu_{0} = \SI{2045(3)}{s^{-1}}. = I(30\unit{kV})
+\end{equation}
+e per verificare l'aspettativa teorica che $ I \propto V_\text{EHT}^2 $ calcoliamo:
+\begin{equation}
+\frac{I(30\unit{kV})}{I(20\unit{kV})} = \frac{9}{4} \implies I(20\unit{kV}) = \frac{4}{9} I(30\unit{kV})\end{equation}
+il valore atteso è $ I(20\unit{kV})= 908 \unit{kV}$, mentre in figura \cref{fig:Vgeiger} la quota del plateau risulta essere $ I(20\unit{kV})\simeq  125\unit{kV}$. Questo risultato potrebbe essere da attribuire alla leggera differenza di corrente nelle due prese dati diverse, o a effetti termici residui sul filamento nella seconda presa dati.\footnote{La seconda ipotesi è verosimile perché la presa dati a $ V_\text{EHT} = 20 \unit{kV} $ è stata successiva (cronologicamente) all'altra.} 
 
 \begin{table}[]
 \centering \tiny
@@ -146,31 +144,29 @@ figs/regione_lin.png}
 
 Nella \cref{fig:reg_lin} (dati in \cref{tab:Igeiger}) si possono distinguere due regioni di particolare interesse:
 \begin{enumerate}
-  \item la prima a sinistra ($ \nu_\tect{lineare} = [0,2000] \unit{s^{-1}} $), dove la risposta del Geiger è lineare con la corrente $ i $  nel filamento, 
-  \item l'ultima a destra ($ \nu_{costante} \simeq 5300 \unit{s^{-1}} $), dove la frequenza misurata è costante al crescere della corrente.
+  \item la prima a sinistra ($ \nu_\text{lineare} \in [0,2000] \unit{s^{-1}} $), dove la risposta del Geiger è lineare con la corrente $ i $  nel filamento, 
+  \item l'ultima a destra ($ \nu_\text{costante} \simeq 5300 \unit{s^{-1}} $), dove la frequenza misurata è costante al crescere della corrente.
 \end{enumerate}
 
 Osserviamo questa saturazione delle frequenze perché quando il fascio di elettroni estratti dal filamento diventa più intenso, lo stesso accade anche al fascio di raggi X: il contatore Geiger misura i fotoni tramite la ionizzazione del gas al suo interno, ma se i fotoni arrivano troppe frequentemente allora il gas non fa in tempo a ricombinarsi.
 Questo significa che oltre il contatore è in grado di misurare frequenze fino a un limite superiore, dettato dal suo tempo morto.
 
 Per determinare il range in cui questo comportamento è lineare (e quindi la zona in cui gli effetti di saturazione non vengono percepiti) effettuiamo delle regressioni lineari sulla prima porzione di dati.
-Il primo fit a convergere in maniera accettabile (vedi \cref{fig:reg_lin})\footnote{ Dal p-value del fit, sembra che il modello lineare non si adatti ai punti. Questo è da attribuire ad un errore sistematicp nella presa dati: alcuni dati nel range $\nu_\text{lineare}$ sono stati presi all'inizio dell'esperienza, e altri alla fine. Separando questi dati in due sottoinsiemi, quelli presi all'inizio dell'esperienza e quelli presi alla fine, ed effettuando i fit lineari su ognuno di questi sottoinsiemi di punti, abbiamo visto che per l'intervallo $\nu_\text{lineare}$ i fit convergono con p-value accettabile.} è:
+Il primo fit a convergere in maniera accettabile (vedi \cref{fig:reg_lin})\footnote{Dal $p$-value del fit, sembra che il modello lineare non si adatti ai punti. Questo è da attribuire ad un errore sistematico nella presa dati: alcuni dati nel range $\nu_\text{lineare}$ sono stati presi all'inizio dell'esperienza, e altri alla fine. Separando questi dati in due sottoinsiemi, quelli presi all'inizio dell'esperienza e quelli presi alla fine, ed effettuando i fit lineari su ognuno di questi sottoinsiemi di punti, abbiamo visto che per l'intervallo $\nu_\text{lineare}$ i fit convergono con $p$-value accettabili.} è:
 
 \begin{equation}
   \nu(i) = \SI{33(19)}{s^{-1}} + i \SI{6600(150)}{s^{-1} / \mu A}
 \end{equation}
-
-
-quindi la regione di linearità è $  \nu_\tect{lineare} = [0,2000] \unit{s^{-1}}$, e nel resto dell'esperienza ci assicureremo che i conteggi siano sempre compresi in questo intervallo
+quindi la regione di linearità è $  \nu_\text{lineare} = [0,2000] \unit{s^{-1}}$, e nel resto dell'esperienza ci assicureremo che i conteggi siano sempre compresi in questo intervallo
 
 \paragraph{Tempo morto del contatore}
 
 Per fornire una stima del tempo morto del contatore Geiger, possiamo caratterizzare la regione di saturazione.
-Attraverso un fit lineare con modello sul range di dati \help{insert range + fit graph}:
+Attraverso un fit lineare con modello sul range dei dati in saturazione ($i \in [12,22] \unit{\micro\ampere}$): 
 \begin{equation}
 \nu = \alpha_\text{dead} + \beta_\text{dead} I
 \end{equation}
-troviamo che esso converge in modo accettabile (in \ref{fig:deadtime}) con i parametri:
+troviamo che esso converge in modo accettabile (in \ref{fig:reg_lin}) con i parametri:
 \begin{align}
 \alpha_\text{dead} &= \SI{-1(2)}{\unit{s^{-1}}} \\
 \beta_\text{dead} &= \SI{5320(4)}{\micro A^{-1} s^{-1}}.
@@ -181,4 +177,4 @@ Il coefficiente angolare è compatibile con zero, confermando la nostra caratter
 \tau_\text{dead} = \SI{187.8(1.5)}{\micro \second}.
 \end{equation}
 
-Le specifiche del contatore Geiger indicavano un tempo morto maggiore di $90 \unit{\micro \second}$, quindi la nostra stima è compatibile.
+Le specifiche del contatore Geiger indicavano un tempo morto maggiore di $90 \unit{\micro \second}$ con cui la nostra stima è compatibile.
