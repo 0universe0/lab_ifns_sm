@@ -2,7 +2,7 @@
 
 \subsection{Raggi X}
 
-I raggi X sono radiazioni elettromagnetiche caratterizzate dal lunghezze d'onda comprese nell'intervallo $ 0.1 \unit{\angstrom} - 100 \unit{\angstrom} $.
+I raggi X sono radiazioni elettromagnetiche caratterizzate da lunghezze d'onda comprese nell'intervallo $ 0.1 \unit{\angstrom} - 100 \unit{\angstrom} $.
 
 Il tubo radiogeno (di Röntgen) è uno dei primi strumenti storicamente utilizzato per produrre dei raggi X.
 Un filamento resistivo di tungsteno attraversato da corrente dissipa del calore, al crescere dell'intensità di corrente alcuni elettroni vengono estratti dal filamento per effetto termoionico.
@@ -11,7 +11,7 @@ Questi elettroni vengono accelerati da una grande differenza di potenziale $ V_\
 I raggi X sono generati per frenamento (bremsstrahlung) e per interazione con le shell di elettroni del rame (raggi caratteristici).
 Questi due fenomeni producono due spettri di emissione distinti, che però si combinano (come abbiamo misurato in \cref{fig:NaCl}):
 \begin{enumerate}
-\item la bremsstrahlung dà un fondo continuo con picco \footnote{Il picco trova a $ \lambda_\text{picco} \simeq 3 \lambda_\text{min} / 2 $.} asimmetricamente verso una lunghezza d'onda minima $ \lambda_\text{min} $, questo corrisponde all'energia massima che può essere emessa da un elettrone (nel senso che $E_\text{max} = V_\text{EHT} \cdot e$),
+    \item la bremsstrahlung dà un fondo continuo con picco \footnote{Il picco si trova a $ \lambda_\text{picco} \simeq 3 \lambda_\text{min} / 2 $.} \help{asimmetricamente} verso una lunghezza d'onda minima $ \lambda_\text{min} $, questo corrisponde all'energia massima che può essere emessa da un elettrone (Per via della relaizone: $E_\text{max} = V_\text{EHT} \cdot e$),
 \item la radiazione caratteristica origina picchi evidenti e localizzati alle lunghezze d'onda corrispondenti alle differenze di energia tra i livelli energetici relativi ai salti orbitali possibili negli atomi del materiale che viene colpito dagli elettroni. 
 \end{enumerate}
 
@@ -22,11 +22,11 @@ In particolare, nel caso del rame, ci aspettiamo di osservare i picchi caratteri
 come in \cite{xraydatabooklet}.
 
 Siamo interessati a studiare l'assorbimento e la diffrazione del fascio di raggi X generato attraverso il TEL-X-Ometer.
-Nel caso dell'assorbimento vogliamo verificare la validità della legge di Lambert-Beer, relazione teorica tra spessore del materiale e coefficiente di assorbimento dello stesso:
+Nel caso dell'assorbimento vogliamo verificare la validità della legge di Lambert-Beer, relazione teorica tra spessore del materiale e coefficiente di assorbimento dello stesso e vogliamo valutare l'andamento dei coefficienti di assorbimento $ \mu $ con l'energia della radiazione.
 \begin{equation} \label{eq:lambertbeer}
 I(x) = I_0 \exp(- \mu x)
 \end{equation}
-dove $ I_0 $ è l'intensità della radiazione incidente, $ x $ lo spessore del materiale e $ \mu $ il suo coefficiente di assorbimento, ma anche valutare l'andamento dei coefficienti di assorbimento $ \mu $ con l'energia della radiazione.
+dove $ I_0 $ è l'intensità della radiazione incidente, $ x $ lo spessore del materiale e $ \mu $ il suo coefficiente di assorbimento.
 Per lo studio della diffrazione usiamo invece la legge di Bragg:
 \begin{equation} \label{eq:bragg}
 n \lambda = 2 d \sin \theta
@@ -36,13 +36,13 @@ dove $ n $ è l'ordine, $ \lambda $ la lunghezza d'onda della radiazione, $ d $ 
 \subsection{Setup sperimentale}
 
 I raggi X prodotti dal tubo Röntgen attraversano un collimatore e vengono diretti verso un contatore Geiger-Müller.
-Questo detector contiene argon a bassa pressione, il gas viene ionizzato dalla radiazione incidente che, tramite effetto fotoelettrico, estrae elettroni che a loro volta provocano lo stesso effetto in altri elettroni atomici producendo una valanga di sempre più elettroni.
-Per questo motivo lo strumento è in grado di contare un numero limitato di eventi di interazione, e non di misurare la loro energia (per esempio). Questo fenomeno è osservabile aumentando la corrente del filamento che genera raggi X, ad un certo punto si incontra un plateau.
+Questo detector contiene argon a bassa pressione, il gas viene ionizzato dalla radiazione incidente che, tramite effetto fotoelettrico, estrae elettroni. Questi a loro volta provocano lo stesso effetto in altri elettroni atomici producendo una valanga di sempre più elettroni.
+Per questo motivo lo strumento è in grado di contare un numero limitato di eventi di interazione, e non di misurare la loro energia (per esempio). Questo fenomeno è osservabile aumentando la corrente del filamento che genera raggi X: ad un certo punto si incontra un plateau.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{./figs/telx.png}
-\caption{Diagramma dello spettrometro: misuriamo sempre l'angolo di deviazione $ 2\theta $ e non direttamente $ \theta $. I raggi X emessi dal tubo radiogeno vengono anche collimati in dei fasci sufficientemente stretti (diametro di $ 5 \unit{mm} $ circa).}
+\caption{Diagramma dello spettrometro: misuriamo sempre l'angolo di deviazione $ 2\theta $ e non direttamente $ \theta $. I raggi X emessi dal tubo radiogeno vengono collimati in dei fasci stretti (diametro di $ 5 \unit{mm} $ circa).}
 \label{fig:setup}
 \end{figure}
 
