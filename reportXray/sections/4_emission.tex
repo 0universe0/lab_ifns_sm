@@ -1,42 +1,185 @@
 \newsec{Spettro di emissione dei raggi X}
 
-Noto il passo reticolare del cristallo di \ce{NaCl} vogliamo usare l'\cref{eq:bragg} per individuare le posizioni dei picchi caratteristici di emissione del rame.
-Tenendo in considerazione la \help{distanza interatomica del rame \ce{Cu}}:
-\begin{equation}
-d_{\ce{Cu}} = (5.64 \pm 0.01) \unit{\angstrom}.
+Noto il passo reticolare del cristallo di \ce{NaCl}:
+\begin{equation} \label{eq:DNaCl}
+2d_{\ce{NaCl}} = (5.64 \pm 0.02) \unit{\angstrom}.
 \end{equation}
+
 Analogamente al caso in assenza di cristallo, effettuiamo conteggi con il GM a intervalli di $ 20 \unit{s} $, per la ricerca dei picchi caratteristici abbiamo variato l'angolo di incidenza del fascio di raggi X sulla superficie del cristallo, la variazione è compresa tra $ 11 - 35 $ a passi di $ 1 $ rispetto alla direzione di incidenza del fascio (ovviamente in scala $ 2\theta $, tenendo conto della variazione totale della direzione del fascio). Abbiamo caratterizzato i picchi in modo fine, con una sensibilità di $ 1/6  $ per misura \help{dobbiamo parlare del sistematico?? cosa dire}.\\
-
-\help{direi grafici con risultati dei fit qui}
-
-\help{commentini sui valori ottenuti e compatibilità Ztest tra $ \lambda $ e $ \lambda_{teorico} $} 
-
-Qui nel caso di $ V_{EHT} = 30 \unit{kV} $ verifichiamo la veridicità della legge di Bragg (\cref{eq:bragg}).
-
-\help{AIUTO}
-
-A questo punto studiamo per confronto l'effetto di un filtro di \ce{Ni} sullo spettro di diffrazione, confrontando i risultati con l'andamento del suo coefficiente di assorbimento $ \mu $ con l'energia della radiazione incidente \help{REMI: che volevi dire in questa frase?}.
 
 \subsection{Diffrazione su \ce{NaCl}}
 
+\begin{table}
+\centering \small
+\begin{tabular}{cccc|cccc}
+$2\theta$ & $\delta 2\theta$ & $\nu$ & $\delta \nu$ & $2\theta_\text{fine}$ & $\delta 2\theta_\text{fine}$ & $\nu_\text{fine}$ & $\delta \nu_\text{fine}$ \\
+\hline
+12.0 & 0.5 & 28.1 & 1.2 & 26.17 & 0.08 & 30.5 & 1.2\\
+13.0 & 0.5 & 33.1 & 1.3 & 26.33 & 0.08 & 34.3 & 1.3\\
+14.0 & 0.5 & 35.6 & 1.3 & 26.50 & 0.08 & 59.3 & 1.7\\
+15.0 & 0.5 & 37.9 & 1.4 & 26.67 & 0.08 & 83 & 2\\
+16.0 & 0.5 & 38.5 & 1.4 & 26.83 & 0.08 & 126 & 3\\
+17.0 & 0.5 & 39.7 & 1.4 & 27.00 & 0.08 & 225 & 3\\
+18.0 & 0.5 & 32.9 & 1.3 & 27.17 & 0.08 & 266 & 4\\
+19.0 & 0.5 & 33.9 & 1.3 & 27.33 & 0.08 & 253 & 4\\
+20.0 & 0.5 & 35.6 & 1.3 & 27.50 & 0.08 & 225 & 3\\
+21.0 & 0.5 & 33.8 & 1.3 & 27.67 & 0.08 & 191 & 3\\
+22.0 & 0.5 & 32.6 & 1.3 & 27.83 & 0.08 & 147 & 3\\
+23.0 & 0.5 & 33.9 & 1.3 & 28.00 & 0.08 & 104 & 2\\
+24.0 & 0.5 & 30.9 & 1.2 & 28.17 & 0.08 & 82 & 2\\
+25.0 & 0.5 & 31.4 & 1.3 & 28.33 & 0.08 & 62.1 & 1.8\\
+26.0 & 0.5 & 33.1 & 1.3 & 28.50 & 0.08 & 49.7 & 1.6\\
+27.0 & 0.5 & 266 & 4 & 28.67 & 0.08 & 40.5 & 1.4\\
+28.0 & 0.5 & 94 & 2 & 28.83 & 0.08 & 40.2 & 1.4\\
+29.0 & 0.5 & 44.2 & 1.5 & 29.00 & 0.08 & 41.7 & 1.4\\
+30.0 & 0.5 & 916 & 7 & 29.17 & 0.08 & 45.1 & 1.5\\
+31.0 & 0.5 & 512 & 5 & 29.33 & 0.08 & 54.3 & 1.6\\
+32.0 & 0.5 & 36.5 & 1.4 & 29.50 & 0.08 & 90 & 2\\
+33.0 & 0.5 & 32.4 & 1.3 & 29.67 & 0.08 & 166 & 3\\
+34.0 & 0.5 & 28.3 & 1.2 & 29.83 & 0.08 & 267 & 4\\
+35.0 & 0.5 & 26.8 & 1.2 & 30.00 & 0.08 & 569 & 5\\
+36.0 & 0.5 & 25.9 & 1.1 & 30.17 & 0.08 & 1043 & 7\\
+37.0 & 0.5 & 23.2 & 1.1 & 30.33 & 0.08 & 1256 & 8\\
+38.0 & 0.5 & 21.6 & 1.0 & 30.50 & 0.08 & 1232 & 8\\
+39.0 & 0.5 & 20.9 & 1.0 & 30.67 & 0.08 & 1101 & 7\\
+40.0 & 0.5 & 17.9 & 0.9 & 30.83 & 0.08 & 794 & 6\\
+- & - & - & - & 31.00 & 0.08 & 529 & 5\\
+- & - & - & - & 31.17 & 0.08 & 363 & 4\\
+- & - & - & - & 31.33 & 0.08 & 225 & 3\\
+- & - & - & - & 31.50 & 0.08 & 135 & 3\\
+- & - & - & - & 31.67 & 0.08 & 62.7 & 1.8\\
+- & - & - & - & 31.83 & 0.08 & 33.4 & 1.3\\
+- & - & - & - & 32.00 & 0.08 & 32.3 & 1.3
+\end{tabular}
+\caption{Dati relativi ai grafici in \cref{fig:NaCl}: gli angoli sono indicati in $ \unit{\degree} $ sulla scala $ 2\theta $   mentre le frequenze in conteggi al secondo (su un intervallo $ \Delta t = 20 \unit{s} $). A sinistra i dati della scansione grossolana, mentre a destra quelli di quella fine.}
+\label{tab:NaCl}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{./figs/NaCl.png}
+\caption{Frequenze di rilevazione dei raggi X in $ \Delta t = 20 \unit{s} $ al variare dell'angolo (misurato in scala $ 2\theta $) di diffrazione del fascio sul cristallo di \ce{NaCl}. A sinistra i dati relativi alla scansione grossolana (con passo di $ 1 \unit{\degree} $), mentre a destra quelli della scansione fine (con passo di $ 1/6 \unit{\degree} $).}
+\label{fig:NaCl}
+\end{figure}
+
 Posizionato il cristallo sullo spettrometro e fissate le condizioni di lavoro del setup a $ V_\text{EHT} = 30 \unit{kV} $ $ i = 40 \unit{\micro A} $ e $ V_\text{alimentazione} = 506 \unit{V} $, misuriamo il numero di conteggi in $ \Delta t = 20 \unit{s} $ al variare dell'angolo $ 2\theta $ a cui si trova il contatore Geiger.
 
-\help{insert 1 degree steps}
+Quindi, identificate grossolanamente le posizioni dei picchi di emissione (al prim'ordine di diffrazione), effettuiamo una scansione più fine nell'intervallo $ 2\theta \in [26, 31] \unit{\degree} $, usando una scala di $ 1/6 \unit{\degree} $.
 
-Identificate grossolanamente le posizioni dei picchi di emissione (al prim'ordine di diffrazione), effettuiamo una scansione più fine nell'intervallo $ 2\theta \in [\ldots, \ldots] \unit{\degree} $, usando una scala di $ 1/6 \unit{\degree} $.
+I dati sulle frequenze misurate al variare dell'angolo sono raccolti in \cref{tab:NaCl} e riportati nei grafici in \cref{fig:NaCl}.
 
-\help{insert 1/6 degree steps}
+Per stimare la posizione dei picchi abbiamo interpolato tra i punti corrispondenti alle frequenze misurate più alte (nella scala di $ 1/6 \unit{\degree} $), e su queste stime abbiamo considerato come errore la HWHM dell'intero picco.
+Poi, abbiamo propagato anche il contributo dato dal posizionamento dell'inizio della scala del $ 1/6 \unit{\degree} $ su quella del $ 1 \unit{\degree} $: assumiamo un errore indipendente pari a $ 1/2 \unit{\degree} $ (in scala $ 2 \theta $).
 
-Allora, invertendo la legge di Bragg (\ref{eq:bragg}), e fissato $ n=1 $, abbiamo che:
+In questo modo abbiamo ottenuto:
+\begin{equation} \label{eq:NaCl1}
+\theta_1 = (13.6 \pm 0.4) \unit{\degree} \qquad \theta_2 = (15.2 \pm 0.4) \unit{\degree}
+\end{equation}
+rispettivamente per il primo e per il secondo picco.
+
+Allora, invertendo la legge di Bragg (\ref{eq:bragg}), fissato $ n=1 $ e usando il dato in \cref{eq:DNaCl}, abbiamo che:
 \begin{equation}
 \lambda = 2d \sin \frac{2\theta}{2}
 \end{equation}
-per cui ricaviamo le stime: \help{$ 0.15 \pm 0.14 $?? penso questo sia \ce{Ni}...} 
+per cui ricaviamo le stime:
+\begin{equation} \label{eq:lambdasNaCl}
+\lambda_1 = (1.33 \pm 0.04) \unit{\angstrom} \qquad \lambda_2 = (1.48 \pm 0.03) \unit{\angstrom}.
+\end{equation}
+
+Queste stime sono compatibili con i valori nominali (in \cref{eq:lambdas}), rispettivamente con $ Z_{1\beta} = 1.67 $ e $ Z_{2\alpha} = 1.91 $ (accettati al $ 5 \% $).
+
+\paragraph{Errore sistematico sulla scala}
+
+Però, se consideriamo le differenze tra stime e valori veri:
+\begin{equation}
+\Delta_1 = (\lambda_{K\alpha} - \lambda_2) = (0.06 \pm 0.03) \unit{\angstrom} \qquad \Delta_2 = (\lambda_{K\beta} - \lambda_1) = (0.06 \pm 0.03) \unit{\angstrom}
+\end{equation}
+troviamo che esse sono compatibili tra loro (con $ Z = 0.013 $): questo suggerisce la presenza di un errore sistematico sulla scala.
+
+In effetti, studiando la differenza tra $ \theta_1 $ e $\theta_2$ con i valori teorici (calcolati con Bragg):
+\begin{equation}
+\theta_1^\text{theo} = (14.29 \pm 0.02) \unit{\degree} \qquad \theta_2^\text{theo} = (15.90 \pm 0.02) \unit{\degree} 
+\end{equation} 
+troviamo che entrambi ``dovrebbero'' essere corretti di $ (0.7 \pm 0.4) \unit{\degree} $.
+
+In seguito proveremo a correggere tutte le stime con questo valore.
 
 \subsection{Filtro di \ce{Ni}}
 
 Alle stesse condizioni di lavoro ($V_\text{EHT} = 30 \unit{kV}$, $ i = 40 \unit{\micro A} $, e $ V_\text{alimentazione} = 506 \unit{V} $) di prima, eseguiamo le stesse scansioni dello spettro di emissione, ma inserendo sul cammino ottico del fascio un filtro di nichel.
 
-Di nuovo, l'interesse sta nel caratterizzare la \help{risposta frenante} del materiale scelto, osservando la decrescita nei conteggi rilevati. In breve, la presenza di un materiale schermante permette il passaggio solo a certi raggi X (a seconda della loro energia e quindi della lunghezza d'onda). I risultati ci dicono che:
+Vogliamo caratterizzare l'assorbimento da parte del \ce{Ni}, osservando le variazioni nello spettro.
+In effetti, sappiamo che i coefficienti di assorbimento dei materiali dipendono dall'energia della radiazione incidente.
 
-\help{grafici e commenti}
+Procediamo sempre con una scansione grossolana (a passi di $ 1 \unit{\degree} $ fino a $ 32 \unit{\degree} $), e poi con una fine (a passi di $ 1/6 \unit{\degree} $) intorno alle posizioni approssimative dei picchi.\footnote{Tutti questi valori si riferiscono alla scala $ 2\theta $.}
+I dati sono raccolti in \cref{tab:Ni}.
+
+\begin{table}
+\centering \small
+\begin{tabular}{cccc|cccc}
+$2\theta$ & $\delta 2\theta$ & $\nu$ & $\delta \nu$ & $2\theta_\text{fine}$ & $\delta 2\theta_\text{fine}$ & $\nu_\text{fine}$ & $\delta \nu_\text{fine}$ \\
+\hline
+12.0 & 0.5 & 20.0 & 0.2 & 26.17 & 0.08 & 8.6 & 0.7\\
+13.0 & 0.5 & 19.0 & 0.2 & 26.33 & 0.08 & 8.2 & 0.6\\
+14.0 & 0.5 & 22.1 & 0.2 & 26.50 & 0.08 & 8.6 & 0.7\\
+15.0 & 0.5 & 21.7 & 0.2 & 26.67 & 0.08 & 11.2 & 0.7\\
+16.0 & 0.5 & 20.5 & 0.2 & 26.83 & 0.08 & 16.1 & 0.9\\
+17.0 & 0.5 & 18.3 & 0.2 & 27.00 & 0.08 & 16.3 & 0.9\\
+18.0 & 0.5 & 16.9 & 0.2 & 27.17 & 0.08 & 17.3 & 0.9\\
+19.0 & 0.5 & 13.15 & 0.18 & 27.33 & 0.08 & 16.9 & 0.9\\
+20.0 & 0.5 & 12.80 & 0.18 & 27.50 & 0.08 & 15.9 & 0.9\\
+21.0 & 0.5 & 11.45 & 0.17 & 27.67 & 0.08 & 12.1 & 0.8\\
+22.0 & 0.5 & 10.25 & 0.16 & 27.83 & 0.08 & 10.4 & 0.7\\
+23.0 & 0.5 & 10.45 & 0.16 & 28.00 & 0.08 & 9.0 & 0.7\\
+24.0 & 0.5 & 8.80 & 0.15 & 28.17 & 0.08 & 8.7 & 0.7\\
+25.0 & 0.5 & 7.90 & 0.14 & 28.33 & 0.08 & 8.7 & 0.7\\
+26.0 & 0.5 & 8.10 & 0.14 & 28.50 & 0.08 & 7.5 & 0.6\\
+27.0 & 0.5 & 15.6 & 0.2 & 28.67 & 0.08 & 7.2 & 0.6\\
+28.0 & 0.5 & 8.60 & 0.15 & 28.83 & 0.08 & 10.0 & 0.7\\
+29.0 & 0.5 & 11.05 & 0.17 & 29.00 & 0.08 & 13.5 & 0.8\\
+30.0 & 0.5 & 698.2 & 1.3 & 29.17 & 0.08 & 25.1 & 1.1\\
+31.0 & 0.5 & 315.5 & 0.9 & 29.33 & 0.08 & 41.5 & 1.4\\
+32.0 & 0.5 & 17.3 & 0.2 & 29.50 & 0.08 & 93 & 2\\
+- & - & - & - & 29.67 & 0.08 & 158 & 3\\
+  -   &  -   &   -   &  -   & 29.83 & 0.08 & 308 & 4\\
+  -   &  -   &   -   &  -   & 30.00 & 0.08 & 661 & 6\\
+  -   &  -   &   -   &  -   & 30.17 & 0.08 & 829 & 6\\
+  -   &  -   &   -   &  -   & 30.33 & 0.08 & 831 & 6\\
+  -   &  -   &   -   &  -   & 30.50 & 0.08 & 754 & 6\\
+  -   &  -   &   -   &  -   & 30.67 & 0.08 & 630 & 6\\
+  -   &  -   &   -   &  -   & 30.83 & 0.08 & 411 & 5\\
+  -   &  -   &   -   &  -   & 31.00 & 0.08 & 272 & 4\\
+  -   &  -   &   -   &  -   & 31.17 & 0.08 & 168 & 3\\
+  -   &  -   &   -   &  -   & 31.33 & 0.08 & 92 & 2\\
+  -   &  -   &   -   &  -   & 31.50 & 0.08 & 39.0 & 1.4\\
+  -   &  -   &   -   &  -   & 31.67 & 0.08 & 21.7 & 1.0\\
+  -   &  -   &   -   &  -   & 31.83 & 0.08 & 18.7 & 1.0\\
+  -   &  -   &   -   &  -   & 32.00 & 0.08 & 16.9 & 0.9\\
+\end{tabular}
+\caption{Dati relativi ai grafici in \cref{fig:Ni}, quindi diffrazione su \ce{NaCl} con filtro di \ce{Ni}: gli angoli sono indicati in $ \unit{\degree} $ sulla scala $ 2\theta $, mentre le frequenze in conteggi al secondo (su un intervallo di $ \Delta t = 20 \unit{s} $). In particolare, a sinistra i dati della scansione grossolana e a destra quelli di quella fine.}
+\label{tab:Ni}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{./figs/nichel.png}
+\caption{Frequenze di rilevazione dei raggi X in $ \Delta t = 20 \unit{s} $ al variare dell'angolo (misurato in scala $ 2\theta $) di diffrazione del fascio sul cristallo di \ce{NaCl} filtrato dal \ce{Ni}. A sinistra i dati relativi alla scansione grossolana (con passo di $ 1 \unit{\degree} $), mentre a destra quelli della scansione fine (con passo di $ 1/6 \unit{\degree} $).}
+\label{fig:Ni}
+\end{figure}
+
+Dalla figura (\ref{fig:Ni}) vediamo chiaramente che il primo picco (quello che corrisponde a $ K_\beta $) è stato soppresso, tanto da non essere più identificabile con precisione.
+Questo è in accordo con le aspettative teoriche sulla variazione del coefficiente di assorbimento del materiale con l'energia della radiazione incidente: in \cref{fig:nichelmu} è riportato l'andamento specifico per il \ce{Ni}, e si osserva come le righe di emissione del tubo radiogeno vengano assorbite in modo sostanzialmente diverso.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{./figs/nichelmu.png}
+\caption{Andamento del coefficiente di assorbimento $ \mu $ (normalizzato per la densità del nichel, e quindi espresso in $ \unit{cm^2 / g} $) con l'energia dei fotoni incidenti (espressa in $ \unit{MeV} $). Le due righe tratteggiate in azzurro corrispondono alle energie dei raggi caratteristici del rame $ K_\alpha $ e $ K_\beta $: i loro coefficienti di assorbimento sono diversi di circa un ordine di grandezza (entrambi gli assi del grafico sono in scala logaritmica) per via dell'edge del nichel.}
+\label{fig:nichelmu}
+\end{figure}
+
+In particolare, usando le stesse tecniche/assunzioni di prima (interpolazione sui massimi, HWHM, errore della scala), possiamo stimare la posizione del picco e, di conseguenza, anche la lunghezza d'onda come:
+\begin{equation}
+\theta_{2,\ce{Ni}} = (15.2 \pm 0.4) \unit{\degree} \xrightarrow[]{\text{Bragg}} \lambda_2 = (1.48 \pm 0.03) \unit{\angstrom}
+\end{equation}
+che sono compatibili\footnote{Considerando solo le cifre significative sono identiche.} con le stime in \cref{eq:lambdasNaCl}, e pure con i valori nominali in \cref{eq:lambdas}.
+Ovviamente correggendo l'errore sistematico sulla scala che abbiamo ipotizzato sopra otteniamo una compatibilità ancora migliore con i valori nominali.
