@@ -1,0 +1,216 @@
+\newsec{Tensione di Hall al variare della corrente}
+
+Abbiamo misurato la tensione di Hall al variare della corrente $ i_p $ a valori diversi di campo magnetico $ B $, per un totale di $ 10 $ set di dati. 
+Useremo l'\cref{eq:hall-tension} per stimare il valore di $ R_H $.
+
+\paragraph{Contributo disallineamento piastre}
+
+Per un campo magnetico nullo ($ B=0 $) ci aspettiamo di trovare un valore per la tensione di Hall $ V_H \equiv 0 $ per qualsiasi valore di corrente.
+Sperimentalmente però osserviamo (\cref{fig:ohmic-contribution}) un andamento lineare tra la tensione di Hall e la corrente iniettata.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{./figs/misalignment.png}
+\caption{Andamento della tensione di Hall $ V_H $ contro $ i_p $ per $ B=0 $: stiamo caratterizzando il contributo ohmico dato dal disallineamento delle piastre sulla sonda di Hall, con una regressione lineare (blu, con dati in legenda) sui dati (rosso) raccolti in \cref{tab:ohmic-contribution}.}
+\label{fig:ohmic-contribution}
+\end{figure}
+
+\begin{table}[]
+\centering \small
+\begin{tabular}{cccc|cccc}
+$V_{H}$ & $\delta V_{H}$ & $i_p$ & $\delta i_p$ & $V_{H}$ & $\delta V_{H}$ & $i_p$ & $\delta i_p$ \\
+\hline
+- & - & - & - & -0.001 & 0.004 & 0.001 & 0.010 \\ 
+0.055 & 0.004 & 1.009 & 0.010 & -0.051 & 0.004 & -0.996 & 0.010 \\
+0.109 & 0.004 & 1.999 & 0.015 & -0.104 & 0.004 & -1.986 & 0.015 \\
+0.165 & 0.004 & 2.99  & 0.02  & -0.159 & 0.004 & -3.00  & 0.02  \\
+0.220 & 0.004 & 4.00  & 0.03  & -0.214 & 0.004 & -4.00  & 0.03  \\
+0.276 & 0.004 & 5.01  & 0.03  & -0.267 & 0.004 & -5.00  & 0.03  \\
+0.328 & 0.004 & 5.98  & 0.03  & -0.319 & 0.004 & -5.98  & 0.03  \\
+0.384 & 0.004 & 6.98  & 0.04  & -0.374 & 0.004 & -6.99  & 0.04  \\
+0.439 & 0.004 & 8.00  & 0.04  & -0.429 & 0.004 & -8.01  & 0.05  \\
+\end{tabular}
+\caption{Dati relativi alla caratterizzazione della caduta di potenziale ohmica $ V_H(i_p) $ data dal disallineamento delle piastre sulla sonda di Hall. I valori di tensione sono in $ \unit{mV} $ e quelli di corrente in $ \unit{mA} $.}
+\label{tab:ohmic-contribution}
+\end{table}
+
+Questo contributo è attribuibile al disallineamento tra le piastre che misurano la tensione di Hall ai capi del campione di germanio: siamo interessati a caratterizzarlo per sottrarlo all'andamento di $ V_H(i_p) $ dovuto all'effetto Hall, l'idea è quella di ``pulire'' i dati da questo fondo. 
+
+Allora, facciamo una regressione lineare (sempre in \cref{fig:ohmic-contribution}), e otteniamo:
+\begin{equation} \label{eq:ohmic-contribution}
+V_H(i_p) = (0.0032 \pm 0.0009) \unit{mV} + \qty[(0.0542 \pm 0.0002) \unit{mV / mA}] \cdot i_p
+\end{equation}
+che è la retta che sottrarremo agli andamenti $ V_H(i_p) $ con $ B \neq 0 $.\footnote{L'andamento $ V_H(i_p) $ per $ B \neq 0 $ secondo il nostro modello è $ V_H(i_p) = q + m \cdot i_p + V_{H}^0 (i_p) $ dove $ V_{H}^0 $ è questo contributo ohmico. Ottenuta la caratterizzazione $ V_{H}^0(i_p) = q^0 + m^0 \cdot i_p $ possiamo sottrarre $ q^0 $ e $ m^0 $ a $ q $ e $ m $ (propagando gli errori, assunti come indipendenti).}
+
+\subsection{Regressioni su $ V_{H}(i_p) $}
+
+Per ciascun set di dati di raccolto abbiamo effettuato una regressione lineare:
+\begin{equation} \label{eq:VHip}
+V_H = q + m \cdot i_p
+\end{equation}
+aspettandoci, per confronto con l'\cref{eq:hall-tension}, che $ q $ sia compatibile con $ 0 $ mentre $ m $ dia una stima di $ R_H B / t $, dopo aver sottratto (da $ m $ e $ q $) il contributo dato dal disallineamento delle piastre (ricavati nell'\cref{eq:ohmic-contribution}). 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{./figs/Vhcurrpos.png}
+\caption{Regressioni (in blu, con parametri dei fit in legenda) all'andamento della tensione di Hall $ V_H $ (in $ \unit{mV} $) contro la corrente nella sonda $ i_p $ (in $ \unit{mA} $) al variare del campo magnetico esterno (determinato dalla ``magnet current'' nel titolo, indicata più precisamente nel seguito).}
+\label{fig:pos}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{./figs/Vhcurrneg.png}
+\caption{Regressioni (in blu, con parametri dei fit in legenda) all'andamento della tensione di Hall $ V_H $ (in $ \unit{mV} $) contro la corrente nella sonda $ i_p $ (in $ \unit{mA} $) al variare del campo magnetico esterno (determinato dalla ``magnet current'' nel titolo, indicata più precisamente nel seguito).}
+\label{fig:neg}
+\end{figure}
+
+\begin{table}
+\centering \tiny
+\begin{tabular}{cccccccccc}
+$V_{H,1}$ & $\delta V_{H,1}$ & $i_{p,1}$ & $\delta i_{p,1}$ & $V_{H,2}$ & $\delta V_{H,2}$ & $i_{p,2}$ & $\delta i_{p,2}$ & $V_{H,3}$ & $\delta V_{H,3}$ \\
+\hline
+-0.010 & 0.004 & 0 & $1.0 \cdot 10^{-5}$ & -0.008 & 0.004 & 0 & $1.0 \cdot 10^{-5}$ & -0.009 & 0.004\\
+-0.479 & 0.004 & -0.995 & 0.010 & 0.847 & 0.004 & 0.988 & 0.010 & -1.227 & 0.004\\
+-0.938 & 0.004 & -1.973 & 0.015 & 1.721 & 0.004 & 1.996 & 0.015 & -2.452 & 0.004\\
+-1.405 & 0.004 & -2.99 & 0.02 & 2.580 & 0.004 & 2.99 & 0.02 & -3.689 & 0.004\\
+-1.875 & 0.004 & -3.99 & 0.02 & 3.455 & 0.004 & 4.00 & 0.03 & -4.919 & 0.004\\
+-2.341 & 0.004 & -4.99 & 0.03 & 4.319 & 0.004 & 5.00 & 0.03 & -6.060 & 0.004\\
+-2.801 & 0.004 & -5.97 & 0.03 & 5.189 & 0.004 & 6.00 & 0.04 & -7.279 & 0.004\\
+-3.284 & 0.004 & -7.00 & 0.04 & 6.016 & 0.004 & 6.96 & 0.04 & -8.506 & 0.004\\
+-3.743 & 0.004 & -7.99 & 0.04 & 6.927 & 0.004 & 8.01 & 0.05 & -9.765 & 0.004\\
+0.461 & 0.004 & 1.001 & 0.010 & -0.885 & 0.004 & -1.011 & 0.010 & 1.210 & 0.004\\
+0.930 & 0.004 & 2.001 & 0.015 & -1.714 & 0.004 & -1.968 & 0.015 & 2.445 & 0.004\\
+1.406 & 0.004 & 3.02 & 0.02 & -2.612 & 0.004 & -3.01 & 0.02 & 3.629 & 0.004\\
+1.866 & 0.004 & 4.00 & 0.03 & -3.477 & 0.004 & -4.01 & 0.03 & 4.899 & 0.004\\
+2.331 & 0.004 & 4.99 & 0.03 & -4.383 & 0.004 & -5.05 & 0.03 & 6.065 & 0.004\\
+2.798 & 0.004 & 5.99 & 0.03 & -5.185 & 0.004 & -5.98 & 0.03 & 7.329 & 0.004\\
+3.273 & 0.004 & 7.00 & 0.04 & -6.096 & 0.004 & -7.03 & 0.04 & 8.501 & 0.004\\
+3.747 & 0.004 & 8.01 & 0.05 & -6.936 & 0.004 & -8.00 & 0.05 & 9.691 & 0.004\\
+\\
+$i_{p,3}$ & $\delta i_{p,3}$ & $V_{H,4}$ & $\delta V_{H,4}$ & $i_{p,4}$ & $\delta i_{p,4}$ & $V_{H,5}$ & $\delta V_{H,5}$ & $i_{p,5}$ & $\delta i_{p,5}$ \\
+\hline
+0 & $1.0 \cdot 10^{-5}$ & -0.008 & 0.004 & 0 & $1.0 \cdot 10^{-5}$ & -0.007 & 0.004 & 0 & $1.0 \cdot 10^{-5}$\\
+-1.001 & 0.010 & 1.592 & 0.004 & 1.025 & 0.010 & -1.891 & 0.004 & -1.002 & 0.010\\
+-2.011 & 0.015 & 3.113 & 0.004 & 2.002 & 0.015 & -3.768 & 0.004 & -2.002 & 0.015\\
+-3.03 & 0.02 & 4.728 & 0.004 & 3.04 & 0.02 & -5.653 & 0.004 & -3.01 & 0.02\\
+-4.04 & 0.03 & 6.317 & 0.004 & 4.06 & 0.03 & -7.500 & 0.004 & -3.99 & 0.02\\
+-4.98 & 0.03 & 7.833 & 0.004 & 5.03 & 0.03 & -9.415 & 0.004 & -5.02 & 0.03\\
+-5.99 & 0.03 & 9.358 & 0.004 & 6.01 & 0.04 & -11.255 & 0.004 & -6.00 & 0.04\\
+-7.00 & 0.04 & 10.896 & 0.004 & 7.00 & 0.04 & -13.189 & 0.004 & -7.04 & 0.04\\
+-8.04 & 0.05 & 12.461 & 0.004 & 8.01 & 0.05 & -15.031 & 0.004 & -8.02 & 0.05\\
+1.002 & 0.010 & -1.570 & 0.004 & -1.002 & 0.010 & 1.884 & 0.004 & 1.008 & 0.010\\
+2.020 & 0.015 & -3.127 & 0.004 & -2.002 & 0.015 & 3.719 & 0.004 & 1.988 & 0.015\\
+3.00 & 0.02 & -4.678 & 0.004 & -3.00 & 0.02 & 5.614 & 0.004 & 3.00 & 0.02\\
+4.04 & 0.03 & -6.291 & 0.004 & -4.03 & 0.03 & 7.477 & 0.004 & 4.00 & 0.02\\
+5.00 & 0.03 & -7.781 & 0.004 & -4.99 & 0.03 & 9.381 & 0.004 & 5.02 & 0.03\\
+6.05 & 0.04 & -9.368 & 0.004 & -6.01 & 0.04 & 11.151 & 0.004 & 5.96 & 0.03\\
+7.01 & 0.04 & -10.926 & 0.004 & -7.02 & 0.04 & 13.127 & 0.004 & 7.02 & 0.04\\
+7.99 & 0.04 & -12.436 & 0.004 & -7.99 & 0.04 & 14.960 & 0.004 & 8.00 & 0.05
+\end{tabular}
+\caption{Dati relativi ai fit in figura (\ref{fig:pos}). Tutti i valori di tensione sono espressi in $ \unit{mV} $ mentre quelli di corrente in $ \unit{mA} $. In particolare i set di dati sono numerati al crescere del (valore assoluto del) campo magnetico esterno: $ V_{H,1} $ corrisponde a $ I=0.200 \unit{A} $, e così via.}
+\label{tab:pos}
+\end{table}
+
+\begin{table}
+\centering \tiny
+\begin{tabular}{cccccccccc}
+$V_{H,1}$ & $\delta V_{H,1}$ & $i_{p,1}$ & $\delta i_{p,1}$ & $V_{H,2}$ & $\delta V_{H,2}$ & $i_{p,2}$ & $\delta i_{p,2}$ & $V_{H,3}$ & $\delta V_{H,3}$ \\
+\hline
+-0.002 & 0.004 & 0 & $1.0 \cdot 10^{-5}$ & -0.002 & 0.004 & 0 & $1.0 \cdot 10^{-5}$ & -0.001 & 0.004\\
+-0.267 & 0.004 & 1.007 & 0.010 & 0.684 & 0.004 & -1.025 & 0.010 & -1.056 & 0.004\\
+-0.525 & 0.004 & 1.988 & 0.015 & 1.267 & 0.004 & -1.902 & 0.015 & -2.021 & 0.004\\
+-0.788 & 0.004 & 2.99 & 0.02 & 2.001 & 0.004 & -3.00 & 0.02 & -3.114 & 0.004\\
+-1.056 & 0.004 & 4.01 & 0.03 & 2.704 & 0.004 & -4.05 & 0.03 & -4.112 & 0.004\\
+-1.316 & 0.004 & 5.00 & 0.03 & 3.309 & 0.004 & -4.96 & 0.03 & -5.159 & 0.004\\
+-1.575 & 0.004 & 5.99 & 0.03 & 4.057 & 0.004 & -6.08 & 0.04 & -6.248 & 0.004\\
+-1.843 & 0.004 & 7.01 & 0.04 & 4.719 & 0.004 & -7.07 & 0.04 & -7.347 & 0.004\\
+-2.104 & 0.004 & 8.00 & 0.05 & 5.325 & 0.004 & -7.97 & 0.04 & -8.377 & 0.004\\
+0.261 & 0.004 & -1.002 & 0.010 & -0.618 & 0.004 & 0.922 & 0.010 & 1.028 & 0.004\\
+0.522 & 0.004 & -1.999 & 0.015 & -1.345 & 0.004 & 2.003 & 0.015 & 1.997 & 0.004\\
+0.786 & 0.004 & -3.01 & 0.02 & -2.027 & 0.004 & 3.02 & 0.02 & 3.139 & 0.004\\
+1.046 & 0.004 & -4.00 & 0.02 & -2.688 & 0.004 & 4.01 & 0.03 & 4.211 & 0.004\\
+1.320 & 0.004 & -5.04 & 0.03 & -3.369 & 0.004 & 5.02 & 0.03 & 5.160 & 0.004\\
+1.576 & 0.004 & -6.01 & 0.04 & -3.995 & 0.004 & 5.95 & 0.03 & 6.183 & 0.004\\
+1.822 & 0.004 & -6.95 & 0.04 & -4.696 & 0.004 & 7.00 & 0.04 & 7.283 & 0.004\\
+2.115 & 0.004 & -8.07 & 0.05 & -5.355 & 0.004 & 7.98 & 0.04 & 8.338 & 0.004\\
+      &&&&&&&&&\\
+$i_{p,3}$ & $\delta i_{p,3}$ & $V_{H,4}$ & $\delta V_{H,4}$ & $i_{p,4}$ & $\delta i_{p,4}$ & $V_{H,5}$ & $\delta V_{H,5}$ & $i_{p,5}$ & $\delta i_{p,5}$ \\
+\hline
+0 & $1.0 \cdot 10^{-5}$ & 0.000 & 0.004 & 0 & $1.0 \cdot 10^{-5}$ & 0.000 & 0.004 & 0 & $1.0 \cdot 10^{-5}$\\
+1.011 & 0.010 & 1.419 & 0.004 & -1.006 & 0.010 & -1.665 & 0.004 & 0.970 & 0.010\\
+1.934 & 0.015 & 2.838 & 0.004 & -2.016 & 0.015 & -3.415 & 0.004 & 1.998 & 0.015\\
+2.98 & 0.02 & 4.186 & 0.004 & -2.97 & 0.02 & -5.122 & 0.004 & 2.98 & 0.02\\
+3.94 & 0.02 & 5.594 & 0.004 & -3.97 & 0.02 & -6.867 & 0.004 & 4.00 & 0.03\\
+4.94 & 0.03 & 7.053 & 0.004 & -5.01 & 0.03 & -8.580 & 0.004 & 5.00 & 0.03\\
+5.99 & 0.03 & 8.398 & 0.004 & -5.97 & 0.03 & -10.308 & 0.004 & 6.01 & 0.04\\
+7.04 & 0.04 & 9.846 & 0.004 & -7.00 & 0.04 & -12.001 & 0.004 & 7.00 & 0.04\\
+8.03 & 0.05 & 11.216 & 0.004 & -7.97 & 0.04 & -13.668 & 0.004 & 7.97 & 0.04\\
+-0.985 & 0.010 & -1.372 & 0.004 & 0.975 & 0.010 & 1.713 & 0.004 & -0.997 & 0.010\\
+-1.912 & 0.015 & -2.806 & 0.004 & 1.993 & 0.015 & 3.443 & 0.004 & -2.007 & 0.015\\
+-3.01 & 0.02 & -4.217 & 0.004 & 3.00 & 0.02 & 5.139 & 0.004 & -3.00 & 0.02\\
+-4.04 & 0.03 & -7.011 & 0.004 & 4.98 & 0.03 & 6.847 & 0.004 & -3.99 & 0.02\\
+-4.95 & 0.03 & -8.446 & 0.004 & 6.00 & 0.04 & 8.586 & 0.004 & -5.01 & 0.03\\
+-5.93 & 0.03 & -9.814 & 0.004 & 6.98 & 0.04 & 10.280 & 0.004 & -6.00 & 0.03\\
+-6.98 & 0.04 & -11.227 & 0.004 & 7.98 & 0.04 & 12.003 & 0.004 & -7.01 & 0.04\\
+-7.99 & 0.04 & - & - & - & - & 13.728 & 0.004 & -8.01 & 0.05
+\end{tabular}
+\caption{Dati relativi ai fit in figura (\ref{fig:neg}). Tutti i valori di tensione sono espressi in $ \unit{mV} $ mentre quelli di corrente in $ \unit{mA} $. In particolare i set di dati sono numerati al crescere del (valore assoluto del) campo magnetico esterno: $ V_{H,1} $ corrisponde a $ I=-0.200 \unit{A} $, e così via.}
+\label{tab:neg}
+\end{table}
+
+I parametri ottenuti tramite i fit sono riportati in \cref{tab:slope-VHi}, e in particolare possiamo anche provare a verificare la compatibilità tra le quote e $ 0 $.
+
+In realtà, si trova che la maggior parte delle quote non sono compatibili (come non lo era nemmeno la quota della caduta di potenziale ohmica dovuta al disallineamento).
+Riteniamo che questo fenomeno sia da attribuirsi a dei bias strumentali, o a degli effetti non lineari che influiscono sui dati per correnti $ i_p \neq 0 \unit{mA} $: il fatto che la quota stimata dal fit non sia compatibile con $ 0 $ è contrario al dato sperimentale per cui $ V_H(0) = 0 $ per ogni valore di $ B $.
+In ogni caso, rimandiamo il lettore all'appendice B per una discussione più approfondita di questi fenomeni.
+
+\begin{table}
+\centering \footnotesize
+\begin{tabular}{cccc|cccc|cccc}
+$m$ & $\delta m$ & $q$ & $\delta q$ & $m_\text{corr}$ & $\delta m_\text{corr}$ & $q_\text{corr}$ & $\delta q_\text{corr}$ & $I$ & $\delta I$ & $B$ & $\delta B$ \\
+\hline
+0.4683 & 0.0008 & -0.009 & 0.002 & 0.4141 & 0.0008 & -0.012 & 0.002 & 0.2000 & 0.0010 & 48 & 9\\
+0.8659 & 0.0014 & -0.008 & 0.003 & 0.8117 & 0.0014 & -0.012 & 0.003 & 0.425 & 0.016 & 101 & 10\\
+1.214 & 0.002 & -0.009 & 0.003 & 1.160 & 0.002 & -0.012 & 0.003 & 0.616 & 0.019 & 147 & 10\\
+1.558 & 0.003 & -0.008 & 0.003 & 1.503 & 0.003 & -0.011 & 0.003 & 0.81 & 0.02 & 193 & 10\\
+1.874 & 0.003 & -0.008 & 0.003 & 1.820 & 0.003 & -0.011 & 0.003 & 1.01 & 0.03 & 240 & 11\\
+-0.2625 & 0.0005 & -0.0027 & 0.0015 & -0.3167 & 0.0005 & -0.0058 & 0.0018 & -0.2000 & 0.0010 & -48 & 9\\
+-0.6694 & 0.0011 & -0.003 & 0.002 & -0.7235 & 0.0011 & -0.006 & 0.003 & -0.409 & 0.016 & -98 & 10\\
+-1.0436 & 0.0017 & -0.001 & 0.003 & -1.0978 & 0.0017 & -0.004 & 0.003 & -0.606 & 0.019 & -145 & 10\\
+-1.407 & 0.002 & 0.000 & 0.003 & -1.462 & 0.002 & -0.003 & 0.003 & -0.81 & 0.02 & -194 & 10\\
+-1.715 & 0.003 & 0.000 & 0.003 & -1.769 & 0.003 & -0.003 & 0.003 & -1.00 & 0.02 & -238 & 11\\
+\end{tabular}
+\caption{Risultati dei fit nell'\cref{eq:VHip}. In particolare su questi valori corretti svolgiamo la regressione per dare la stima di $ R_H $ (in \cref{fig:RH1}). I valori corretti sono stati ottenuti sottraendo i parametri del fit dell'\cref{eq:ohmic-contribution}. In particolare sono anche inclusi i valori di $ I $ e $ B $ (con i loro errori) corrispondenti a ogni curva: $ (m_\text{corr}, B) $ sono la base per il fit in \cref{fig:RH1}. Osserviamo che dopo la correzione le quote sono ancora meno compatibili con $ 0 $: rimandiamo il lettore all'appendice B per maggiore chiarezza su questa incongruenza.}
+\label{tab:slope-VHi}
+\end{table}
+
+\subsection{Stima di $ R_H $}
+
+Per stimare $ R_H $ facciamo un'ulteriore regressione lineare all'andamento dei coefficienti angolari (debitamente corretti) in \cref{tab:slope-VHi} con un modello lineare:
+\begin{equation}
+m = q' + m' \cdot B
+\end{equation}
+aspettandoci che $ q' $ sia compatibile con $ 0 $, e che $ m' $ dia una stima di $ R_H / t $ (per confronto con l'\cref{eq:hall-tension}).
+
+Sperimentalmente abbiamo misurato la corrente di alimentazione delle bobine del magnete: per ricavare i valori corrispondenti di campo magnetico all'interno del traferro abbiamo usato l'andamento sul ciclo di isteresi medio (\cref{eq:hysteresis-mean}), come illustrato in precedenza.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{./figs/slopesRH1.png}
+\caption{Regressione (in blu, con parametri in legenda) sui coefficienti angolari $ m_\text{corr} $ (in $ \unit{mV / mA} = \unit{V/A} $) in tabella (\ref{tab:slope-VHi}) al variare del campo magnetico (in \unit{mT}).}
+\label{fig:RH1}
+\end{figure}
+
+Quindi, dalla regressione (in \cref{fig:RH1}) otteniamo:
+\begin{equation}
+q' = (0.03 \pm 0.02) \unit{mV / mA} \qquad m' = (0.0076 \pm 0.0002) \unit{mV / (mA \cdot mT)}
+\end{equation}
+per cui, data anche la misura di $ t $ in \cref{eq:dimensions}, otteniamo una stima di $ R_H $:
+\begin{equation} \label{eq:RH1}
+R_{H,1} = (0.0076 \pm 0.0008) \unit{m^3 / C}
+\end{equation}
+da cui possiamo anche ricavare una stima della concentrazione dei portatori di carica:
+\begin{equation}
+\rho_{1} = (131 \pm 13) \unit{C / m^3}.
+\end{equation}
+

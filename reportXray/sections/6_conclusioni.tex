@@ -1,0 +1,49 @@
+\newsec{Conclusioni}
+
+Con questa esperienza abbiamo caratterizzato lo spettro di emissione di un tubo radiogeno, studiando anche l'interazione dei raggi X emessi con la materia.
+
+All'inizio abbiamo calibrato il contatore Geiger-Muller fissando la tensione di alimentazione $ V_\text{alimentazione} = 506 \unit{V} $, e fornendo anche una stima del suo tempo morto:
+\begin{equation}
+\tau_\text{dead} = (187.8 \pm 1.5) \unit{\micro s}
+\end{equation}
+compatibilmente con le specifiche dello strumento.
+Nello specifico abbiamo anche fissato le condizioni di lavoro ottimali del tubo radiogeno, limitando le frequenze a $ \nu < 2000 \unit{s^{-1}}$ per rimanere nella regione di risposta lineare del contatore.
+
+Poi, abbiamo studiato la validità della legge di Lambert-Beer: il modello non si è adattato perfettamente ai dati a causa della natura non monocromatica del fascio di raggi X emessi.
+Comunque, siamo riusciti a distinguere una componente a bassa energia associata alla radiazione caratteristica del rame con coefficiente di assorbimento:
+\begin{equation}
+\frac{\mu_b}{\rho} = (254 \pm 13) \unit{cm^2 / g}
+\end{equation}
+e una a energia maggiore associata al picco di bremsstrahlung:
+\begin{equation}
+\frac{\mu_a}{\rho} = (28 \pm 5) \unit{cm^2 / g}.
+\end{equation}
+
+Dopo, abbiamo avuto modo di studiare la diffrazione dello spettro dei raggi X su diversi cristalli, usando la legge di Bragg (\ref{eq:bragg}).
+
+Nel caso del \ce{NaCl} abbiamo usato come dato la distanza reticolare del cristallo per stimare le lunghezze d'onda dei raggi X caratteristici del rame $K_\alpha$ e $K_\beta$:
+\begin{equation}
+\lambda_1 = (1.33 \pm 0.04) \unit{\angstrom} \qquad \lambda_2 = (1.48 \pm0.03) \unit{\angstrom}
+\end{equation}
+e già da queste stime abbiamo notato la presenza di un errore sistematico di $ 0.7 \unit{\degree} $ (scala $ \theta $, quindi per la scala di lettura è di $ 1.4 \unit{\degree} $) nella lettura degli angoli di diffrazione.
+
+Per controllare già in fase di presa dati la presenza di un sistematico sull'azzeramento della scala con cui abbiamo misurato gli angoli avremmo potuto prendere delle misure simmetriche e opposte.
+Ottenendo conteggi diversi ad angoli ``uguali'' avremmo potuto azzerare correttamente la scala, senza dover correggere le stime a posteriori.
+
+Poi abbiamo studiato l'effetto di un filtro di \ce{Ni} sullo spettro.
+Come nel caso dell'analisi fatta sull'assorbimento da parte dell'alluminio al variare dello spessore, abbiamo osservato delle soppressioni diverse per le due righe di emissione (\cref{fig:nichelmu} e \cref{fig:Ni}).\footnote{Preparando il fascio di raggi X con un filtro di nichel avremmo potuto verificare più facilmente la legge di Lambert-Beer: la condizione di monocromaticità sarebbe stata migliore, anche se non ancora perfetta.}
+Solo il picco relativo a $K_\alpha$ era ben riconoscibile, e ne abbiamo stimato la lunghezza d'onda come:
+\begin{equation}
+\lambda_{2\ce{Ni}} = (1.48 \pm 0.03) \unit{\angstrom}
+\end{equation}
+a meno del sistematico sulla lettura degli angoli.
+
+Infine, per i cristalli di $\ce{LiF}$ e $\ce{KCl}$ abbiamo misurato la loro distanza interatomica:
+\begin{equation}
+2d_{\ce{LiF}} = (4.14 \pm 0.07) \unit{\angstrom}\qquad 2d_{\ce{KCl}} = (6.5 \pm 0.2) \unit{\angstrom}
+\end{equation}
+e correggendo per il sistematico:
+\begin{equation}
+  2d_{\ce{LiF}}' = (4.02 \pm 0.09) \unit{\angstrom} \qquad 2d_{\ce{KCl}}' = (6.2 \pm 0.2) \unit{\angstrom}
+\end{equation}
+ottenendo delle stime compatibili con i valori nominali.

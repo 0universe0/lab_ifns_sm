@@ -1,0 +1,154 @@
+\newsec{Caratterizzazione dell'elettromagnete}
+
+Prima di studiare l'effetto Hall, abbiamo caratterizzato l'elettromagnete in modo da poter misurare indirettamente il campo magnetico usando la corrente di alimentazione.
+
+\subsection{Uniformità del campo magnetico}
+
+Abbiamo cominciato valutando l'intensità del campo magnetico in vari punti del traferro: suddividendolo in intervalli regolari abbiamo riportato i valori misurati con un magnetometro (Extech SDL900) su un istogramma.
+Si riconosce una regione di uniformità al centro del traferro (in \cref{fig:uniform-magnet}) in cui gli effetti di bordo sono trascurabili: è proprio qui che abbiamo sempre posizionato la sonda di Hall.
+
+\begin{figure}[]
+\centering
+\begin{minipage}[c]{0.45\textwidth}
+\raggedleft
+\includegraphics[width=1.3\textwidth]{./figs/uniformB.png}
+\end{minipage}
+\hfill 
+\begin{minipage}[c]{0.45\textwidth}
+\raggedright \tiny
+\begin{tabular}{cccccc}
+$B$ & $\delta B$ & $x$ & $\delta x$ & $y$ & $\delta y$ \\
+\hline
+176 & 10 & 0.0 & 1.0 & 0.0 & 1.0\\
+205 & 11 & 0.0 & 1.0 & 10.0 & 1.0\\
+202 & 11 & 0.0 & 1.0 & 20.0 & 1.0\\
+204 & 11 & 0.0 & 1.0 & 30.0 & 1.0\\
+164 & 9 & 0.0 & 1.0 & 40.0 & 1.0\\
+\hline
+206 & 11 & 10.0 & 1.0 & 0.0 & 1.0\\
+235 & 13 & 10.0 & 1.0 & 10.0 & 1.0\\
+233 & 13 & 10.0 & 1.0 & 20.0 & 1.0\\
+234 & 13 & 10.0 & 1.0 & 30.0 & 1.0\\
+212 & 12 & 10.0 & 1.0 & 40.0 & 1.0\\
+\hline
+215 & 12 & 20.0 & 1.0 & 0.0 & 1.0\\
+236 & 13 & 20.0 & 1.0 & 10.0 & 1.0\\
+236 & 13 & 20.0 & 1.0 & 20.0 & 1.0\\
+237 & 13 & 20.0 & 1.0 & 30.0 & 1.0\\
+209 & 11 & 20.0 & 1.0 & 40.0 & 1.0\\
+\hline
+205 & 11 & 30.0 & 1.0 & 0.0 & 1.0\\
+236 & 13 & 30.0 & 1.0 & 10.0 & 1.0\\
+236 & 13 & 30.0 & 1.0 & 20.0 & 1.0\\
+235 & 13 & 30.0 & 1.0 & 30.0 & 1.0\\
+207 & 11 & 30.0 & 1.0 & 40.0 & 1.0\\
+\hline
+176 & 10 & 40.0 & 1.0 & 0.0 & 1.0\\
+200 & 11 & 40.0 & 1.0 & 10.0 & 1.0\\
+201 & 11 & 40.0 & 1.0 & 20.0 & 1.0\\
+202 & 11 & 40.0 & 1.0 & 30.0 & 1.0\\
+175 & 10 & 40.0 & 1.0 & 40.0 & 1.0\\
+\end{tabular}
+\end{minipage}
+\caption{A sinistra un istogramma dove sul piano sono rappresentate le posizioni misurate all'interno del traferro (in $ \unit{mm} $), e sull'asse $ z $ le misure di campo magnetico corrispondenti (in $ \unit{mT} $). I dati sono raccolti nella tabella accanto.}
+\label{fig:uniform-magnet}
+\end{figure}
+
+In particolare, prendiamo la semidifferenza tra i valori di $ B $ misurati in questa regione:
+\begin{equation}
+\Delta B = 1.6 \unit{mT}
+\end{equation}
+come il limite minimo sull'incertezza del campo magnetico.
+
+\subsection{Ciclo di isteresi}
+
+Per valutare la risposta del magnete alla corrente di alimentazione delle bobine nella regione di uniformità (punto centrale del traferro), abbiamo caratterizzato il ciclo di isteresi del magnete.
+Percorrendo interamente due cicli arrivando fino alla saturazione, abbiamo raccolto i dati in \cref{tab:hysteresis}, e in \cref{fig:hysteresis}.
+
+\begin{table}
+\centering \small
+\begin{tabular}{cccccccc}
+$B_\text{down,1}$ & $\delta B_\text{down,1}$ & $i_\text{down,1}$ & $\delta i_\text{down,1}$ & $B_\text{up,1}$ & $\delta B_\text{up,1}$ & $i_\text{up,1}$ & $\delta i_\text{up,1}$ \\ \hline
+355 & 19 & 1.60 & 0.03 & -358 & 19 & -1.61 & 0.03\\
+323 & 17 & 1.41 & 0.03 & -322 & 17 & -1.40 & 0.03\\
+279 & 15 & 1.18 & 0.03 & -283 & 15 & -1.20 & 0.03\\
+243 & 13 & 1.00 & 0.03 & -244 & 13 & -1.01 & 0.03\\
+200 & 11 & 0.80 & 0.02 & -202 & 11 & -0.81 & 0.02\\
+159 & 9 & 0.619 & 0.019 & -154 & 9 & -0.60 & 0.02\\
+105 & 6 & 0.3930 & 0.0020 & -95 & 6 & -0.353 & 0.002\\
+60 & 4 & 0.2080 & 0.0010 & -59 & 4 & -0.2060 & 0.0010\\
+9.3 & 1.6 & 0 & $ 1.0 \cdot 10^{-8} $ & -8.7 & 1.6 & 0 & $ 1.0 \cdot 10^{-8} $ \\
+-48 & 3 & -0.2340 & 0.0012 & 40 & 3 & 0.2024 & 0.0010\\
+-88 & 5 & -0.400 & 0.016 & 90 & 5 & 0.41 & 0.02\\
+-136 & 8 & -0.603 & 0.019 & 139 & 8 & 0.61 & 0.02\\
+-183 & 10 & -0.80 & 0.02 & 189 & 10 & 0.83 & 0.02\\
+-229 & 12 & -1.01 & 0.03 & 232 & 13 & 1.03 & 0.03\\
+-270 & 14 & -1.20 & 0.03 & 269 & 14 & 1.20 & 0.03\\
+-314 & 17 & -1.42 & 0.03 & 311 & 17 & 1.40 & 0.03\\
+-349 & 18 & -1.60 & 0.03 & 351 & 19 & 1.62 & 0.03\\
+-380 & 20 & -1.81 & 0.04 & 380 & 20 & 1.80 & 0.04\\
+     &&&&&&& \\
+$B_\text{down,2}$ & $\delta B_\text{down,2}$ & $i_\text{down,2}$ & $\delta i_\text{down,2}$ & $B_\text{up,2}$ & $\delta B_\text{up,2}$ & $i_\text{up,2}$ & $\delta i_\text{up,2}$ \\ \hline
+356 & 19 & 1.60 & 0.03 & -359 & 19 & -1.61 & 0.03\\
+320 & 17 & 1.38 & 0.03 & -325 & 17 & -1.41 & 0.03\\
+282 & 15 & 1.19 & 0.03 & -285 & 15 & -1.20 & 0.03\\
+244 & 13 & 1.00 & 0.03 & -241 & 13 & -0.99 & 0.02\\
+198 & 11 & 0.79 & 0.02 & -203 & 11 & -0.81 & 0.02\\
+158 & 9 & 0.611 & 0.019 & -156 & 9 & -0.60 & 0.02\\
+108 & 6 & 0.409 & 0.016 & -106 & 6 & -0.399 & 0.002\\
+57 & 4 & 0.1970 & 0.0010 & -56 & 4 & -0.1952 & 0.0010\\
+8.9 & 1.6 & 0 & $1.0 \cdot 10^{-8}$ & -8.7 & 1.6 & 0 & $1.0 \cdot 10^{-8} $\\
+-45 & 3 & -0.2190 & 0.0011 & 43 & 3 & 0.2103 & 0.0010\\
+-88 & 5 & -0.400 & 0.016 & 87 & 5 & 0.395 & 0.002\\
+-142 & 8 & -0.621 & 0.019 & 138 & 8 & 0.60 & 0.02\\
+-186 & 10 & -0.81 & 0.02 & 190 & 11 & 0.83 & 0.02\\
+-227 & 12 & -1.00 & 0.03 & 228 & 12 & 1.00 & 0.03\\
+-272 & 15 & -1.21 & 0.03 & 273 & 15 & 1.21 & 0.03\\
+-314 & 17 & -1.42 & 0.03 & 322 & 17 & 1.46 & 0.03\\
+-350 & 18 & -1.61 & 0.03 & 350 & 18 & 1.60 & 0.03\\
+-380 & 20 & -1.81 & 0.04 & 380 & 20 & 1.80 & 0.04\\
+- & - & - & - & 420 & 20 & 2.01 & 0.04\\
+- & - & - & - & 450 & 20 & 2.32 & 0.04\\
+- & - & - & - & 480 & 30 & 2.63 & 0.05\\
+- & - & - & - & 500 & 30 & 2.90 & 0.05\\
+- & - & - & - & 500 & 30 & 2.98 & 0.05
+\end{tabular}
+\caption{Dati dei cicli di isteresi. Tutte le misure di corrente sono in $ \unit{A} $, e tutte quelle di campo magnetico in $ \unit{mT} $ (come anche riportato sui grafici in \cref{fig:hysteresis}).}
+\label{tab:hysteresis}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{./figs/hysteresis.png}
+\caption{Curve di salita e discesa dei cicli di isteresi (con il campo magnetico $ B $ in $ \unit{mT} $ e la corrente nelle bobine $ I $ in $ \unit{A} $): in rosso i dati, e in blu le curve delle regressioni lineari (parametri del fit in legenda). Abbiamo limitato i range dei fit alle regioni di linearità delle curve.}
+\label{fig:hysteresis}
+\end{figure}
+
+Il magnete si comporta come un materiale molle: la forza coercitiva appare debole.
+Le differenze tra le curve in discesa e in salita sono praticamente indistinguibili. 
+
+Nello specifico, abbiamo effettuato delle regressioni lineari nelle regioni di linearità dei cicli di isteresi, ricavando le stime degli andamenti del campo magnetico $ B $ con la corrente di alimentazione nelle bobine $ I $:
+\begin{align}
+B_\text{up,1}(I) &= (-8.7 \pm 1.2) \unit{mT} + \qty[(238 \pm 4) \unit{mT / A}] \cdot I \\
+B_\text{down,1}(I) &= (9.2 \pm 1.3) \unit{mT} + \qty[(238 \pm 4) \unit{mT / A}] \cdot I \\
+B_\text{up,2}(I) &= (-8.6 \pm 1.2) \unit{mT} + \qty[(239 \pm 4) \unit{mT / A}] \cdot I \\
+B_\text{down,2}(I) &= (8.8 \pm 1.3) \unit{mT} + \qty[(238 \pm 4) \unit{mT / A}] \cdot I.
+\end{align}
+
+In particolare, possiamo verificare la compatibilità tra le quote delle coppie di salita e di discesa (con $ Z_\text{q,up} = 0.028 $ e $ Z_\text{q,down} = -0.232 $, accettati al $ 5 \% $), e pure quella tra tutti i coefficienti angolari (tutti accettati al $ 5 \% $ con $ \abs{Z} \leq 0.2 $). 
+
+In virtù di questo, abbiamo calcolato gli andamenti medi (pesati per gli errori) sui cicli in salita/discesa, e su un ciclo generico:
+\begin{align} \label{eq:hysteresis-up}
+B_\text{up}(I) &= (-8.7 \pm 0.9) \unit{mT} + \qty[(239 \pm 3) \unit{mT / A}] \cdot I \\ \label{eq:hysteresis-down}
+B_\text{down}(I) &= (9.0 \pm 0.9) \unit{mT} + \qty[(238 \pm 3) \unit{mT / A}] \cdot I \\ \label{eq:hysteresis-mean}
+B_\text{mean}(I) &= (0 \pm 9) \unit{mT} + \qty[(238 \pm 2) \unit{mT / A}] \cdot I
+\end{align}
+dove l'errore sulla quota di $ B_\text{mean} $ lo abbiamo stimato con la differenza tra le quote di $ B_\text{up} $ e $ B_\text{down} $.
+
+\paragraph{Ricavare $ B $ data $ I $ con i cicli di isteresi}
+
+Nel resto dell'esperienza abbiamo misurato indirettamente il campo magnetico $ B $ tramite la corrente di alimentazione nelle bobine $ I $.
+Dove possibile (cioè quando sapevamo di trovarci su una curva di salita, oppure una di discesa) abbiamo usato le linearizzazioni (l'\cref{eq:hysteresis-up} e l'\cref{eq:hysteresis-down}) dei cicli di isteresi specifici.
+Altrimenti, abbiamo usato il ciclo di isteresi medio (\ref{eq:hysteresis-mean}) accettando di avere un errore più grande (dato dall'incertezza sulla quota della retta).
+
+Quindi, per propagare l'errore abbiamo sfruttato l'indipendenza tra quelli sui parametri delle ``rette di isteresi'' e le misure di corrente, ma abbiamo anche assunto l'indipendenza tra pendenza e quota delle rette.\footnote{Formalmente questa assunzione non è corretta: esiste una covarianza tra $ m $ e $ q $, ma questa è piccola (di almeno un'ordine di grandezza). Inoltre spesso è negativa, quindi in quei casi la nostra assunzione sovrastima gli errori.}

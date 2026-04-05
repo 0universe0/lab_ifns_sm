@@ -1,0 +1,42 @@
+\newsec{Introduzione}
+
+\subsection{Effetto Hall}
+
+Immergere un semiconduttore\footnote{In realtà l'effetto Hall si può osservare anche con dei normali conduttori, come i metalli.}, attraversato da una corrente, dentro a un campo magnetico ha un effetto sul moto dei portatori di carica al suo interno: questi vengono spinti nella direzione mutuamente ortogonale a quella del moto stesso dei portatori e quella del campo magnetico.
+Questo fenomeno è chiamato effetto Hall.
+
+L'accumulo dei portatori su un lato della sonda dovuto al fenomeno genera un campo elettrico: a regime, questa differenza di potenziale, controbilancia esattamente l'effetto del campo magnetico.
+Sperimentalmente, possiamo valutare l'effetto misurando la differenza di potenziale ai lati del semiconduttore e verificare che la tensione di Hall $ V_H $ segua l'andamento teorico:
+\begin{equation} \label{eq:hall-tension}
+V_H = \frac{R_H}{t} i_p B
+\end{equation}
+dove $ R_H $ è il coefficiente di Hall relativo al materiale, $ t $ lo spessore del semiconduttore, $ i_p $ la corrente che fluisce al suo interno, e $ B $ il campo magnetico in cui è immerso.
+
+In particolare, dalla costante di Hall è possibile ricavare anche altri parametri del (semi)conduttore, come la densità dei portatori di carica:
+\begin{equation}\label{eq:charge-density}
+p = \frac{1}{R_H e}
+\end{equation}
+e pure la loro mobilità nel reticolo:
+\begin{equation} \label{eq:charge-mobility}
+\mu = \frac{R_H}{\rho_\text{res}} = \frac{R_H \cdot L}{t \cdot w \cdot R}
+\end{equation}
+dove $ \rho_\text{res} $ è la resistività, e $ R $ la resistenza.
+
+\subsection{Setup sperimentale}
+
+Inseriamo la sonda di Hall (germanio drogato $ p $) nel traferro di un elettromagnete.
+Misuriamo la tensione di Hall $ V_H $ con un elettrometro (Keithley) e la corrente $ i_p $ con un amperometro (Amprobe 37XRA) collegati alle connessioni sulla sonda mostrate in \cref{fig:hall-probe}, mentre controlliamo il campo magnetico attraverso la variazione di corrente di alimentazione delle bobine dell'elettromagnete (misurata con un amperometro identico, come in \cref{fig:hall-probe}).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{./figs/hall-circuit-sonda.jpg}
+\caption{Diagramma in cui viene rappresentato schematicamente l'apparato sperimentale. L'amperometro disegnato misura la corrente che fluisce all'interno delle bobine facendo sviluppare il campo magnetico nel traferro. La sonda di Hall è inserita nel mezzo e ai suoi capi misuriamo tensione $ V_H $ e corrente $ i_p $.}
+\label{fig:hall-probe}
+\end{figure}
+
+
+In particolare, abbiamo misurato anche le dimensioni del campione di germanio nella sonda:
+\begin{equation} \label{eq:dimensions}
+t = (1.0 \pm 0.1) \unit{mm} \qquad w = (10.0 \pm 0.1) \unit{mm} \qquad L = (20.0 \pm 0.1) \unit{mm}
+\end{equation}
+dove $ t $ è lo spessore, $ w $ la larghezza, e $ L $ la lunghezza.
