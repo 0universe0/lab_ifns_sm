@@ -366,6 +366,18 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
 
     return p_value
 
+import math
+
+def mytestZ(val1, err1, val2, err2):
+    """ returns z_score and p_value of comparison between val1+-err1 and val2+-err2 """
+    diff = abs(val1 - val2)
+    combined_err = math.sqrt(err1**2 + err2**2)
+
+    z_score = diff / combined_err
+    p_value = 2 * (1 - stats.norm.cdf(z_score))
+    
+    return z_score, p_value
+
 # Zscore function
 
 def Zscore(s1, s2, Print = True):
