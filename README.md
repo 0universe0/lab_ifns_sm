@@ -24,8 +24,8 @@ rimane solo più che gamma! (quindi tutto si riferisce a quello)
 - calibrazione multicanale [REMI]
 - confronto secondo fotopicco Na [REMI]
 
-- energie spalle compton
-- energie di backscattering
+- energie spalle compton [SIMO]
+- energie di backscattering [SIMO]
 - energie raggi caratteristici del piombo
 
 - analisi fondo ambientale
