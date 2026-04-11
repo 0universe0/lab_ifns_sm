@@ -248,8 +248,8 @@ def texTabler(data, errors, names):
 
     title = ""
     for i in range(0,len(names)-1):
-        title += f"${names[i]}$ & $\delta {names[i]}$ & "
-    title+= f"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
+        title += fr"${names[i]}$ & $\delta {names[i]}$ & "
+    title+= fr"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
 
     print(title)
     print("\\hline")

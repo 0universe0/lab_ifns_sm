@@ -24,8 +24,8 @@ rimane solo più che gamma! (quindi tutto si riferisce a quello)
 - calibrazione multicanale [REMI]
 - confronto secondo fotopicco Na [REMI]
 
-- energie spalle compton
-- energie di backscattering
+- energie spalle compton [SIMO]
+- energie di backscattering [SIMO]
 - energie raggi caratteristici del piombo
 
 - analisi fondo ambientale
@@ -33,9 +33,9 @@ rimane solo più che gamma! (quindi tutto si riferisce a quello)
 
 - stima della risoluzione
 
-- misura dell'attività con metodo relativo
-- misura dell'attività con metodo assoluto
+- misura dell'attività con metodo relativo [MAX]
+- misura dell'attività con metodo assoluto [MAX]
 
-- assorbimento di Cs nel piombo
+- assorbimento di Cs nel piombo [MAX]
 
-- analisi picco somma per Co
+- analisi picco somma per Co [MAX]
