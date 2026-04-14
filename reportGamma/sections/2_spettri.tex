@@ -1,40 +1,50 @@
-\subsection{setup e verifica impostazioni}
-Setup secondo scheda in lab, successiva verifica della posizione sul canale $ \sim 780 $ del picco ad energia maggiore per la sorgente \ce{^60Co} (\ce{^137Cs} (variare tensione fotom. o gain ampl. per garantire il rientro nel range del multican. per le misure successive).
+\subsection{Setup e verifica impostazioni}
+Abbiamo verificato il corretto funzionamento della postazione e verificato che la posizione sul canale $ \sim 780 $ fosse relativa al picco ad energia maggiore per la sorgente \ce{^60Co}, variando la tensione fornita al fotomoltiplicatore e/o il guadagno dell'amplificatore. Questa procedura serve per garantire il rientro nel range del multicanale per le misure successive.
 
-\section{studio della catena elettronica di misura}
+\section{Studio della catena elettronica di misura}
 
-info su scheda
+In questa sezione, prima di raccogliere dati sullo spettro energetico relativo a differenti sorgenti radioattive, vogliamo verificare la linearità della catena elettronica di misura.
+A tal proposito abbiamo raccolto dati sufficienti a costruire due grafici che illustrassero le proprietà cercate.
+Gli strumenti utilizzati per misurare le quantità riportate sono un generatore di impulsi, un oscilloscopio ed un analizzatore multicanale.
+Il valori del canale del picco acquisito, la $ V_{in} $ in entrata e la $ V_{out} $ in uscita all'amplificatore sono riportati nei grafici seguenti.
+Come evidente dai parametri calcolati la risposta è lineare come ci aspettavamo.
 
-\section{acquisizione degli spettri}
+\begin{center}
+    \includegraphics{images/pacini}
+    \includegraphics{images/pacini}
+\end{center}
 
-La temperatura del fotomoltiplicatore influenza fortemente la sua risposta (presa dati in una volta sola!)
+\section{Acquisizione degli spettri}
 
-info su scheda
+Abbiamo acquisito una serie di $ 8 $ misurazioni della durata di $ 2 $ \unit{min} ciascuna per \ce{^60Co} e \ce{^137Cs}.
+Per caratterizzare entrambe le sorgenti abbiamo raccolto la posizione del centroide del picco fotoelettrico e la sua FWHM, come riportato dal software di acquisizione, selezionando un intervallo di canali che a priori contenesse il picco interessato (ROI).\\
+Dopo l'acquisizione spettroscopica per tutti i tipi di sorgente a disposizione, abbiamo acquisito nuovamente lo spettro della sorgente iniziale per verificare che il guadagno del sistema fosse rimasto costante.
+Posizionando infine il rivelatore al di fuori della schermatura di piombo, senza sorgenti, abbiamo misurato per $ \sim 1 $ \unit{ora} lo spettro del fondo ambientale.
 
-Abbiamo acquisito una serie di 8 misure della durata di 2 min ciascuna, per \ce{^60Co} e \ce{^137Cs} annotando la posizione del centroide del picco fotoelettrico e la sua FWHM come riportato dal software di acquisizione (selezionando un intervallo di canali che a priori contenesse il picco (ROI)).
-Dopo l'acquisizione di uno spettro per tutti i tipi di sorgente a disposizione abbiamo acquisito nuovamente lo spettro della sorgente iniziale per verificare che il gain del sistema sia rimasto costante. Posizionando infine il rivelatore al di fuori della schermatura di piombo, senza sorgenti, abbiamo misurato per $ \sim 1 $ ora lo spettro del fondo ambientale.
+\subsection{Calibrazione del multicanale}
 
-\section{calibrazione del multicanale}
+Usando picchi di sorgenti note abbiamo calibrato il multicanale, identificato la posizione del centroide relativo al picco fotoelettrico di ogni sorgente e graficato i risultati in energia-canali. Abbiamo convertito il valore (CHN) in E(CHN) grazie alla funzione relativa \help{(riportare)}, per il calcolo degli errori \help{(riportare)}. 
 
-usando picchi di sorgenti note abbiamo calibrato il multic., identificato la posizione del centroide relativo al picco fotoelettrico di ogni sorgente e graficato i risultati in energia-canali. Abbiamo convertito il valore (CHN) in E(CHN) grazie alla funzione relativa (riportare), analogamente per gli errori (riportare). 
-
-\section{studio degli spettri di varie sorgenti gamma}
-Analizzando le misure raccolte per gli spettri delle varie sorgenti (eccetto \ce{^57Co}), abbiamo identificato le caratteristiche principali
+\section{Spettroscopia di varie sorgenti gamma}
+Analizzando le misure raccolte per gli spettri delle varie sorgenti (eccetto \ce{^57Co}), abbiamo identificato le caratteristiche principali che ci permettono di risalire a che tipo di emissione gamma stiamo osservando.
 
 \begin{itemize}
-    \item picchi fotoelettrici: assorbimento totale del fotone da parte del ristallo
-    \item spalle compton: assorbimento di energia per effetto Compton dell'elettrone prodotto nel cristallo
-    \item backscattering: gamma incidono sulla schermatura di piombo interagendo per effetto Compton ($ \theta = 180 gradi $)
-    \item raggi x relativi alla transizione \ce{K_{\alpha}} del \ce{Pb}
+    \item picchi fotoelettrici: assorbimento totale del fotone da parte del cristallo
+    \item spalle compton: assorbimento di energia per effetto Compton da parte dell'elettrone prodotto nel cristallo
+    \item backscattering: raggi gamma incidono sulla schermatura di piombo interagendo per effetto Compton ($ \theta = 180 gradi $)
+    \item raggi x relativi alla transizione \unit{K_{\alpha}} del \ce{Pb}
 \end{itemize}
 
+Riportiamo in seguito i risultati dell'analisi per il \ce{ELEMENTO}:
+Le posizioni dei fotopicchi, delle spalle Compton e dei picchi di backscatter sono riportate in tabella.
 \paragraph{p.s.}
-le posizioni dei centroidi relative a spalle compton e backscatter vanno assegnate manualmente come spiegato a lezione, assegnando le relative incertezze come dio vuole.
+I risultati relativi alle altre sorgenti analizzate sono riportati in appendice per gli elementi \help{cesio, sodio, piombo, roccia}
 
-\section{identificazione delle sorgenti sconosciute}
+\section{Identificazione delle sorgenti sconosciute}
 
-usando la retta di calibrazione precedente abbiamo ricavato l'energia corrispondente ai picchi fotoelettrici osservati per sorgenti sconosciute, confrontando i valori ottenuti con quelli presenti nella tavola delle sorgenti gamma fornita in laboratorio abbiamo riscontrato le seguenti corrispondenze:
+Alla fine della spettroscopia relativa ad elementi noti, abbiamo caratterizzato la risposta spettroscopica del rivelatore in relazione alla presenza di una sorgente ignota, una roccia.
+Usando la retta di calibrazione precedente abbiamo ricavato l'energia corrispondente ai picchi fotoelettrici osservati per la roccia, e confrontando i valori ottenuti con quelli presenti nella tavola delle sorgenti gamma fornita in laboratorio abbiamo riscontrato le seguenti corrispondenze:
 
-\help{...}
+\help{tabella}
 
-
+I valori riportati in tabella indicano che lo spettro osservato è relativo ad una roccia uranifera.
