@@ -370,11 +370,11 @@ import math
 
 def mytestZ(val1, err1, val2, err2):
     """ returns z_score and p_value of comparison between val1+-err1 and val2+-err2 """
-    diff = abs(val1 - val2)
+    diff = val1 - val2
     combined_err = math.sqrt(err1**2 + err2**2)
 
     z_score = diff / combined_err
-    p_value = 2 * (1 - stats.norm.cdf(z_score))
+    p_value = 2 * (1 - stats.norm.cdf(abs(z_score)))
     
     return z_score, p_value
 
