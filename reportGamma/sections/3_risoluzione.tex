@@ -41,10 +41,14 @@ Per applicare i due metodi di stima abbiamo misurato i rate dei picchi fotoelett
 come riportato in \cref{tab:csrates}.
 \begin{table}
 	\centering
-	\begin{tabular}{ccccccc}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
 		Sorgente & $A_n$ & $A_g$ & $t_\text{live} [\unit{s}]$ & $\delta t_\text{live}[\unit{s}]$ & $R[\unit{s^{-1}}]$ & $\delta R[\unit{s^{-1}}]$ \\
+		\hline
 		FS65 & 257764 & 273300  & 349.150 & 0.010 & 738.3 & 1.5 \\ 
-		FS66 & 51439 & 55415 & 354.170 & 0.010  & 145.2 & 0.7
+		\hline
+		FS66 & 51439 & 55415 & 354.170 & 0.010  & 145.2 & 0.7 \\
+		\hline
 	\end{tabular}
 	\caption{Dati relativi al conteggio dei rate del picco fotoelettrico delle due sorgenti di \ce{^137Cs}: l'area netta del picco $A_n$ determinata dal software rimuovendo il background all'area lorda $A_g$, il tempo di misura $t_\text{live}$ e i rate con il loro errore.}
 	\label{tab:csrates}
@@ -54,7 +58,7 @@ Il metodo relativo ci permette di ricavare l'attività di una sorgente incognita
 \begin{equation}
 	A_x = A_s\frac{R_x}{R_s}
 \end{equation}	
-Usando i dati in tabella \cref{tab:csrates} abbiamo calcolato l'attività della sorgente FS66:
+Usando i dati in \cref{tab:csrates} abbiamo calcolato l'attività della sorgente FS66:
 \begin{equation}
 	A_{FS66rel} = (36.8 \pm 1.9) \unit{kBq} 
 \end{equation}
@@ -77,4 +81,4 @@ Usando l'equazione in \cref{eq:absactivity} con i rates in \cref{tab:csrates} ab
 \begin{equation}
 	A_{FS65\text{abs}} = (196 \pm 17) \unit{kBq} \quad A_{FS66\text{abs}} = (38\pm3) \unit{kBq}
 \end{equation}
-
+Valori che se confrontati con quelli in \cref{eq:csactivities} con un test Z risultano essere compatibili ($Z_{65} =...$, $ p_{65} =...$ e $Z_{66} = ...$, $ p_{66} = ...$) al 5\%. \help{Vanno inseriti i valori di Z e p}  
