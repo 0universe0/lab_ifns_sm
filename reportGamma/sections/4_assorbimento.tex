@@ -1,16 +1,73 @@
-\section{determinazione del coefficiente di assorbimento di massa $ \mu / \rho $ }
+\section{Determinazione del coefficiente di assorbimento di massa $ \mu / \rho $ }
 
-la variazione di un fascio di $ \gamma $ varia con lo spessore del materiale che attraversa secondo la relazione:
-$$ I = I_0 e^{-\frac{\mu}{\rho X}} $$
-Dove $ \mu $ è il coefficiente di assorbimento lineare, $ \mu / \rho $ è il coefficiente di assorbimento di massa in \unit{cm^2 / g} e $ X = \rho x $ è lo spessore del materiale attraversato espresso in \unit{g / cm^2}
+Un fascio di raggi $\gamma$ monocromatico, attraversando uno spessore di materiale assorbente, \footnote{ L'assorbimento di un materiale cresce al crescere della sua densità $\rho$ e del suo numero atomico $Z$} viene attenuato secondo la legge:
+\begin{equation}\label{eq:decay}
+	I = I_0 e^{-\frac{\mu}{\rho x}}
+\end{equation}
+Dove $ \mu $ è il coefficiente di assorbimento lineare, $ \mu / \rho $ è il coefficiente di assorbimento di massa e  $ X = \rho x $ è lo spessore del materiale attraversato pesato per la sua densità.
+Abbiamo acquisito cinque spettri di emissione per la sorgente \ce{^137Cs} variando lo spessore di piombo attraversato dai $ \gamma $ emessi con delle lastre di spessore $(2.1 \pm 0.01) \unit{mm} $ ciascuna.
+\begin{table}
+	\centering 
+	\begin{tabular}{c}
+	ciao
+	\end{tabular}
+	\caption{}
+	\label{tab:csassorbim}
+	
+\end{table}
+Sui dati in \cref{tab:csassorbim} abbiamo effettuato una regressione con il modello in \cref{eq:decay} (in \cref{fig:absorb}) ottenendo come stime dei parametri:
+\begin{equation}
+	I_0 = (422 \pm 2) \unit{s^{-1}} \qquad \mu / \rho = (0.1040 \pm 0.0010) \unit{cm^2/g}
+\end{equation}
+e in particolare abbiamo confrontato $ \mu / \rho $ con il valore teorico:
+\begin{equation}
+	(\mu / \rho)_\text{true} = 0.1035 \unit{cm^2/g}
+\end{equation}
+effettuando un test Z che conferma la compatibilità tra i due dati  ($Z = 0.523 $ e $ p = 0.601 $) al 5\%. 
+\begin{figure}
+	\centering
+	\includegraphics[scale = 0.5]{pacini}
+	\caption{}
+	\label{fig:absorb}
+\end{figure}
 \paragraph{Perchè il coefficiente di assorbimento di massa dipende dall'energia dei fotoni?}
 
 etc...
 
-\section{analisi del picco somma nello spettro del \ce{^60Co}}
-Preferibile FS64 maggiore attività. "SIGLA SORGENTE USATA"
+
+
+\section{Analisi del picco somma nello spettro del \ce{^60Co}}	
+Il picco somma, è un effetto visibile durante un'esperienza di spettroscopia $ \gamma $ che avviene quando il rivelatorericonosce due $\gamma$ contemporaneamente che possono essere prodotti a cascata o in maniera indipendente. 
+A partire dallo spettro di emissione, si può calcolare l'area del picco somma per entrambe le ipotesi con:
+\begin{equation}
+	\Sigma_{fall} =\frac{\Sigma_1 \Sigma_2}{At} \qquad \Sigma_{ind} = \frac{\Sigma_1 \Sigma_2 \Delta t}{t} 
+\end{equation}
+
+dove $ \Sigma_n = \epsilon_n GAt.$
 \\
-Abbiamo posto la sorgente vicino al rivelatore ($ \sim 4 $ cm) per via dell'andamento come $ G^{2}  $ del numero di conteggi nel picco somma, così abbiamo conteggiato un numero di eventi significativo in un tempo ragionevole. etc...
+Per questo studio, abbiamo utilizzato la sorgente di \ce{^60Co} etichettata FS64 e l'abbiamo posizionata a circa 4 \unit{cm} dal rivelatore\footnote{La scelta è dovuta dalla dipendenza del picco somma dall'accettanza G}, inoltre abbiamo dovuto modificare l'amplificazione del segnale per far sì che il picco somma cadesse nella scala multicanale. 
+\help{Magari va spiegato un pò meglio questo concetto della dipendenza (vedi footnote)}.
+Inizialmente abbiamo aggiornato il valore di attività della sorgente al 15/04/2026:
+\begin{equation}
+A_{64today} = (32.460 \pm 0.084) \uni{kBq}
+\end{equation}
+Dallo studio del picco abbiamo ottenuto i seguenti dati:
+\begin{table}
+	\centering
+	\begin{tabular}{c}
+		ciao
+	\end{tabular}
+	\caption{}
+	\label{tab:cspeaksum}
+\end{table}
+
+A partire dai dati in \cref{tab:cspeaksum} abbiamo ricavato l'area per entrambe le ipotesi:
+\begin{equation}
+	\Sigma_{fall} = 1222.4 \pm 6.2  \qquad \Sigma_{ind} = 39.7 \pm 39.7
+\end{equation}
+e le abbiamo confrontate con il valore teorico $ \Sigma_{teo} = 950 \pm 46$
+\help{Bisogna controllare quello che ho scritto, inserire la tabella con Textabler e successivamente aggiungere eventuali parti che mi potrei essere dimenticato ma penso che il grosso sia stato completato} 
+
 \begin{center}
     \includegraphics[scale=0.5]{images/sorgenti}
 \end{center}
