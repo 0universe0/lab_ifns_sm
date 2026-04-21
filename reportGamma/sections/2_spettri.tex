@@ -110,7 +110,7 @@ trovando che sono compatibili con $ Z = 0.132 $ (o $ p = 0.895 $).
 Dopo aver calibrato la scala dei canali usando le energie dei fotopicchi vogliamo studiare la caratteristica dell'intero spettro, misurando le energie dei seguenti effetti e verificando che siano compatibili con i risultati attesi:
 \begin{enumerate}
 \item {\bf Spalla Compton}: è una zona continua nello spettro energetico, causata dalla deviazione del fotone incidente fuori dal cristallo, per effetto Compton.\\
-Per questo effetto, il rivelatore misurerà l'energia l'energia: 
+Per questo effetto, il rivelatore misurerà l'energia: 
 \begin{equation}
 E_{\text{Sp}} = E_ \gamma - E_ {\gamma'}(\theta) = E_ \gamma - \frac{E_ \gamma}{1+\frac{E_ \gamma}{mc^2} (1 - \cos(\theta)}
 \end{equation}
@@ -229,6 +229,18 @@ Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come rip
 Alla fine della spettroscopia relativa ad elementi noti, abbiamo caratterizzato la risposta spettroscopica del rivelatore in relazione alla presenza di una sorgente ignota, una roccia.
 Usando la retta di calibrazione precedente abbiamo ricavato l'energia corrispondente ai picchi fotoelettrici osservati per la roccia, e confrontando i valori ottenuti con quelli presenti nella tavola delle sorgenti gamma fornita in laboratorio abbiamo riscontrato le seguenti corrispondenze:
 
-\help{tabella}
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+        Energia misurata (\unit{MeV}) & Energia teorica (\unit{MeV}) & Ipotesi & Z score & p value\\
+        \hline
+        $0.0773 \pm 0.0044$ & $0.0740 \pm 0.0010$ & xray \ce{Pb} & 0.723 & 0.470\\
+        $0.6167 \pm 0.0097$ & $0.6090 \pm 0.0010$ & \ce{^214Bi} & 0.795 & 0.427\\
+        $0.3565 \pm 0.0065$ & $0.3510 \pm 0.0010$ & \ce{^214Pb} & 0.844 & 0.398\\
+        $0.2977 \pm 0.0059$ & $0.2950 \pm 0.0010$ & \ce{^214Pb} & 0.455 & 0.649\\
+        $0.2420 \pm 0.0054$ & $0.2420 \pm 0.0010$ & \ce{^214Pb} & 0.003 & 0.997\\
+        $0.1874 \pm 0.0050$ & $0.1860 \pm 0.0010$ & \ce{^226Ra} & 0.284 & 0.777\\
+    \end{tabular}
+\end{table}
 
-I valori riportati in tabella indicano che lo spettro osservato è relativo ad una roccia uranifera.
+Le relative ipotesi sulla presenza di un determinato elemento radioattivo nella roccia di cui abbiamo osservato lo spettro di emissione sono riportati in tabella. Confrontando i valori misurati con quelli teorici osserviamo che tutti gli elementi ipotizzati sono presenti nella catena di decadimento relativa al \help{torio?}. Questa informazione ci permette di supporre che la roccia di cui abbiamo osservato lo spettro di emissione sia di origine uranifera.

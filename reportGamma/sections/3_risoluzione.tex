@@ -1,17 +1,17 @@
 \section{Studio della risoluzione del rivelatore}
 Vogliamo caratterizzare la risoluzione del rivelatore utilizzato sulla base dei dati raccolti, a tal proposito ci serviremo
-dell'espressione teorica:
-$$ R = \frac{\Delta E}{E} $$
-Abbiamo determinato il valore sperimentale partire dai dati relativi ai 2 picchi delle sorgenti di \ce{^60Co} \ce{^137Cs} e \ce{^22Na}. Il seguente grafico riporta la risoluzione del rivelatore in funzione dell'energia nominale osservata:
-
+dell'espressione teorica $ R = \frac{\Delta E}{E} $. Tenendo conto del contributo derivante dalla quantità dei portatori di carica, la forma finale dell'espressione teorica utilizzata per costruire il fit è la seguente:
+\begin{equation}
+    R = \frac{k}{\sqrt{E}} + c
+\end{equation}
+dove entrambi i parametri coinvolti: $ c $ (risoluzione intrinseca dello scintillatore) e $ k $ sono parametri liberi del fit.
+Abbiamo determinato il valore sperimentale dell'energia a partire dai dati relativi ai due picchi delle sorgenti di \ce{^60Co} \ce{^137Cs} e \ce{^22Na}. Il seguente grafico caratterizza la risoluzione del rivelatore in funzione dell'energia nominale osservata:
 \begin{center}
-    \includegraphics{images/pacini}
+    \includegraphics[scale=0.5]{images/energeticResolution}
 \end{center}
 Dove $ E $ è l'energia nominale dell'emissione gamma per il picco considerato e $ \Delta E $ la relativa FWHM.
-
-Abbiamo poi confrontato attraverso dei Test Z (riportati in tabella) la compatibilità dei valori sperimentali con i relativi valori teorici. 
-Le stime sono soddisfacenti \help{spero}.
-\help{Calcolo della FWHM etc.?}
+Abbiamo calcolato $ \Delta E $ utilizzando la funzione per il calcolo dell'energia per l'estremo superiore ed inferiore passando come valori: posizione del centroide $ \pm FWHM/2 $. Dalla loro differenza otteniamo il valore cercato.\\
+Per quanto riguarda l'errore sulla risoluzione abbiamo propagato gli errori noti sui canali risalendo all'errore su $ \Delta E $, $ E $. 
 
 \section{Misura dell'attività di una sorgente}
 
