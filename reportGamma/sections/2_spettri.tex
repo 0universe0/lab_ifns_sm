@@ -36,7 +36,7 @@ Infatti, dopo aver misurato gli spettri di tutte le sorgenti abbiamo misurato un
 \text{centroide}_\text{after} = 781.82
 \end{equation}
 allora abbiamo considerato:
-\begin{equation}
+\begin{equation} \label{eq:errcentroide}
 \delta \text{centroide} = \sigma_\text{centroide} + \Delta = 1.5
 \end{equation}
 dove $ \Delta = 1.3 $ è la differenza tra la media della posizione dei centroidi all'inizio e il centroide misurato alla fine.
@@ -105,34 +105,33 @@ E_{\ce{^22Na},2} = (1.28 \pm 0.02) \unit{MeV} \qq{con} E_{\ce{^22Na},2 \text{tru
 \end{equation}
 trovando che sono compatibili con $ Z = 0.132 $ (o $ p = 0.895 $).
 
-\section{Spettroscopia di varie sorgenti gamma}
+\section{Studio degli spettri di emissione}
+
 Dopo aver calibrato la scala dei canali usando le energie dei fotopicchi vogliamo studiare la caratteristica dell'intero spettro, misurando le energie dei seguenti effetti e verificando che siano compatibili con i risultati attesi:
-
 \begin{enumerate}
-  \item {\bf Spalla Compton}: è una zona continua nello spettro energetico, causata dalla deviazione del fotone incidente fuori dal cristallo, per effetto Compton.\\
-      Per questo effetto, il rivelatore misurerà l'energia l'energia: 
-      \[
-        E_{\text{Sp}} = E_ \gamma - E_ {\gamma'}(\theta) = E_ \gamma - \frac{E_ \gamma}{1+\frac{E_ \gamma}{mc^2} (1 - \cos(\theta)}
-      \]
-      Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, prendendo il canale corrispondente alla semialtezza tra i valori di inizio e fine discesa, con un'errore pari alla metà della larghezza in canali della zona di discesa. \\
-      Verificheremo che l'energia risultante dalla misura sia compatibile con quella attesa:
-      \begin{equation}
-        E_{\text{Sp}} =  E_ \gamma - E_ {\gamma'}(\ang{1800}) = \frac{2E_ \gamma ^2}{mc^2} \frac{1}{1+2 \frac{E_ \gamma}{mc^2}}
-        \label{eq:E_sp}
-      \end{equation}
-      
-    \item {\bf Backscattering}: è il picco relativo all'effetto Compton dei raggi gamma incidenti sulla schermatura di piombo. Misuremo il valore di soglia relativo a  $\theta \simeq 180 gradi$, prendendo come canale quello corrispondente alla semialtezza in conteggi tra i valori di inizio e fine salita, con errore pari alla metà della larghezza in canali della zona di salita.
-      Confronteremo l'energia misurata con quella teorica:
-      \begin{equation}
-        E_{\text{back}} = E_{ \gamma'}(\ang{180}) = \frac{E_ \gamma}{1+e \frac{E_ \gamma}{mc^2}}
-      \end{equation}
+\item {\bf Spalla Compton}: è una zona continua nello spettro energetico, causata dalla deviazione del fotone incidente fuori dal cristallo, per effetto Compton.\\
+Per questo effetto, il rivelatore misurerà l'energia l'energia: 
+\begin{equation}
+E_{\text{Sp}} = E_ \gamma - E_ {\gamma'}(\theta) = E_ \gamma - \frac{E_ \gamma}{1+\frac{E_ \gamma}{mc^2} (1 - \cos(\theta)}
+\end{equation}
+Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, prendendo il canale corrispondente alla semialtezza tra i valori di inizio e fine discesa, con un'errore pari alla metà della larghezza in canali della zona di discesa. \\
+Verificheremo che l'energia risultante dalla misura sia compatibile con quella attesa:
+\begin{equation} \label{eq:E_sp}
+E_{\text{sp}} =  E_ \gamma - E_ {\gamma'}(\ang{180}) = \frac{2E_ \gamma ^2}{mc^2} \frac{1}{1+2 \frac{E_ \gamma}{mc^2}}
+\end{equation}
+  
+\item {\bf Backscattering}: è il picco relativo all'effetto Compton dei raggi gamma incidenti sulla schermatura di piombo. Abbiamo misurato il valore di soglia relativo a  $\theta \simeq \ang{180}$, prendendo come canale quello corrispondente alla semialtezza in conteggi tra i valori di inizio e fine salita, con errore pari alla metà della larghezza in canali della zona di salita.
+Confronteremo l'energia misurata con quella teorica:
+\begin{equation}
+E_{\text{back}} = E_{ \gamma'}(\ang{180}) = \frac{E_ \gamma}{1+e \frac{E_ \gamma}{mc^2}}
+\end{equation}
 
-    \item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Vengono misurati con la posizione del centroide \help{l'errore?} 
+\item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{eq:errcentroide}. \help{remi: gli errori in tabella (e di conseguenza anche i test Z) sono da correggere.}
 \end{enumerate}
 
-Di seguito, Per ogni sorgente analizzata, riportiamo in tabella \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti, e gli spettri relativi in figura \cref{fig:simo_foto_spettri}
+Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti riportati in \cref{fig:simo_foto_spettri}.
 
-\help{la tabella può essere fatta meglio?}
+\help{la tabella può essere fatta meglio? (remi: per me è ok, a parte le correzioni sui valori)}
 
 \begin{table}
   \centering
@@ -149,30 +148,30 @@ Di seguito, Per ogni sorgente analizzata, riportiamo in tabella \cref{tab:ch_spe
   \label{tab:ch_spettri}
 \end{table}
 
-\begin{figure}
-
+\begin{figure}[]
     \centering
-    \includegraphics[width=0.35\textwidth]{images/simo_sodio.png}
-    \caption{Spettro \ce{^22Na}}
-    \label{fig:simo_spettro_Co}
 
-    \includegraphics[width=0.35\textwidth]{images/simo_Co60.png}
-    \caption{Spettro \ce{^60Co}}
-    \label{fig:simo_spettro_Co}
+    \subcaptionbox{Spettro \ce{^22Na}\label{fig:simo_spettro_Na}}
+        {\includegraphics[width=0.3\textwidth]{images/simo_sodio.png}}
+    \hfill
+    \subcaptionbox{Spettro \ce{^60Co}\label{fig:simo_spettro_Co}}
+        {\includegraphics[width=0.3\textwidth]{images/simo_Co60.png}}
+    \hfill
+    \subcaptionbox{Spettro \ce{^137Cs}\label{fig:simo_spettro_Cs}}
+        {\includegraphics[width=0.3\textwidth]{images/simo_cesio.png}}
 
-    \includegraphics[width=0.35\textwidth]{images/simo_cesio.png}
-    \caption{Spettro \ce{^137Cs}}
-    \label{fig:simo_spettro_Cs}
-    \centering
+    \caption{Spettri di emissione delle tre sorgenti per cui abbiamo studiato gli effetti di spalla Compton, backscattering e il picco di emissione di raggi X dovuto alla schermatura.}
+    \label{fig:spettri_calibrazione}
 \end{figure}
 
 \subsection{Spalla Compton}
+
 Come riportato in tabella \cref{tab:ch_spettri}, abbiamo trovato il valore in canali della soglia di Compton per il \ce{^137Cs} e di entrambe le soglie del \ce{^22 Na}. Per quanto riguarda invece il \ce{^60Co}, come si puo vedere in figura \cref{fig:simo_spettro_Co}, il valore di soglia relativo al secondo fotopicco è sovrapposto al primo fotopicco, quindi abbiamo potuto misurare solo il valore di soglia relativo al primo fotopicco. \\
-Usando la calibrazione della scala abbiamo estrapolato il valore energetico delle soglie, e l'abbiamo confrontato con i valori attesi, ricavati a partire da \cref{eq:E_sp} \help{in tabella forse si può togliere l'errore sul valore teorico?}  \\
+Usando la calibrazione della scala abbiamo estrapolato il valore energetico delle soglie, e l'abbiamo confrontato con i valori attesi, ricavati a partire da \cref{eq:E_sp}. 
+
 \begin{table}
   \centering
 \begin{tabular}{c|cccccc}
-
  sorgente  &   $E_{	\text{sp,exp}}[\unit{MeV}]$ & $\delta E_{	\text{sp,exp}}[\unit{MeV}]$ & $E_{	\text{sp,th}}[\unit{MeV}]$ & $\delta E_{	\text{sp,th}}[\unit{MeV}]$ & $Z_	\text{score}$ \\
  \hline
 \ce{^22Na} \ang{1} picco & 0.34 & 0.03 & 0.3407 & 0.0007 & 0.0126 \\
@@ -180,15 +179,16 @@ Usando la calibrazione della scala abbiamo estrapolato il valore energetico dell
 \ce{^60Co} & 0.97 & 0.04 & 0.9634 & 0.0008 & -0.0821 \\
 \ce{^137Cs} & 0.48 & 0.03 & 0.47734 & 0.00007 & 0.0373 \\
   \end{tabular}
-  \caption{Compatibilità spalla Comption con valori teorici.}
+  \caption{Compatibilità spalla Compton con valori teorici.}
   \label{tab:simo_spalla}
 \end{table}
 
-Come si può vedere in \cref{tab:simo_spalla}, i valori sperimentali risultano compatibili con i valori attesi. \\
+Come si può vedere in \cref{tab:simo_spalla}, i valori sperimentali risultano compatibili con i valori attesi. \help{remi: aggiungere anche p-value?}
 
 \subsection{Backscatter}
-L'effetto di backscatter è stato individuato dallo spettro per il primo fotopicco di \ce{^22Na} e per il \ce{137Cs}. Per quanto riguarda il \ce{^22Na} \cref{fig:simo_cesio} i picchi di backscatter sono sovrapposti e risultano indistinguibili, perciò verrà confrontato l'unico picco visibile con entrambi i valori di Backscatter teorici. \\
-In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimentalmente a confronto con quelle teoriche. \\
+
+L'effetto di backscatter è stato individuato dallo spettro per il primo fotopicco di \ce{^22Na} e per il \ce{137Cs}. Per quanto riguarda il \ce{^22Na} \cref{fig:simo_cesio} i picchi di backscatter sono sovrapposti e risultano indistinguibili, perciò verrà confrontato l'unico picco visibile con entrambi i valori di Backscatter teorici. 
+In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimentalmente a confronto con quelle teoriche. 
 
 \begin{table}
   \centering
@@ -204,11 +204,12 @@ In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimental
   \label{tab:simo_back}
 \end{table}
 
-
-Le energie di backscattering attese risultano compatibili con quelle misurate, anche per entrambi i fotopicchi di \ce{^60Co}. Questo conferma l'ipotesi che lo spettro del backscatter per il Cesio \cref{fig:simo_cesio} abbia i due picchi sovrapposti. 
+Le energie di backscattering attese risultano compatibili con quelle misurate, anche per entrambi i fotopicchi di \ce{^60Co}. Questo conferma l'ipotesi che lo spettro del backscatter per il Cesio \cref{fig:simo_cesio} abbia i due picchi sovrapposti. \help{remi: in che senso?}
 
 \subsection{Raggi X}
-Abbiamo analizzato i Raggi X caratteristici del piombo per tutte le sorgenti. Il valore atteso è la transizione $K_ \alpha$ del Piombo. Come si può vedere in \cref{tab:simo_Pb}, Per tutti gli spettri il picco $K_ \alpha$ del piombo è compatibile con i valori attesi.
+
+Abbiamo verificato la presenza dei picchi di emissione dovuti ai raggi X caratteristici del piombo negli spettri di tutte le sorgenti.
+Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come riportato in \cref{tab:simo_Pb}, per tutti gli spettri il valore di energia che abbiamo misurato sperimentalmente è compatibile con quello teorico ($(0.0740 \pm 0.0010) \unit{MeV}$).
 
 \begin{table}
   \centering
@@ -222,18 +223,6 @@ Abbiamo analizzato i Raggi X caratteristici del piombo per tutte le sorgenti. Il
   \caption{raggi X relativi alla transizione $K_ \alpha$ del piombo.}
   \label{tab:simo_Pb}
 \end{table}
-
-
-
-
-
-
-
-
-
-
-
-
 
 \section{Identificazione delle sorgenti sconosciute}
 
