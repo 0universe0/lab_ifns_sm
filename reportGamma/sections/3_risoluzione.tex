@@ -1,17 +1,33 @@
 \section{Studio della risoluzione del rivelatore}
-Vogliamo caratterizzare la risoluzione del rivelatore utilizzato sulla base dei dati raccolti, a tal proposito ci serviremo
-dell'espressione teorica $ R = \frac{\Delta E}{E} $. Tenendo conto del contributo derivante dalla quantità dei portatori di carica, la forma finale dell'espressione teorica utilizzata per costruire il fit è la seguente:
-\begin{equation}
+
+Vogliamo caratterizzare la risoluzione del rivelatore:
+\begin{equation} 
+R = \frac{\Delta E}{E}
+\end{equation}
+dove $ \Delta E $ è la larghezza del picco a energie $ E $ misurato dal rivelatore.
+
+\help{manca spiegazione su come abbiamo calcolato $ \Delta E $ (per l'errore c'è la storia della covarianza, guarda come sono scritte le funzioni in python se non ricordi): ci vanno le formule che abbiamo usato (circa)}
+
+% !!! li ho commentati solo perché non riuscivo a capire cosa c'è scritto, però magari tu riesci a interpretare !!!
+%Abbiamo calcolato $ \Delta E $ utilizzando la funzione per il calcolo dell'energia per l'estremo superiore ed inferiore passando come valori: posizione del centroide $ \pm FWHM/2 $. Dalla loro differenza otteniamo il valore cercato.\\
+%Per quanto riguarda l'errore sulla risoluzione abbiamo propagato gli errori noti sui canali risalendo all'errore su $ \Delta E $, $ E $. 
+
+Tenendo conto del contributo derivante dalla quantità dei portatori di carica \help{??? non penso sia vero}, la forma finale dell'espressione teorica utilizzata per costruire il fit è la seguente:
+\begin{equation} \label{eq:resolution}
     R = \frac{k}{\sqrt{E}} + c
 \end{equation}
-dove entrambi i parametri coinvolti: $ c $ (risoluzione intrinseca dello scintillatore) e $ k $ sono parametri liberi del fit.
-Abbiamo determinato il valore sperimentale dell'energia a partire dai dati relativi ai due picchi delle sorgenti di \ce{^60Co} \ce{^137Cs} e \ce{^22Na}. Il seguente grafico caratterizza la risoluzione del rivelatore in funzione dell'energia nominale osservata:
-\begin{center}
-    \includegraphics[scale=0.5]{images/energeticResolution}
-\end{center}
-Dove $ E $ è l'energia nominale dell'emissione gamma per il picco considerato e $ \Delta E $ la relativa FWHM.
-Abbiamo calcolato $ \Delta E $ utilizzando la funzione per il calcolo dell'energia per l'estremo superiore ed inferiore passando come valori: posizione del centroide $ \pm FWHM/2 $. Dalla loro differenza otteniamo il valore cercato.\\
-Per quanto riguarda l'errore sulla risoluzione abbiamo propagato gli errori noti sui canali risalendo all'errore su $ \Delta E $, $ E $. 
+per i parametri liberi $ c $ (risoluzione intrinseca dello scintillatore) e $ k $.
+
+Per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{images/energeticResolution.png}
+\caption{Regressione con il modello (\ref{eq:resolution}) ai dati in \cref{tab:resolution} per caratterizzare l'andamento della risoluzione $ R $ del rivelatore contro l'energia $ E $.}
+\label{fig:resolution}
+\end{figure}
+ 
+\help{mancano i risultati del fit, la tabella con i dati del fit, e i nomi (con unità di misura) degli assi del grafico}
 
 \section{Misura dell'attività di una sorgente}
 

@@ -226,12 +226,18 @@ Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come rip
 
 \section{Identificazione delle sorgenti sconosciute}
 
-Alla fine della spettroscopia relativa ad elementi noti, abbiamo caratterizzato la risposta spettroscopica del rivelatore in relazione alla presenza di una sorgente ignota, una roccia.
-Usando la retta di calibrazione precedente abbiamo ricavato l'energia corrispondente ai picchi fotoelettrici osservati per la roccia, e confrontando i valori ottenuti con quelli presenti nella tavola delle sorgenti gamma fornita in laboratorio abbiamo riscontrato le seguenti corrispondenze:
+Dopo aver studiato gli spettri delle sorgenti note, abbiamo caratterizzato la risposta spettroscopica del rivelatore quando esposto a delle sorgenti in cui sono presenti dei radionuclidi ignoti: una roccia e il fondo ambientale.
+
+Per entrambe le ``sorgenti'' abbiamo identificato tutti i picchi presenti nello spettro: convertite le misure in canali in unità di energia (con la funzione di calibrazione) le abbiamo confrontate con le energie di emissione $ \gamma $ di tutti gli elementi che hanno degli emivita molto lunghi (almeno nell'ordine di $ 10^{9} \unit{y} $) o che fanno parte delle catene di decadimento di elementi che hanno lunghi emivita.
+Solo elementi che rispettano questi due criteri possono effettivamente trovarsi in delle sorgenti naturali.
+
+\subsection{Roccia}
+
+Identificati i picchi nello spettro \help{inserisci immagine spettro}, abbiamo ricavato le energie associate (come in \cref{tab:rock}). \help{imposta la tabella come tutte le altre, e aggiungi le misure in canali (questo è importante: lo chiedono esplicitamente)}
 
 \begin{table}
     \centering
-    \begin{tabular}{c|c|c|c|c}
+    \begin{tabular}{c|c|c|cc}
         Energia misurata (\unit{MeV}) & Energia teorica (\unit{MeV}) & Ipotesi & Z score & p value\\
         \hline
         $0.0773 \pm 0.0044$ & $0.0740 \pm 0.0010$ & xray \ce{Pb} & 0.723 & 0.470\\
@@ -241,6 +247,14 @@ Usando la retta di calibrazione precedente abbiamo ricavato l'energia corrispond
         $0.2420 \pm 0.0054$ & $0.2420 \pm 0.0010$ & \ce{^214Pb} & 0.003 & 0.997\\
         $0.1874 \pm 0.0050$ & $0.1860 \pm 0.0010$ & \ce{^226Ra} & 0.284 & 0.777\\
     \end{tabular}
+    \caption{Le misure relative ai picchi nello spettro della roccia, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}
+    \label{tab:rock}
 \end{table}
 
-Le relative ipotesi sulla presenza di un determinato elemento radioattivo nella roccia di cui abbiamo osservato lo spettro di emissione sono riportati in tabella. Confrontando i valori misurati con quelli teorici osserviamo che tutti gli elementi ipotizzati sono presenti nella catena di decadimento relativa al \help{torio?}. Questa informazione ci permette di supporre che la roccia di cui abbiamo osservato lo spettro di emissione sia di origine uranifera.
+
+In tabella abbiamo riportato tutti gli elementi che spiegano i picchi misurati nello spettro della roccia: le nostre ipotesi sono tutte compatibili al $ 5\% $.
+In particolare, tutti gli elementi ipotizzati appartengono alla catena di decadimento dell'\ce{^238U} (emivita di $ 4.5 \cdot 10^9 \unit{y} $).
+
+\subsection{Fondo}
+
+\help{scrivere fondo: non includere i picchi di simone}
