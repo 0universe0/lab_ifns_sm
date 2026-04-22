@@ -233,28 +233,50 @@ Solo elementi che rispettano questi due criteri possono effettivamente trovarsi 
 
 \subsection{Roccia}
 
-Identificati i picchi nello spettro \help{inserisci immagine spettro}, abbiamo ricavato le energie associate (come in \cref{tab:rock}). \help{imposta la tabella come tutte le altre, e aggiungi le misure in canali (questo è importante: lo chiedono esplicitamente)}
+Identificati i picchi nello spettro della roccia:
+\begin{figure}
+    \centering
+    \subcaptionbox{Spettro emissivo della roccia di origine ignota\label{fig:rock}}
+        {\includegraphics[width=0.5\textwidth]{images/roccia.png}}
+\end{figure}
+abbiamo ricavato le energie associate (come in \cref{tab:rock}).
 
 \begin{table}
     \centering
-    \begin{tabular}{c|c|c|cc}
-        Energia misurata (\unit{MeV}) & Energia teorica (\unit{MeV}) & Ipotesi & Z score & p value\\
+    \begin{tabular}{c|c|c|c|c|c|cc}
+        CHN & $ E_{exp}  $ (\unit{MeV}) & $ \delta E_{exp} $ & $ E_{th} $ (\unit{MeV})& $ \delta E_{th} $ & Ipotesi & Z score & p value\\
         \hline
-        $0.0773 \pm 0.0044$ & $0.0740 \pm 0.0010$ & xray \ce{Pb} & 0.723 & 0.470\\
-        $0.6167 \pm 0.0097$ & $0.6090 \pm 0.0010$ & \ce{^214Bi} & 0.795 & 0.427\\
-        $0.3565 \pm 0.0065$ & $0.3510 \pm 0.0010$ & \ce{^214Pb} & 0.844 & 0.398\\
-        $0.2977 \pm 0.0059$ & $0.2950 \pm 0.0010$ & \ce{^214Pb} & 0.455 & 0.649\\
-        $0.2420 \pm 0.0054$ & $0.2420 \pm 0.0010$ & \ce{^214Pb} & 0.003 & 0.997\\
-        $0.1874 \pm 0.0050$ & $0.1860 \pm 0.0010$ & \ce{^226Ra} & 0.284 & 0.777\\
+        54.41 & 0.077 & 0.004 & 0.0740 & 0.0010 & xray \ce{Pb} & 0.723 & 0.470\\
+        368.33 & 0.6167 & 0.0010 & 0.6090 & 0.0010 & \ce{^214Bi} & 0.795 & 0.427\\
+        217.44 & 0.356 & 0.007 & 0.3510 & 0.0010 & \ce{^214Pb} & 0.844 & 0.398\\
+        183.2 & 0.297 & 0.006 & 0.2950 & 0.0010 & \ce{^214Pb} & 0.455 & 0.649\\
+        150.72 & 0.242 & 0.005 & 0.2420 & 0.0010 & \ce{^214Pb} & 0.003 & 0.997\\
+        118.86 & 0.187 & 0.005 & 0.1860 & 0.0010 & \ce{^226Ra} & 0.284 & 0.777\\
     \end{tabular}
     \caption{Le misure relative ai picchi nello spettro della roccia, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}
     \label{tab:rock}
 \end{table}
 
-
-In tabella abbiamo riportato tutti gli elementi che spiegano i picchi misurati nello spettro della roccia: le nostre ipotesi sono tutte compatibili al $ 5\% $.
+In tabella abbiamo riportato tutti gli elementi che spiegano i picchi misurati nello spettro della roccia (\cref{fig:rock}): le nostre ipotesi sono tutte compatibili al $ 5\% $.
 In particolare, tutti gli elementi ipotizzati appartengono alla catena di decadimento dell'\ce{^238U} (emivita di $ 4.5 \cdot 10^9 \unit{y} $).
 
 \subsection{Fondo}
 
-\help{scrivere fondo: non includere i picchi di simone}
+La caratterizzazione dello spettro emissivo del fondo ambientale è stata analoga al caso della roccia. Il relativo grafico è riportato in \cref{fig:fondo}.
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|cc}
+        CHN & $ E_{exp}  $ (\unit{MeV}) & $ \delta E_{exp} $ & $ E_{th} $ (\unit{MeV})& $ \delta E_{th} $ & Ipotesi & Z score & p value\\
+        \hline
+        181 & 0.294 & 0.007 & x & x & \ce{^214Pb} & x & x\\
+        153 & 0.246 & 0.006 & x & x & \ce{^214Pb} & x & x\\
+        122 & 0.193 & 0.006 & x & x & \ce{^226Ra} & x & x\\
+        79.5 & 0.120 & 0.005 & x & x & \ce{^212Pb} & x & x\\
+        61 & 0.088 & 0.005 & x & x & \ce{^228Th} & x & x\\
+    \end{tabular}
+    \caption{\help{Le misure relative ai picchi nello spettro del fondo ambientale, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}}
+    \label{tab:fondo}
+\end{table}
+
+
+Confrontando i valori ottenuti dalla spettroscopia con le ipotesi teoriche relative che abbiamo fatto, otteniamo risultati accettabili al $ 5\% $. I valori osservati per canali, energia e test statistici che verificano la compatibilità dei dati sperimentali con quelli teorici sono riportati in \cref{tab:fondo}. Gli elementi ipotizzati in questo caso, appartengono invece alla catena di decadimento del \ce{^232Th} \help{emivita}.
