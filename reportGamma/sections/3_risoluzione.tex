@@ -6,31 +6,37 @@ R = \frac{\Delta E}{E}
 \end{equation}
 dove $ \Delta E $ è la larghezza del picco a energie $ E $ misurato dal rivelatore.
 
-
-Abbiamo calcolato $ \Delta E $ usando la formula seguente:
+In particolare, abbiamo calcolato $ \Delta E $ usando la formula:
 \begin{equation}
-    \Delta E = a  \qty(CHN_{DX} - CHN_{SX}) + b  \qty(CHN_{DX}^{2} - CHN_{SX}^{2})
+\Delta E = b \qty(C_\text{dx} - C_\text{sx}) + c \qty(C_\text{dx}^{2} - C_\text{sx}^{2})
 \end{equation}
-Dove $ a $ e $ b $ sono parametri di calibrazione calcolati in precedenza basandosi sullo spettro emissivo del \ce{^60Co}, mentre i canali $ CHN $ sono stati calcolati rispettivamente sommando e sottraendo al valore del canale osservato per l'energia, il valore della FWHM relativa al picco.\\
-Abbiamo effettuato il calcolo dell'errore su $ \Delta E $ tenendo conto della covarianza dei parametri coinvolti, la formula utilizzata in questo caso è invece del tipo:
+dove $ a $ e $ b $ sono i parametri di calibrazione calcolati in \cref{eq:calibration}, mentre i canali $ C $ destro e sinistro corrispondono ai punti a metà altezza di ogni picco:
 \begin{equation}
-    \delta \Delta E = \sqrt{ c^{2} + b^{2} + DX^{2} + SX^{2} }
+C_\text{sx} = C_\text{peak} - \frac{\text{FWHM}_\text{peak}}{2} \qquad C_\text{dx} = C_\text{peak} + \frac{\text{FWHM}_\text{peak}}{2}.
 \end{equation}
-I parametri $ c $ e $ d $ sono, insieme ai parametri $ DX $ e $ SX $, i valori delle derivate parziali ottenute nella propagazione dell'errore, corretti attraverso gli errori calcolati nella fase di calibrazione attraverso una moltiplicazione (es. $ c = \qty(CHN_{DX}^{2} - CHN_{SX}^{2}) c_{err})  $.
 
-Per costruire un fit adatto alla descrizione dei dati raccolti, abbiamo usato una formula teorica di questo tipo:
+Per propagare gli errori su posizioni e larghezze dei picchi abbiamo considerato le stime fatte in \cref{sec:errors}, mentre abbiamo trascurato la covarianza tra il parametro $ b $ e il parametro $ c $.\footnote{Esplicitando la formula del calcolo di $ \Delta E $ (senza calcolare $ E_\text{sx} \pm \delta E_\text{sx} $ e $ E_\text{dx} \pm \delta E_\text{dx} $, per poi prenderne la differenza) elimina, già, il contributo dell'errore su $ a $ dalla stima.} 
+
+Il modello teorico che abbiamo usato per descrivere l'andamento della risoluzione è:
 \begin{equation} \label{eq:resolution}
-    R = \frac{k}{\sqrt{E}} + c
+R = \frac{k}{\sqrt{E}} + c
 \end{equation}
-per i parametri liberi $ c $ (risoluzione intrinseca dello scintillatore) e $ k $.
-Dal grafico è evidente che la risoluzione del rivelatore decresce in modo esponenziale all'aumentare dell'energia misurata. Questo comportamento è consistente con l'aspettativa teorica relativa alla formula utilizzata per costruire la regressione.
-Per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}.
+dove $ k $ rappresenta \help{??? è rumore statistico}, mentre $ c $ un contributo di fondo del sistema.
+
+Nello specifico, per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}, come in \cref{tab:resolution}
+Troviamo che la regressione converge in maniera accettabile per i parametri:
+\begin{equation}
+k = (\ldots) \unit{MeV^{1/2}} \qquad c = (\ldots)
+\end{equation}
+e usando questi valori per calcolare la risoluzione del rilevatore a $ 1 \unit{MeV} $ troviamo $ R(1 \unit{MeV}) = 6.5 \% $, che è un valore tipico per i rivelatori \ce{NaI(Tl)}.
+
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{images/energeticResolution.png}
-\caption{Regressione con il modello (\ref{eq:resolution}) ai dati in \cref{tab:resolution} per caratterizzare l'andamento della risoluzione $ R $ del rivelatore contro l'energia $ E $.}
+\caption{Regressione con il modello (\ref{eq:resolution}) ai dati in \cref{tab:resolution} per caratterizzare l'andamento della risoluzione $ R = \Delta E / E $ del rivelatore contro l'energia $ E $.}
 \label{fig:resolution}
 \end{figure}
+
 \begin{table}
     \centering
     \begin{tabular}{c|c|c|c|c|c|c}
@@ -38,10 +44,9 @@ Per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo
         \hline
         0.0005 & 0.013 & 0.066 & 0.013 & 0.9775 &  0.0455 & 2 \\
     \end{tabular}
-    \caption{Risultati della regressione lineare con il modello \ref{eq:resolution}, i valori ottenuti sono accettabili con uno scarto al $ 5 \% $.}
+    \caption{\help{il risultato del fit non va in tabella, servono i dati che compaiono nel grafico! (poi quale parametro è quale?)}}
     \label{tab:resolution}
 \end{table}
-Per la risoluzione otteniamo dalla regressione una stima di circa il $ 6.5 \% $. La risoluzione ottenuta è in accordo con i valori delle risoluzioni di scintillatori \ce{NaI}. 
 
 \section{Misura dell'attività di una sorgente}
 
