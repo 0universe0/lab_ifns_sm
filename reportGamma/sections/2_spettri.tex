@@ -233,25 +233,26 @@ Solo elementi che rispettano questi due criteri possono effettivamente trovarsi 
 
 \subsection{Roccia}
 
-Identificati i picchi nello spettro della roccia:
+Identificati i picchi nello spettro della roccia (\cref{fig:rock}) abbiamo ricavato le energie associate (come in \cref{tab:rock}).
+
 \begin{figure}
     \centering
-    \subcaptionbox{Spettro emissivo della roccia di origine ignota\label{fig:rock}}
-        {\includegraphics[width=0.5\textwidth]{images/roccia.png}}
+    \includegraphics[width=0.5\textwidth]{images/roccia.png}
+    \caption{Spettro emissivo della roccia.}
+    \label{fig:rock}
 \end{figure}
-abbiamo ricavato le energie associate (come in \cref{tab:rock}).
 
 \begin{table}
     \centering
-    \begin{tabular}{c|c|c|c|c|c|cc}
-        CHN & $ E_{exp}  $ (\unit{MeV}) & $ \delta E_{exp} $ & $ E_{th} $ (\unit{MeV})& $ \delta E_{th} $ & Ipotesi & Z score & p value\\
+    \begin{tabular}{cc|cc|cc|c|cc}
+        canale & $\delta$ canale & $ E_\text{exp} [\unit{MeV}] $ & $ \delta E_\text{exp} [\unit{MeV}] $ & $ E_\text{th} [\unit{MeV}] $ & $ \delta E_\text{th} [\unit{MeV}] $ & ipotesi & $Z$ & $p$ \\
         \hline
-        54.41 & 0.077 & 0.004 & 0.0740 & 0.0010 & xray \ce{Pb} & 0.723 & 0.470\\
-        368.33 & 0.6167 & 0.0010 & 0.6090 & 0.0010 & \ce{^214Bi} & 0.795 & 0.427\\
-        217.44 & 0.356 & 0.007 & 0.3510 & 0.0010 & \ce{^214Pb} & 0.844 & 0.398\\
-        183.2 & 0.297 & 0.006 & 0.2950 & 0.0010 & \ce{^214Pb} & 0.455 & 0.649\\
-        150.72 & 0.242 & 0.005 & 0.2420 & 0.0010 & \ce{^214Pb} & 0.003 & 0.997\\
-        118.86 & 0.187 & 0.005 & 0.1860 & 0.0010 & \ce{^226Ra} & 0.284 & 0.777\\
+        54.4 & 1.5 & 0.077 & 0.004 & 0.0740 & 0.0010 & xray \ce{Pb} & 0.723 & 0.470\\
+        368.3 & 1.5 & 0.6167 & 0.0010 & 0.6090 & 0.0010 & \ce{^214Bi} & 0.795 & 0.427\\
+        217.4 & 1.5 & 0.356 & 0.007 & 0.3510 & 0.0010 & \ce{^214Pb} & 0.844 & 0.398\\
+        183.2 & 1.5 & 0.297 & 0.006 & 0.2950 & 0.0010 & \ce{^214Pb} & 0.455 & 0.649\\
+        150.7 & 1.5 & 0.242 & 0.005 & 0.2420 & 0.0010 & \ce{^214Pb} & 0.003 & 0.997\\
+        118.9 & 1.5 & 0.187 & 0.005 & 0.1860 & 0.0010 & \ce{^226Ra} & 0.284 & 0.777\\
     \end{tabular}
     \caption{Le misure relative ai picchi nello spettro della roccia, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}
     \label{tab:rock}
@@ -262,21 +263,20 @@ In particolare, tutti gli elementi ipotizzati appartengono alla catena di decadi
 
 \subsection{Fondo}
 
-La caratterizzazione dello spettro emissivo del fondo ambientale è stata analoga al caso della roccia. Il relativo grafico è riportato in \cref{fig:fondo}.
+La caratterizzazione dello spettro emissivo del fondo ambientale è stata analoga al caso della roccia. Il relativo grafico è riportato in \cref{fig:fondo}. \help{manca il grafico}
+
 \begin{table}
     \centering
-    \begin{tabular}{c|c|c|c|c|c|cc}
-        CHN & $ E_{exp}  $ (\unit{MeV}) & $ \delta E_{exp} $ & $ E_{th} $ (\unit{MeV})& $ \delta E_{th} $ & Ipotesi & Z score & p value\\
+    \begin{tabular}{cc|cc|cc|c|cc}
+        canale & $\delta$ canale & $ E_\text{exp} [\unit{MeV}] $ & $ \delta E_\text{exp} [\unit{MeV}] $ & $ E_\text{th} [\unit{MeV}] $ & $ \delta E_\text{th} [\unit{MeV}] $ & ipotesi & $Z$ & $p$ \\
         \hline
-        181 & 0.294 & 0.007 & x & x & \ce{^214Pb} & x & x\\
-        153 & 0.246 & 0.006 & x & x & \ce{^214Pb} & x & x\\
-        122 & 0.193 & 0.006 & x & x & \ce{^226Ra} & x & x\\
-        79.5 & 0.120 & 0.005 & x & x & \ce{^212Pb} & x & x\\
-        61 & 0.088 & 0.005 & x & x & \ce{^228Th} & x & x\\
+        363.2 & 1.5 & 0.608 & 0.010 & 0.60931 & 0.00010 & \ce{^214Bi} & -0.157 & 0.875 \\
+        845.7 & 1.5 & 1.45 & 0.03 & 1.4608 & 0.0010 & \ce{^40K} & -0.395 & 0.693 \\
     \end{tabular}
-    \caption{\help{Le misure relative ai picchi nello spettro del fondo ambientale, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}}
+    \caption{\help{Le misure relative ai picchi nello spettro del fondo ambientale, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.} \help{avevi inserito solo i picchi di simone che sono gli unici che non dovevi mettere: ho già corretto!}}
     \label{tab:fondo}
 \end{table}
 
-
-Confrontando i valori ottenuti dalla spettroscopia con le ipotesi teoriche relative che abbiamo fatto, otteniamo risultati accettabili al $ 5\% $. I valori osservati per canali, energia e test statistici che verificano la compatibilità dei dati sperimentali con quelli teorici sono riportati in \cref{tab:fondo}. Gli elementi ipotizzati in questo caso, appartengono invece alla catena di decadimento del \ce{^232Th} \help{emivita}.
+Confrontando i valori ottenuti dalla spettroscopia con le ipotesi teoriche relative che abbiamo fatto, otteniamo risultati accettabili al $ 5\% $.
+I valori osservati per canali, energia e test statistici che verificano la compatibilità dei dati sperimentali con quelli teorici sono riportati in \cref{tab:fondo}.
+\help{sono elementi verosimili? non è vero che stanno nel torio}
