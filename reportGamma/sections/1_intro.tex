@@ -1,13 +1,66 @@
-\section{Introduzione all'esperienza e teoria generale?}
-Vogliamo studiare le caratteristiche del decadimento gamma di diversi isotopi radioattivi e l'interazione tra raggi gamma e materia. 
-L'interesse nello studio deriva dalle informazioni che si ricavano dalle analisi, forniscono informazioni utili sulla struttura nucleare atomica e sui numeri quantici ad essa relativi degli elementi interessati.
-Per effettuare uno studio preciso useremo dei rivelatori \ce{NaI(Tl)} letti da un fotomoltiplicatore.\\
+\section{Introduzione}
 
-\section{Postazione A e apparecchiatura}
+\subsection{Raggi $ \gamma $}
 
-La postazione usa come rivelatore un cristallo di \ce{NaI(Tl)} di diametro $ 2^{"} = 50.8 $ \unit{mm} letto da fotomoltiplicatori.
-Nello specifico la nostra posizione usa moduli NIM per alimentare i fotomoltiplicatori e l'elettronica di amplificazione, questa configurazione ci permette di studiare il segnale del fotomoltiplicatore con un oscilloscopio.
-Abbiamo collegato i moduli come illustrato in figura:
-\begin{center}
-    \includegraphics[scale=0.5]{images/setup_A}
-\end{center}
+I raggi $ \gamma $ sono la radiazione elettromagnetica più energetica (con $ E > 10 \unit{keV} $ convenzionalmente): vengono prodotti principalmente dai decadimenti radioattivi dei nuclei atomici.
+
+Essendo radiazione con carica neutra (al contrario delle radiazioni $ \alpha $ e $ \beta $), essa interagisce con la materia per via di tre meccanismi:
+\begin{enumerate}
+\item scattering Compton, urto elastico con gli elettroni meno legati,
+\item effetto fotoelettrico, urto anelastico con gli elettroni più legati,
+\item produzione di coppie, il processo $ \ce{$\gamma$ -> e+ + e-} $ mediato dall'interazione forte nei pressi dei nuclei atomici.
+\end{enumerate}
+
+Nello specifico siamo interessati a studiare gli spettri di emissione $ \gamma $ di sorgenti di \ce{^22Na}, \ce{^57Co}, \ce{^60Co}, e \ce{^137Cs} (sia i picchi legati all'emissione caratteristica, sia i fenomeni di effetto Compton, backscatter e raggi X del piombo dovuti all'apparato sperimentale) usando un rivelatore a scintillazione \ce{NaI(Tl)}, il cui funzionamento si basa proprio su questi fenomeni di interazione $ \gamma $-materia.
+
+Calibrata la strumentazione, di cui abbiamo studiato sia la risposta che la risoluzione, abbiamo anche provato a identificare gli isotopi radioattivi presenti in delle sorgenti naturali (rocce, e fondo ambientale).
+
+Infine, abbiamo anche:
+\begin{itemize}
+\item valutato le attività di due sorgenti radioattive di \ce{^137Cs},
+\item studiato l'assorbimento da parte di spessori di piombo della radiazione emessa dal \ce{^60Co},
+\item e caratterizzato i decadimenti associati ai due picchi di emissione del \ce{^60Co},
+\end{itemize}
+misurando in tutti e tre i casi il numero di conteggi associati a ogni fotopicco. \help{this part needs to be integrated better}
+
+\subsection{Setup sperimentale}
+
+L'apparato sperimentale è rappresentato schematicamente in \cref{fig:setup}, ed è costituito da moduli NIM (per l'amplificazione e l'alimentazione) permettendoci di studiare i segnali lungo tutta la catena elettronica con un oscilloscopio.
+
+Dalla sorgente provengono dei raggi $ \gamma $ che interagiscono con il cristallo nello scintillatore cedendo energia a degli elettroni.
+Questi, a loro volta, perdono energia per ionizzazione producendo dei fenomeni di scintillazione: i fotoni prodotti vengono raccolti sul fotocatodo del fotomoltiplicatore, che con una serie di dinodi moltiplica i fotoelettroni estratti (come in \cref{fig:photomult}).
+L'intensità del segnale elettrico prodotto dal fotomoltiplicatore è proporzionale all'intensità del $ \gamma $ che ha interagito con lo scintillatore.
+
+Questo segnale viene trattato con un preamplificatore e un amplificatore, e interpretato da un multicanale (MCA8000D).
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{images/setup_A}
+\caption{Il setup sperimentale, composto da tre unità principali: i) scintillatore e fotomoltiplicatore (in basso), ii) preamplificatore e amplificatore (in centro), e iii) multicanale e PC (in alto a destra). Inoltre, sono rappresentati anche il generatore di impulsi e l'oscilloscopio che abbiamo utilizzato per valutare la risposta del setup a dei segnali noti ('Studio della catena elettronica').}
+\label{fig:setup}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.35]{images/photomultiplier.png}
+\caption{Rappresentazione schematica del funzionamento dello scintillatore e del fotomoltiplicatore (da \href{https://commons.wikimedia.org/w/index.php?curid=99450206}{Wikimedia Commons}).}
+\label{fig:photomult}
+\end{figure}
+
+\subsection{Misure sul multicanale}
+
+Il multicanale restituisce delle misure su una scala composta da 1024 canali (proporzionale alla risposta tra $ 0\unit{V} $ e $ 10 \unit{V} $ del setup di acquisizione/amplificazione).
+In particolare, conta il numero di segnali che vengono misurati all'interno di un range di $ 10\unit{V} / 1024 $.
+
+L'emissione dei raggi $ \gamma $ da parte delle sorgenti radioattive è monocromatica, ma lo spettro misurato dal multicanale non misura dei picchi strettissimi a causa dei limiti di risoluzione determinati da scintillatore e fotomoltiplicatore.\footnote{Sappiamo che questi effetti sono da attribuirsi a questi elementi del setup perché studiando i segnali monocromatici dati dal generatore di impulsi il multicanale misurava dei segnali larghi al più due canali (contro i $ 30-40 $ canali delle misure con le sorgenti).}
+Allora per stimare la posizione dei picchi abbiamo sfruttato il software DPPMCA: selezionando una regione di interesse intorno a un picco di conteggi si ottiene una stima del centroide e della larghezza a metà altezza (FWHM) di questa distribuzione.
+Per determinare le incertezze su queste misure abbiamo effettuato delle misure ripetute su un picco di \ce{^60Co} come illustrato in \help{link to section}.
+
+Per valutare le posizioni della soglie della spalla Compton e del backscatter abbiamo utilizzato un criterio diverso: abbiamo considerato la regione compresa tra \help{insert explanation}.
+
+Infine, per misurare il numero di conteggi netti all'interno di un picco ci siamo affidati sempre al software che, automaticamente, rimuove dai conteggi lordi (la somma dei conteggi nei canali compresi nella regione di interesse) una stima del contributo del fondo.\footnote{Probabilmente stimando il contributo del fondo come i conteggi contenuti nel trapezio alto quanto la larghezza della regione di interesse, e con le basi lunghe quanto le altezze della coda sinistra/destra della regione di interesse.}
+Come stima dell'incertezza su queste misure abbiamo considerato degli errori poissoniani ($\delta A = \sqrt{A}$) e indipendenti sui conteggi del fondo e sui conteggi lordi:
+\begin{equation}
+A_n = A_g - A_b \implies \delta A_n = \sqrt{(\delta A_g)^2 + (\delta A_b)^2} = \sqrt{A_g + A_b} = \sqrt{2A_g - A_n}
+\end{equation}
+dove $ A_n $ sono i conteggi netti, $ A_g $ quelli lordi e $ A_b $ quelli del fondo.

@@ -2,28 +2,38 @@
 
 Un fascio di raggi $\gamma$ monocromatico, attraversando uno spessore di materiale assorbente,\footnote{L'assorbimento di un materiale cresce al crescere della sua densità $\rho$ e del suo numero atomico $Z$.} viene attenuato secondo la legge:
 \begin{equation}\label{eq:decay_false}
-I = I_0 e^{-\mu x}
+R = R_0 e^{-\mu x}
 \end{equation}
-dove $ \mu $ è il coefficiente di assorbimento lineare, $ \rho $ la densità del materiale e $ x $ lo spessore attraversato dalla radiazione.
+dove $ R $ è il rate di conteggi rilevati dopo lo spessore $ x $, $ \mu $ è il coefficiente di assorbimento lineare e $ \rho $ la densità del materiale.
 
 In particolare, abbiamo utilizzato come unità di misura dello spessore $ X = \rho x $, pesando per la densità del materiale, in modo da avere l'equazione di Lambert-Beer (\ref{eq:decay_false}) come:
 \begin{equation} \label{eq:decay}
-I = I_0 e^{- \frac{\mu}{\rho} X}
+R = R_0 e^{- \frac{\mu}{\rho} X}
 \end{equation}
-nei termini del coefficiente di assorbimento normalizzato per la densità $ \mu / \rho $.
+nei termini del coefficiente di assorbimento normalizzato per la densità $ \mu / \rho $ sapendo che:
+\begin{equation}
+\rho_{\ce{Pb}} = (11.340 \pm 0.010) \unit{g / cm^3}.
+\end{equation}
 
 Abbiamo acquisito cinque spettri di emissione per la sorgente \ce{^137Cs} variando lo spessore di piombo attraversato dai $ \gamma $ emessi con delle lastre di spessore $(2.1 \pm 0.1) \unit{mm} $ ciascuna.\footnote{In particolare abbiamo assunto come indipendenti gli errori sugli spessori delle lastre, propagandoli di conseguenza.}
 
 \begin{table}
-	\centering 
-	\begin{tabular}{c}
-	ciao
-	\end{tabular}
-	\caption{}
-	\label{tab:csassorbim}
+\centering \footnotesize
+\begin{tabular}{cccc|ccc|cccc} 
+$x [\unit{cm}]$ & $\delta x [\unit{cm}]$ & $X [\unit{g/cm^2}]$ & $\delta X [\unit{g/cm^2}]$ & $A_g$ & $A_n$ & $\delta A_n$ & $ t_\text{live} [\unit{s}]$ & $\delta t_\text{live} [\unit{s}]$ & $R [\unit{s^{-1}}]$ & $\delta R [\unit{s^{-1}}]$ \\
+\hline
+0.0 & 0.0 & 0.0 & 0.0 & 36369.0 & 34870 & 190 & 82.530 & 0.010 & 422 & 2\\
+0.420 & 0.014 & 4.76 & 0.16 & 38342.0 & 33900 & 200 & 133.620 & 0.010 & 253.7 & 1.5\\
+0.84 & 0.02 & 9.5 & 0.2 & 26727.0 & 23240 & 170 & 144.670 & 0.010 & 160.6 & 1.2\\
+1.26 & 0.02 & 14.3 & 0.3 & 25130.0 & 20560 & 170 & 211.760 & 0.010 & 97.1 & 0.8\\
+1.68 & 0.03 & 19.1 & 0.3 & 26297.0 & 20060 & 180 & 353.920 & 0.010 & 56.7 & 0.5\\
+2.10 & 0.03 & 23.8 & 0.4 & 21766.0 & 16190 & 170 & 456.500 & 0.010 & 35.5 & 0.4
+\end{tabular}
+\caption{Dati relativi alle misure di assorbimento dell'emissione $ \gamma $ del \ce{^137Cs} al variare dello spessore di piombo $ x $. In particolare abbiamo pesato per la densità del piombo $ \rho_{\ce{Pb}} $ i valori di spessore, ottenendo $ X $, e abbiamo calcolato i rate $ R $ di conteggi nel fotopicco del cesio come usando l'area netta $ A_n $ (espressa in conteggi) fratto il tempo di misura $ t_\text{live} $ effettivo.}
+\label{tab:csassorbim}
 \end{table}
 
-Sui dati in \cref{tab:csassorbim} abbiamo effettuato una regressione con il modello in \cref{eq:decay} (in \cref{fig:absorb}) ottenendo come stime dei parametri: \help{insert data in table + fig}
+Sui dati in \cref{tab:csassorbim} abbiamo effettuato una regressione con il modello in \cref{eq:decay} (in \cref{fig:absorb}) ottenendo come stime dei parametri:
 \begin{equation}
 	I_0 = (422 \pm 2) \unit{s^{-1}} \qquad \mu / \rho = (0.1040 \pm 0.0010) \unit{cm^2/g}
 \end{equation}
@@ -35,8 +45,8 @@ effettuando un test Z che conferma la compatibilità tra i due dati (con $Z = 0.
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5]{./images/pacini}
-	\caption{}
+	\includegraphics[scale=0.5]{./images/absorption.png}
+	\caption{Regressione con il modello di Lambert-Beer (eq. \ref{eq:decay}) ai dati in \cref{tab:csassorbim}. Evidentemente il fit converge in maniera accettabile, e abbiamo anche trovato compatibilità tra il coefficiente di assorbimento $ \mu $ teorico e quello estratto da questa regressione.}
 	\label{fig:absorb}
 \end{figure}
 
@@ -53,18 +63,39 @@ Assumendo che i conteggi (netti) nel picco somma $ \Sigma_\text{dep} $ e $ \Sigm
 \end{equation}
 dove $ A $ è l'attività della sorgente, $ t_\text{live} $ il tempo di acquisizione (a cui è stato sottratto il tempo morto), e $ \Delta t $ la risoluzione temporale del rivelatore. 
 
-In particolare, abbiamo ricalcolato l'attività della sorgente (FS64) dal 7/11/2024 al 15/04/2026 (con la legge di decadimento esponenziale \cref{eq:expdec} con $ \Delta t = \ldots $): \help{insert precise time w/ error + activity is obv wrong}
+In particolare, abbiamo ricalcolato l'attività della sorgente (FS64) dal 7/11/2024 al 15/04/2026 (con la legge di decadimento esponenziale \cref{eq:expdec} con $ \Delta t = (1.435 \pm 0.003) \unit{y} $):
 \begin{equation}
-A_\text{FS64} = (39.2 \pm 2.0) \unit{kBq} \qquad A_\text{FS64,today} = (32.460 \pm 0.084) \unit{kBq}.
+A_\text{FS64} = (39.2 \pm 2.0) \unit{kBq} \qquad A_\text{FS64,today} = (32.5 \pm 1.7) \unit{kBq}.
 \end{equation}
 
 \begin{table}
-	\centering
-	\begin{tabular}{c}
-		ciao
-	\end{tabular}
-	\caption{}
-	\label{tab:cspeaksum}
+\centering
+   
+\begin{subtable}[b]{\textwidth}
+\centering
+\begin{tabular}{cc|ccc|ccc}
+$t_\text{live}$ & $\delta t_\text{live}$ & $A_{g1}$ & $\Sigma_1$ & $\delta \Sigma_1$ & $A_{g2}$ & $\Sigma_2$ & $\delta \Sigma_2$ \\
+\hline
+1826.440 & 0.010 & 605310 & 305100 & 1000 & 396457 & 272300 & 700 \\
+1921.710 & 0.010 & 716408 & 396800 & 1000 & 480742 & 347200 & 800 \\
+\end{tabular}
+\caption{Tempo di misura effettivo $ t_\text{live} $, e conteggi netti $ \Sigma_1 $ e $ \Sigma_2 $.}
+\end{subtable}
+
+\vspace{1em}
+
+\begin{subtable}[b]{\textwidth}
+\centering
+\begin{tabular}{ccc|cccc}
+$A_{g,\text{sum}}$ & $\Sigma$ & $\delta \Sigma$ & $\Sigma_\text{dep}$ & $\delta \Sigma_\text{dep}$ & $\Sigma_\text{ind}$ & $\delta \Sigma_\text{ind}$ \\
+\hline
+ 1532 & 950 & 50 & 1400 & 70 & 50 & 50 \\
+ 5135 & 3090 & 80 & 2210 & 110 & 70 & 70 \\
+\end{tabular}
+\caption{Conteggi netti del picco somma $ \Sigma $, e stime teoriche $ \Sigma_\text{dep} $ e $ \Sigma_\text{ind} $ nelle due ipotesi di decadimento.}
+\end{subtable}
+\caption{Dati relativi ai conteggi netti nei tre picchi (i due fotopicchi e il picco somma) ottenuti dal software stimando il background e rimuovendolo alle aree lorde $ A_g $: siamo interessati a confrontare le misure $ \Sigma $ con le ipotesi teoriche $ \Sigma_\text{dep} $ e $ \Sigma_\text{ind} $.}
+\label{tab:cspeaksum}
 \end{table}
 
 In particolare, abbiamo misurato lo spettro due volte (variando leggermente il setup sperimentale, ma con la stessa sorgente) e in entrambi i casi abbiamo trovato (i dati sono raccolti in \cref{tab:cspeaksum}) che i conteggi effettivamente misurati nel picco somma $ \Sigma_\text{sum} $ non sono compatibili né con $ \Sigma_\text{dep} $ né con $ \Sigma_\text{ind} $.

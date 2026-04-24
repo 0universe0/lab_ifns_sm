@@ -1,6 +1,3 @@
-\subsection{Setup e verifica impostazioni}
-Abbiamo verificato il corretto funzionamento della postazione e verificato che la posizione sul canale $ \sim 780 $ fosse relativa al picco ad energia maggiore per la sorgente \ce{^60Co}, variando la tensione fornita al fotomoltiplicatore e/o il guadagno dell'amplificatore. Questa procedura serve per garantire il rientro nel range del multicanale per le misure successive.
-
 \section{Studio della catena elettronica di misura}
 
 In questa sezione, prima di raccogliere dati sullo spettro energetico relativo a differenti sorgenti radioattive, vogliamo verificare la linearità della catena elettronica di misura.
@@ -21,6 +18,89 @@ Il multicanale registra ogni evento misurando la sua energia nella scala dei suo
 In particolare, abbiamo studiato l'incertezza sulla misura di posizione di un picco e della sua larghezza a metà altezza (FWHM) facendo delle misure ripetute del secondo fotopicco \ce{^60Co}.
 
 Infine, abbiamo verificato la bontà della calibrazione confrontando l'energia misurata attraverso il multicanale del secondo picco del \ce{^22Na} con il valore teorico.
+
+\subsection{Misura del picco}
+
+Le misure in canale ripetute sulla posizione del picco del \ce{^60Co} sono riportate in \cref{tab:repeatedCo60}.
+Come stima dell'incertezza sulle misure di FWHM abbiamo considerato la deviazione standard della popolazione:
+\begin{equation}
+\delta \text{FWHM} = \sigma_\text{FWHM} = 0.7
+\end{equation}
+mentre per l'errore sulla posizione del centroide abbiamo considerato anche la deriva sulla posizione dei picchi tra l'inizio e la fine della serie di misure.
+
+Infatti, dopo aver misurato gli spettri di tutte le sorgenti abbiamo misurato un ultimo spettro di \ce{^60Co}, trovando:
+\begin{equation}
+\text{centroide}_\text{after} = 781.82
+\end{equation}
+allora abbiamo considerato:
+\begin{equation}
+\delta \text{centroide} = \sigma_\text{centroide} + \Delta = 1.5
+\end{equation}
+dove $ \Delta = 1.3 $ è la differenza tra la media della posizione dei centroidi all'inizio e il centroide misurato alla fine.
+
+\begin{table}
+\centering
+\begin{tabular}{cc|cc}
+centroide & FWHM & centroide & FWHM \\
+\hline
+780.52 & 42.3548 & 780.83 & 41.9428 \\
+780.72 & 42.7802 & 780.86 & 41.8988 \\
+780.17 & 41.6515 & 780.23 & 43.2896 \\
+780.57 & 42.1416 & 780.60 & 43.6934 
+\end{tabular}
+\caption{Misure ripetute del fotopicco del \ce{^60Co}: sono riportati il centroide del (secondo) picco (in canali), e la sua larghezza a metà altezza (espressa in conteggi a parità di tempo di acquisizione $ \delta t \simeq 120 \unit{s} $) in modo da poter stimare l'incertezza sulle misure di questi dati anche per gli altri picchi.}
+\label{tab:repeatedCo60}
+\end{table}
+
+\subsection{Corrispondenza canale-energia}
+
+In generale, l'andamento dell'energia con i canali del multicanale è lineare, ma sopratutto agli estremi dei range diventano rilevanti anche degli effetti non-lineari determinati dal setup sperimentale. \help{specifics?}
+
+Per queste ragioni\footnote{I modelli più semplici, solo lineari o addirittura lineari con offset nullo, non si adattano in maniera accettabile ai dati. Effettivamente osserviamo che il parametro $ a $, risultante dal fit con \cref{eq:calibration}, non è compatibile con $ 0 $ (con $ Z_a = -3.954 $).} abbiamo scelto di usare come funzione di calibrazione:
+\begin{equation} \label{eq:calibration}
+E(C) = a + b \cdot  C + c \cdot  C^2
+\end{equation}
+per l'energia $ E $ e il canale $ C $, trovando (come in \cref{fig:calibration}) che si adatta ai dati in maniera accettabile con i parametri:
+\begin{equation}
+a = (-1.5 \pm 0.4) \cdot 10^{-2} \unit{MeV} \quad b = (1.70 \pm 0.02) \cdot 10^{-3} \unit{MeV} \quad c = (3 \pm 2) \cdot 10^{-8} \unit{MeV}.
+\end{equation}
+
+In particolare, nel propagare gli errori sulle energie calcolate con questo modello di calibrazione abbiamo trascurato la covarianza tra i parametri $ a $, $ b $ e $ c $ (a meno che non sia specificato diversamente).
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.45]{./images/calibration.png}
+\caption{Regressione con il modello \cref{eq:calibration} ai dati in \cref{tab:calibration} (energie in $ \unit{MeV} $ contro centroidi dei fotopicchi in canali) che ci permette di fissare la funzione di calibrazione per tradurre le misure in canali in misure in energia.}
+\label{fig:calibration}
+\end{figure}
+
+\begin{table}
+\centering
+\begin{tabular}{ccccc}
+sorgente & $E [\unit{MeV}]$ & $\delta E [\unit{MeV}]$ & $\text{centroide}$ & $\delta \text{centroide}$ \\
+\hline
+\ce{^22Na} & 0.5110 & 0.0010 & 307.2 & 1.5\\
+\ce{^57Co} & 0.12206 & 0.00010 & 80.3 & 1.5\\
+\ce{^60Co}-1 & 1.1732 & 0.0010 & 685.0 & 1.5\\
+\ce{^60Co}-2 & 1.3325 & 0.0010 & 780.5 & 1.5\\
+\ce{^137Ce} & 0.66166 & 0.00010 & 395.4 & 1.5\\
+\end{tabular}
+\caption{Dati relativi al fit in \cref{fig:calibration}, cioè le energie dei fotopicchi delle sorgenti e la misura del canale del centroide corrispondente sul multicanale.}
+\label{tab:calibration}
+\end{table}
+
+\subsection{Verifica della calibrazione}
+
+Per verificare la calibrazione abbiamo confrontato la stima dell'energia del secondo fotopicco del \ce{^22Na} con il valore vero.
+Abbiamo misurato il centroide:
+\begin{equation}
+C_{\ce{^22Na},2} = 742.2 \pm 1.5
+\end{equation}
+per cui abbiamo confrontato:
+\begin{equation}
+E_{\ce{^22Na},2} = (1.28 \pm 0.02) \unit{MeV} \qq{con} E_{\ce{^22Na},2 \text{true}} = (1.2745 \pm 0.0010) \unit{MeV}
+\end{equation}
+trovando che sono compatibili con $ Z = 0.132 $ (o $ p = 0.895 $).
 
 \subsection{Misura del picco}
 
