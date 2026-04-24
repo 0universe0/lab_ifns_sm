@@ -1,17 +1,55 @@
 \section{Studio della risoluzione del rivelatore}
-Vogliamo caratterizzare la risoluzione del rivelatore utilizzato sulla base dei dati raccolti, a tal proposito ci serviremo
-dell'espressione teorica:
-$$ R = \frac{\Delta E}{E} $$
-Abbiamo determinato il valore sperimentale partire dai dati relativi ai 2 picchi delle sorgenti di \ce{^60Co} \ce{^137Cs} e \ce{^22Na}. Il seguente grafico riporta la risoluzione del rivelatore in funzione dell'energia nominale osservata:
 
-\begin{center}
-    \includegraphics{images/pacini}
-\end{center}
-Dove $ E $ è l'energia nominale dell'emissione gamma per il picco considerato e $ \Delta E $ la relativa FWHM.
+Vogliamo caratterizzare la risoluzione del rivelatore:
+\begin{equation} 
+R = \frac{\Delta E}{E}
+\end{equation}
+dove $ \Delta E $ è la larghezza del picco a energie $ E $ misurato dal rivelatore.
 
-Abbiamo poi confrontato attraverso dei Test Z (riportati in tabella) la compatibilità dei valori sperimentali con i relativi valori teorici. 
-Le stime sono soddisfacenti \help{spero}.
-\help{Calcolo della FWHM etc.?}
+In particolare, abbiamo calcolato $ \Delta E $ usando la formula:
+\begin{equation}
+\Delta E = b \qty(C_\text{dx} - C_\text{sx}) + c \qty(C_\text{dx}^{2} - C_\text{sx}^{2})
+\end{equation}
+dove $ a $ e $ b $ sono i parametri di calibrazione calcolati in \cref{eq:calibration}, mentre i canali $ C $ destro e sinistro corrispondono ai punti a metà altezza di ogni picco:
+\begin{equation}
+C_\text{sx} = C_\text{peak} - \frac{\text{FWHM}_\text{peak}}{2} \qquad C_\text{dx} = C_\text{peak} + \frac{\text{FWHM}_\text{peak}}{2}.
+\end{equation}
+
+Per propagare gli errori su posizioni e larghezze dei picchi abbiamo considerato le stime fatte in \cref{sec:errors}, mentre abbiamo trascurato la covarianza tra il parametro $ b $ e il parametro $ c $.\footnote{Esplicitando la formula del calcolo di $ \Delta E $ (senza calcolare $ E_\text{sx} \pm \delta E_\text{sx} $ e $ E_\text{dx} \pm \delta E_\text{dx} $, per poi prenderne la differenza) elimina, già, il contributo dell'errore su $ a $ dalla stima.} 
+
+Il modello teorico che abbiamo usato per descrivere l'andamento della risoluzione è:
+\begin{equation} \label{eq:resolution}
+R = \frac{k}{\sqrt{E}} + c
+\end{equation}
+dove $ k $ rappresenta \help{??? è rumore statistico}, mentre $ c $ un contributo di fondo del sistema.
+
+Nello specifico, per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}, come in \cref{tab:resolution}
+Troviamo che la regressione converge in maniera accettabile per i parametri:
+\begin{equation}
+k = (\ldots) \unit{MeV^{1/2}} \qquad c = (\ldots)
+\end{equation}
+e usando questi valori per calcolare la risoluzione del rilevatore a $ 1 \unit{MeV} $ troviamo $ R(1 \unit{MeV}) = 6.5 \% $, che è un valore tipico per i rivelatori \ce{NaI(Tl)}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{images/energeticResolution.png}
+\caption{Regressione con il modello (\ref{eq:resolution}) ai dati in \cref{tab:resolution} per caratterizzare l'andamento della risoluzione $ R = \Delta E / E $ del rivelatore contro l'energia $ E $.}
+\label{fig:resolution}
+\end{figure}
+
+\begin{table}
+    \centering
+    \begin{tabular}{c|cc|cc}
+        Sorgente & $ E $ & $\delta E $ & $ R \qty(\frac{\Delta E}{E}) $ & $ \delta R $ \\
+        \hline
+        \ce{^22Na} & 0.511 & 0.001 & 0.092 & 0.008 \\
+        \ce{^60Co_{1}} & 1.173 & 0.001 & 0.062 & 0.004 \\
+        \ce{^60Co_{2}} & 1.334 & 0.001 & 0.057 & 0.003 \\
+        \ce{^137Cs} & 0.6617 & 0.0001 & 0.081 & 0.006 \\
+    \end{tabular}
+    \caption{\help{il risultato del fit non va in tabella, servono i dati che compaiono nel grafico! (poi quale parametro è quale?)}}
+    \label{tab:resolution}
+\end{table}
 
 \section{Misura dell'attività di una sorgente}
 
