@@ -1,5 +1,30 @@
 \section{Determinazione del coefficiente di assorbimento di massa $ \mu / \rho $ }
 
+\begin{figure}[]
+    \centering
+
+    \subcaptionbox{Spessore $ x = 0.0 \unit{cm} $ \label{fig:x0}}
+        {\includegraphics[width=0.45\textwidth]{images/abs0.png}}
+    \hfill
+    \subcaptionbox{Spessore $ x = 0.420 \unit{cm} $\label{fig:x2}}
+        {\includegraphics[width=0.45\textwidth]{images/abs2.png}}
+
+    \subcaptionbox{Spessore $ x = 0.84 \unit{cm} $ \label{fig:x4}}
+        {\includegraphics[width=0.45\textwidth]{images/abs4.png}}
+    \hfill
+    \subcaptionbox{Spessore $ x = 1.26 \unit{cm} $\label{fig:x6}}
+        {\includegraphics[width=0.45\textwidth]{images/abs6.png}}
+
+    \subcaptionbox{Spessore $ x = 1.68 \unit{cm} $ \label{fig:x8}}
+        {\includegraphics[width=0.45\textwidth]{images/abs8.png}}
+    \hfill
+    \subcaptionbox{Spessore $ x = 2.10 \unit{cm} $\label{fig:x10}}
+        {\includegraphics[width=0.45\textwidth]{images/abs10.png}}
+
+		\caption{Spettri di emissione del \ce{^137Cs} al variare dello spessore di piombo.}
+    \label{fig:spettri_assorbimento}
+\end{figure}
+
 Un fascio di raggi $\gamma$ monocromatico, attraversando uno spessore di materiale assorbente,\footnote{L'assorbimento di un materiale cresce al crescere della sua densità $\rho$ e del suo numero atomico $Z$.} viene attenuato secondo la legge:
 \begin{equation}\label{eq:decay_false}
 R = R_0 e^{-\mu x}
@@ -29,7 +54,7 @@ $x [\unit{cm}]$ & $\delta x [\unit{cm}]$ & $X [\unit{g/cm^2}]$ & $\delta X [\uni
 1.68 & 0.03 & 19.1 & 0.3 & 26297.0 & 20060 & 180 & 353.920 & 0.010 & 56.7 & 0.5\\
 2.10 & 0.03 & 23.8 & 0.4 & 21766.0 & 16190 & 170 & 456.500 & 0.010 & 35.5 & 0.4
 \end{tabular}
-\caption{Dati relativi alle misure di assorbimento dell'emissione $ \gamma $ del \ce{^137Cs} al variare dello spessore di piombo $ x $. In particolare abbiamo pesato per la densità del piombo $ \rho_{\ce{Pb}} $ i valori di spessore, ottenendo $ X $, e abbiamo calcolato i rate $ R $ di conteggi nel fotopicco del cesio come usando l'area netta $ A_n $ (espressa in conteggi) fratto il tempo di misura $ t_\text{live} $ effettivo.}
+\caption{Dati relativi alle misure di assorbimento dell'emissione $ \gamma $ del \ce{^137Cs} al variare dello spessore di piombo $ x $. In particolare abbiamo pesato per la densità del piombo $ \rho_{\ce{Pb}} $ i valori di spessore, ottenendo $ X $, e abbiamo calcolato i rate $ R $ di conteggi nel fotopicco del cesio come usando l'area netta $ A_n $ (espressa in conteggi, e con errore calcolato come illustrato in \cref{sec:errnetcounts}) fratto il tempo di misura $ t_\text{live} $ effettivo.}
 \label{tab:csassorbim}
 \end{table}
 
@@ -94,9 +119,11 @@ $A_{g,\text{sum}}$ & $\Sigma$ & $\delta \Sigma$ & $\Sigma_\text{dep}$ & $\delta 
 \end{tabular}
 \caption{Conteggi netti del picco somma $ \Sigma $, e stime teoriche $ \Sigma_\text{dep} $ e $ \Sigma_\text{ind} $ nelle due ipotesi di decadimento.}
 \end{subtable}
-\caption{Dati relativi ai conteggi netti nei tre picchi (i due fotopicchi e il picco somma) ottenuti dal software stimando il background e rimuovendolo alle aree lorde $ A_g $: siamo interessati a confrontare le misure $ \Sigma $ con le ipotesi teoriche $ \Sigma_\text{dep} $ e $ \Sigma_\text{ind} $.}
+\caption{Dati relativi ai conteggi netti nei tre picchi (i due fotopicchi e il picco somma) ottenuti dal software stimando il background e rimuovendolo alle aree lorde $ A_g $ (propagazione dell'errore come in \cref{sec:errnetcounts}): siamo interessati a confrontare le misure $ \Sigma $ con le ipotesi teoriche $ \Sigma_\text{dep} $ e $ \Sigma_\text{ind} $.}
 \label{tab:cspeaksum}
 \end{table}
+
+\help{add graphs from multichannel: screenshots needed in log scale!}
 
 In particolare, abbiamo misurato lo spettro due volte (variando leggermente il setup sperimentale, ma con la stessa sorgente) e in entrambi i casi abbiamo trovato (i dati sono raccolti in \cref{tab:cspeaksum}) che i conteggi effettivamente misurati nel picco somma $ \Sigma_\text{sum} $ non sono compatibili né con $ \Sigma_\text{dep} $ né con $ \Sigma_\text{ind} $.
 Ad ogni modo, l'ipotesi di un decadimento a cascata produce una stima che ha lo stesso ordine di grandezza dei conteggi misurati, mentre quella di decadimenti indipendenti no.

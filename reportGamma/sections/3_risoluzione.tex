@@ -26,34 +26,48 @@ dove $ k $ rappresenta \help{??? è rumore statistico}, mentre $ c $ un contribu
 Nello specifico, per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}, come in \cref{tab:resolution}
 Troviamo che la regressione converge in maniera accettabile per i parametri:
 \begin{equation}
-k = (\ldots) \unit{MeV^{1/2}} \qquad c = (\ldots)
+k = (6.5 \pm 1.2) \cdot 10^{-2} \unit{MeV^{1/2}} \qquad c = (0.000 \pm 0.012 )
 \end{equation}
 e usando questi valori per calcolare la risoluzione del rilevatore a $ 1 \unit{MeV} $ troviamo $ R(1 \unit{MeV}) = 6.5 \% $, che è un valore tipico per i rivelatori \ce{NaI(Tl)}.
+Osserviamo anche che il parametro $ c $ è compatibile con $ 0 $: il contributo di fondo del sistema non è rilevante, almeno nel range di energie che abbiamo studiato.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.4]{images/energeticResolution.png}
+\includegraphics[scale=0.5]{images/energeticResolution.png}
 \caption{Regressione con il modello (\ref{eq:resolution}) ai dati in \cref{tab:resolution} per caratterizzare l'andamento della risoluzione $ R = \Delta E / E $ del rivelatore contro l'energia $ E $.}
 \label{fig:resolution}
 \end{figure}
 
 \begin{table}
     \centering
-    \begin{tabular}{c|cc|cc}
-        Sorgente & $ E $ & $\delta E $ & $ R \qty(\frac{\Delta E}{E}) $ & $ \delta R $ \\
+    \begin{tabular}{c|cc|cc|cc|cc}
+        sorgente & $ E [\unit{MeV}] $ & $\delta E [\unit{MeV}] $ & centroide & $ \delta $ centroide & FWHM & $ \delta $ FWHM & $ R \qty(\frac{\Delta E}{E}) $ & $ \delta R $ \\
         \hline
-        \ce{^22Na} & 0.511 & 0.001 & 0.092 & 0.008 \\
-        \ce{^60Co_{1}} & 1.173 & 0.001 & 0.062 & 0.004 \\
-        \ce{^60Co_{2}} & 1.334 & 0.001 & 0.057 & 0.003 \\
-        \ce{^137Cs} & 0.6617 & 0.0001 & 0.081 & 0.006 \\
+        \ce{^22Na} & 0.5110 & 0.0010 & 307.2 & 1.5 & 27.1 & 0.7 &0.092 & 0.008 \\
+        \ce{^60Co} - 1 & 1.1732 & 0.0010 & 685.0 & 1.5 & 41.2 & 0.7 & 0.062 & 0.004 \\
+        \ce{^60Co} - 2 & 1.3325 & 0.0010 & 780.5 & 1.5 & 43.0 & 0.7 & 0.057 & 0.003 \\
+        \ce{^137Cs} & 0.66166 & 0.00010 & 395.4 & 1.5 & 31.0 & 0.7 &0.081 & 0.006 \\
     \end{tabular}
-    \caption{\help{il risultato del fit non va in tabella, servono i dati che compaiono nel grafico! (poi quale parametro è quale?)}}
+    \caption{Dati relativi al fit in \cref{fig:resolution}: abbiamo usato i valori di energia teorici $ E $, e li abbiamo confrontati con la FWHM in energia per ogni picco calcolata a partire dalla FWHM in canali (stimata dal software). Abbiamo usato come errori sulle stime dei centroidi e della FWHM le deviazioni standard delle misure ripetute di \ce{^60Co}.}
     \label{tab:resolution}
 \end{table}
 
 \section{Misura dell'attività di una sorgente}
 
 Abbiamo acquisito gli spettri di due sorgenti di \ce{^137Cs} (etichettate FS65 e FS66) per determinarne l'attività, sia con un metodo relativo che con uno assoluto.
+
+\begin{figure}[]
+    \centering
+
+    \subcaptionbox{Sorgente FS65 \label{fig:fs65}}
+    {\includegraphics[width=0.45\textwidth]{images/fs65.png}}
+    \hfill
+    \subcaptionbox{Sorgente FS66 \label{fig:fs66}}
+        {\includegraphics[width=0.45\textwidth]{images/fs66.png}}
+
+        \caption{Spettri delle sorgenti di \ce{^137Cs} FS65 e FS66 di cui abbiamo determinato le attività. Anche se i tempi di misura $ t_\text{live} $ sono pressoché identici l'altezza del picco della sorgente FS65 è chiaramente maggiore di quella della sorgente FS66 (le scale degli assi verticali sono diverse nei due grafici).}
+    \label{fig:activityspectra}
+\end{figure}
 
 Le attività nominali delle sorgenti sono note al 07/11/2024:
 \begin{equation}
@@ -76,7 +90,7 @@ In particolare, per applicare entrambi i metodi abbiamo misurato i rate dei picc
 \begin{equation}
 R = \frac{A_n}{t_\text{live}}
 \end{equation}
-come riportato in \cref{tab:csrates}, dove $ A_n $ è il numero di conteggi netti e $ t_\text{live} $ il tempo di misura a cui è stato sottratto il tempo morto. \help{somewhere we need to explain how the error on the net counts was calculated}
+come riportato in \cref{tab:csrates}, dove $ A_n $ è il numero di conteggi netti (con errore calcolato a partire dai conteggi lordi $ A_g $ come illustrato in \cref{sec:errnetcounts}) e $ t_\text{live} $ il tempo di misura a cui è stato sottratto il tempo morto. 
 
 \begin{table}
 	\centering

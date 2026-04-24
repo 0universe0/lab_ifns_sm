@@ -1,25 +1,76 @@
 \section{Studio della catena elettronica di misura}
 
-In questa sezione, prima di raccogliere dati sullo spettro energetico relativo a differenti sorgenti radioattive, vogliamo verificare la linearità della catena elettronica di misura.
-A tal proposito abbiamo raccolto dati sufficienti a costruire due grafici che illustrassero le proprietà cercate.
-Gli strumenti utilizzati per misurare le quantità riportate sono un generatore di impulsi, un oscilloscopio ed un analizzatore multicanale.
-Il valori del canale del picco acquisito, la $ V_{in} $ in entrata e la $ V_{out} $ in uscita all'amplificatore sono riportati nei grafici seguenti.
-Come evidente dai parametri calcolati la risposta è lineare come ci aspettavamo.
+Prima di misurare gli spettri di emissione di tutti le sorgenti, abbiamo studiato la linearità della risposta della catena elettronica che elabora il segnale del fotomoltiplicatore.
 
-\begin{center}
-    \includegraphics{images/pacini}
-    \includegraphics{images/pacini}
-\end{center}
+Abbiamo misurato con un oscilloscopio (come mostrato schematicamente in \cref{fig:setup}) sia l'ampiezza del segnale in ingresso nel preamplificatore $ V_\text{in} $ che quella del segnale in uscita dall'amplificatore $ V_\text{out} $.
+In particolare, abbiamo generato dei segnali in ingresso con un generatore di impulsi, simulando dei segnali perfettamente monocromatici.
+
+Allora abbiamo effettuato con successo una regressione lineare ai dati in \cref{tab:allVin} (a sinistra in \cref{fig:allVin}) ottenendo come stime dei parametri:
+\begin{equation}
+V_\text{out} = [(-1.432 \pm 0.007)] \cdot V_\text{in} + [(-0.01 \pm 0.01) \unit{V}]
+\end{equation}
+quindi la risposta è lineare, e per un segnale di ingresso nullo abbiamo anche un segnale in uscita nullo (la quota è compatibile con $ 0 $). \help{maybe test Z explicitly}
+
+Poi, abbiamo anche studiato l'andamento delle misure in canali $ C $ contro alla tensione in ingresso $ V_\text{in} $: verificando che anche questo è lineare, escludiamo anche dei fenomeni non lineari nell'elaborazione del segnale fatta dal multicanale. \help{simo, do you agree?}
+
+Come prima, i dati sono raccolti in \cref{tab:allVin} (grafico in \cref{fig:allVin} a destra), e otteniamo delle stime accettabili dei parametri:
+\begin{equation}
+C = [(-142.7 \pm 0.7) \unit{V^{-1}}] \cdot V_\text{in} + [(1 \pm 2)]
+\end{equation}
+e come prima la quota è compatibile con $ 0 $. \help{as before}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.25]{./images/peakVin.png}
+\caption{Output del multicanale per tutti i valori del segnale in ingresso $ V_\text{in} $: tutti i picchi sono stretti perché li stiamo ottenendo tramite il generatore di impulsi.}
+\label{fig:peakVin}
+\end{figure}
+
+\begin{table}
+\centering
+\begin{tabular}{cc|cc|cc}
+$V_\text{in} [\unit{V}]$ & $\delta V_\text{in} [\unit{V}]$ & $\text{canale}$ & $\delta \text{canale}$ & $V_\text{out} [\unit{V}]$ & $\delta V_\text{out} [\unit{V}]$ \\
+\hline
+-0.666 & 0.004 & 94 & 3 & 0.936 & 0.008\\
+-1.330 & 0.010 & 191 & 2 & 1.94 & 0.02\\
+-2.00 & 0.02 & 288 & 2 & 2.92 & 0.02\\
+-2.68 & 0.02 & 386.0 & 1.5 & 3.88 & 0.04\\
+-3.36 & 0.02 & 484.0 & 1.5 & 4.84 & 0.04\\
+-4.04 & 0.04 & 581 & 2 & 5.80 & 0.04\\
+-4.60 & 0.04 & 653 & 2 & 6.60 & 0.04\\
+-5.16 & 0.04 & 732 & 3 & 7.20 & 0.08\\
+-5.68 & 0.04 & 809 & 2 & 8.00 & 0.08\\
+-6.24 & 0.04 & 887 & 2 & 8.80 & 0.08\\
+-6.72 & 0.04 & 964 & 3 & 9.60 & 0.08
+\end{tabular}
+\caption{Dati relativi alla verifica della linearità della risposta della catena elettronica di elaborazione del segnale. La tensione $ V_\text{in} $ è l'ampiezza del segnale in ingresso (generato elettronicamente) misurata sull'oscilloscopio, come anche la tensione in uscita dall'amplificatore $ V_\text{out} $. I canali sono le posizioni nel multicanale dei segnali osservati (come stima dell'errore abbiamo considerato la semidispersione dei picchi in \cref{fig:peakVin}).}
+\label{tab:allVin}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{./images/allVin.png}
+\caption{Regressioni lineari ai dati in \cref{tab:allVin}: a sinistra l'andamento della tensione in uscita dall'amplificatore $ V_\text{out} $ contro quella in ingresso al preamplificatore $ V_\text{in} $, mentre a destra l'andamento delle misure in canali fatte dal multicanale (\cref{fig:peakVin}) sempre al variare dell'ampiezza del segnale erogata dal generatore di impulsi.}
+\label{fig:allVin}
+\end{figure}
+
 
 \section{Calibrazione del multicanale}
 
-Il multicanale registra ogni evento misurando la sua energia nella scala dei suoi 1024 canali: per riuscire a determinare la relazione canale-energia abbiamo sfruttato come dati le energie dei picchi fotoelettrici delle sorgenti (\ce{^22Na} solo il primo picco, \ce{^57Co}, \ce{^60Co} con entrambi i picchi, e \ce{^137Cs}) per effettuare la calibrazione.
+Il multicanale registra ogni evento misurando la sua energia nella scala dei suoi 1024 canali: per riuscire a determinare la relazione canale-energia abbiamo sfruttato come dati le energie dei picchi fotoelettrici delle sorgenti (\ce{^22Na} solo il primo picco, \ce{^57Co}, \ce{^60Co} con entrambi i picchi, e \ce{^137Cs}) per effettuare la calibrazione (lo spettro del cobalto-57 è in \cref{fig:co57}, mentre quelli delle altre tre sorgenti in \cref{fig:spettri_calibrazione}).
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.25]{./images/co57.png}
+\caption{Spettro emissione del \ce{^57Co}.}
+\label{fig:co57}
+\end{figure}
 
 In particolare, abbiamo studiato l'incertezza sulla misura di posizione di un picco e della sua larghezza a metà altezza (FWHM) facendo delle misure ripetute del secondo fotopicco \ce{^60Co}.
 
 Infine, abbiamo verificato la bontà della calibrazione confrontando l'energia misurata attraverso il multicanale del secondo picco del \ce{^22Na} con il valore teorico.
 
-\subsection{Misura del picco}
+\subsection{Misura del picco} \label{sec:errcentr}
 
 Le misure in canale ripetute sulla posizione del picco del \ce{^60Co} sono riportate in \cref{tab:repeatedCo60}.
 Come stima dell'incertezza sulle misure di FWHM abbiamo considerato la deviazione standard della popolazione:
@@ -28,95 +79,46 @@ Come stima dell'incertezza sulle misure di FWHM abbiamo considerato la deviazion
 \end{equation}
 mentre per l'errore sulla posizione del centroide abbiamo considerato anche la deriva sulla posizione dei picchi tra l'inizio e la fine della serie di misure.
 
-Infatti, dopo aver misurato gli spettri di tutte le sorgenti abbiamo misurato un ultimo spettro di \ce{^60Co}, trovando:
-\begin{equation}
-\text{centroide}_\text{after} = 781.82
-\end{equation}
-allora abbiamo considerato:
-\begin{equation}
-\delta \text{centroide} = \sigma_\text{centroide} + \Delta = 1.5
-\end{equation}
-dove $ \Delta = 1.3 $ è la differenza tra la media della posizione dei centroidi all'inizio e il centroide misurato alla fine.
+\begin{figure}[]
+    \centering
 
-\begin{table}
-\centering
-\begin{tabular}{cc|cc}
-centroide & FWHM & centroide & FWHM \\
-\hline
-780.52 & 42.3548 & 780.83 & 41.9428 \\
-780.72 & 42.7802 & 780.86 & 41.8988 \\
-780.17 & 41.6515 & 780.23 & 43.2896 \\
-780.57 & 42.1416 & 780.60 & 43.6934 
-\end{tabular}
-\caption{Misure ripetute del fotopicco del \ce{^60Co}: sono riportati il centroide del (secondo) picco (in canali), e la sua larghezza a metà altezza (espressa in conteggi a parità di tempo di acquisizione $ \delta t \simeq 120 \unit{s} $) in modo da poter stimare l'incertezza sulle misure di questi dati anche per gli altri picchi.}
-\label{tab:repeatedCo60}
-\end{table}
+    \subcaptionbox{Spettro 1 \label{fig:fc1}}
+        {\includegraphics[width=0.4\textwidth]{images/fc1.png}}
+    \hfill
+    \subcaptionbox{Spettro 2 \label{fig:fc2}}
+        {\includegraphics[width=0.4\textwidth]{images/fc2.png}}
 
-\subsection{Corrispondenza canale-energia}
+    \subcaptionbox{Spettro 3 \label{fig:fc3}}
+        {\includegraphics[width=0.4\textwidth]{images/fc3.png}}
+    \hfill
+    \subcaptionbox{Spettro 4 \label{fig:fc4}}
+        {\includegraphics[width=0.4\textwidth]{images/fc4.png}}
 
-In generale, l'andamento dell'energia con i canali del multicanale è lineare, ma sopratutto agli estremi dei range diventano rilevanti anche degli effetti non-lineari determinati dal setup sperimentale. \help{specifics?}
+    \subcaptionbox{Spettro 5 \label{fig:fc5}}
+        {\includegraphics[width=0.4\textwidth]{images/fc5.png}}
+    \hfill
+    \subcaptionbox{Spettro 6 \label{fig:fc6}}
+        {\includegraphics[width=0.4\textwidth]{images/fc6.png}}
 
-Per queste ragioni\footnote{I modelli più semplici, solo lineari o addirittura lineari con offset nullo, non si adattano in maniera accettabile ai dati. Effettivamente osserviamo che il parametro $ a $, risultante dal fit con \cref{eq:calibration}, non è compatibile con $ 0 $ (con $ Z_a = -3.954 $).} abbiamo scelto di usare come funzione di calibrazione:
-\begin{equation} \label{eq:calibration}
-E(C) = a + b \cdot  C + c \cdot  C^2
-\end{equation}
-per l'energia $ E $ e il canale $ C $, trovando (come in \cref{fig:calibration}) che si adatta ai dati in maniera accettabile con i parametri:
-\begin{equation}
-a = (-1.5 \pm 0.4) \cdot 10^{-2} \unit{MeV} \quad b = (1.70 \pm 0.02) \cdot 10^{-3} \unit{MeV} \quad c = (3 \pm 2) \cdot 10^{-8} \unit{MeV}.
-\end{equation}
+    \subcaptionbox{Spettro 7 \label{fig:fc7}}
+        {\includegraphics[width=0.4\textwidth]{images/fc7.png}}
+    \hfill
+    \subcaptionbox{Spettro 8 \label{fig:fc8}}
+        {\includegraphics[width=0.4\textwidth]{images/fc8.png}}
 
-In particolare, nel propagare gli errori sulle energie calcolate con questo modello di calibrazione abbiamo trascurato la covarianza tra i parametri $ a $, $ b $ e $ c $ (a meno che non sia specificato diversamente).
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.45]{./images/calibration.png}
-\caption{Regressione con il modello \cref{eq:calibration} ai dati in \cref{tab:calibration} (energie in $ \unit{MeV} $ contro centroidi dei fotopicchi in canali) che ci permette di fissare la funzione di calibrazione per tradurre le misure in canali in misure in energia.}
-\label{fig:calibration}
+		\caption{Spettri delle misure ripetute sulla stessa sorgente di \ce{^60Co} per determinare l'incertezza sulle stime della posizione del centroide e della FWHM dei picchi.}
+    \label{fig:errorestimate}
 \end{figure}
 
-\begin{table}
-\centering
-\begin{tabular}{ccccc}
-sorgente & $E [\unit{MeV}]$ & $\delta E [\unit{MeV}]$ & $\text{centroide}$ & $\delta \text{centroide}$ \\
-\hline
-\ce{^22Na} & 0.5110 & 0.0010 & 307.2 & 1.5\\
-\ce{^57Co} & 0.12206 & 0.00010 & 80.3 & 1.5\\
-\ce{^60Co}-1 & 1.1732 & 0.0010 & 685.0 & 1.5\\
-\ce{^60Co}-2 & 1.3325 & 0.0010 & 780.5 & 1.5\\
-\ce{^137Ce} & 0.66166 & 0.00010 & 395.4 & 1.5\\
-\end{tabular}
-\caption{Dati relativi al fit in \cref{fig:calibration}, cioè le energie dei fotopicchi delle sorgenti e la misura del canale del centroide corrispondente sul multicanale.}
-\label{tab:calibration}
-\end{table}
 
-\subsection{Verifica della calibrazione}
-
-Per verificare la calibrazione abbiamo confrontato la stima dell'energia del secondo fotopicco del \ce{^22Na} con il valore vero.
-Abbiamo misurato il centroide:
-\begin{equation}
-C_{\ce{^22Na},2} = 742.2 \pm 1.5
-\end{equation}
-per cui abbiamo confrontato:
-\begin{equation}
-E_{\ce{^22Na},2} = (1.28 \pm 0.02) \unit{MeV} \qq{con} E_{\ce{^22Na},2 \text{true}} = (1.2745 \pm 0.0010) \unit{MeV}
-\end{equation}
-trovando che sono compatibili con $ Z = 0.132 $ (o $ p = 0.895 $).
-
-\subsection{Misura del picco}
-
-Le misure in canale ripetute sulla posizione del picco del \ce{^60Co} sono riportate in \cref{tab:repeatedCo60}.
-Come stima dell'incertezza sulle misure di FWHM abbiamo considerato la deviazione standard della popolazione:
-\begin{equation}
-\delta \text{FWHM} = \sigma_\text{FWHM} = 0.7
-\end{equation}
-mentre per l'errore sulla posizione del centroide abbiamo considerato anche la deriva sulla posizione dei picchi tra l'inizio e la fine della serie di misure.
 
 Infatti, dopo aver misurato gli spettri di tutte le sorgenti abbiamo misurato un ultimo spettro di \ce{^60Co}, trovando:
 \begin{equation}
 \text{centroide}_\text{after} = 781.82
 \end{equation}
 allora abbiamo considerato:
-\begin{equation} \label{eq:errcentroide}
+\begin{equation}
 \delta \text{centroide} = \sigma_\text{centroide} + \Delta = 1.5
 \end{equation}
 dove $ \Delta = 1.3 $ è la differenza tra la media della posizione dei centroidi all'inizio e il centroide misurato alla fine.
@@ -206,17 +208,15 @@ Confronteremo l'energia misurata con quella teorica:
 E_{\text{back}} = E_{ \gamma'}(\ang{180}) = \frac{E_ \gamma}{1+e \frac{E_ \gamma}{mc^2}}
 \end{equation}
 
-\item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{eq:errcentroide}. \help{remi: gli errori in tabella (e di conseguenza anche i test Z) sono da correggere.}
+\item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{eq:errcentroide}.
 \end{enumerate}
 
 Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti riportati in \cref{fig:simo_foto_spettri}.
 
-\help{la tabella può essere fatta meglio? (remi: per me è ok, a parte le correzioni sui valori)}
-
 \begin{table}
   \centering
-  \begin{tabular}{c|cccccc}
-    sorgente & Ch Spalla & $\delta \text{Ch Spalla}$ & Ch Backscatter & $\delta \text{Ch Backscatter}$ & Ch X & $\delta \text{Ch X}$ \\
+  \begin{tabular}{c|cc|cc|cc}
+    sorgente & spalla & $\delta \text{spalla}$ & backscatter & $\delta \text{backscatter}$ & X & $\delta \text{X}$ \\
 \hline
    \ce{^22Na} &208 & 16 & 106 & 11 & 48.9 & 1.5\\
    \ce{^22Na} &630 & 30 & - & - & 48.9 & 1.5\\
@@ -251,8 +251,8 @@ Usando la calibrazione della scala abbiamo estrapolato il valore energetico dell
 
 \begin{table}
   \centering
-\begin{tabular}{c|cccccc}
-  sorgente  &   $E_{	\text{sp,exp}}[\unit{MeV}]$ & $\delta E_{	\text{sp,exp}}[\unit{MeV}]$ & $E_{	\text{sp,th}}[\unit{MeV}]$ & $\delta E_{	\text{sp,th}}[\unit{MeV}]$ & $Z_	\text{score}$& $p_\text{value}$ \\
+\begin{tabular}{c|cc|cc|cc}
+  sorgente  & $E_{\text{sp,exp}}[\unit{MeV}]$ & $\delta E_{\text{sp,exp}}[\unit{MeV}]$ & $E_{\text{sp,th}}[\unit{MeV}]$ & $\delta E_{\text{sp,th}}[\unit{MeV}]$ & $Z$& $p$ \\
   \hline
   \ce{^22Na} \ang{1} picco & 0.34 & 0.03 & 0.3407 & 0.0007 & 0.0126& 0.99 \\
   \ce{^22Na} \ang{2} picco & 1.07 & 0.06 & 1.06167 & 0.00008 & -0.1211& 0.90\\
@@ -263,7 +263,7 @@ Usando la calibrazione della scala abbiamo estrapolato il valore energetico dell
   \label{tab:simo_spalla}
 \end{table}
 
-Come si può vedere in \cref{tab:simo_spalla}, i valori sperimentali risultano compatibili con i valori attesi. \help{remi: aggiungere anche p-value?}
+Come si può vedere in \cref{tab:simo_spalla}, i valori sperimentali risultano compatibili con i valori attesi.
 
 \subsection{Backscatter}
 
@@ -272,12 +272,12 @@ In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimental
 
 \begin{table}
   \centering
-  \begin{tabular}{c|cccccc}
-    sorgente &    $E_{\text{Back}}$[MeV] & $\delta E_{\text{Back}}$[MeV] & $E_{\text{Back,th}}$ [MeV]& $\delta E_{\text{Back,th}}$[MeV] & $Z_{score}$ & $p_\text{value}$\\
+  \begin{tabular}{c|cc|cc|cc}
+      sorgente & $E_{\text{Back}}[\unit{MeV}] $ & $\delta E_{\text{Back}}[\unit{MeV}]$ & $E_{\text{Back,th}}[\unit{MeV}] $ & $\delta E_{\text{Back,th}}[\unit{MeV}] $ & $Z$ & $p$\\
   \hline
     \ce{^22Na}  &0.165 & 0.019 & 0.1703 & 0.0003 & 0.253 & 0.8\\
-    \ce{^60Co} \ang{1} picco &0.21 & 0.03 & 0.20981 & 0.00018 & 0.1&0.95 \\
-    \ce{^60Co} \ang{2} picco & 0.21 & 0.03 & 0.21439 & 0.00016 & 0.221& 0.82\\
+    \ce{^60Co} - 1 &0.21 & 0.03 & 0.20981 & 0.00018 & 0.1&0.95 \\
+    \ce{^60Co} - 2 & 0.21 & 0.03 & 0.21439 & 0.00016 & 0.221& 0.82\\
     \ce{^137Cs}  &0.18 & 0.02 & 0.18432 & 0.00003 & 0.084& 0.93\\
   \end{tabular}
   \caption{Soglie backscattering misurate a confronto con i valori attesi}
@@ -293,14 +293,14 @@ Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come rip
 
 \begin{table}
   \centering
-  \begin{tabular}{c|cccccc}
-    sorgente & $K_{\alpha\text{,exp}}$[MeV] & $\delta K_{\alpha\text{,exp}}$[MeV] & $K_{\alpha\text{,th}}$ [MeV] & $\delta K_{\alpha\text{,th}}$ [MeV] & $Z_\text{score}$ & $p_{\text{value}}$ \\
+  \begin{tabular}{c|cc|cc|cc}
+      sorgente & $K_{\alpha\text{,exp}}[\unit{MeV}]$ & $\delta K_{\alpha\text{,exp}} [\unit{MeV}]$ & $K_{\alpha\text{,th}} [\unit{MeV}] $ & $\delta K_{\alpha\text{,th}} [\unit{MeV}] $ & $Z$ & $p$ \\
     \hline  
     \ce{^22Na}  & 0.068 & 0.005 & 0.074 & 0.001 & 1.24  & 0.21 \\
     \ce{^60Co}  & 0.067 & 0.005 & 0.074 & 0.001 & 1.46  & 0.14 \\
     \ce{^137Cs} & 0.070 & 0.005 & 0.074 & 0.001 & 0.817 & 0.41 \\
   \end{tabular}
-  \caption{raggi X relativi alla transizione $K_ \alpha$ del piombo.}
+  \caption{Raggi X relativi alla transizione $K_ \alpha$ del piombo.}
   \label{tab:simo_Pb}
 \end{table}
 
@@ -324,6 +324,7 @@ Identificati i picchi nello spettro della roccia (\cref{fig:rock}) abbiamo ricav
 
 \begin{table}
     \centering
+    \small
     \begin{tabular}{cc|cc|cc|c|cc}
         canale & $\delta$ canale & $ E_\text{exp} [\unit{MeV}] $ & $ \delta E_\text{exp} [\unit{MeV}] $ & $ E_\text{th} [\unit{MeV}] $ & $ \delta E_\text{th} [\unit{MeV}] $ & ipotesi & $Z$ & $p$ \\
         \hline
@@ -346,7 +347,7 @@ In particolare, tutti gli elementi ipotizzati appartengono alla catena di decadi
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{images/fondo.png}
-    \caption{Spettro emissivo del fondo ambientale}
+    \caption{Spettro emissivo del fondo ambientale con i conteggi in scala logaritmica.}
     \label{fig:fondo}
 \end{figure}
 

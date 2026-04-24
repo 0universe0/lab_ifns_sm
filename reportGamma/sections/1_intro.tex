@@ -47,14 +47,14 @@ Questo segnale viene trattato con un preamplificatore e un amplificatore, e inte
 \label{fig:photomult}
 \end{figure}
 
-\subsection{Misure sul multicanale}
+\subsection{Misure sul multicanale} \label{sec:errnetcounts}
 
 Il multicanale restituisce delle misure su una scala composta da 1024 canali (proporzionale alla risposta tra $ 0\unit{V} $ e $ 10 \unit{V} $ del setup di acquisizione/amplificazione).
 In particolare, conta il numero di segnali che vengono misurati all'interno di un range di $ 10\unit{V} / 1024 $.
 
 L'emissione dei raggi $ \gamma $ da parte delle sorgenti radioattive è monocromatica, ma lo spettro misurato dal multicanale non misura dei picchi strettissimi a causa dei limiti di risoluzione determinati da scintillatore e fotomoltiplicatore.\footnote{Sappiamo che questi effetti sono da attribuirsi a questi elementi del setup perché studiando i segnali monocromatici dati dal generatore di impulsi il multicanale misurava dei segnali larghi al più due canali (contro i $ 30-40 $ canali delle misure con le sorgenti).}
 Allora per stimare la posizione dei picchi abbiamo sfruttato il software DPPMCA: selezionando una regione di interesse intorno a un picco di conteggi si ottiene una stima del centroide e della larghezza a metà altezza (FWHM) di questa distribuzione.
-Per determinare le incertezze su queste misure abbiamo effettuato delle misure ripetute su un picco di \ce{^60Co} come illustrato in \help{link to section}.
+Per determinare le incertezze su queste misure abbiamo effettuato delle misure ripetute su un picco di \ce{^60Co} come illustrato in \cref{sec:errcentr}.
 
 Per valutare le posizioni della soglie della spalla Compton e del backscatter abbiamo utilizzato un criterio diverso: abbiamo considerato la regione compresa tra \help{insert explanation}.
 
