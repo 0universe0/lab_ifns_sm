@@ -218,11 +218,11 @@ Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i 
   \begin{tabular}{c|cccccc}
     sorgente & Ch Spalla & $\delta \text{Ch Spalla}$ & Ch Backscatter & $\delta \text{Ch Backscatter}$ & Ch X & $\delta \text{Ch X}$ \\
 \hline
-   \ce{^22Na} &208 & 16 & 106 & 11 & 48.9 & 1.0\\
-   \ce{^22Na} &630 & 30 & - & - & 48.9 & 1.0\\
-   \ce{^60Co} & 570 & 20 & 131 & 16 & 48.3 & 1.0\\
-   \ce{^60Co}& - & - & 131 & 16 & 48.3 & 1.0\\
-   \ce{^137Cs}& 287 & 16 & 116 & 12 & 50.1 & 1.0\\
+   \ce{^22Na} &208 & 16 & 106 & 11 & 48.9 & 1.5\\
+   \ce{^22Na} &630 & 30 & - & - & 48.9 & 1.5\\
+   \ce{^60Co} & 570 & 20 & 131 & 16 & 48.3 & 1.5\\
+   \ce{^60Co}& - & - & 131 & 16 & 48.3 & 1.5\\
+   \ce{^137Cs}& 287 & 16 & 116 & 12 & 50.1 & 1.5\\
   \end{tabular}
   \caption{Canali relativi agli spettri di emissione}
   \label{tab:ch_spettri}
@@ -252,12 +252,12 @@ Usando la calibrazione della scala abbiamo estrapolato il valore energetico dell
 \begin{table}
   \centering
 \begin{tabular}{c|cccccc}
- sorgente  &   $E_{	\text{sp,exp}}[\unit{MeV}]$ & $\delta E_{	\text{sp,exp}}[\unit{MeV}]$ & $E_{	\text{sp,th}}[\unit{MeV}]$ & $\delta E_{	\text{sp,th}}[\unit{MeV}]$ & $Z_	\text{score}$ \\
- \hline
-\ce{^22Na} \ang{1} picco & 0.34 & 0.03 & 0.3407 & 0.0007 & 0.0126 \\
-\ce{^22Na} \ang{2} picco & 1.07 & 0.06 & 1.06167 & 0.00008 & -0.1211 \\
-\ce{^60Co} & 0.97 & 0.04 & 0.9634 & 0.0008 & -0.0821 \\
-\ce{^137Cs} & 0.48 & 0.03 & 0.47734 & 0.00007 & 0.0373 \\
+  sorgente  &   $E_{	\text{sp,exp}}[\unit{MeV}]$ & $\delta E_{	\text{sp,exp}}[\unit{MeV}]$ & $E_{	\text{sp,th}}[\unit{MeV}]$ & $\delta E_{	\text{sp,th}}[\unit{MeV}]$ & $Z_	\text{score}$& $p_\text{value}$ \\
+  \hline
+  \ce{^22Na} \ang{1} picco & 0.34 & 0.03 & 0.3407 & 0.0007 & 0.0126& 0.99 \\
+  \ce{^22Na} \ang{2} picco & 1.07 & 0.06 & 1.06167 & 0.00008 & -0.1211& 0.90\\
+  \ce{^60Co} & 0.97 & 0.04 & 0.9634 & 0.0008 & -0.0821& 0.93\\
+  \ce{^137Cs} & 0.48 & 0.03 & 0.47734 & 0.00007 & 0.0373& 0.97\\
   \end{tabular}
   \caption{Compatibilità spalla Compton con valori teorici.}
   \label{tab:simo_spalla}
@@ -272,13 +272,13 @@ In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimental
 
 \begin{table}
   \centering
-  \begin{tabular}{c|ccccc}
-    sorgente &    $E_{\text{Back,exp}}$ & $\delta E_{\text{Back,exp}}$ & $E_{\text{Back,th}}$ & $\delta E_{\text{Back,th}}$ & $Z_{score}$\\
+  \begin{tabular}{c|cccccc}
+    sorgente &    $E_{\text{Back}}$[MeV] & $\delta E_{\text{Back}}$[MeV] & $E_{\text{Back,th}}$ [MeV]& $\delta E_{\text{Back,th}}$[MeV] & $Z_{score}$ & $p_\text{value}$\\
   \hline
-    \ce{^22Na}  &0.165 & 0.019 & 0.1703 & 0.0003 & 0.253 \\
-    \ce{^60Co} \ang{1} picco &0.21 & 0.03 & 0.20981 & 0.00018 & 0.1 \\
-    \ce{^60Co} \ang{2} picco & 0.21 & 0.03 & 0.21439 & 0.00016 & 0.221 \\
-    \ce{^137Cs}  &0.18 & 0.02 & 0.18432 & 0.00003 & 0.084 \\
+    \ce{^22Na}  &0.165 & 0.019 & 0.1703 & 0.0003 & 0.253 & 0.8\\
+    \ce{^60Co} \ang{1} picco &0.21 & 0.03 & 0.20981 & 0.00018 & 0.1&0.95 \\
+    \ce{^60Co} \ang{2} picco & 0.21 & 0.03 & 0.21439 & 0.00016 & 0.221& 0.82\\
+    \ce{^137Cs}  &0.18 & 0.02 & 0.18432 & 0.00003 & 0.084& 0.93\\
   \end{tabular}
   \caption{Soglie backscattering misurate a confronto con i valori attesi}
   \label{tab:simo_back}
@@ -293,12 +293,12 @@ Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come rip
 
 \begin{table}
   \centering
-  \begin{tabular}{c|ccccc}
-    sorgente & $K_{\alpha\text{,exp}}$ & $\delta K_{\alpha\text{,exp}}$ & $K_{\alpha\text{,th}}$ & $\delta K_{\alpha\text{,th}}$ & $Z_\text{score}$ \\\\
-\hline
-    \ce{^22Na} & 0.068 & 0.004 & 0.0740 & 0.0010\\
-    \ce{^60Co} & 0.067 & 0.004 & 0.0740 & 0.0010\\
-    \ce{^137Cs} & 0.070 & 0.004 & 0.0740 & 0.0010\\
+  \begin{tabular}{c|cccccc}
+    sorgente & $K_{\alpha\text{,exp}}$[MeV] & $\delta K_{\alpha\text{,exp}}$[MeV] & $K_{\alpha\text{,th}}$ [MeV] & $\delta K_{\alpha\text{,th}}$ [MeV] & $Z_\text{score}$ & $p_{\text{value}}$ \\
+    \hline  
+    \ce{^22Na}  & 0.068 & 0.005 & 0.074 & 0.001 & 1.24  & 0.21 \\
+    \ce{^60Co}  & 0.067 & 0.005 & 0.074 & 0.001 & 1.46  & 0.14 \\
+    \ce{^137Cs} & 0.070 & 0.005 & 0.074 & 0.001 & 0.817 & 0.41 \\
   \end{tabular}
   \caption{raggi X relativi alla transizione $K_ \alpha$ del piombo.}
   \label{tab:simo_Pb}
