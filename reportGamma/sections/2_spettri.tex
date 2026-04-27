@@ -9,7 +9,7 @@ Allora abbiamo effettuato con successo una regressione lineare ai dati in \cref{
 \begin{equation}
 V_\text{out} = [(-1.432 \pm 0.007)] \cdot V_\text{in} + [(-0.01 \pm 0.01) \unit{V}]
 \end{equation}
-quindi la risposta è lineare, e per un segnale di ingresso nullo abbiamo anche un segnale in uscita nullo (la quota è compatibile con $ 0 $). \help{maybe test Z explicitly}
+quindi la risposta è lineare, e per un segnale di ingresso nullo abbiamo anche un segnale in uscita nullo (la quota è compatibile con $ 0 $: $ Z = -1 $, o $ p = 0.317 $). 
 
 Poi, abbiamo anche studiato l'andamento delle misure in canali $ C $ contro alla tensione in ingresso $ V_\text{in} $: verificando che anche questo è lineare, escludiamo anche dei fenomeni non lineari nell'elaborazione del segnale fatta dal multicanale. \help{simo, do you agree?}
 
@@ -17,7 +17,7 @@ Come prima, i dati sono raccolti in \cref{tab:allVin} (grafico in \cref{fig:allV
 \begin{equation}
 C = [(-142.7 \pm 0.7) \unit{V^{-1}}] \cdot V_\text{in} + [(1 \pm 2)]
 \end{equation}
-e come prima la quota è compatibile con $ 0 $. \help{as before}
+e come prima la quota è compatibile con $ 0 $ (con $ Z = 0.5 $, o $ p = 0.617 $).
 
 \begin{figure}
 \centering
@@ -267,8 +267,13 @@ Come si può vedere in \cref{tab:simo_spalla}, i valori sperimentali risultano c
 
 \subsection{Backscatter}
 
-L'effetto di backscatter è stato individuato dai relativi spettri per il \ce{137Cs}, e per il primo fotopicco di \ce{^22Na}.\\ Per quanto riguarda il \ce{60Co}, come è possibile vedere in \cref{fig:simo_spettro_Cs}, il nostro apparato strumentale è in grado di individuare solo una soglia di backscatter, mentre lo spettro dovrebbe averne due, ognuna corrispondente al relativo fotopicco; l'ipotesi che verificheremo è che la differenza di energia tra le due soglie di backscatter sia minore della risoluzione strumentale, o equivalentemente, che l'unica soglia misurata (con relativo errore) sia compatibile con entrambi i valori teorici di soglie di backscatter relativi ai fotopicchi.\\
+L'effetto di backscatter è stato individuato dai relativi spettri per il \ce{^137Cs}, e per il primo fotopicco di \ce{^22Na}.
+
+Per quanto riguarda il \ce{^60Co}, come è possibile vedere in \cref{fig:simo_spettro_Co}, il nostro apparato strumentale è in grado di individuare solo una soglia di backscatter, mentre lo spettro dovrebbe averne due, ognuna corrispondente al relativo fotopicco.
+Quindi, verifichiamo che la differenza di energia tra le due soglie di backscatter sia minore della risoluzione strumentale, o equivalentemente, che l'unica soglia misurata (con relativo errore) sia compatibile con entrambi i valori teorici di soglie di backscatter relative ai fotopicchi.
+
 In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimentalmente a confronto con quelle teoriche. 
+Tutte le energie di backscatter misurate sono compatibili con i valori teorici, e in particolare le singola soglia del \ce{^60Co} lo è con entrambi i valori attesi.
 
 \begin{table}
   \centering
@@ -283,8 +288,6 @@ In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimental
   \caption{Soglie backscattering misurate a confronto con i valori attesi}
   \label{tab:simo_back}
 \end{table}
-
-Le energie di backscattering attese risultano compatibili con quelle misurate, anche per entrambi i fotopicchi di \ce{^60Co}. Questo conferma l'ipotesi che lo spettro del backscatter per il Cesio \cref{fig:simo_cesio} abbia i due picchi sovrapposti. \help{remi: in che senso? simo:  Ora ho spiegato sopra}
 
 \subsection{Raggi X}
 
