@@ -11,15 +11,15 @@ Essendo radiazione con carica neutra (al contrario delle radiazioni $ \alpha $ e
 \item produzione di coppie, il processo $ \ce{$\gamma$ -> e+ + e-} $ mediato dall'interazione forte nei pressi dei nuclei atomici.
 \end{enumerate}
 
-Nello specifico siamo interessati a studiare gli spettri di emissione $ \gamma $ di sorgenti di \ce{^22Na}, \ce{^57Co}, \ce{^60Co}, e \ce{^137Cs} (sia i picchi legati all'emissione caratteristica, sia i fenomeni di effetto Compton, backscatter e raggi X del piombo dovuti all'apparato sperimentale) usando un rivelatore a scintillazione \ce{NaI(Tl)}, il cui funzionamento si basa proprio su questi fenomeni di interazione $ \gamma $-materia.
+Nello specifico, siamo interessati a studiare gli spettri di emissione $ \gamma $ di sorgenti di \ce{^22Na}, \ce{^57Co}, \ce{^60Co}, e \ce{^137Cs} (sia i picchi legati all'emissione caratteristica, sia i fenomeni di effetto Compton, backscatter e raggi X del piombo dovuti all'apparato sperimentale) usando un rivelatore a scintillazione \ce{NaI(Tl)}, il cui funzionamento si basa proprio su questi fenomeni di interazione $ \gamma $-materia.
 
 Calibrata la strumentazione, di cui abbiamo studiato sia la risposta che la risoluzione, abbiamo anche provato a identificare gli isotopi radioattivi presenti in delle sorgenti naturali (rocce, e fondo ambientale).
 
 Infine, abbiamo anche:
 \begin{itemize}
-\item valutato le attività di due sorgenti radioattive di \ce{^137Cs},
-\item studiato l'assorbimento da parte di spessori di piombo della radiazione emessa dal \ce{^60Co},
-\item e caratterizzato i decadimenti associati ai due picchi di emissione del \ce{^60Co},
+\item valutato le attività di due sorgenti radioattive di \ce{^137Cs}
+\item studiato l'assorbimento da parte di spessori di piombo della radiazione emessa dal \ce{^60Co}
+\item  caratterizzato i decadimenti associati ai due picchi di emissione del \ce{^60Co}
 \end{itemize}
 misurando in tutti e tre i casi il numero di conteggi associati a ogni fotopicco. \help{this part needs to be integrated better}
 
@@ -56,7 +56,8 @@ L'emissione dei raggi $ \gamma $ da parte delle sorgenti radioattive è monocrom
 Allora per stimare la posizione dei picchi abbiamo sfruttato il software DPPMCA: selezionando una regione di interesse intorno a un picco di conteggi si ottiene una stima del centroide e della larghezza a metà altezza (FWHM) di questa distribuzione.
 Per determinare le incertezze su queste misure abbiamo effettuato delle misure ripetute su un picco di \ce{^60Co} come illustrato in \cref{sec:errcentr}.
 
-Per valutare le posizioni della soglie della spalla Compton e del backscatter abbiamo utilizzato un criterio diverso: abbiamo considerato la regione compresa tra \help{insert explanation}.
+Per valutare le posizioni delle soglie della spalla Comption e del backscatter, essendo questi dei gradini e non dei picchi, abbiamo utlizzato un criterio diverso, stimando la posizione della soglia utilizzando la zona di salita e la zona di discesa\footnote{Sperimentalmente, la risoluzione ridotta dell'apparato strumentale ci fa visualizzare la soglia come una zona di salita graduale. Simulando gli effetti stocastici della risoluzione applicando uno smearing gaussiano ad un gradino, possiamo verificare che la poszione originaria x del gradino corrisponde alla posizione della semialtezza della zona di salita (discesa). Per questo motivo, viene preso come valore di soglia il canale corrispondente alla semialtezza in conteggi tra l'inizio e la fine della salita, e come errore la larghezza della zona di salita.}.
+\help{insert explanation. Simo: inserted in footnotes, may be too long?}.
 
 Infine, per misurare il numero di conteggi netti all'interno di un picco ci siamo affidati sempre al software che, automaticamente, rimuove dai conteggi lordi (la somma dei conteggi nei canali compresi nella regione di interesse) una stima del contributo del fondo.\footnote{Probabilmente stimando il contributo del fondo come i conteggi contenuti nel trapezio alto quanto la larghezza della regione di interesse, e con le basi lunghe quanto le altezze della coda sinistra/destra della regione di interesse.}
 Come stima dell'incertezza su queste misure abbiamo considerato degli errori poissoniani ($\delta A = \sqrt{A}$) e indipendenti sui conteggi del fondo e sui conteggi lordi:
