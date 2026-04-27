@@ -1,17 +1,20 @@
 \section{Studio della catena elettronica di misura}
 
-Prima di misurare gli spettri di emissione di tutti le sorgenti, abbiamo studiato la linearità della risposta della catena elettronica che elabora il segnale del fotomoltiplicatore.
+Prima di misurare gli spettri di emissione di tutti le sorgenti, abbiamo studiato la linearità della risposta della catena elettronica che elabora il segnale del fotomoltiplicatore, simulando dei segnali perfettamente monocromatici tramite un generatore di impulsi in ingresso alla catena elettronica.
 
-Abbiamo misurato con un oscilloscopio (come mostrato schematicamente in \cref{fig:setup}) sia l'ampiezza del segnale in ingresso nel preamplificatore $ V_\text{in} $ che quella del segnale in uscita dall'amplificatore $ V_\text{out} $.
-In particolare, abbiamo generato dei segnali in ingresso con un generatore di impulsi, simulando dei segnali perfettamente monocromatici.
+Abbiamo misurato con un oscilloscopio (come mostrato schematicamente in \cref{fig:setup}) sia l'ampiezza del segnale in ingresso nel preamplificatore $ V_\text{in} $ che quella del segnale in uscita dall'amplificatore $ V_\text{out} $, e il canale corrispondente. Tutti i dati sono riportati in \cref{tab:allVin}
 
-Allora abbiamo effettuato con successo una regressione lineare ai dati in \cref{tab:allVin} (a sinistra in \cref{fig:allVin}) ottenendo come stime dei parametri:
+\subsection{Linearità catena di amplificazione}
+
+Per verificare la linearità della catena di amplificazione, abbiamo effettuato con successo una regressione lineare ai dati in \cref{tab:allVin} (a sinistra in \cref{fig:allVin}) ottenendo come stime dei parametri:
 \begin{equation}
 V_\text{out} = [(-1.432 \pm 0.007)] \cdot V_\text{in} + [(-0.01 \pm 0.01) \unit{V}]
 \end{equation}
 quindi la risposta è lineare, e per un segnale di ingresso nullo abbiamo anche un segnale in uscita nullo (la quota è compatibile con $ 0 $: $ Z = -1 $, o $ p = 0.317 $). 
 
-Poi, abbiamo anche studiato l'andamento delle misure in canali $ C $ contro alla tensione in ingresso $ V_\text{in} $: verificando che anche questo è lineare, escludiamo anche dei fenomeni non lineari nell'elaborazione del segnale fatta dal multicanale. \help{simo, do you agree?}
+\subsection{Linearità ADC} 
+
+Per caratterizzare l'ADC, abbiamo studiato l'andamento delle misure in canali $ C $ contro la tensione in ingresso $ V_\text{in} $: verificando che anche questo è lineare, escludiamo fenomeni non lineari nell'elaborazione del segnale fatta dal multicanale. 
 
 Come prima, i dati sono raccolti in \cref{tab:allVin} (grafico in \cref{fig:allVin} a destra), e otteniamo delle stime accettabili dei parametri:
 \begin{equation}
