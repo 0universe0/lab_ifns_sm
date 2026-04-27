@@ -196,19 +196,19 @@ Per questo effetto, il rivelatore misurerà l'energia:
 \begin{equation}
 E_{\text{Sp}} = E_ \gamma - E_ {\gamma'}(\theta) = E_ \gamma - \frac{E_ \gamma}{1+\frac{E_ \gamma}{mc^2} (1 - \cos(\theta)}
 \end{equation}
-Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, prendendo il canale corrispondente alla semialtezza tra i valori di inizio e fine discesa, con un'errore pari alla metà della larghezza in canali della zona di discesa. \\
+Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, prendendo il canale corrispondente alla semialtezza (in canali) tra i valori di inizio e fine discesa, con un'errore pari alla metà della larghezza in canali della zona di discesa. \\
 Verificheremo che l'energia risultante dalla misura sia compatibile con quella attesa:
 \begin{equation} \label{eq:E_sp}
 E_{\text{sp}} =  E_ \gamma - E_ {\gamma'}(\ang{180}) = \frac{2E_ \gamma ^2}{mc^2} \frac{1}{1+2 \frac{E_ \gamma}{mc^2}}
 \end{equation}
   
-\item {\bf Backscattering}: è il picco relativo all'effetto Compton dei raggi gamma incidenti sulla schermatura di piombo. Abbiamo misurato il valore di soglia relativo a  $\theta \simeq \ang{180}$, prendendo come canale quello corrispondente alla semialtezza in conteggi tra i valori di inizio e fine salita, con errore pari alla metà della larghezza in canali della zona di salita.
+\item {\bf Backscattering}: è il picco relativo all'effetto Compton dei raggi gamma incidenti sulla schermatura di piombo. Abbiamo misurato il valore di soglia relativo a  $\theta \simeq \ang{180}$, prendendo come canale quello corrispondente alla semialtezza tra i valori di inizio e fine salita, con errore pari alla metà della larghezza in canali della zona di salita.
 Confronteremo l'energia misurata con quella teorica:
 \begin{equation}
 E_{\text{back}} = E_{ \gamma'}(\ang{180}) = \frac{E_ \gamma}{1+e \frac{E_ \gamma}{mc^2}}
 \end{equation}
 
-\item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{eq:errcentroide}.
+\item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{eq:errcentroide}. \help{remi: gli errori in tabella (e di conseguenza anche i test Z) sono da correggere.\\ simo: dovrebbero essere aggiustati}
 \end{enumerate}
 
 Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti riportati in \cref{fig:simo_foto_spettri}.
@@ -267,7 +267,7 @@ Come si può vedere in \cref{tab:simo_spalla}, i valori sperimentali risultano c
 
 \subsection{Backscatter}
 
-L'effetto di backscatter è stato individuato dallo spettro per il primo fotopicco di \ce{^22Na} e per il \ce{137Cs}. Per quanto riguarda il \ce{^22Na} \cref{fig:simo_cesio} i picchi di backscatter sono sovrapposti e risultano indistinguibili, perciò verrà confrontato l'unico picco visibile con entrambi i valori di Backscatter teorici. 
+L'effetto di backscatter è stato individuato dai relativi spettri per il \ce{137Cs}, e per il primo fotopicco di \ce{^22Na}.\\ Per quanto riguarda il \ce{60Co}, come è possibile vedere in \cref{fig:simo_spettro_Cs}, il nostro apparato strumentale è in grado di individuare solo una soglia di backscatter, mentre lo spettro dovrebbe averne due, ognuna corrispondente al relativo fotopicco; l'ipotesi che verificheremo è che la differenza di energia tra le due soglie di backscatter sia minore della risoluzione strumentale, o equivalentemente, che l'unica soglia misurata (con relativo errore) sia compatibile con entrambi i valori teorici di soglie di backscatter relativi ai fotopicchi.\\
 In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimentalmente a confronto con quelle teoriche. 
 
 \begin{table}
@@ -284,7 +284,7 @@ In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimental
   \label{tab:simo_back}
 \end{table}
 
-Le energie di backscattering attese risultano compatibili con quelle misurate, anche per entrambi i fotopicchi di \ce{^60Co}. Questo conferma l'ipotesi che lo spettro del backscatter per il Cesio \cref{fig:simo_cesio} abbia i due picchi sovrapposti. \help{remi: in che senso?}
+Le energie di backscattering attese risultano compatibili con quelle misurate, anche per entrambi i fotopicchi di \ce{^60Co}. Questo conferma l'ipotesi che lo spettro del backscatter per il Cesio \cref{fig:simo_cesio} abbia i due picchi sovrapposti. \help{remi: in che senso? simo:  Ora ho spiegato sopra}
 
 \subsection{Raggi X}
 
