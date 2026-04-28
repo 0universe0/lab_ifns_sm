@@ -21,7 +21,7 @@ Il modello teorico che abbiamo usato per descrivere l'andamento della risoluzion
 \begin{equation} \label{eq:resolution}
 R = \frac{k}{\sqrt{E}} + c
 \end{equation}
-dove $ k $ rappresenta \help{??? è rumore statistico}, mentre $ c $ un contributo di fondo del sistema.
+dove $ k $ rappresenta la costante di proporzionalità del rumore statistico,\footnote{Ci aspettiamo che il contributo principale all'errore sulle misure di ogni eventi sia dovuto al numero di fotoelettroni $ N_\text{ph} $ emessi dal fotocatodo (nel fotomoltiplicatore). L'errore sul numero di fotoelettroni è poissoniano, e per questo l'andamento previsto per la risoluzione è $ \sqrt{N_\text{ph}} / N_\text{ph} \propto k / \sqrt{E} $} mentre $ c $ un contributo di fondo del sistema.
 
 Nello specifico, per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}, come in \cref{tab:resolution}
 Troviamo che la regressione converge in maniera accettabile per i parametri:
