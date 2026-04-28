@@ -1,4 +1,4 @@
-\section{Studio della catena elettronica di misura}
+\section{Studio della catena elettronica di misura} \label{sec:electronchain}
 
 Prima di misurare gli spettri di emissione di tutti le sorgenti, abbiamo studiato la linearità della risposta della catena elettronica che elabora il segnale del fotomoltiplicatore, simulando dei segnali perfettamente monocromatici tramite un generatore di impulsi in ingresso alla catena elettronica.
 
@@ -8,9 +8,9 @@ Abbiamo misurato con un oscilloscopio (come mostrato schematicamente in \cref{fi
 
 Per verificare la linearità della catena di amplificazione, abbiamo effettuato con successo una regressione lineare ai dati in \cref{tab:allVin} (a sinistra in \cref{fig:allVin}) ottenendo come stime dei parametri:
 \begin{equation}
-V_\text{out} = [(-1.432 \pm 0.007)] \cdot V_\text{in} + [(-0.01 \pm 0.01) \unit{V}]
+V_\text{out} = [(-1.432 \pm 0.007)] \cdot V_\text{in} + [(-0.006 \pm 0.012) \unit{V}]
 \end{equation}
-quindi la risposta è lineare, e per un segnale di ingresso nullo abbiamo anche un segnale in uscita nullo (la quota è compatibile con $ 0 $: $ Z = -1 $, o $ p = 0.317 $). 
+quindi la risposta è lineare, e per un segnale di ingresso nullo abbiamo anche un segnale in uscita nullo (la quota è compatibile con $ 0 $: $ Z = -0.5 $, o $ p = 0.617 $). 
 
 \subsection{Linearità ADC} 
 
@@ -46,7 +46,7 @@ $V_\text{in} [\unit{V}]$ & $\delta V_\text{in} [\unit{V}]$ & $\text{canale}$ & $
 -6.24 & 0.04 & 887 & 2 & 8.80 & 0.08\\
 -6.72 & 0.04 & 964 & 3 & 9.60 & 0.08
 \end{tabular}
-\caption{Dati relativi alla verifica della linearità della risposta della catena elettronica di elaborazione del segnale. La tensione $ V_\text{in} $ è l'ampiezza del segnale in ingresso (generato elettronicamente) misurata sull'oscilloscopio, come anche la tensione in uscita dall'amplificatore $ V_\text{out} $. I canali sono le posizioni nel multicanale dei segnali osservati (come stima dell'errore abbiamo considerato la semidispersione dei picchi in \cref{fig:peakVin}).}
+\caption{Dati relativi alla verifica della linearità della risposta della catena elettronica di elaborazione del segnale. La tensione $ V_\text{in} $ è l'ampiezza del segnale in ingresso (generato elettronicamente) misurata sull'oscilloscopio, come anche la tensione in uscita dall'amplificatore $ V_\text{out} $. I canali sono le posizioni nel multicanale dei segnali osservati (come stima dell'errore abbiamo considerato la semilarghezza dei picchi in \cref{fig:peakVin}).}
 \label{tab:allVin}
 \end{table}
 
@@ -65,7 +65,7 @@ Il multicanale registra ogni evento misurando la sua energia nella scala dei suo
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{./images/co57.png}
-\caption{Spettro emissione del \ce{^57Co}.}
+\caption{Spettro di emissione del \ce{^57Co}.}
 \label{fig:co57}
 \end{figure}
 
@@ -164,7 +164,7 @@ In particolare, nel propagare gli errori sulle energie calcolate con questo mode
 
 \begin{table}
 \centering
-\begin{tabular}{ccccc}
+\begin{tabular}{c|cc|cc}
 sorgente & $E [\unit{MeV}]$ & $\delta E [\unit{MeV}]$ & $\text{centroide}$ & $\delta \text{centroide}$ \\
 \hline
 \ce{^22Na} & 0.5110 & 0.0010 & 307.2 & 1.5\\
@@ -251,37 +251,38 @@ Dopo aver calibrato la scala dei canali usando le energie dei fotopicchi, voglia
 \item {\bf Spalla Compton}: è una zona a gradino nello spettro energetico, causata dalla deviazione del fotone incidente fuori dal cristallo, per effetto Compton.\\
 Per questo effetto, il rivelatore misurerà l'energia: 
 \begin{equation}
-E_{\text{Sp}} = E_ \gamma - E_ {\gamma'}(\theta) = E_ \gamma - \frac{E_ \gamma}{1+\frac{E_ \gamma}{mc^2} (1 - \cos(\theta)}
+E_{\text{Compton}} = E_ \gamma - E_ {\gamma'}(\theta) = E_ \gamma - \frac{E_ \gamma}{1+\frac{E_ \gamma}{mc^2} (1 - \cos\theta)}
 \end{equation}
-Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, usando la procedura di presa dati per le soglie, descritta \cref{sec:errnetcounts}. \\
+dove $ E_{\gamma} $ è l'energia dei raggi $ \gamma $ incidenti, $ E_{\gamma'} $ quella dei fotoni diffusi, $ m = 0.511 \unit{MeV/c^2} $ la massa dell'elettrone e $ \theta $ l'angolo di diffusione. \\
+Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, usando la procedura di presa dati per le soglie, descritta \cref{sec:errnetcounts}. 
 Verificheremo che l'energia risultante dalla misura sia compatibile con quella attesa:
 \begin{equation} \label{eq:E_sp}
-E_{\text{sp}} =  E_ \gamma - E_ {\gamma'}(\ang{180}) = \frac{2E_ \gamma ^2}{mc^2} \frac{1}{1+2 \frac{E_ \gamma}{mc^2}}
+E_{\text{sp}} =  E_ \gamma - E_ {\gamma'}(\ang{180}) = \frac{2E_ \gamma ^2}{mc^2} \frac{1}{1+2 \frac{E_ \gamma}{mc^2}}.
 \end{equation}
   
 \item {\bf Backscattering}: è il picco relativo all'effetto Compton dei raggi gamma incidenti sulla schermatura di piombo. Abbiamo misurato il valore di soglia relativo a  $\theta \simeq \ang{180}$ (sempre con il criterio illustrato in \cref{sec:errnetcounts}).
 Confronteremo l'energia misurata con quella teorica:
-\begin{equation}
-E_{\text{back}} = E_{ \gamma'}(\ang{180}) = \frac{E_ \gamma}{1+e \frac{E_ \gamma}{mc^2}}
+\begin{equation} \label{eq:back}
+E_{\text{back}} = E_{ \gamma'}(\ang{180}) = \frac{E_ \gamma}{1+2 \frac{E_ \gamma}{mc^2}}.
 \end{equation}
 
 \item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{sec:errcentr}. 
 \end{enumerate}
 
-Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti riportati in \cref{fig:spettri_calibrazione}.
+Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti riportati in \cref{fig:spettri_calibrazione}.
 
 \begin{table}
   \centering
   \begin{tabular}{c|cc|cc|cc}
     sorgente & spalla & $\delta \text{spalla}$ & backscatter & $\delta \text{backscatter}$ & X & $\delta \text{X}$ \\
 \hline
-   \ce{^22Na} &208 & 16 & 106 & 11 & 48.9 & 1.5\\
-   \ce{^22Na} &630 & 30 & - & - & 48.9 & 1.5\\
-   \ce{^60Co} & 570 & 20 & 131 & 16 & 48.3 & 1.5\\
-   \ce{^60Co}& - & - & 131 & 16 & 48.3 & 1.5\\
+   \ce{^22Na} - 1 &208 & 16 & 106 & 11 & 48.9 & 1.5\\
+   \ce{^22Na} - 2 &630 & 30 & - & - & - & - \\
+   \ce{^60Co} - 1 & 570 & 20 & 131 & 16 & 48.3 & 1.5\\
+   \ce{^60Co} - 2 & - & - & 131 & 16 & - & -\\
    \ce{^137Cs}& 287 & 16 & 116 & 12 & 50.1 & 1.5\\
   \end{tabular}
-  \caption{Canali relativi agli spettri di emissione}
+  \caption{Misure in canale delle spalle Compton, delle soglie di backscatter, e del picco caratteristico del piombo per ogni spettro di emissione (le misure e gli errori associati sono stati determinati coi criteri illustrati in \cref{sec:errnetcounts}). Per sodio-22 e cobalto-60 non siamo riusciti a distinguere le soglie (Compton e backscatter) associate entrambi i fotopicchi.}
   \label{tab:ch_spettri}
 \end{table}
 
@@ -303,7 +304,7 @@ Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i 
 
 \subsection{Spalla Compton}
 
-Come riportato in tabella \cref{tab:ch_spettri}, abbiamo trovato il valore in canali della soglia di Compton per il \ce{^137Cs} e di entrambe le soglie del \ce{^22 Na}. Per quanto riguarda invece il \ce{^60Co}, come si puo vedere in figura \cref{fig:simo_spettro_Co}, il valore di soglia relativo al secondo fotopicco è sovrapposto al primo fotopicco, quindi abbiamo potuto misurare solo il valore di soglia relativo al primo fotopicco. \\
+Come riportato in tabella \cref{tab:ch_spettri}, abbiamo trovato il valore in canali della soglia di Compton per il \ce{^137Cs} e di entrambe le soglie del \ce{^22 Na}. Per quanto riguarda invece il \ce{^60Co}, come si può vedere in figura \cref{fig:simo_spettro_Co}, il valore di soglia relativo al secondo fotopicco è sovrapposto al primo fotopicco, quindi abbiamo potuto misurare solo il valore di soglia relativo al primo fotopicco. \\
 Usando la calibrazione della scala abbiamo estrapolato il valore energetico delle soglie, e l'abbiamo confrontato con i valori attesi, ricavati a partire da \cref{eq:E_sp}. 
 
 \begin{table}
@@ -311,12 +312,12 @@ Usando la calibrazione della scala abbiamo estrapolato il valore energetico dell
 \begin{tabular}{c|cc|cc|cc}
   sorgente  & $E_{\text{sp,exp}}[\unit{MeV}]$ & $\delta E_{\text{sp,exp}}[\unit{MeV}]$ & $E_{\text{sp,th}}[\unit{MeV}]$ & $\delta E_{\text{sp,th}}[\unit{MeV}]$ & $Z$& $p$ \\
   \hline
-  \ce{^22Na} \ang{1} picco & 0.34 & 0.03 & 0.3407 & 0.0007 & 0.0126& 0.99 \\
-  \ce{^22Na} \ang{2} picco & 1.07 & 0.06 & 1.06167 & 0.00008 & -0.1211& 0.90\\
-  \ce{^60Co} & 0.97 & 0.04 & 0.9634 & 0.0008 & -0.0821& 0.93\\
+  \ce{^22Na} - 1 & 0.34 & 0.03 & 0.3407 & 0.0007 & 0.0126& 0.99 \\
+  \ce{^22Na} - 2 & 1.07 & 0.06 & 1.06167 & 0.00008 & -0.121& 0.90\\
+  \ce{^60Co} - 1 & 0.97 & 0.04 & 0.9634 & 0.0008 & -0.0821& 0.93\\
   \ce{^137Cs} & 0.48 & 0.03 & 0.47734 & 0.00007 & 0.0373& 0.97\\
   \end{tabular}
-  \caption{Compatibilità spalla Compton con valori teorici.}
+  \caption{Energie delle spalle Compton $ E_\text{sp,exp} $ calcolate a partire dalle misure in canali (in \cref{tab:ch_spettri}) con la funzione di calibrazione. Le abbiamo confrontate con i valori teorici $ E_\text{sp,th} $ calcolati con l'\cref{eq:E_sp}, con dei test $ Z $.}
   \label{tab:simo_spalla}
 \end{table}
 
@@ -327,7 +328,7 @@ Come si può vedere in \cref{tab:simo_spalla}, i valori sperimentali risultano c
 L'effetto di backscatter è stato individuato dai relativi spettri per il \ce{^137Cs}, e per il primo fotopicco di \ce{^22Na}.
 
 Per quanto riguarda il \ce{^60Co}, come è possibile vedere in \cref{fig:simo_spettro_Co}, il nostro apparato strumentale è in grado di individuare solo una soglia di backscatter, mentre lo spettro dovrebbe averne due, ognuna corrispondente al relativo fotopicco.
-Quindi, verifichiamo che la differenza di energia tra le due soglie di backscatter sia minore della risoluzione strumentale, o equivalentemente, che l'unica soglia misurata (con relativo errore) sia compatibile con entrambi i valori teorici di soglie di backscatter relative ai fotopicchi.
+Quindi, verifichiamo che la differenza di energia tra le due soglie di backscatter sia minore della risoluzione strumentale, o equivalentemente che l'unica soglia misurata (con relativo errore) sia compatibile con entrambi i valori teorici di soglie di backscatter relative ai fotopicchi.
 
 In tabella \cref{tab:simo_back} vengono riportate le energie trovate sperimentalmente a confronto con quelle teoriche. 
 Tutte le energie di backscatter misurate sono compatibili con i valori teorici, e in particolare le singola soglia del \ce{^60Co} lo è con entrambi i valori attesi.
@@ -335,21 +336,21 @@ Tutte le energie di backscatter misurate sono compatibili con i valori teorici, 
 \begin{table}
   \centering
   \begin{tabular}{c|cc|cc|cc}
-      sorgente & $E_{\text{Back}}[\unit{MeV}] $ & $\delta E_{\text{Back}}[\unit{MeV}]$ & $E_{\text{Back,th}}[\unit{MeV}] $ & $\delta E_{\text{Back,th}}[\unit{MeV}] $ & $Z$ & $p$\\
+      sorgente & $E_{\text{back,exp}}[\unit{MeV}] $ & $\delta E_{\text{back,exp}}[\unit{MeV}]$ & $E_{\text{back,th}}[\unit{MeV}] $ & $\delta E_{\text{back,th}}[\unit{MeV}] $ & $Z$ & $p$\\
   \hline
-    \ce{^22Na}  &0.165 & 0.019 & 0.1703 & 0.0003 & 0.253 & 0.8\\
+    \ce{^22Na} - 1 &0.165 & 0.019 & 0.1703 & 0.0003 & 0.253 & 0.8\\
     \ce{^60Co} - 1 &0.21 & 0.03 & 0.20981 & 0.00018 & 0.1&0.95 \\
     \ce{^60Co} - 2 & 0.21 & 0.03 & 0.21439 & 0.00016 & 0.221& 0.82\\
     \ce{^137Cs}  &0.18 & 0.02 & 0.18432 & 0.00003 & 0.084& 0.93\\
   \end{tabular}
-  \caption{Soglie backscattering misurate a confronto con i valori attesi}
+  \caption{Energie delle soglie di backscatter $ E_\text{back,exp} $ misurate a partire dalle misure in canale (in \cref{tab:ch_spettri}) attraverso la calibrazione, confrontate con i valori teorici $ E_\text{back,th} $ calcolati con l'equazione (\ref{eq:back}) con dei test $ Z $.}
   \label{tab:simo_back}
 \end{table}
 
 \subsection{Raggi X}
 
 Abbiamo verificato la presenza dei picchi di emissione dovuti ai raggi X caratteristici del piombo negli spettri di tutte le sorgenti.
-Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come riportato in \cref{tab:simo_Pb}, per tutti gli spettri il valore di energia che abbiamo misurato sperimentalmente è compatibile con quello teorico ($(0.0740 \pm 0.0010) \unit{MeV}$).
+Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo e, come riportato in \cref{tab:simo_Pb}, per tutti gli spettri il valore di energia che abbiamo misurato sperimentalmente è compatibile con quello teorico ($(0.0740 \pm 0.0010) \unit{MeV}$).
 
 \begin{table}
   \centering
@@ -360,7 +361,7 @@ Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come rip
     \ce{^60Co}  & 0.067 & 0.005 & 0.0740 & 0.0010 & 1.46  & 0.14 \\
     \ce{^137Cs} & 0.070 & 0.005 & 0.0740 & 0.0010 & 0.817 & 0.41 \\
   \end{tabular}
-  \caption{Raggi X relativi alla transizione $K_ \alpha$ del piombo.}
+  \caption{Energie $ K_{\alpha,\text{exp}} $ dei picchi associati all'emissione di raggi X da parte della schermatura di piombo calcolate a partire dai dati in \cref{tab:ch_spettri} con la funzione di calibrazione, confrontate con il valore teorico $ K_{\alpha,\text{th}} $ atteso attraverso dei test $ Z $.}
   \label{tab:simo_Pb}
 \end{table}
 
@@ -395,7 +396,7 @@ Identificati i picchi nello spettro della roccia (\cref{fig:rock}) abbiamo ricav
 150.7 & 1.5 & 0.242  & 0.005  & 0.2419 & 0.0010 & \ce{^214Pb}  & 0.003 & 0.997 \\
 118.9 & 1.5 & 0.187  & 0.005  & 0.1862 & 0.0010 & \ce{^226Ra}  & 0.284 & 0.777 \\
     \end{tabular}
-    \caption{Le misure relative ai picchi nello spettro della roccia, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}
+    \caption{Le misure relative ai picchi nello spettro della roccia (oltre che al picco di emissione di raggi X della schermatura), confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}
     \label{tab:rock}
 \end{table}
 

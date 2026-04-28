@@ -40,11 +40,11 @@ come riportato in \cref{tab:csrates}, dove $ A_n $ è il numero di conteggi nett
 
 \begin{table}
 	\centering
-	\begin{tabular}{c|cccccc}
-		sorgente & $A_n$ & $A_g$ & $t_\text{live} \, [\unit{s}]$ & $\delta t_\text{live} \, [\unit{s}]$ & $R \, [\unit{s^{-1}}]$ & $\delta R \, [\unit{s^{-1}}]$ \\
+	\begin{tabular}{c|ccc|cc|cc}
+		sorgente & $A_g$ & $A_n$ & $ \delta A_n $ & $t_\text{live} \, [\unit{s}]$ & $\delta t_\text{live} \, [\unit{s}]$ & $R \, [\unit{s^{-1}}]$ & $\delta R \, [\unit{s^{-1}}]$ \\
 		\hline
-		FS65 & 257764 & 273300  & 349.150 & 0.010 & 738.3 & 1.5 \\ 
-		FS66 & 51439 & 55415 & 354.170 & 0.010  & 145.2 & 0.7 
+		FS65 & 273300 & 257800 & 500 & 349.150 & 0.010 & 738.3 & 1.5 \\ 
+		FS66 & 55541 & 51400 & 200  & 354.170 & 0.010  & 145.2 & 0.7 
 	\end{tabular}
 	\caption{Dati relativi al conteggio dei rate del picco fotoelettrico delle due sorgenti di \ce{^137Cs}: l'area netta del picco $A_n$ determinata dal software rimuovendo il background all'area lorda $A_g$ (espresse entrambe in numero di conteggi), il tempo di misura $t_\text{live}$ e i rate con il loro errore.}
 	\label{tab:csrates}
@@ -81,7 +81,7 @@ Nello specifico nel nostro setup:\footnote{Il valore dell'efficienza $\epsilon$ 
 \end{equation}
 e quindi abbiamo valutato l'accettanza come $ G = (0.0177 \pm 0.0013)$ (usando l'\cref{eq:acc}).
 
-Usando l'equazione in \cref{eq:absactivity} con i rates in \cref{tab:csrates} abbiamo ricavato:
+Usando l'equazione in \cref{eq:absactivity} con i rate in \cref{tab:csrates} abbiamo ricavato:
 \begin{equation}
 A_\text{FS65,abs} = (196 \pm 17) \unit{kBq} \qquad A_\text{FS66,abs} = (38\pm3) \unit{kBq}
 \end{equation}
