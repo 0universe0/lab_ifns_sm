@@ -1,3 +1,47 @@
 \section{Conclusioni}
 
+Con questa esperienza abbiamo potuto studiare lo spettro di emissione gamma di alcuni isotopi radioattivi e la loro attività, ma anche il funzionamento del rivelatore a scintillazione a \ce{NaI(Tl)}.
 
+In effetti, dopo aver verificato che la risposta in segnale della catena elettronica che elabora gli impulsi generati dal rivelatore (cioè da cristallo e fotomoltiplicatore, come mostrato in \cref{fig:setup}) sia lineare, ci siamo concentrati sulla risposta di quest'ultimo.
+
+Abbiamo calibrato le misure dei canali del multicanale in misure di energie dei raggi $ \gamma $ sfruttando i picchi fotoelettrici delle sorgenti di \ce{^22Na} (solo il primo picco), \ce{^57Co}, \ce{^60Co} e \ce{^137Cs}, trovando un andamento non lineare (dato dal termine quadratico in \cref{eq:calibration}) rilevante soprattutto agli estremi dell'intervallo in energie studiato, ma anche un contributo di fondo: senza questi contributi la funzione di calibrazione non riesce ad adattarsi ai dati in maniera accettabile.
+In particolare, abbiamo anche verificato la bontà della calibrazione stimando l'energia dell'emissione del secondo picco di \ce{^22Na} a partire dalla misura in canale: la stima di $ (1.28 \pm 0.02) \unit{MeV} $ è compatibile con il valore teorico.
+
+Per quanto riguarda lo studio del rivelatore, abbiamo anche verificato che la sua risoluzione (in scala di energia) è proporzionale a $ 1 / \sqrt{E} $: l'incertezza sulle misure di energia da parte del setup dipende dall'errore poissoniano sui fotoelettroni estratti dal fotocatodo nel fotomoltiplicatore (rappresentato in \cref{fig:photomult}).
+Nello specifico, abbiamo anche valutato la risoluzione a $ E = 1 \unit{MeV} $ (usando il modello \cref{eq:resolution}) trovando $ R = 6.5 \% $ che è un valore tipico per i rivelatori \ce{NaI(Tl)}.
+
+Calibrato il setup sperimentale, e caratterizzato il suo funzionamento, lo abbiamo usato per studiare altri fenomeni negli spettri delle sorgenti di \ce{^22Na}, \ce{^60Co} e \ce{^137Cs}, e anche per identificare altri nuclidi in delle sorgenti naturali (una roccia, e il fondo ambientale).
+Per le sorgenti note abbiamo misurato l'energia delle spalle Compton, delle soglie di backscatter e dei raggi X caratteristici riemessi dalla schermatura di piombo: in tutti i casi dove è stato possibile misurare queste caratteristiche dello spettro (in dettaglio in \cref{tab:ch_spettri}) abbiamo trovato compatibilità tra le misure e i valori attesi calcolati teoricamente.
+Per le sorgenti naturali:
+\begin{itemize}
+	\item nella roccia abbiamo identificato delle righe di emissione compatibili con \ce{^214Bi}, \ce{^214Pb} e \ce{^226Ra}, tutti isotopi presenti nella catena di decadimento dell'uranio-238 (in \cref{tab:rock}),
+	\item nel fondo ambientale abbiamo identificato delle righe di emissione compatibili con \ce{^214Bi} e \ce{^40K} (in \cref{tab:fondo}),
+\end{itemize}
+e le nostre ipotesi sono verosimili in quanto tutti questi elementi o hanno tempi di decadimento molto lunghi (nell'ordine di $ 10^{9} \unit{y} $), o appartengono a catene di decadimento di elementi con emivita lunghi.
+
+Per studiare più precisamente gli spettri di emissione di tutte queste sorgenti sarebbe necessario un rivelatore con una risoluzione più piccola: in questo modo lo smearing gaussiano causato dagli errori sulle misure da parte del rivelatore renderebbe più netti sia i picchi di emissione sia le soglie di Compton/backscatter, facilitando la loro identificazione.
+
+Poi, abbiamo studiato le attività delle sorgenti di \ce{^137Cs} FS65 ed FS66 misurandole sia con un metodo relativo:
+\begin{equation}
+A_\text{FS66,rel} = (36.8 \pm 1.9) \unit{kBq}
+\end{equation}	
+sia che con uno assoluto (usando l'equazione (\ref{eq:absactivity})):
+\begin{equation}
+A_\text{FS65,abs} = (196 \pm 17) \unit{kBq} \quad A_\text{FS66,abs} = (38 \pm 3) \unit {kBq}
+\end{equation}
+trovando compatibilità (al $ 5\% $) con i valori attesi teorici.
+
+Successivamente abbiamo ricavato il coefficiente di assorbimento di massa del piombo (per l'energia di emissione del picco fotoelettrico del \ce{^137Cs}): 
+\begin{equation}
+\mu /\rho = (0.1040 \pm 0.0010) \unit{cm^2/g} 
+\end{equation}
+che è risultato essere statisticamente compatibile con il valore teorico.
+
+Infine, abbiamo studiato il picco somma del \ce{^60Co}, determinato dalla misura in contemporanea dei due eventi di decadimento associati ai picchi di emissione principali del cobalto-60, in modo da poter determinare se i decadimenti $ \gamma $ siano correlati oppure se avvengano in maniera indipendente. 
+Abbiamo calcolato i conteggi attesi nel picco somma sotto entrambe le ipotesi di decadimento: le nostre misure non sono compatibili con nessuna delle due ipotesi.
+Questa incompatibilità è dovuta alle approssimazioni grossolane che abbiamo applicato nel ricavare le stime teoriche dei conteggi.
+Comunque, abbiamo osservato come l'ordine di grandezza delle misure si avvicini maggiormente a quello delle stime con l'ipotesi di decadimento in cascata: questo è il modello teorico più verosimile.
+
+Per affinare le stime avremmo potuto aggiungere i conteggi nel picco somma ai conteggi dei due fotopicchi (un evento nel picco somma corrisponde a un evento per ciascun fotopicco).
+Questa correzione, però, non dà ancora risultati compatibili:\footnote{Avremmo avuto $ \Sigma_\text{dep} = 1410 \pm 70 $ e $ \Sigma_\text{ind} = 50 \pm 50 $ per la prima misura, e $ \Sigma_\text{dep} = 2250 \pm 110 $ e $ \Sigma_\text{ind} = 70 \pm 70 $ per la seconda.} effettivamente stiamo trascurando il contributo di tutti i fenomeni ``intermedi'' in cui vengono misurati contemporaneamente dei raggi $ \gamma $ che fanno anche effetto Compton.
+Valutare il numero di conteggi che dipendono da questi fenomeni è estremamente complicato: per poterli caratterizzare con precisione sarebbero state necessarie delle prese dati più lunghe, in modo da popolare maggiormente di conteggi la regione tra il secondo fotopicco e il picco somma.
