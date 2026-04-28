@@ -142,7 +142,7 @@ centroide & FWHM & centroide & FWHM \\
 
 \subsection{Corrispondenza canale-energia}
 
-In generale, l'andamento dell'energia con i canali del multicanale è lineare, ma sopratutto agli estremi dei range diventano rilevanti anche degli effetti non-lineari determinati dal setup sperimentale. \help{specifics?}
+In generale, l'andamento dell'energia con i canali del multicanale è lineare, ma sopratutto agli estremi dei range diventano rilevanti anche degli effetti non-lineari determinati dal setup sperimentale.\footnote{L'efficienza dei processi di scintillazione del cristallo varia con l'energia della radiazione $ \gamma $ incidente: questo spiega la non linearità.} 
 
 Per queste ragioni\footnote{I modelli più semplici, solo lineari o addirittura lineari con offset nullo, non si adattano in maniera accettabile ai dati. Effettivamente osserviamo che il parametro $ a $, risultante dal fit con \cref{eq:calibration}, non è compatibile con $ 0 $ (con $ Z_a = -3.954 $).} abbiamo scelto di usare come funzione di calibrazione:
 \begin{equation} \label{eq:calibration}
@@ -215,7 +215,7 @@ R = \frac{k}{\sqrt{E}} + c
 \end{equation}
 dove $ k $ rappresenta la costante di proporzionalità del rumore statistico,\footnote{Ci aspettiamo che il contributo principale all'errore sulle misure di ogni eventi sia dovuto al numero di fotoelettroni $ N_\text{ph} $ emessi dal fotocatodo (nel fotomoltiplicatore). L'errore sul numero di fotoelettroni è poissoniano, e per questo l'andamento previsto per la risoluzione è $ \sqrt{N_\text{ph}} / N_\text{ph} \propto k / \sqrt{E} $} mentre $ c $ un contributo di fondo del sistema.
 
-Nello specifico, per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}, come in \cref{tab:resolution}
+Nello specifico, per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}, come in \cref{tab:resolution}.
 Troviamo che la regressione converge in maniera accettabile per i parametri:
 \begin{equation}
 k = (6.5 \pm 1.2) \cdot 10^{-2} \unit{MeV^{1/2}} \qquad c = (0.000 \pm 0.012 )
@@ -240,6 +240,8 @@ Osserviamo anche che il parametro $ c $ è compatibile con $ 0 $: il contributo 
         \ce{^60Co} - 2 & 1.3325 & 0.0010 & 780.5 & 1.5 & 43.0 & 0.7 & 0.057 & 0.003 \\
         \ce{^137Cs} & 0.66166 & 0.00010 & 395.4 & 1.5 & 31.0 & 0.7 &0.081 & 0.006 \\
     \end{tabular}
+    \caption{Dati relativi al fit in \cref{fig:resolution}: abbiamo usato i valori di energia teorici $E$, e li abbiamo confrontati con la FWHM in energia per ogni picco calcolata a partire dalla FWHM in canali (stimata dal software). Abbiamo usato come errori sulle stime dei centroidi e della FWHM le deviazioni standard delle misure ripetute di \ce{^60Co}.}
+    \label{tab:resolution}
 \end{table}
 
 \section{Studio degli spettri di emissione}
@@ -251,22 +253,22 @@ Per questo effetto, il rivelatore misurerà l'energia:
 \begin{equation}
 E_{\text{Sp}} = E_ \gamma - E_ {\gamma'}(\theta) = E_ \gamma - \frac{E_ \gamma}{1+\frac{E_ \gamma}{mc^2} (1 - \cos(\theta)}
 \end{equation}
-Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, usando la procedura di presa dati per le soglie, descritta nell'introduzione (prendendo il canale corrispondente alla semialtezza (in canali) tra i valori di inizio e fine discesa, con un'errore pari alla metà della larghezza in canali della zona di discesa.) \help{qui forse si ouò tagliare, è gia spiegato nell'introduzione} \\
+Misureremo il valore della soglia Compton, ovvero $E_{sp} = E_ \gamma - E_ \gamma(\ang{180})$, usando la procedura di presa dati per le soglie, descritta \cref{sec:errnetcounts}. \\
 Verificheremo che l'energia risultante dalla misura sia compatibile con quella attesa:
 \begin{equation} \label{eq:E_sp}
 E_{\text{sp}} =  E_ \gamma - E_ {\gamma'}(\ang{180}) = \frac{2E_ \gamma ^2}{mc^2} \frac{1}{1+2 \frac{E_ \gamma}{mc^2}}
 \end{equation}
   
-\item {\bf Backscattering}: è il picco relativo all'effetto Compton dei raggi gamma incidenti sulla schermatura di piombo. Abbiamo misurato il valore di soglia relativo a  $\theta \simeq \ang{180}$, prendendo come canale quello corrispondente alla semialtezza tra i valori di inizio e fine salita, con errore pari alla metà della larghezza in canali della zona di salita. \help{di nuovo, forse si può tagliare}
+\item {\bf Backscattering}: è il picco relativo all'effetto Compton dei raggi gamma incidenti sulla schermatura di piombo. Abbiamo misurato il valore di soglia relativo a  $\theta \simeq \ang{180}$ (sempre con il criterio illustrato in \cref{sec:errnetcounts}).
 Confronteremo l'energia misurata con quella teorica:
 \begin{equation}
 E_{\text{back}} = E_{ \gamma'}(\ang{180}) = \frac{E_ \gamma}{1+e \frac{E_ \gamma}{mc^2}}
 \end{equation}
 
-\item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{eq:errcentroide}. \help{remi: gli errori in tabella (e di conseguenza anche i test Z) sono da correggere.\\ simo: dovrebbero essere aggiustati}
+\item {\bf Raggi X} relativi alla transizione \unit{K_{\alpha}} del \ce{Pb} della schermatura. Abbiamo misurato la posizione di questo picco esattamente come quella dei fotopicchi stimando la posizione del centroide con il software e considerando come incertezza quella calcolata in \cref{sec:errcentr}. 
 \end{enumerate}
 
-Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti riportati in \cref{fig:simo_foto_spettri}.
+Di seguito, Per ogni sorgente analizzata, riportiamo in \cref{tab:ch_spettri} i dati presi dagli spettri delle sorgenti riportati in \cref{fig:spettri_calibrazione}.
 
 \begin{table}
   \centering
@@ -354,9 +356,9 @@ Il valore atteso corrisponde alla transizione $K_ \alpha$ del piombo, e come rip
   \begin{tabular}{c|cc|cc|cc}
       sorgente & $K_{\alpha\text{,exp}}[\unit{MeV}]$ & $\delta K_{\alpha\text{,exp}} [\unit{MeV}]$ & $K_{\alpha\text{,th}} [\unit{MeV}] $ & $\delta K_{\alpha\text{,th}} [\unit{MeV}] $ & $Z$ & $p$ \\
     \hline  
-    \ce{^22Na}  & 0.068 & 0.005 & 0.074 & 0.001 & 1.24  & 0.21 \\
-    \ce{^60Co}  & 0.067 & 0.005 & 0.074 & 0.001 & 1.46  & 0.14 \\
-    \ce{^137Cs} & 0.070 & 0.005 & 0.074 & 0.001 & 0.817 & 0.41 \\
+    \ce{^22Na}  & 0.068 & 0.005 & 0.0740 & 0.0010 & 1.24  & 0.21 \\
+    \ce{^60Co}  & 0.067 & 0.005 & 0.0740 & 0.0010 & 1.46  & 0.14 \\
+    \ce{^137Cs} & 0.070 & 0.005 & 0.0740 & 0.0010 & 0.817 & 0.41 \\
   \end{tabular}
   \caption{Raggi X relativi alla transizione $K_ \alpha$ del piombo.}
   \label{tab:simo_Pb}
@@ -386,12 +388,12 @@ Identificati i picchi nello spettro della roccia (\cref{fig:rock}) abbiamo ricav
     \begin{tabular}{cc|cc|cc|c|cc}
         canale & $\delta$ canale & $ E_\text{exp} [\unit{MeV}] $ & $ \delta E_\text{exp} [\unit{MeV}] $ & $ E_\text{th} [\unit{MeV}] $ & $ \delta E_\text{th} [\unit{MeV}] $ & ipotesi & $Z$ & $p$ \\
         \hline
-        54.4 & 1.5 & 0.077 & 0.004 & 0.0740 & 0.0010 & xray \ce{Pb} & 0.723 & 0.470\\
-        368.3 & 1.5 & 0.6167 & 0.0010 & 0.6090 & 0.0010 & \ce{^214Bi} & 0.795 & 0.427\\
-        217.4 & 1.5 & 0.356 & 0.007 & 0.3510 & 0.0010 & \ce{^214Pb} & 0.844 & 0.398\\
-        183.2 & 1.5 & 0.297 & 0.006 & 0.2950 & 0.0010 & \ce{^214Pb} & 0.455 & 0.649\\
-        150.7 & 1.5 & 0.242 & 0.005 & 0.2420 & 0.0010 & \ce{^214Pb} & 0.003 & 0.997\\
-        118.9 & 1.5 & 0.187 & 0.005 & 0.1860 & 0.0010 & \ce{^226Ra} & 0.284 & 0.777\\
+        54.4  & 1.5 & 0.077  & 0.004  & 0.0740 & 0.0010 & xray \ce{Pb} & 0.723 & 0.470 \\
+368.3 & 1.5 & 0.6167 & 0.0010 & 0.6093 & 0.0010 & \ce{^214Bi}  & 0.795 & 0.427 \\
+217.4 & 1.5 & 0.356  & 0.007  & 0.3519 & 0.0010 & \ce{^214Pb}  & 0.844 & 0.398 \\
+183.2 & 1.5 & 0.297  & 0.006  & 0.2952 & 0.0010 & \ce{^214Pb}  & 0.455 & 0.649 \\
+150.7 & 1.5 & 0.242  & 0.005  & 0.2419 & 0.0010 & \ce{^214Pb}  & 0.003 & 0.997 \\
+118.9 & 1.5 & 0.187  & 0.005  & 0.1862 & 0.0010 & \ce{^226Ra}  & 0.284 & 0.777 \\
     \end{tabular}
     \caption{Le misure relative ai picchi nello spettro della roccia, confrontate con le nostre ipotesi teoriche: tutti i test $ Z $ di compatibilità sono accettabili al $ 5\% $.}
     \label{tab:rock}
