@@ -190,6 +190,58 @@ E_{\ce{^22Na},2} = (1.28 \pm 0.02) \unit{MeV} \qq{con} E_{\ce{^22Na},2 \text{tru
 \end{equation}
 trovando che sono compatibili con $ Z = 0.132 $ (o $ p = 0.895 $).
 
+\section{Studio della risoluzione del rivelatore}
+
+Vogliamo caratterizzare la risoluzione del rivelatore:
+\begin{equation} 
+R = \frac{\Delta E}{E}
+\end{equation}
+dove $ \Delta E $ è la larghezza del picco a energie $ E $ misurato dal rivelatore.
+
+In particolare, abbiamo calcolato $ \Delta E $ usando la formula:
+\begin{equation}
+\Delta E = b \qty(C_\text{dx} - C_\text{sx}) + c \qty(C_\text{dx}^{2} - C_\text{sx}^{2})
+\end{equation}
+dove $ a $ e $ b $ sono i parametri di calibrazione calcolati in \cref{eq:calibration}, mentre i canali $ C $ destro e sinistro corrispondono ai punti a metà altezza di ogni picco:
+\begin{equation}
+C_\text{sx} = C_\text{peak} - \frac{\text{FWHM}_\text{peak}}{2} \qquad C_\text{dx} = C_\text{peak} + \frac{\text{FWHM}_\text{peak}}{2}.
+\end{equation}
+
+Per propagare gli errori su posizioni e larghezze dei picchi abbiamo considerato le stime fatte in \cref{sec:errcentr}, mentre abbiamo trascurato la covarianza tra il parametro $ b $ e il parametro $ c $.\footnote{Esplicitando la formula del calcolo di $ \Delta E $ (senza calcolare $ E_\text{sx} \pm \delta E_\text{sx} $ e $ E_\text{dx} \pm \delta E_\text{dx} $, per poi prenderne la differenza) elimina, già, il contributo dell'errore su $ a $ dalla stima.} 
+
+Il modello teorico che abbiamo usato per descrivere l'andamento della risoluzione è:
+\begin{equation} \label{eq:resolution}
+R = \frac{k}{\sqrt{E}} + c
+\end{equation}
+dove $ k $ rappresenta la costante di proporzionalità del rumore statistico,\footnote{Ci aspettiamo che il contributo principale all'errore sulle misure di ogni eventi sia dovuto al numero di fotoelettroni $ N_\text{ph} $ emessi dal fotocatodo (nel fotomoltiplicatore). L'errore sul numero di fotoelettroni è poissoniano, e per questo l'andamento previsto per la risoluzione è $ \sqrt{N_\text{ph}} / N_\text{ph} \propto k / \sqrt{E} $} mentre $ c $ un contributo di fondo del sistema.
+
+Nello specifico, per effettuare la regressione (in \cref{fig:resolution}) abbiamo utilizzato solo i dati relativi ai fotopicchi di \ce{^60Co}, \ce{^137Cs}, e \ce{^22Na}, come in \cref{tab:resolution}
+Troviamo che la regressione converge in maniera accettabile per i parametri:
+\begin{equation}
+k = (6.5 \pm 1.2) \cdot 10^{-2} \unit{MeV^{1/2}} \qquad c = (0.000 \pm 0.012 )
+\end{equation}
+e usando questi valori per calcolare la risoluzione del rilevatore a $ 1 \unit{MeV} $ troviamo $ R(1 \unit{MeV}) = 6.5 \% $, che è un valore tipico per i rivelatori \ce{NaI(Tl)}.
+Osserviamo anche che il parametro $ c $ è compatibile con $ 0 $: il contributo di fondo del sistema non è rilevante, almeno nel range di energie che abbiamo studiato.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{images/energeticResolution.png}
+\caption{Regressione con il modello (\ref{eq:resolution}) ai dati in \cref{tab:resolution} per caratterizzare l'andamento della risoluzione $ R = \Delta E / E $ del rivelatore contro l'energia $ E $.}
+\label{fig:resolution}
+\end{figure}
+
+\begin{table}
+    \centering
+    \begin{tabular}{c|cc|cc|cc|cc}
+        sorgente & $ E [\unit{MeV}] $ & $\delta E [\unit{MeV}] $ & centroide & $ \delta $ centroide & FWHM & $ \delta $ FWHM & $ R \qty(\frac{\Delta E}{E}) $ & $ \delta R $ \\
+        \hline
+        \ce{^22Na} & 0.5110 & 0.0010 & 307.2 & 1.5 & 27.1 & 0.7 &0.092 & 0.008 \\
+        \ce{^60Co} - 1 & 1.1732 & 0.0010 & 685.0 & 1.5 & 41.2 & 0.7 & 0.062 & 0.004 \\
+        \ce{^60Co} - 2 & 1.3325 & 0.0010 & 780.5 & 1.5 & 43.0 & 0.7 & 0.057 & 0.003 \\
+        \ce{^137Cs} & 0.66166 & 0.00010 & 395.4 & 1.5 & 31.0 & 0.7 &0.081 & 0.006 \\
+    \end{tabular}
+\end{table}
+
 \section{Studio degli spettri di emissione}
 
 Dopo aver calibrato la scala dei canali usando le energie dei fotopicchi, vogliamo studiare la caratteristica dell'intero spettro delle sorgenti, misurando le energie dei seguenti effetti e verificando che siano compatibili con i risultati attesi:
