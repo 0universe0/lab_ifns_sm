@@ -1,41 +1,14 @@
-# lab_ifns_sm
+# IFNS and SM labs
 
-lab reports repo
+data analysis and reports for the "Introduzione alla Fisica Nucleare e Subnucleare" and the "Struttura della Materia" labs (Physics @ University of Turin, spring 2026).
 
-## TODOs
+the experiments we performed are
 
-rimane solo più che gamma! (quindi tutto si riferisce a quello)
+- **gamma (IFNS):** characterising the gamma-ray emission of radioactive materials with a NaI(Tl) scintillator
+- **hall (SM):** studying the Hall effect in a doped semiconductor
+- **x-rays (SM):** studying the diffraction of x-rays on crystals
 
-### lab reports
 
-- scrivere abstract
-- scrivere intro
-- scrivere calibrazione
-- scrivere caratterizzazione spettri
-- scrivere stima della risoluzione
-- scrivere ambiente + roccia ignota
-- scrivere misura dell'attività
-- scrivere assorbimento
-- scrivere picco-somma
-- scrivere conclusioni
+for the data analysis, we used the [ROOT](https://github.com/root-project/root) framework and some custom-built Python macros.
 
-### data analysis
-
-- calibrazione multicanale [REMI]
-- confronto secondo fotopicco Na [REMI]
-
-- energie spalle compton [SIMO]
-- energie di backscattering [SIMO]
-- energie raggi caratteristici del piombo
-
-- analisi fondo ambientale
-- analisi sorgenti sconosciute
-
-- stima della risoluzione
-
-- misura dell'attività con metodo relativo [MAX]
-- misura dell'attività con metodo assoluto [MAX]
-
-- assorbimento di Cs nel piombo [MAX]
-
-- analisi picco somma per Co [MAX]
+*(the .mca files with the spectra of the gamma sources are collected in the branch mca-files.)*
