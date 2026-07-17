@@ -248,8 +248,8 @@ def texTabler(data, errors, names):
 
     title = ""
     for i in range(0,len(names)-1):
-        title += f"${names[i]}$ & $\delta {names[i]}$ & "
-    title+= f"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
+        title += fr"${names[i]}$ & $\delta {names[i]}$ & "
+    title+= fr"${names[len(names)-1]}$ & $\delta {names[len(names)-1]}$ \\\\"
 
     print(title)
     print("\\hline")
@@ -365,6 +365,18 @@ def testZ(media_campione, media_popolazione, dev_std_popolazione, n, alfa=0.05, 
         print("Il risultato NON è statisticamente significativo al livello del 5%.")
 
     return p_value
+
+import math
+
+def mytestZ(val1, err1, val2, err2):
+    """ returns z_score and p_value of comparison between val1+-err1 and val2+-err2 """
+    diff = val1 - val2
+    combined_err = math.sqrt(err1**2 + err2**2)
+
+    z_score = diff / combined_err
+    p_value = 2 * (1 - stats.norm.cdf(abs(z_score)))
+    
+    return z_score, p_value
 
 # Zscore function
 

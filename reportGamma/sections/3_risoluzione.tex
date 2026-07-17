@@ -1,0 +1,88 @@
+\section{Misura dell'attività di una sorgente}
+
+Abbiamo acquisito gli spettri di due sorgenti di \ce{^137Cs} (etichettate FS65 e FS66) per determinarne l'attività, sia con un metodo relativo che con uno assoluto.
+
+\begin{figure}[]
+    \centering
+
+    \subcaptionbox{Sorgente FS65 \label{fig:fs65}}
+    {\includegraphics[width=0.45\textwidth]{images/fs65.png}}
+    \hfill
+    \subcaptionbox{Sorgente FS66 \label{fig:fs66}}
+        {\includegraphics[width=0.45\textwidth]{images/fs66.png}}
+
+        \caption{Spettri delle sorgenti di \ce{^137Cs} FS65 e FS66 di cui abbiamo determinato le attività. Anche se i tempi di misura $ t_\text{live} $ sono pressoché identici l'altezza del picco della sorgente FS65 è chiaramente maggiore di quella della sorgente FS66 (le scale degli assi verticali sono diverse nei due grafici).}
+    \label{fig:activityspectra}
+\end{figure}
+
+Le attività nominali delle sorgenti sono note al 07/11/2024:
+\begin{equation}
+A_\text{FS65} = (193 \pm 10)\unit{kBq} \qquad  A_\text{FS66} = (37.4 \pm 1.9) \unit{kBq}
+\end{equation}
+e considerando il tempo di dimezzamento del \ce{^137Cs}:
+\begin{equation}
+t_{1/2} = (30.150 \pm 0.010) \unit{y}
+\end{equation}
+abbiamo utilizzato la legge di decadimento esponenziale per calcolare le attività tabulate al giorno dell'esperienza (14/04/2026, cioè $ \Delta t = (1.432 \pm 0.003) \unit{y} $):
+\begin{equation} \label{eq:expdec}
+A = A_0e^{-\lambda\Delta t}
+\end{equation}
+ottenendo:
+\begin{equation}\label{eq:csactivities}	
+A_\text{FS65,today} = (187 \pm 9) \unit{kBq} \qquad A_\text{FS66,today} = (36.2 \pm 1.8) \unit{kBq}.
+\end{equation}
+
+In particolare, per applicare entrambi i metodi abbiamo misurato i rate dei picchi fotoelettrici delle due sorgenti stimandoli usando:
+\begin{equation}
+R = \frac{A_n}{t_\text{live}}
+\end{equation}
+come riportato in \cref{tab:csrates}, dove $ A_n $ è il numero di conteggi netti (con errore calcolato a partire dai conteggi lordi $ A_g $ come illustrato in \cref{sec:errnetcounts}) e $ t_\text{live} $ il tempo di misura a cui è stato sottratto il tempo morto. 
+
+\begin{table}
+	\centering
+	\begin{tabular}{c|ccc|cc|cc}
+		sorgente & $A_g$ & $A_n$ & $ \delta A_n $ & $t_\text{live} \, [\unit{s}]$ & $\delta t_\text{live} \, [\unit{s}]$ & $R \, [\unit{s^{-1}}]$ & $\delta R \, [\unit{s^{-1}}]$ \\
+		\hline
+		FS65 & 273300 & 257800 & 500 & 349.150 & 0.010 & 738.3 & 1.5 \\ 
+		FS66 & 55541 & 51400 & 200  & 354.170 & 0.010  & 145.2 & 0.7 
+	\end{tabular}
+	\caption{Dati relativi al conteggio dei rate del picco fotoelettrico delle due sorgenti di \ce{^137Cs}: l'area netta del picco $A_n$ determinata dal software rimuovendo il background all'area lorda $A_g$ (espresse entrambe in numero di conteggi), il tempo di misura $t_\text{live}$ e i rate con il loro errore.}
+	\label{tab:csrates}
+\end{table}
+
+\subsection{Attività della sorgente con il metodo relativo}
+
+Il metodo relativo ci permette di ricavare l'attività di una sorgente incognita (FS66) conoscendo quella di una sorgente nota (FS65) sfruttando la proporzionalità diretta tra attività e rate di conteggi $ A \propto R $:
+\begin{equation}
+A_x = A_s\frac{R_x}{R_s}.
+\end{equation}	
+
+Quindi, usando i dati in \cref{tab:csrates} abbiamo calcolato l'attività della sorgente FS66:
+\begin{equation}
+A_\text{FS66,rel} = (36.8 \pm 1.9) \unit{kBq} 
+\end{equation}
+e confrontandola con quella teorica in \cref{eq:csactivities} con un test Z abbiamo trovato che è compatibile ($ Z = 0.207 $ e $ p = 0.836 $) al 5\%.
+
+\subsection{Attività delle sorgenti con il metodo assoluto}
+
+Per utilizzare il metodo assoluto sfruttiamo la relazione seguente:
+\begin{equation}\label{eq:absactivity}
+	A = \frac{R}{\epsilon G f_g}
+\end{equation}
+dove $R$ sono i rate, $\epsilon$ è l'efficienza del rivelatore, $G$ è l'accettanza mentre $f_g$ è la frazione di decadimento.
+In particolare abbiamo calcolato $G$ con la seguente relazione:
+\begin{equation} \label{eq:acc}
+G = \frac{1}{2}\qty[1-\cos(\arctan(\frac{a}{d}))].
+\end{equation}
+
+Nello specifico nel nostro setup:\footnote{Il valore dell'efficienza $\epsilon$ dipende sia dall'energia dei $\gamma$ incidenti, sia da fattori geometrici: questa stima è valida per il picco di emissione del \ce{^137Cs} alla distanza $ d = 9.3 \unit{cm} $.}
+\begin{equation}
+\epsilon = (0.25 \pm 0.01) \quad f_g = 0.851 \quad a = (2.5 \pm 0.1) \unit{cm} \quad d = (9.3 \pm 0.1) \unit{cm}
+\end{equation}
+e quindi abbiamo valutato l'accettanza come $ G = (0.0177 \pm 0.0013)$ (usando l'\cref{eq:acc}).
+
+Usando l'equazione in \cref{eq:absactivity} con i rate in \cref{tab:csrates} abbiamo ricavato:
+\begin{equation}
+A_\text{FS65,abs} = (196 \pm 17) \unit{kBq} \qquad A_\text{FS66,abs} = (38\pm3) \unit{kBq}
+\end{equation}
+Valori che se confrontati con quelli in \cref{eq:csactivities} con un test Z risultano essere compatibili ($Z_{65} = 0.727$, $ p_{65} = 0.467$ e $Z_{66} = 0.956$, $ p_{66} = 0.399$) al 5\%.  
